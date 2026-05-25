@@ -1184,7 +1184,7 @@ body {
          onerror="this.style.display='none'">
 
     <h1 class="landing-title fade-up fade-up-d1">DISCLOSURE<br>DAY</h1>
-    <p class="landing-subtitle fade-up fade-up-d2">Spielberg. Opening night. Recliners. This is the one you see with the people who matter.</p>
+    <p class="landing-subtitle fade-up fade-up-d2">Spielberg. UFOs. Opening night. This is the one you see with the people who matter.</p>
 
     <div class="countdown-container fade-up fade-up-d3" id="countdown">
       <div class="countdown-unit">
@@ -2129,10 +2129,33 @@ function shareIMessage() {
   window.open(`sms:&body=${encodeURIComponent(text)}`, '_blank');
 }
 
+// Ticket status polling
+async function checkTicketStatus() {
+  try {
+    const { data, error } = await sb.from('ticket_status').select('*').eq('id', 'disclosure-day-secaucus').single();
+    if (error || !data) return;
+    if (data.tickets_live) {
+      const banner = document.getElementById('tickets-live-banner');
+      if (banner) banner.style.display = 'flex';
+      const link = document.getElementById('tickets-live-link');
+      if (link && data.booking_url) link.href = data.booking_url;
+    }
+  } catch (e) {
+    console.error('ticket status check:', e);
+  }
+}
+
 // Boot
 (async function boot() {
   await fetchAttendees();
   subscribeToChanges();
+  checkTicketStatus();
+
+  sb.channel('ticket-status-realtime')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'ticket_status' }, () => {
+      checkTicketStatus();
+    })
+    .subscribe();
 
   document.getElementById('cta-btn').addEventListener('click', initialize);
   document.getElementById('cta-btn').addEventListener('touchend', (e) => {
