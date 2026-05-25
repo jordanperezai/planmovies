@@ -1,0 +1,26 @@
+name = "ticket-monitor"
+main = "src/index.js"
+compatibility_date = "2026-05-25"
+account_id = "0ac90ecc2fb8de376efd32b25a466bfe"
+
+[triggers]
+crons = ["*/15 * * * *"]
+
+[vars]
+THEATER_CODE = "1665"
+THEATER_NAME = "Regal Secaucus ShowPlace 14"
+MOVIE_TITLE = "Disclosure Day"
+REGAL_MOVIE_ID = "ho00020460"
+SUPABASE_URL = "https://aahaurqqkrgwqdqkohuu.supabase.co"
+
+[[kv_namespaces]]
+binding = "TICKET_KV"
+id = "c0de5755a7e643c087f051fba1190524"
+
+# Set these as secrets via:
+#   cd workers/ticket-monitor
+#   wrangler secret put SUPABASE_KEY
+#   wrangler secret put TWILIO_SID
+#   wrangler secret put TWILIO_AUTH
+#   wrangler secret put TWILIO_FROM
+#   wrangler secret put ALERT_PHONE
