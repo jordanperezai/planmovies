@@ -1090,8 +1090,8 @@ body {
 .news-ticker-text {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 13px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
   letter-spacing: 0.3px;
   text-decoration: none;
   transition: color 0.15s;
@@ -2272,7 +2272,7 @@ function renderHypeTicker() {
     if (!scroll) return;
     scroll.innerHTML = items + items;
     const totalWidth = scroll.scrollWidth / 2;
-    const duration = totalWidth / 60;
+    const duration = totalWidth / 35;
     scroll.style.animation = `ticker-scroll ${duration}s linear infinite`;
   });
 }
