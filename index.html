@@ -1181,7 +1181,14 @@ body {
     <div class="landing-bg"></div>
     <div class="landing-grid"></div>
 
-    <div class="landing-eyebrow fade-up">THE FAMILY IS GOING TOGETHER</div>
+    <div class="espn-banner fade-up" id="landing-ticker" style="position:absolute;top:0;left:0;right:0;border-radius:0;z-index:10;">
+      <div class="espn-banner-flag">LIVE</div>
+      <div class="espn-banner-content">
+        <div class="espn-banner-scroll" id="landing-ticker-scroll"></div>
+      </div>
+    </div>
+
+    <div class="landing-eyebrow fade-up" style="margin-top:28px;">THE FAMILY IS GOING TOGETHER</div>
 
     <img class="landing-poster fade-up fade-up-d1"
          src="https://image.tmdb.org/t/p/w500/3o5YPjDGDTcTDL5ftDA9NwN9dLd.jpg"
@@ -2165,18 +2172,20 @@ const HYPE_HEADLINES = [
 ];
 
 function renderHypeTicker() {
-  const scroll = document.getElementById('banner-scroll');
-  if (!scroll) return;
+  const targets = ['banner-scroll', 'landing-ticker-scroll'];
   const shuffled = [...HYPE_HEADLINES].sort(() => Math.random() - 0.5);
   const items = shuffled.map(h =>
     `<span class="espn-banner-text">${h}</span><span class="espn-banner-sep">&bull;</span>`
   ).join('');
-  scroll.innerHTML = items + items;
 
-  const totalWidth = scroll.scrollWidth / 2;
-  const speed = 60;
-  const duration = totalWidth / speed;
-  scroll.style.animation = `espn-scroll ${duration}s linear infinite`;
+  targets.forEach(id => {
+    const scroll = document.getElementById(id);
+    if (!scroll) return;
+    scroll.innerHTML = items + items;
+    const totalWidth = scroll.scrollWidth / 2;
+    const duration = totalWidth / 60;
+    scroll.style.animation = `espn-scroll ${duration}s linear infinite`;
+  });
 }
 
 // Ticket status polling
