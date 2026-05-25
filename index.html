@@ -1044,15 +1044,20 @@ body {
 .espn-banner {
   display: flex;
   align-items: stretch;
-  background: var(--red);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
   overflow: hidden;
   margin-bottom: 16px;
+}
+.espn-banner.live-tickets {
+  background: var(--red);
+  border-color: var(--red);
   box-shadow: 0 4px 20px rgba(224,85,85,0.3);
 }
 .espn-banner-flag {
-  background: #1a1a1a;
-  color: white;
+  background: var(--bg-elevated);
+  color: var(--gold);
   font-family: var(--mono);
   font-size: 10px;
   font-weight: 800;
@@ -1228,8 +1233,16 @@ body {
       <h2 class="page-title">The Crew So Far</h2>
     </div>
 
-    <div id="tickets-live-banner" class="espn-banner" style="display:none;">
-      <div class="espn-banner-flag">BREAKING</div>
+    <div id="hype-banner" class="espn-banner">
+      <div class="espn-banner-flag" id="banner-flag">LIVE</div>
+      <div class="espn-banner-content">
+        <div class="espn-banner-scroll" id="banner-scroll"></div>
+      </div>
+      <a id="banner-cta" class="espn-banner-cta" href="#" onclick="showPage('briefing');return false;" style="display:none;">WATCH</a>
+    </div>
+
+    <div id="tickets-live-banner" class="espn-banner live-tickets" style="display:none;">
+      <div class="espn-banner-flag" style="background:var(--red);color:white;">BUY NOW</div>
       <div class="espn-banner-content">
         <div class="espn-banner-scroll">
           <span class="espn-banner-text">DISCLOSURE DAY TICKETS ARE NOW ON SALE AT REGAL SECAUCUS</span>
@@ -1241,7 +1254,7 @@ body {
           <span class="espn-banner-text">OPENING NIGHT JUN 12</span>
         </div>
       </div>
-      <a id="tickets-live-link" class="espn-banner-cta" href="https://www.regmovies.com/movies/disclosure-day-ho00020460" target="_blank" rel="noopener">BUY NOW</a>
+      <a id="tickets-live-link" class="espn-banner-cta" href="https://www.regmovies.com/movies/disclosure-day-ho00020460" target="_blank" rel="noopener">BUY</a>
     </div>
 
     <div class="share-bar">
@@ -2129,12 +2142,51 @@ function shareIMessage() {
   window.open(`sms:&body=${encodeURIComponent(text)}`, '_blank');
 }
 
+// Hype ticker headlines (all sourced from real news)
+const HYPE_HEADLINES = [
+  'PENTAGON UNSEALS 222 UAP FILES ON WAR.GOV',
+  'SPIELBERG: "MORE TRUTH THAN FICTION"',
+  'TRUMP ORDERS "MAXIMUM TRANSPARENCY" ON UFOS',
+  'AARO CASELOAD NOW EXCEEDS 2,000 UAP REPORTS',
+  'KOEPP WROTE 42 DRAFTS BEFORE SPIELBERG APPROVED',
+  'AGE OF DISCLOSURE BREAKS AMAZON PRIME RECORD',
+  'BLUNT: "CLOSE ENCOUNTERS QUESTIONS ANSWERED"',
+  'CONGRESS DEMANDS SCIF BRIEFING ON NEW WHISTLEBLOWER',
+  'PENTAGON DROPS UAP FILES 3 WEEKS BEFORE SPIELBERG',
+  'SPIELBERG: "ALL YOU NEED IS A SEATBELT"',
+  'GRUSCH NOW SPECIAL ADVISOR TO HOUSE UAP TASK FORCE',
+  '2ND FILE DROP: 51 VIDEOS, FIRST ENGAGEMENT FOOTAGE',
+  'DISCLOSURE DAY VS TOY STORY 5: JUNE BOX OFFICE WAR',
+  'FY2026 NDAA FORCES NORAD UAP INTERCEPT BRIEFINGS',
+  'SPIELBERG DEBUTS DISCLOSURE DAY AT CINEMACON',
+  'WAR.GOV/UFO HITS 1 BILLION VISITS IN 2 WEEKS',
+  'DOMINGO: "I FINISHED THE SCRIPT AND I BAWLED"',
+  'UAP WHISTLEBLOWER PROTECTION ACT ADVANCES',
+];
+
+function renderHypeTicker() {
+  const scroll = document.getElementById('banner-scroll');
+  if (!scroll) return;
+  const shuffled = [...HYPE_HEADLINES].sort(() => Math.random() - 0.5);
+  const items = shuffled.map(h =>
+    `<span class="espn-banner-text">${h}</span><span class="espn-banner-sep">&bull;</span>`
+  ).join('');
+  scroll.innerHTML = items + items;
+
+  const totalWidth = scroll.scrollWidth / 2;
+  const speed = 60;
+  const duration = totalWidth / speed;
+  scroll.style.animation = `espn-scroll ${duration}s linear infinite`;
+}
+
 // Ticket status polling
 async function checkTicketStatus() {
   try {
     const { data, error } = await sb.from('ticket_status').select('*').eq('id', 'disclosure-day-secaucus').single();
     if (error || !data) return;
     if (data.tickets_live) {
+      const hype = document.getElementById('hype-banner');
+      if (hype) hype.style.display = 'none';
       const banner = document.getElementById('tickets-live-banner');
       if (banner) banner.style.display = 'flex';
       const link = document.getElementById('tickets-live-link');
@@ -2149,6 +2201,7 @@ async function checkTicketStatus() {
 (async function boot() {
   await fetchAttendees();
   subscribeToChanges();
+  renderHypeTicker();
   checkTicketStatus();
 
   sb.channel('ticket-status-realtime')
