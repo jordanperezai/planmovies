@@ -1037,69 +1037,93 @@ body {
   color: var(--gold);
 }
 
-/* ESPN BREAKING BANNER */
-@keyframes espn-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-@keyframes espn-pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+/* NEWS TICKER */
+@keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-.espn-banner {
+.news-ticker {
   display: flex;
   align-items: stretch;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius);
+  background: #0a0a0a;
+  border-bottom: 2px solid var(--gold-dim);
   overflow: hidden;
-  margin-bottom: 16px;
 }
-.espn-banner.live-tickets {
+.news-ticker-flag {
   background: var(--red);
-  border-color: var(--red);
-  box-shadow: 0 4px 20px rgba(224,85,85,0.3);
-}
-.espn-banner-flag {
-  background: var(--bg-elevated);
-  color: var(--gold);
+  color: white;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 2px;
-  padding: 12px 14px;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
   white-space: nowrap;
-  animation: espn-pulse 1.5s ease infinite;
+  position: relative;
 }
-.espn-banner-content {
+.news-ticker-flag::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: linear-gradient(to right, var(--red), transparent);
+}
+.news-ticker-content {
   flex: 1;
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 0 12px;
+  padding: 0 16px;
 }
-.espn-banner-scroll {
+.news-ticker-scroll {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   white-space: nowrap;
-  animation: espn-scroll 20s linear infinite;
+  animation: ticker-scroll 20s linear infinite;
 }
-.espn-banner-content:hover .espn-banner-scroll {
+.news-ticker-content:hover .news-ticker-scroll {
   animation-play-state: paused;
 }
-.espn-banner-text:hover {
+.news-ticker-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.news-ticker-text:hover {
+  color: var(--gold);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.espn-banner-text {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 0.3px;
+.news-ticker-sep {
+  color: var(--gold-dim);
+  font-size: 8px;
+  display: flex;
+  align-items: center;
 }
-.espn-banner-sep {
-  color: rgba(255,255,255,0.25);
-  font-size: 10px;
+
+/* TICKETS LIVE BANNER */
+.tickets-banner {
+  display: flex;
+  align-items: stretch;
+  background: var(--red);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 20px rgba(224,85,85,0.3);
 }
-.espn-banner-cta {
+.tickets-banner .news-ticker-flag {
+  background: #1a1a1a;
+}
+.tickets-banner .news-ticker-text {
+  color: white;
+  font-weight: 800;
+}
+.tickets-banner-cta {
   background: white;
   color: var(--red);
   font-family: 'Barlow Condensed', sans-serif;
@@ -1113,7 +1137,7 @@ body {
   align-items: center;
   transition: var(--transition);
 }
-.espn-banner-cta:hover {
+.tickets-banner-cta:hover {
   background: var(--text-primary);
 }
 
@@ -1188,10 +1212,10 @@ body {
     <div class="landing-bg"></div>
     <div class="landing-grid"></div>
 
-    <div class="espn-banner fade-up" id="landing-ticker" style="position:absolute;top:0;left:0;right:0;border-radius:0;z-index:10;">
-      <div class="espn-banner-flag" style="background:rgba(224,85,85,0.8);color:white;font-size:9px;padding:8px 10px;">BREAKING</div>
-      <div class="espn-banner-content">
-        <div class="espn-banner-scroll" id="landing-ticker-scroll"></div>
+    <div class="news-ticker fade-up" id="landing-ticker" style="position:absolute;top:0;left:0;right:0;z-index:10;">
+      <div class="news-ticker-flag">BREAKING</div>
+      <div class="news-ticker-content">
+        <div class="news-ticker-scroll" id="landing-ticker-scroll"></div>
       </div>
     </div>
 
@@ -1247,20 +1271,20 @@ body {
       <h2 class="page-title">The Crew So Far</h2>
     </div>
 
-    <div id="tickets-live-banner" class="espn-banner live-tickets" style="display:none;">
-      <div class="espn-banner-flag" style="background:var(--red);color:white;">BUY NOW</div>
-      <div class="espn-banner-content">
-        <div class="espn-banner-scroll">
-          <span class="espn-banner-text">DISCLOSURE DAY TICKETS ARE NOW ON SALE AT REGAL SECAUCUS</span>
-          <span class="espn-banner-sep">&bull;</span>
-          <span class="espn-banner-text">OPENING NIGHT JUN 12</span>
-          <span class="espn-banner-sep">&bull;</span>
-          <span class="espn-banner-text">DISCLOSURE DAY TICKETS ARE NOW ON SALE AT REGAL SECAUCUS</span>
-          <span class="espn-banner-sep">&bull;</span>
-          <span class="espn-banner-text">OPENING NIGHT JUN 12</span>
+    <div id="tickets-live-banner" class="tickets-banner" style="display:none;">
+      <div class="news-ticker-flag">TICKETS LIVE</div>
+      <div class="news-ticker-content">
+        <div class="news-ticker-scroll">
+          <span class="news-ticker-text">DISCLOSURE DAY TICKETS ARE NOW ON SALE AT REGAL SECAUCUS</span>
+          <span class="news-ticker-sep">&bull;</span>
+          <span class="news-ticker-text">OPENING NIGHT JUN 12</span>
+          <span class="news-ticker-sep">&bull;</span>
+          <span class="news-ticker-text">DISCLOSURE DAY TICKETS ARE NOW ON SALE AT REGAL SECAUCUS</span>
+          <span class="news-ticker-sep">&bull;</span>
+          <span class="news-ticker-text">OPENING NIGHT JUN 12</span>
         </div>
       </div>
-      <a id="tickets-live-link" class="espn-banner-cta" href="https://www.regmovies.com/movies/disclosure-day-ho00020460" target="_blank" rel="noopener">BUY</a>
+      <a id="tickets-live-link" class="tickets-banner-cta" href="https://www.regmovies.com/movies/disclosure-day-ho00020460" target="_blank" rel="noopener">BUY NOW</a>
     </div>
 
     <div class="share-bar">
@@ -2238,7 +2262,7 @@ function renderHypeTicker() {
   const targets = ['landing-ticker-scroll'];
   const shuffled = [...HYPE_HEADLINES].sort(() => Math.random() - 0.5);
   const items = shuffled.map(h =>
-    `<a class="espn-banner-text" href="${h.url}" target="_blank" rel="noopener" style="text-decoration:none;color:white;">${h.text}</a><span class="espn-banner-sep">&bull;</span>`
+    `<a class="news-ticker-text" href="${h.url}" target="_blank" rel="noopener">${h.text}</a><span class="news-ticker-sep">&bull;</span>`
   ).join('');
 
   targets.forEach(id => {
@@ -2247,7 +2271,7 @@ function renderHypeTicker() {
     scroll.innerHTML = items + items;
     const totalWidth = scroll.scrollWidth / 2;
     const duration = totalWidth / 60;
-    scroll.style.animation = `espn-scroll ${duration}s linear infinite`;
+    scroll.style.animation = `ticker-scroll ${duration}s linear infinite`;
   });
 }
 
