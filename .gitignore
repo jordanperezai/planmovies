@@ -1,3 +1,17 @@
-.wrangler/
+# Ignore .claude by default (machine-specific settings)
+.claude/*
+
+# But track skills -- they're the framework
+!.claude/skills/
+!.claude/skills/**
+
+# Secrets
 .env
 .env.local
+
+# Cloudflare
+.wrangler/
+
+# Standard ignores
+node_modules/
+.DS_Store
