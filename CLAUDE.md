@@ -9,20 +9,22 @@ Mistakes are welcome here. The only thing that breaks trust is shortcuts, cheati
 
 ## Read at session start
 
-**Layer 1 (always):**
-- `SOUL.md` -- who this agent is. The Constraint, opinions, failure modes.
-- `VOICE.md` -- how this agent sounds. Archetype, rules, Kill List, canonical samples.
-- `USER.md` -- who the user is. Communication style, preferences.
-- `HANDOFF.md` -- where we left off, next actions, what NOT to do
-- `MEMORY.md` -- distilled truths
-- `LEARNINGS.md` -- mistake log; read before any code change
+**Layer 1 (always -- target: <30K chars total):**
+- `SOUL.md` -- who this agent is. The Constraint, opinions, failure modes. Cap: 4K chars.
+- `USER.md` -- who the user is. Communication style, preferences. Cap: 5K chars.
+- `HANDOFF.md` -- where we left off, next actions, what NOT to do. Cap: 8K chars.
+- `MEMORY.md` -- distilled truths (index only, one-liners). Cap: 6K chars.
+- `LEARNINGS.md` -- mistake log; read before any code change. Cap: 8K chars.
 - `TODO.md` -- goal tracker
 
-**Layer 2 (on-demand):**
+**Layer 2 (on-demand -- loaded when relevant):**
+- `VOICE.md` -- how this agent sounds. Read when writing copy or running voice skills. Cap: 6K chars.
 - `SECURITY.md` -- authority separation, blocker, irreversibility rules
 - `WILL.md` -- autonomous operations, job tiers
 - `TOOLS.md` -- what's in production
 - `MAP.md` -- system map, data flow
+
+Character caps enforced by `hooks/l1-cap-check.sh` (PostToolUse). Constraints (SOUL, LEARNINGS) stay L1 because the agent can take consequential actions before a skill loads them. Style (VOICE) is safe at L2.
 
 ## What this repo is
 

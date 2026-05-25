@@ -6,15 +6,26 @@
 
 ## Where We Left Off
 
-Zordon framework morph completed. 19 core files created, 17 skills copied, hooks and infra scripts in place. The app itself (index.html, workers/ticket-monitor, Supabase backend, Stripe integration) was already built before the morph.
+Session 1 complete. The entire app was built, deployed, and morphed in one session. Everything is live:
+- planmovies.com serving the app (Cloudflare Pages)
+- Ticket monitoring Worker running every 15 min (Cloudflare Workers)
+- Telegram alerts wired (@planmovies_alert_bot)
+- Stripe payment link active ($22/ticket, test mode)
+- Zordon v6.4 scaffold in place (19 files, 17 skills, hooks, infra)
+
+Jordan has NOT yet shared the link with family. That's the #1 priority.
 
 ## Immediate Next Actions
 
-1. Verify the live app at planmovies.com works as expected.
-2. Test the RSVP flow end-to-end: open link, fill form, confirm in Supabase.
-3. Review ticket monitor worker and confirm Telegram alerts fire.
+1. **Jordan sends planmovies.com to family group chats.** Everything else is blocked until RSVPs start coming in. Tickets reportedly drop May 27.
+2. **Call Regal Group Sales:** (844) 462-7342. Ask about reserving 25 seats for Disclosure Day opening night at Secaucus.
+3. **Activate Stripe live account** before May 27 (currently test mode).
+4. **Test social preview:** paste planmovies.com in WhatsApp/iMessage, confirm poster shows.
+5. **Confirm ticket quantity limit:** open any showtime on regmovies.com, count the selector max.
 
 ## Things NOT to Do
 
-1. Don't add a build system. The single HTML file is intentional.
-2. Don't expand to other events until Disclosure Day is fully handled.
+1. Don't add a framework. Single HTML file is intentional. Framework is for the platform rebuild after June 12.
+2. Don't expand to other events until Disclosure Day tickets are purchased and seats assigned.
+3. Don't build automated purchasing. NJ criminal statute (4th degree crime). Monitor and alert only.
+4. Don't touch the Supabase anon key hardcoded in index.html. RLS policies are the security layer, not key secrecy.

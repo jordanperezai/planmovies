@@ -6,17 +6,26 @@
 
 ## Now
 
-- [ ] Verify RSVP flow end-to-end on mobile and desktop
-- [ ] Confirm ticket monitor worker sends Telegram alerts correctly
-- [ ] Get family RSVPs: send the link, track responses
+- [ ] Send planmovies.com to family (group chats + individual texts)
+- [ ] RSVP yourself with real info (replace test "Jordan" entry)
+- [ ] Call Regal Group Sales: (844) 462-7342
+- [ ] Activate Stripe live account (swap test keys for live)
+- [ ] Test social preview (paste link in WhatsApp/iMessage)
 
-## Next
+## Next (before May 27)
 
-- [ ] Finalize seat assignments once RSVPs are in
-- [ ] Process payments via Stripe
-- [ ] Purchase tickets once payment collected
+- [ ] Confirm Regal ticket quantity selector max
+- [ ] Set up coordinated purchase plan based on final RSVP headcount
+- [ ] Create Stripe payment link with real price once tickets are priced
 
-## Later
+## Next (after tickets purchased)
 
-- [ ] Post-event retrospective: what worked, what didn't
-- [ ] Evaluate expanding to other events and groups
+- [ ] Assign seats in the seat map
+- [ ] Collect payments via Stripe
+- [ ] Coordinate rides
+
+## Later (platform)
+
+- [ ] Make PlanMovies generic (any movie, any theater, any group)
+- [ ] Stripe Connect for organizer payouts
+- [ ] Framework rebuild (React/Next.js)
