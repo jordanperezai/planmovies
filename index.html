@@ -1037,6 +1037,74 @@ body {
   color: var(--gold);
 }
 
+/* ESPN BREAKING BANNER */
+@keyframes espn-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes espn-pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+
+.espn-banner {
+  display: flex;
+  align-items: stretch;
+  background: var(--red);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 20px rgba(224,85,85,0.3);
+}
+.espn-banner-flag {
+  background: #1a1a1a;
+  color: white;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: espn-pulse 1.5s ease infinite;
+}
+.espn-banner-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+.espn-banner-scroll {
+  display: flex;
+  gap: 16px;
+  white-space: nowrap;
+  animation: espn-scroll 20s linear infinite;
+}
+.espn-banner-text {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+}
+.espn-banner-sep {
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+}
+.espn-banner-cta {
+  background: white;
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 12px 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+}
+.espn-banner-cta:hover {
+  background: var(--text-primary);
+}
+
 /* BUY TICKETS CTA */
 .buy-tickets-btn {
   display: block;
@@ -1116,7 +1184,7 @@ body {
          onerror="this.style.display='none'">
 
     <h1 class="landing-title fade-up fade-up-d1">DISCLOSURE<br>DAY</h1>
-    <p class="landing-subtitle fade-up fade-up-d2">Spielberg. IMAX. Opening night. This is the one you don't want to miss with the people who matter.</p>
+    <p class="landing-subtitle fade-up fade-up-d2">Spielberg. Opening night. Recliners. This is the one you see with the people who matter.</p>
 
     <div class="countdown-container fade-up fade-up-d3" id="countdown">
       <div class="countdown-unit">
@@ -1160,9 +1228,20 @@ body {
       <h2 class="page-title">The Crew So Far</h2>
     </div>
 
-    <div id="tickets-live-banner" style="display:none;background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--text-inverse);border-radius:var(--radius);padding:16px;margin-bottom:16px;text-align:center;">
-      <div style="font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:2px;margin-bottom:6px;">TICKETS ARE LIVE</div>
-      <a id="tickets-live-link" href="https://www.regmovies.com/movies/disclosure-day-ho00020460" target="_blank" rel="noopener" style="color:var(--text-inverse);font-weight:600;font-size:14px;text-decoration:underline;">Buy at Regal Secaucus Now</a>
+    <div id="tickets-live-banner" class="espn-banner" style="display:none;">
+      <div class="espn-banner-flag">BREAKING</div>
+      <div class="espn-banner-content">
+        <div class="espn-banner-scroll">
+          <span class="espn-banner-text">DISCLOSURE DAY TICKETS ARE NOW ON SALE AT REGAL SECAUCUS</span>
+          <span class="espn-banner-sep">&bull;</span>
+          <span class="espn-banner-text">OPENING NIGHT JUN 12</span>
+          <span class="espn-banner-sep">&bull;</span>
+          <span class="espn-banner-text">DISCLOSURE DAY TICKETS ARE NOW ON SALE AT REGAL SECAUCUS</span>
+          <span class="espn-banner-sep">&bull;</span>
+          <span class="espn-banner-text">OPENING NIGHT JUN 12</span>
+        </div>
+      </div>
+      <a id="tickets-live-link" class="espn-banner-cta" href="https://www.regmovies.com/movies/disclosure-day-ho00020460" target="_blank" rel="noopener">BUY NOW</a>
     </div>
 
     <div class="share-bar">
@@ -2064,3 +2143,4 @@ function shareIMessage() {
 </script>
 </body>
 </html>
+<!-- deploy 1779713450 -->
