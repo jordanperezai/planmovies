@@ -11,7 +11,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='86' fill='%23c9a84c'/%3E%3Cpolygon points='100,60 138,82 138,118 100,140 62,118 62,82' fill='%2307080a'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1058,10 +1058,10 @@ body {
 .espn-banner-flag {
   background: var(--bg-elevated);
   color: var(--gold);
-  font-family: var(--mono);
-  font-size: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
   font-weight: 800;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   padding: 12px 14px;
   display: flex;
   align-items: center;
@@ -1082,8 +1082,8 @@ body {
   animation: espn-scroll 20s linear infinite;
 }
 .espn-banner-text {
-  font-family: var(--font);
-  font-size: 12px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
   font-weight: 700;
   color: white;
   letter-spacing: 0.5px;
@@ -1095,8 +1095,8 @@ body {
 .espn-banner-cta {
   background: white;
   color: var(--red);
-  font-family: var(--mono);
-  font-size: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 2px;
   padding: 12px 16px;
@@ -1238,14 +1238,6 @@ body {
     <div class="page-header">
       <div class="page-eyebrow">DISCLOSURE DAY</div>
       <h2 class="page-title">The Crew So Far</h2>
-    </div>
-
-    <div id="hype-banner" class="espn-banner">
-      <div class="espn-banner-flag" id="banner-flag" style="background:var(--red);color:white;">BREAKING</div>
-      <div class="espn-banner-content">
-        <div class="espn-banner-scroll" id="banner-scroll"></div>
-      </div>
-      <a id="banner-cta" class="espn-banner-cta" href="#" onclick="showPage('briefing');return false;" style="display:none;">WATCH</a>
     </div>
 
     <div id="tickets-live-banner" class="espn-banner live-tickets" style="display:none;">
@@ -2149,33 +2141,33 @@ function shareIMessage() {
   window.open(`sms:&body=${encodeURIComponent(text)}`, '_blank');
 }
 
-// Hype ticker headlines (all sourced from real news)
+// Hype ticker headlines (all sourced from real news, with links)
 const HYPE_HEADLINES = [
-  'PENTAGON UNSEALS 222 UAP FILES ON WAR.GOV',
-  'SPIELBERG: "MORE TRUTH THAN FICTION"',
-  'TRUMP ORDERS "MAXIMUM TRANSPARENCY" ON UFOS',
-  'AARO CASELOAD NOW EXCEEDS 2,000 UAP REPORTS',
-  'KOEPP WROTE 42 DRAFTS BEFORE SPIELBERG APPROVED',
-  'AGE OF DISCLOSURE BREAKS AMAZON PRIME RECORD',
-  'BLUNT: "CLOSE ENCOUNTERS QUESTIONS ANSWERED"',
-  'CONGRESS DEMANDS SCIF BRIEFING ON NEW WHISTLEBLOWER',
-  'PENTAGON DROPS UAP FILES 3 WEEKS BEFORE SPIELBERG',
-  'SPIELBERG: "ALL YOU NEED IS A SEATBELT"',
-  'GRUSCH NOW SPECIAL ADVISOR TO HOUSE UAP TASK FORCE',
-  '2ND FILE DROP: 51 VIDEOS, FIRST ENGAGEMENT FOOTAGE',
-  'DISCLOSURE DAY VS TOY STORY 5: JUNE BOX OFFICE WAR',
-  'FY2026 NDAA FORCES NORAD UAP INTERCEPT BRIEFINGS',
-  'SPIELBERG DEBUTS DISCLOSURE DAY AT CINEMACON',
-  'WAR.GOV/UFO HITS 1 BILLION VISITS IN 2 WEEKS',
-  'DOMINGO: "I FINISHED THE SCRIPT AND I BAWLED"',
-  'UAP WHISTLEBLOWER PROTECTION ACT ADVANCES',
+  { text: 'PENTAGON UNSEALS 222 UAP FILES ON WAR.GOV', url: 'https://www.cnn.com/2026/05/08/politics/ufo-files-pentagon-release-aliens' },
+  { text: 'SPIELBERG: "MORE TRUTH THAN FICTION"', url: 'https://variety.com/2026/film/news/steven-spielberg-hollywood-original-movies-disclosure-day-cinemacon-1236722625/' },
+  { text: 'TRUMP ORDERS "MAXIMUM TRANSPARENCY" ON UFOS', url: 'https://www.militarytimes.com/news/pentagon-congress/2026/05/08/trump-administration-releases-first-tranche-of-never-before-seen-ufo-files/' },
+  { text: 'AARO CASELOAD NOW EXCEEDS 2,000 UAP REPORTS', url: 'https://defensescoop.com/2026/02/25/hegseth-ufo-disclosure-trump-aaro-uap-caseload/' },
+  { text: 'KOEPP WROTE 42 DRAFTS BEFORE SPIELBERG APPROVED', url: 'https://gizmodo.com/david-koepp-wrote-42-drafts-of-disclosure-day-before-spielbergs-approval-2000762349' },
+  { text: 'AGE OF DISCLOSURE BREAKS AMAZON PRIME RECORD', url: 'https://www.worldofreel.com/blog/2025/12/8/the-age-of-disclosure-becomes-vod-phenomenon' },
+  { text: 'BLUNT: "CLOSE ENCOUNTERS QUESTIONS ANSWERED"', url: 'https://www.nbc.com/nbc-insider/everything-to-know-about-steven-spielbergs-disclosure-day' },
+  { text: 'CONGRESS DEMANDS SCIF BRIEFING ON NEW WHISTLEBLOWER', url: 'https://www.ufouap.com/articles/new-uap-whistleblower-2026-disclosure-push/' },
+  { text: 'PENTAGON DROPS UAP FILES 3 WEEKS BEFORE SPIELBERG', url: 'https://www.hollywoodreporter.com/news/general-news/pentagon-ufo-files-2-1236604232/' },
+  { text: 'SPIELBERG: "ALL YOU NEED IS A SEATBELT"', url: 'https://variety.com/2026/film/news/steven-spielberg-hollywood-original-movies-disclosure-day-cinemacon-1236722625/' },
+  { text: 'GRUSCH NOW SPECIAL ADVISOR TO HOUSE UAP TASK FORCE', url: 'https://defensescoop.com/2025/09/09/military-whistleblowers-share-new-evidence-alleged-uap-ufo-hearing/' },
+  { text: '2ND FILE DROP: 51 VIDEOS, FIRST ENGAGEMENT FOOTAGE', url: 'https://www.hollywoodreporter.com/news/general-news/pentagon-ufo-files-2-1236604232/' },
+  { text: 'DISCLOSURE DAY VS TOY STORY 5: JUNE BOX OFFICE WAR', url: 'https://www.comingsoon.net/movies/features/2134823-disclosure-day-average-box-office-prediction-early-projection-steven-spielberg' },
+  { text: 'FY2026 NDAA FORCES NORAD UAP INTERCEPT BRIEFINGS', url: 'https://defensescoop.com/2025/12/10/uap-ufo-military-intercepts-north-america-fy-2026-ndaa/' },
+  { text: 'SPIELBERG DEBUTS DISCLOSURE DAY AT CINEMACON', url: 'https://www.hollywoodreporter.com/movies/movie-news/disclosure-day-steven-spielberg-emily-blunt-cinemacon-1236564322/' },
+  { text: 'WAR.GOV/UFO HITS 1 BILLION VISITS IN 2 WEEKS', url: 'https://warufo.com/' },
+  { text: 'DOMINGO: "I FINISHED THE SCRIPT AND I BAWLED"', url: 'https://www.yahoo.com/entertainment/movies/articles/spielberg-disclosure-day-trailer-most-142032751.html' },
+  { text: 'UAP WHISTLEBLOWER PROTECTION ACT ADVANCES', url: 'https://defensescoop.com/2025/12/10/uap-ufo-military-intercepts-north-america-fy-2026-ndaa/' },
 ];
 
 function renderHypeTicker() {
-  const targets = ['banner-scroll', 'landing-ticker-scroll'];
+  const targets = ['landing-ticker-scroll'];
   const shuffled = [...HYPE_HEADLINES].sort(() => Math.random() - 0.5);
   const items = shuffled.map(h =>
-    `<span class="espn-banner-text">${h}</span><span class="espn-banner-sep">&bull;</span>`
+    `<a class="espn-banner-text" href="${h.url}" target="_blank" rel="noopener" style="text-decoration:none;color:white;">${h.text}</a><span class="espn-banner-sep">&bull;</span>`
   ).join('');
 
   targets.forEach(id => {
