@@ -1,6 +1,6 @@
 ---
 name: declutter
-description: "Monthly maintenance. Prune LEARNINGS.md (15 cap), compress MEMORY.md (hot/warm/cold), decay memory/topics/ entries, prune skill memories (20 cap), prune council memories (20 cap). Staleness formula + Accountable Memory bond."
+description: "Monthly maintenance. Prune LEARNINGS.md (15 cap), compress MEMORY.md (hot/warm/cold), decay memory/topics/ entries, prune skill memories (20 cap), prune ranger memories (20 cap). Staleness formula + Accountable Memory bond."
 model: sonnet
 triggers:
   - "declutter"
@@ -49,7 +49,7 @@ Review entries in auto-memory (`.claude/projects/*/memory/MEMORY.md`) and/or roo
 
 Check each file in `memory/topics/`:
 - **Run the staleness formula** (same as Step 5) if entries have cadence tags. If no cadence tags, fall back to: entries older than 90 days without re-verification = stale
-- Content that's now in CLAUDE.md, skill files, or council memory: remove (it graduated)
+- Content that's now in CLAUDE.md, skill files, or ranger memory: remove (it graduated)
 - Empty or near-empty topic files: consider merging or deleting
 
 ### 5. Skill memory (cap: 20 entries per file)
@@ -92,7 +92,7 @@ This prevents killing knowledge that's actively in use but whose timestamp drift
 Additional checks:
 - Cap: 20 entries per file. Evict oldest `last-confirmed` if over cap
 - Entries that contradict each other: resolve or flag
-- Entries that duplicate council memory: keep in the more specific location only
+- Entries that duplicate ranger memory: keep in the more specific location only
 - Entries missing cadence tags or last-confirmed dates: add them (use `stable` as default cadence, today as last-confirmed if the entry was verified this session)
 
 ### 6. HANDOFF.md (freshness check)
@@ -106,9 +106,9 @@ Additional checks:
 
 HANDOFF.md should be fresh, not accumulated. It's a state file, not a log.
 
-### 7. Council memory (cap: 20 entries per council)
+### 7. Ranger memory (cap: 20 entries per ranger)
 
-Check each `councils/*/memory.md`:
+Check each `rangers/*/memory.md`:
 - Each capped at 20 entries
 - **Run the staleness formula** (same as Step 5) on every entry with `last-confirmed`
 - **Run the Accountable Memory bond** (same as Step 5) before evicting: grep session logs to verify the entry isn't actively in use with a drifted timestamp
@@ -132,7 +132,7 @@ Present the compression report:
 | memory/topics/ | N files, N total entries | N files, N entries | [list stale flags] |
 | Skill memories | N total entries across N files | N entries | [list evictions] |
 | HANDOFF.md | N "don't" items | N items | [list migrations] |
-| Council memories | N total entries across N councils | N entries | [list evictions] |
+| Ranger memories | N total entries across N rangers | N entries | [list evictions] |
 
 ### Staleness Report
 | File | Entry | Cadence | Last Confirmed | Staleness | Status |
@@ -190,6 +190,6 @@ If a file doesn't match this format, standardize it before running the staleness
 | "All these entries are still relevant" | If a rule is enforced in code or a hook, keeping it in LEARNINGS is redundant. Graduate it. |
 | "I might need this entry later" | That's what git history is for. If you need it, grep the log. |
 | "Compression takes too long, I'll do it next month" | Doc bloat compounds. Every month you skip, the next compression is harder. 15 minutes now saves hours of context waste later. |
-| "The council memories are all important" | 20 entries per council forces prioritization. If everything is important, nothing is. Evict the oldest last-confirmed. |
+| "The ranger memories are all important" | 20 entries per ranger forces prioritization. If everything is important, nothing is. Evict the oldest last-confirmed. |
 | "I'll just add one more entry over the cap" | Caps exist because agent context is finite. One over becomes five over becomes thirty over. The cap is the cap. |
 | "memory/topics/ files are reference material, they don't decay" | Everything decays. Platform APIs change, workarounds become unnecessary, gotchas get fixed. 90 days without re-verification means re-verify or remove. |

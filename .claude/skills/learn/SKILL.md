@@ -24,7 +24,7 @@ triggers:
 
 When a mistake is caught or something breaks. Two speeds:
 
-- **Quick** (default): Log the mistake, add the rule, update council memory. 2 minutes.
+- **Quick** (default): Log the mistake, add the rule, update ranger memory. 2 minutes.
 - **Deep** (`/learn deep` or `/learn incident`): Full post-mortem. Timeline, impact, 5 Whys, action items, then the same quick outputs. 15 minutes.
 
 Use deep when: production outage, client-facing breakage, data integrity issue, or anything Jordan says "let's do a postmortem on."
@@ -116,38 +116,38 @@ Mistake: What went wrong.
 Root cause: The assumption that failed.
 Rule: What prevents recurrence.
 Enforced in: Where the rule now lives (skill file, CONTEXT.md, hook, etc.)
-Council flag: [council name] or "none"
+Ranger flag: [ranger name] or "none"
 ```
 
 ### Layer 2 — Skill anti-rationalization (preventive)
 
-If the mistake maps to a specific skill (e.g., a council skill, `/onboard-client`, `/client-health`), add an anti-rationalization row to that skill's SKILL.md:
+If the mistake maps to a specific skill (e.g., a ranger skill, `/onboard-client`, `/client-health`), add an anti-rationalization row to that skill's SKILL.md:
 
 ```markdown
 ## Anti-Rationalization Table
 
 | Excuse | Truth |
 |--------|-------|
-| "It seemed like a simple decision, no council needed" | Simple decisions are where bias hides. If 3 people would disagree, run the council. |
-| "I already know what the council would say" | You thought you knew what the 225 receipts were too. Verify, don't assume. |
+| "It seemed like a simple decision, no ranger needed" | Simple decisions are where bias hides. If 3 people would disagree, run the ranger. |
+| "I already know what the ranger would say" | You thought you knew what the 225 receipts were too. Verify, don't assume. |
 ```
 
 If the skill doesn't have an anti-rationalization table yet, create one. The table grows over time — each mistake adds a row that names the specific lie the agent would tell itself to skip doing the right thing.
 
-### Layer 3 — Council memory flag (strategic)
+### Layer 3 — Ranger memory flag (strategic)
 
-If the mistake reveals something a council should have caught or should know about:
+If the mistake reveals something a ranger should have caught or should know about:
 
-1. Identify which council's blind spot this is (Operations? Strategy? Product? Sales? Marketing? Personas?)
-2. Update that council's `memory.md`:
+1. Identify which ranger's blind spot this is (Operations? Strategy? Product? Sales? Marketing? Personas?)
+2. Update that ranger's `memory.md`:
    - If it killed a direction that turned out to be right → remove from Dead Directions, add note
    - If it validated a principle → add or update `last-confirmed`
    - If it reveals a new blind spot → add to Validated Principles as a new entry
-3. If the insight crosses councils (e.g., a pricing mistake that affects both Strategy and Sales), update BOTH council memories
+3. If the insight crosses rangers (e.g., a pricing mistake that affects both Strategy and Sales), update BOTH ranger memories
 
-### Layer 4 — Cross-council propagation
+### Layer 4 — Cross-ranger propagation
 
-Check: does this learning affect other councils?
+Check: does this learning affect other rangers?
 
 | If the mistake is about... | Also update... |
 |---------------------------|----------------|
@@ -157,7 +157,7 @@ Check: does this learning affect other councils?
 | Infrastructure/deployment | Operations memory |
 | Client trust/retention | Product memory + Strategy memory |
 
-Don't over-propagate — only update councils where the learning would change a future session's outcome.
+Don't over-propagate — only update rangers where the learning would change a future session's outcome.
 
 ### Layer 5 — Learned Rule extraction (when LEARNINGS.md hits cap)
 
@@ -175,8 +175,8 @@ When LEARNINGS.md reaches 15 active entries:
 Report to Jordan:
 - What was logged to LEARNINGS.md
 - Which skill got an anti-rationalization row (if any)
-- Which council memory was flagged (if any)
-- Which cross-council propagation happened (if any)
+- Which ranger memory was flagged (if any)
+- Which cross-ranger propagation happened (if any)
 
 ## When NOT to use
 

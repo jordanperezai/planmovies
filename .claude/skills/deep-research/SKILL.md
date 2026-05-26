@@ -98,7 +98,7 @@ Look for:
 
 ## Step 4 — Save
 
-Write to `research/YYYY-MM-DD-[topic].md`. If multiple entries exist for the same day, use `YYYY-MM-DD-NN-[topic].md` (01, 02, etc.). Update `research/README.md` index.
+Write to `research/YYYY-MM-DD-[topic].md`. If multiple entries exist for the same day, use `YYYY-MM-DD-NN-[topic].md` (01, 02, etc.). Update `research/CLAUDE.md` index.
 
 ```markdown
 # Research: [Topic]

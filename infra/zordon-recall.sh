@@ -27,10 +27,10 @@ rebuild_index() {
         sqlite3 "$DB_PATH" "INSERT INTO recall(path,source_type,title,content) VALUES ('$rel','skill-memory','$name','$(echo "$content"|sed "s/'/''/g")');"
         count=$((count+1))
     done
-    for f in "$ZORDON_ROOT"/councils/*/memory.md; do
+    for f in "$ZORDON_ROOT"/rangers/*/memory.md; do
         [ -f "$f" ] || continue
         local rel="${f#$ZORDON_ROOT/}" name=$(basename "$(dirname "$f")") content=$(cat "$f")
-        sqlite3 "$DB_PATH" "INSERT INTO recall(path,source_type,title,content) VALUES ('$rel','council-memory','$name','$(echo "$content"|sed "s/'/''/g")');"
+        sqlite3 "$DB_PATH" "INSERT INTO recall(path,source_type,title,content) VALUES ('$rel','ranger-memory','$name','$(echo "$content"|sed "s/'/''/g")');"
         count=$((count+1))
     done
     for f in "$ZORDON_ROOT"/journal/20*.md; do

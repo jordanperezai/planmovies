@@ -26,7 +26,7 @@ Find what you haven't noticed yet. Two modes. Auto-detect from prompt. If ambigu
 - Any .md file over 500 lines? (probably doing two jobs)
 - HANDOFF.md "Last updated" more than 7 days old? (stale)
 - LEARNINGS.md over 15 entries? (needs pruning)
-- Council memory over 20 entries? (needs eviction)
+- Ranger memory over 20 entries? (needs eviction)
 - TODO.md items unchanged for 3+ sessions? (stalled or fake priorities)
 
 ### 3. Cross-file contradictions
@@ -59,7 +59,7 @@ What's built, what's deployed, what's live, what data flows are active. List it.
 ### 3. Find gaps
 - **Missing skills:** What got done manually this session that should be automated? What 5+ step sequence happened that could be a skill?
 - **Missing hooks:** What mistake happened that a hook could have caught? What rule exists in CLAUDE.md but isn't enforced structurally?
-- **Missing councils:** Any decision type made 3+ times without structured debate?
+- **Missing rangers:** Any decision type made 3+ times without structured debate?
 
 ### 4. Find what's being avoided
 - What's been on TODO.md for 3+ sessions without progress?
@@ -82,7 +82,7 @@ Surface and stop. Don't build. Don't plan. The human picks.
 
 ## Output
 
-Save to `scans/YYYY-MM-DD-[topic].md`. If multiple entries exist for the same day, use `YYYY-MM-DD-NN-[topic].md` (01, 02, etc.). Update `scans/README.md` index.
+Save to `scans/YYYY-MM-DD-[topic].md`. If multiple entries exist for the same day, use `YYYY-MM-DD-NN-[topic].md` (01, 02, etc.). Update `scans/CLAUDE.md` index.
 
 ```markdown
 # Emergent Scan NN — [Topic]
@@ -97,7 +97,7 @@ Save to `scans/YYYY-MM-DD-[topic].md`. If multiple entries exist for the same da
 [Infrastructure not used, connections not wired]
 
 ## Gaps
-[Missing skills, hooks, councils]
+[Missing skills, hooks, rangers]
 
 ## What's Being Avoided
 [Stalled TODOs, deferred decisions]

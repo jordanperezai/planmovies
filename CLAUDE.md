@@ -15,7 +15,6 @@ Mistakes are welcome here. The only thing that breaks trust is shortcuts, cheati
 - `HANDOFF.md` -- where we left off, next actions, what NOT to do. Cap: 8K chars.
 - `MEMORY.md` -- distilled truths (index only, one-liners). Cap: 6K chars.
 - `LEARNINGS.md` -- mistake log; read before any code change. Cap: 8K chars.
-- `TODO.md` -- goal tracker
 
 **Layer 2 (on-demand -- loaded when relevant):**
 - `VOICE.md` -- how this agent sounds. Read when writing copy or running voice skills. Cap: 6K chars.
@@ -30,19 +29,24 @@ Character caps enforced by `hooks/l1-cap-check.sh` (PostToolUse). Constraints (S
 
 PlanMovies is a group movie coordination platform. First use case: Disclosure Day at Regal Secaucus. Single HTML file app hosted on Cloudflare Pages (planmovies.com). Supabase backend for RSVPs and seat assignments. Cloudflare Worker for ticket monitoring and Telegram alerts. Stripe for payment collection. GitHub: github.com/jordanperezai/planmovies.
 
+## Locked Invariants (changes require version bump)
+
+- SKILL.md YAML frontmatter schema: name, description, triggers, model, user-invocable
+- Layer 1 / Layer 2 loading boundary (L1 = constraints before first action, L2 = on-demand)
+- Session log format: one file per day (`YYYY-MM-DD.md`), `## Session N` sections within
+- HANDOFF.md structure: Where We Left Off + Immediate Next Actions + Goals + Things NOT to Do
+- Hook lifecycle: PreToolUse (block/warn) → tool executes → PostToolUse (index/validate)
+- Memory flow direction: skill → ranger → project (up), project → ranger → skill (down)
+- Skill memory cap: 20 entries with cadence tags and staleness eviction
+- One owner per fact: every rule lives in ONE file, others reference with a pointer
+
 ## Self-Improvement
 
-> **When a mistake is caught, log it immediately** using `/learn`. This writes to LEARNINGS.md + the relevant skill's Anti-Rat Table + skill memory (if earned) + council memory (if applicable).
-> **When a skill keeps rediscovering the same fact, add it to that skill's `memory.md`.**
-> **When a repeatable workflow emerges, escalate it:**
-
-```
-Notice same steps twice      -> propose a skill. Draft SKILL.md with observed steps.
-Skill runs identically       -> propose a hook (automate structurally)
-Should run between sessions  -> propose an autonomous job (WILL.md)
-```
-
-Two repetitions is a pattern. Don't wait for the user to notice. Name the pattern, propose the level, build it.
+> **When a mistake is caught, log it immediately** using `/learn`. This writes to LEARNINGS.md + the relevant skill's Anti-Rat Table + skill memory (if earned) + ranger memory (if applicable).
+> **When a skill keeps rediscovering the same fact, add it to that skill's `memory.md`.** See `rangers/CLAUDE.md` § Memory Flow for the cross-layer triage system.
+> **When a ranger session surfaces a finding, `/ranger` Step 7 records it** and triages to skill memory or MEMORY.md if it applies beyond the ranger team's domain.
+> **When a pattern would be caught by a PreToolUse hook, propose the hook.**
+> **When a repeatable workflow emerges, escalate it.** The ladder: (1) notice you did the same steps twice → propose a skill. Draft SKILL.md with the observed steps. (2) Runs identically every time with no judgment → propose a hook. (3) Should happen between sessions on a schedule → propose an autonomous job. Don't wait for the user to notice. Name the pattern, propose the level, build it. Two repetitions is a pattern.
 
 ## Session Continuity
 
@@ -50,7 +54,15 @@ Before summarizing "what was done last session," check actual file timestamps an
 
 ## Scope Discipline
 
-When asked to migrate, morph, scaffold, or batch: do the FULL set. Never cherry-pick or present optional items as choices. If something should genuinely be skipped, do the full work first, then mention what could be optional AFTER.
+When asked to migrate, morph, scaffold, or batch: do the FULL set. All skills, all configs, all scripts. Never cherry-pick or present optional items as choices. If something should genuinely be skipped, do the full migration first, then mention what could be optional AFTER. Do everything, then flag exceptions.
+
+## Action Bias
+
+For known or repeated workflows, skip the exploration/questioning phase and proceed directly to parallel execution. Ask clarifying questions only when scope is genuinely ambiguous, not for confirmation. The user's best sessions use immediate parallel sub-agent execution, not serial discovery.
+
+## Two-Brain Workflow
+
+When available, run `/codex:adversarial-review` before shipping non-trivial changes. Claude builds, Codex attacks. Gaps found by Codex get routed to the relevant skill's `memory.md` as dead directions or validated principles. The feedback loop closes in /wrap-up Step 6b.
 
 ## Skill-Before-Adhoc
 
@@ -90,7 +102,7 @@ When the task is audit, review, check, or verification work: scan the skills lis
 
 ## Hook Awareness
 
-PreToolUse hooks guard critical areas (see `.claude/settings.json`). Current guards: Bash blocker blocks rm -rf/force-push/reset-hard/DROP/curl-pipe. Infra-check reminds to update TOOLS.md/MAP.md on infra changes. Context guards grow organically per project.
+PreToolUse hooks guard critical areas (see `.claude/settings.json`). Current guards: Bash blocker → blocks rm -rf/force-push/reset-hard/DROP/curl-pipe, infra-check → reminds to update TOOLS.md/MAP.md on infra changes. Context guards grow organically per project (not scaffolded). When a file area causes repeated mistakes, add a check to hooks/context-guard.sh.
 
 ## Edit & Context Discipline
 
@@ -105,12 +117,11 @@ PreToolUse hooks guard critical areas (see `.claude/settings.json`). Current gua
 | HANDOFF.md | 150 lines | Migrate "don't" items >3 sessions to owner file |
 | MEMORY.md | 200 lines | Run /declutter. Hot -> warm -> cold. |
 | LEARNINGS.md | 15 active entries | Monthly prune. Rules enforced elsewhere get archived. |
-| TODO.md | 15 items | If >15, some aren't real priorities. Cut. |
 | SECURITY.md | 250 lines | Rare. If growing, split threat model out. |
 | WILL.md | 250 lines | Split job details to infra/ |
 | TOOLS.md | 150 lines | Deep evaluations -> research/ |
 | MAP.md | 500 lines | Split subsystem diagrams to docs/ |
-| Council memory | 20 entries | Evict oldest `last-confirmed` |
+| Ranger memory | 20 entries | Evict oldest `last-confirmed` |
 
 ### File Read Budget
 Any file over 500 LOC: read in sequential chunks using offset and limit.
@@ -120,6 +131,9 @@ Before every edit: re-read the target section. After: read again to confirm.
 
 ### Context Decay
 After 10+ messages, re-read before editing.
+
+### Commit Agent State Before Branch Ops
+Commit HANDOFF.md, MEMORY.md, and session logs BEFORE any branch switch, merge, or stash.
 
 ### Verification Before Done
 Never report done without testing the actual behavior.

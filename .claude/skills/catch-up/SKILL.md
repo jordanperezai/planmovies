@@ -51,7 +51,7 @@ Trust the repo, not the docs. Session logs describe what someone intended to do.
    - [list]
 
    ## Recommended focus
-   - [based on HANDOFF.md next actions + TODO.md + what drift reveals]
+   - [based on HANDOFF.md next actions + goals + what drift reveals]
    ```
 
 6. **Ask before updating** — Catch-up is read-only by default. Present the report and let the user decide what to update.

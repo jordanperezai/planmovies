@@ -1225,7 +1225,7 @@ body {
     <div class="landing-grid"></div>
 
     <div class="news-ticker fade-up" id="landing-ticker" style="position:absolute;top:0;left:0;right:0;z-index:10;">
-      <div class="news-ticker-flag">BREAKING</div>
+      <div class="news-ticker-flag">NEWS</div>
       <div class="news-ticker-content">
         <div class="news-ticker-scroll" id="landing-ticker-scroll"></div>
       </div>
@@ -1251,14 +1251,16 @@ body {
 
     <div class="fade-up fade-up-d2" style="display:flex;gap:16px;align-items:center;margin-bottom:12px;">
       <span style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;padding:4px 10px;border:1px solid var(--gold-dim);background:rgba(201,168,76,0.08);">OPENING NIGHT</span>
-      <span style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;padding:4px 10px;border:1px solid var(--gold-dim);background:rgba(201,168,76,0.08);">IMAX</span>
       <span style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">JUN 12 2026</span>
     </div>
 
-    <p class="landing-subtitle fade-up fade-up-d2" style="margin-bottom:12px;">Spielberg. UFOs. The one you see with the people who matter.</p>
+    <p class="landing-subtitle fade-up fade-up-d2" style="margin-bottom:8px;">Spielberg. UFOs. The one you see with the people who matter.</p>
 
-    <div class="fade-up fade-up-d2" style="font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--text-tertiary);margin-bottom:36px;">
-      REGAL SECAUCUS SHOWPLACE 14 · RESERVED SEATING · RECLINERS
+    <p class="fade-up fade-up-d2" style="font-size:14px;color:var(--text-secondary);text-align:center;margin-bottom:28px;max-width:360px;line-height:1.5;">The family is going. RSVP so we can save you a seat.</p>
+
+    <div class="fade-up fade-up-d2" style="display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:32px;">
+      <div class="landing-headcount" id="landing-headcount"></div>
+      <button class="cta-btn" id="cta-btn">COUNT ME IN</button>
     </div>
 
     <div class="countdown-container fade-up fade-up-d3" id="countdown">
@@ -1280,13 +1282,12 @@ body {
       </div>
     </div>
 
-    <div class="fade-up fade-up-d4" style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:8px;">
+    <div class="fade-up fade-up-d4" style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:8px;">
       <div class="landing-status">
         <div class="landing-status-dot"></div>
         RSVP OPEN
       </div>
-      <div class="landing-headcount" id="landing-headcount"></div>
-      <button class="cta-btn" id="cta-btn">COUNT ME IN</button>
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);">TICKETS EXPECTED MAY 27</div>
     </div>
   </section>
 
@@ -1378,7 +1379,6 @@ body {
         </div>
         <div class="movie-detail-row" style="gap:8px;">
           <span class="movie-badge badge-pg13">PG-13</span>
-          <span class="movie-badge badge-imax">IMAX</span>
         </div>
       </div>
     </div>
@@ -1670,7 +1670,7 @@ body {
       <div class="section-header">PAYMENT STATUS</div>
       <div id="payment-list"></div>
       <div class="payment-link-bar">
-        <a class="payment-link-btn" href="https://buy.stripe.com/test_cNi6oHgAC34H1so3cm9ws02" target="_blank" rel="noopener" style="background:var(--gold-glow);border-color:var(--gold-dim);color:var(--gold);">Pay for Tickets ($22/ticket)</a>
+        <a class="payment-link-btn" href="https://buy.stripe.com/test_cNi6oHgAC34H1so3cm9ws02" target="_blank" rel="noopener" style="background:var(--gold-glow);border-color:var(--gold-dim);color:var(--gold);display:none;" id="stripe-pay-btn">Pay for Tickets ($22/ticket)</a>
       </div>
     </div>
 
@@ -1713,10 +1713,10 @@ function updateLandingHeadcount() {
   const active = attendees.filter(a => a.status !== 'cant');
   const totalHeads = active.reduce((s, a) => s + a.party, 0);
   const el = document.getElementById('landing-headcount');
-  if (totalHeads > 0) {
-    el.innerHTML = `<strong>${totalHeads}</strong> ${totalHeads === 1 ? 'person' : 'people'} coming so far`;
+  if (totalHeads >= 3) {
+    el.innerHTML = `<strong>${totalHeads}</strong> people coming so far`;
   } else {
-    el.textContent = 'Be the first to RSVP';
+    el.textContent = 'Join the crew';
   }
 }
 
@@ -1764,7 +1764,7 @@ updateCountdown();
 function initialize() {
   document.getElementById('landing').style.display = 'none';
   document.getElementById('nav').classList.remove('hidden');
-  showPage('dashboard');
+  showPage('rsvp');
 }
 
 function showPage(page) {

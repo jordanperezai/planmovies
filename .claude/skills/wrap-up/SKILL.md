@@ -35,12 +35,13 @@ triggers:
    - Approach failed and got abandoned? → add as a Dead Direction.
    - Existing `memory.md` with entries >60 days since `last-confirmed`? → flag for `/declutter`.
    - No `memory.md` yet? → only create if there's a concrete principle or dead direction to record. Don't pre-create empty files.
-7. **Skill extraction check** — Two repetitions is a pattern. Did I repeat a multi-step sequence from a previous session? Did I do something manually that a skill could automate? Did a skill run identically every time with no judgment calls (might be ready for a hook)? If any fire: draft a SKILL.md immediately with the observed steps. Don't flag it for later. Build it now. Hermes crystallizes at one repetition. We crystallize at two.
+7. **Codex gap routing** — If a Codex adversarial review ran this session: extract actionable findings, route each to the relevant skill's `memory.md` as a dead direction or validated principle, add cadence tag (typically `tactical: 30d`) and today's date as `last-confirmed`. If no matching skill exists, log to `LEARNINGS.md`.
+8. **Skill extraction check** — Two repetitions is a pattern. Did I repeat a multi-step sequence from a previous session? Did I do something manually that a skill could automate? Did a skill run identically every time with no judgment calls (might be ready for a hook)? If any fire: draft a SKILL.md immediately with the observed steps. Don't flag it for later. Build it now. Hermes crystallizes at one repetition. We crystallize at two.
 
 ### Phase 4: Update (make project state current)
 
 8. **Distill to MEMORY.md** — any new durable truths worth indexing? Add to the appropriate section.
-9. **Update TODO.md** — mark completed items, add new ones discovered during session.
+9. **Update HANDOFF.md § Goals** — mark progress, add new goals discovered during session.
 10. **Conditional updates** — scan what changed this session and update the matching docs:
 
     | If this session... | Update... |
@@ -67,7 +68,7 @@ triggers:
 
 ### Phase 6: Reflect (needs full picture)
 
-13. **Write journal entry** — create `journal/YYYY-MM-DD-NN-title.md` (NN resets to 01 each new day, not a global session counter). This is a shared document. The agent writes the draft: narrative arc, key moments, what shifted, what surprised. The human adds to it when something landed personally that the agent couldn't have known. Most sessions the draft stands. Some sessions the human has something to say. Update `journal/README.md` index.
+13. **Write journal entry** — create `journal/YYYY-MM-DD-NN-title.md` (NN resets to 01 each new day, not a global session counter). This is a shared document. The agent writes the draft: narrative arc, key moments, what shifted, what surprised. The human adds to it when something landed personally that the agent couldn't have known. Most sessions the draft stands. Some sessions the human has something to say. Update `journal/CLAUDE.md` index.
 
     **Format:** Start with `# Title`, then a blockquote metadata line (session number, date, one-line hook). Use `---` horizontal rules between major topics for visual breathing room. Short paragraphs. One idea per paragraph. A single sentence alone is a paragraph. Written in first person with voice and honesty. Not a bullet list.
 

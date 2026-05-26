@@ -55,8 +55,8 @@ Each bond connects two particles. "Required" means removing the connection break
 ### 7. Cross-Check
 **Particles:** Parallel Dispatch -> Blind Spot Check
 **What breaks without it:** Multiple agents answer but nobody finds what they all missed. Redundancy without synthesis.
-**Zordon implementation:** /council Step 4: anonymous peer review with forced dissent. If 4+ agree, one must steelman the opposing view.
-**Verification:** grep for "dissent" or "peer review" or "anonymous" in `.claude/skills/council/SKILL.md`
+**Zordon implementation:** /ranger Step 4: anonymous peer review with forced dissent. If 4+ agree, one must steelman the opposing view.
+**Verification:** grep for "dissent" or "peer review" or "anonymous" in `.claude/skills/ranger/SKILL.md`
 
 ---
 
@@ -92,11 +92,11 @@ Each bond connects two particles. "Required" means removing the connection break
 **Zordon implementation:** /wrap-up skill extraction step evaluates whether extracted patterns actually worked. Skills with anti-rationalization tables self-correct.
 **Verification:** grep for "skill extraction" in `.claude/skills/wrap-up/SKILL.md`. Confirm extracted skills get tested before promotion.
 
-### 13. Council Memory
+### 13. Ranger Memory
 **Particles:** Parallel Dispatch <-> Scoped Memory
-**What breaks without it:** Councils debate the same questions repeatedly. No institutional knowledge.
-**Zordon implementation:** /council Step 0 loads council memory. Step 7b writes back. Contradict-check before write. Cap: 20 entries.
-**Verification:** grep for "memory" in `.claude/skills/council/SKILL.md`. Confirm Step 0 and Step 7 reference memory.
+**What breaks without it:** Rangers debate the same questions repeatedly. No institutional knowledge.
+**Zordon implementation:** /ranger Step 0 loads ranger memory. Step 7b writes back. Contradict-check before write. Cap: 20 entries.
+**Verification:** grep for "memory" in `.claude/skills/ranger/SKILL.md`. Confirm Step 0 and Step 7 reference memory.
 
 ---
 
@@ -118,7 +118,7 @@ Machine-readable mapping from bond keys to particle IDs.
 | 10 | bond-WpCw | Resilient Recall | recommended | context-surface | context-budget | mutual |
 | 11 | bond-DdDc | Curated Memory | recommended | cleanup-rules | refinement-tiers | directed |
 | 12 | bond-SkRe | Self-Testing Skill | recommended | skill-extraction | self-reflection | mutual |
-| 13 | bond-CpSm | Council Memory | recommended | parallel-dispatch | scoped-memory | mutual |
+| 13 | bond-CpSm | Ranger Memory | recommended | parallel-dispatch | scoped-memory | mutual |
 
 ---
 

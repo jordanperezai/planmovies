@@ -104,8 +104,8 @@ The Zordon scaffold defines 7 file archetypes (identity, rule, state, index, log
     - Content is structured for grep, not prose reading
     - Cadence tags present where applicable
 
-13. **councils/README.md** (index archetype). Check:
-    - Lists all councils with short descriptions
+13. **rangers/CLAUDE.md** (index archetype). Check:
+    - Lists all rangers with short descriptions
     - Pointers to roster and memory files
 
 ## Phase 8: Check skill files
@@ -125,11 +125,11 @@ The Zordon scaffold defines 7 file archetypes (identity, rule, state, index, log
 15. **Duplicate rules.** Grep for key phrases across all Layer 1 and Layer 2 files. Flag any rule, fact, or instruction that appears in more than one file. One Owner principle: every fact lives in ONE file. Others reference with a pointer.
 
 16. **Contradictions.** Check for files that say opposite things:
-    - CLAUDE.md decision rules vs council validated principles
+    - CLAUDE.md decision rules vs ranger validated principles
     - SOUL.md beliefs vs LEARNINGS.md rules
     - WILL.md autonomy policies vs SECURITY.md boundaries
     - Skill SKILL.md instructions vs CLAUDE.md rules
-    - Council roster ground rules vs councils/README.md session flow
+    - Ranger roster ground rules vs rangers/CLAUDE.md session flow
 
 17. **Stale references.** Grep all skills and docs for references to files, skills, or directories that no longer exist. Common offenders:
     - Retired files (CONTEXT.md, PLAYBOOK.md, ARCHITECTURE.md, TOOLS-RESEARCH.md)

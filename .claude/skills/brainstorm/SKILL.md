@@ -18,7 +18,7 @@ Generate options. Name tradeoffs. Don't decide.
 
 - Too early to commit but need to see the landscape
 - Multiple directions are plausible and you want them laid out
-- Creative exploration before a council or decision
+- Creative exploration before a ranger or decision
 - When "just pick one" feels premature
 
 ## Step 1 — Define the space
@@ -45,7 +45,7 @@ What are the 2-3 axes that matter? Speed vs thoroughness? Simple vs flexible? Ch
 
 Lay out the options. Name the dimensions. Stop.
 
-Don't recommend. Don't rank. Don't say "option 3 seems best." The human picks. If they want a recommendation, they'll ask for a `/council`.
+Don't recommend. Don't rank. Don't say "option 3 seems best." The human picks. If they want a recommendation, they'll ask for a `/ranger`.
 
 ## Anti-Rationalization Table
 

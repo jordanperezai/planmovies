@@ -46,11 +46,11 @@ Each molecule combines 3+ particles into a pattern that creates something none o
 **Zordon implementation:** 4-layer memory with file size caps (context budget). `model:` routing in skill frontmatter (reasoning budget). PreToolUse hooks enforce structurally (hard guardrails).
 **Verification:** Confirm CLAUDE.md has file size caps table. Confirm at least one skill has `model:` in frontmatter. Confirm hooks exist.
 
-### 6. Council Pattern
+### 6. Ranger Pattern
 **Particles:** Parallel Dispatch + Blind Spot Check + Self-Reflection
 **What it creates:** Multiple agents answer independently, synthesis finds what all missed, evaluate combined output.
-**Zordon implementation:** /council spawns 5 independent voices (parallel dispatch). Step 4 anonymous peer review with forced dissent (blind spot check). Chairman synthesis evaluates combined output (self-reflection).
-**Verification:** Confirm /council skill exists. grep for "independent" or "parallel" and "dissent" or "blind spot" in council/SKILL.md.
+**Zordon implementation:** /ranger spawns 5 independent voices (parallel dispatch). Step 4 anonymous peer review with forced dissent (blind spot check). Chairman synthesis evaluates combined output (self-reflection).
+**Verification:** Confirm /ranger skill exists. grep for "independent" or "parallel" and "dissent" or "blind spot" in ranger/SKILL.md.
 
 ### 7. Verified Autonomy
 **Particles:** Scheduled Task + Output Proof + Messaging Gateway

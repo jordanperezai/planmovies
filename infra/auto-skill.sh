@@ -4,7 +4,7 @@
 #   Scheduled Task + Output Proof + Messaging Gateway
 #
 # Usage:
-#   ./infra/auto-skill.sh "/alpha-scan" "Weekly alpha scan"
+#   ./infra/auto-skill.sh "/vault-scan" "Weekly alpha scan"
 #   ./infra/auto-skill.sh "/declutter" "Monthly cleanup" --channel slack
 #   ./infra/auto-skill.sh "/collider-smash" "Monthly structural check"
 #
@@ -22,7 +22,7 @@
 #
 # Scheduling (pick one):
 #   launchd: create a plist in ~/Library/LaunchAgents/
-#   cron:    crontab -e -> 0 9 * * 1 cd /path/to/project && ./infra/auto-skill.sh "/alpha-scan" "Weekly scan"
+#   cron:    crontab -e -> 0 9 * * 1 cd /path/to/project && ./infra/auto-skill.sh "/vault-scan" "Weekly scan"
 #   Worker:  Cloudflare cron trigger calls this via API
 
 set -euo pipefail

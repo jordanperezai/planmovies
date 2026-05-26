@@ -94,7 +94,7 @@ For each relevant discussion found:
 [What should we do with this information?]
 ```
 
-Save to `research/YYYY-MM-DD-[topic].md`. If multiple entries exist for the same day, use `YYYY-MM-DD-NN-[topic].md` (01, 02, etc.). Update `research/README.md` index.
+Save to `research/YYYY-MM-DD-[topic].md`. If multiple entries exist for the same day, use `YYYY-MM-DD-NN-[topic].md` (01, 02, etc.). Update `research/CLAUDE.md` index.
 
 ## Anti-Rationalization Table
 

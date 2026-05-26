@@ -11,7 +11,7 @@ Session 1 complete. The entire app was built, deployed, and morphed in one sessi
 - Ticket monitoring Worker running every 15 min (Cloudflare Workers)
 - Telegram alerts wired (@planmovies_alert_bot)
 - Stripe payment link active ($22/ticket, test mode)
-- Zordon v6.4 scaffold in place (19 files, 17 skills, hooks, infra)
+- Zordon scaffold in place (13 files, 16 skills, 5 hooks, 7 infra scripts)
 
 Jordan has NOT yet shared the link with family. That's the #1 priority.
 
@@ -22,6 +22,30 @@ Jordan has NOT yet shared the link with family. That's the #1 priority.
 3. **Activate Stripe live account** before May 27 (currently test mode).
 4. **Test social preview:** paste planmovies.com in WhatsApp/iMessage, confirm poster shows.
 5. **Confirm ticket quantity limit:** open any showtime on regmovies.com, count the selector max.
+
+## Goals
+
+**Now:**
+- Send planmovies.com to family (group chats + individual texts)
+- RSVP yourself with real info (replace test "Jordan" entry)
+- Call Regal Group Sales: (844) 462-7342
+- Activate Stripe live account (swap test keys for live)
+- Test social preview (paste link in WhatsApp/iMessage)
+
+**Next (before May 27):**
+- Confirm Regal ticket quantity selector max
+- Set up coordinated purchase plan based on final RSVP headcount
+- Create Stripe payment link with real price once tickets are priced
+
+**Next (after tickets purchased):**
+- Assign seats in the seat map
+- Collect payments via Stripe
+- Coordinate rides
+
+**Later (platform):**
+- Make PlanMovies generic (any movie, any theater, any group)
+- Stripe Connect for organizer payouts
+- Framework rebuild (React/Next.js)
 
 ## Things NOT to Do
 

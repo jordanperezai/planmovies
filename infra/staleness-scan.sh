@@ -84,10 +84,10 @@ for f in "$ZORDON_ROOT"/.claude/skills/*/memory.md; do
   [ -f "$f" ] && scan_file "$f"
 done
 
-# Scan council memories
-for f in "$ZORDON_ROOT"/councils/*/memory.md; do
+# Scan ranger memories
+for f in "$ZORDON_ROOT"/rangers/*/memory.md; do
   [ -f "$f" ] && scan_file "$f"
 done
 
 echo ""
-echo "Scanned $(find "$ZORDON_ROOT"/.claude/skills -name memory.md 2>/dev/null | wc -l | tr -d ' ') skill + $(find "$ZORDON_ROOT"/councils -name memory.md 2>/dev/null | wc -l | tr -d ' ') council memory files."
+echo "Scanned $(find "$ZORDON_ROOT"/.claude/skills -name memory.md 2>/dev/null | wc -l | tr -d ' ') skill + $(find "$ZORDON_ROOT"/rangers -name memory.md 2>/dev/null | wc -l | tr -d ' ') ranger memory files."

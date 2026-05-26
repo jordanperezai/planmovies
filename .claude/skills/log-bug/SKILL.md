@@ -33,7 +33,7 @@ triggers:
    [How to fix — fill in when known]
    ```
 
-2. **Update bugs/README.md** — add a row to the index table.
+2. **Update bugs/CLAUDE.md** — add a row to the index table.
 
 3. **Fix the bug** (if fixing now) — then update status to `[fixed]` with the date.
 
