@@ -38,7 +38,7 @@
   --blue-dim: rgba(74,158,255,0.12);
   --text-primary: #e8e6e1;
   --text-secondary: #8a8880;
-  --text-tertiary: #5a5850;
+  --text-tertiary: #7a7870;
   --text-inverse: #07080a;
   --radius: 10px;
   --radius-sm: 6px;
@@ -165,9 +165,8 @@ body {
     radial-gradient(1.5px 1.5px at 80% 15%, rgba(201,168,76,0.5), transparent),
     radial-gradient(1px 1px at 40% 65%, rgba(255,255,255,0.15), transparent),
     radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,0.25), transparent);
-  animation: star-drift 12s ease-in-out infinite alternate;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 .landing-poster {
   max-height: 45vh;
@@ -181,7 +180,7 @@ body {
   bottom: 0; left: 0; right: 0;
   z-index: 99;
   background: linear-gradient(to top, var(--bg-deep) 60%, transparent);
-  padding: 16px 24px 24px;
+  padding: 16px 24px calc(24px + env(safe-area-inset-bottom, 0px));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -191,9 +190,9 @@ body {
 .sticky-cta .cta-btn { pointer-events: auto; width: 100%; max-width: 340px; }
 .sticky-cta .cta-reassure {
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.5px;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   pointer-events: none;
 }
 .landing-bg {
@@ -202,7 +201,6 @@ body {
     radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),
     radial-gradient(ellipse 60% 40% at 20% 80%, rgba(74,158,255,0.03) 0%, transparent 50%),
     radial-gradient(ellipse 60% 40% at 80% 60%, rgba(201,168,76,0.03) 0%, transparent 50%);
-  animation: breathe 8s ease infinite;
   pointer-events: none;
 }
 .landing-grid {
@@ -233,15 +231,14 @@ body {
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 10s ease infinite;
 }
 .landing-credit {
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 4px;
-  color: var(--gold-dim);
+  color: var(--gold);
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .landing-subtitle {
   font-size: 15px;
@@ -252,7 +249,7 @@ body {
   max-width: 400px;
 }
 .countdown-container {
-  display: flex; gap: 12px;
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
   margin-bottom: 48px;
 }
 .countdown-unit {
@@ -329,7 +326,7 @@ body {
   position: relative;
   padding: 16px 40px;
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -1192,7 +1189,7 @@ body {
 .news-banner-item.active { opacity: 1; }
 .news-banner-item a {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 1px;
   color: var(--text-secondary);
@@ -1361,21 +1358,19 @@ body {
     <h1 class="landing-title fade-up fade-up-d1">DISCLOSURE<br>DAY</h1>
     <div class="landing-credit fade-up fade-up-d1">A STEVEN SPIELBERG FILM</div>
 
-    <div class="fade-up fade-up-d2" style="display:flex;gap:16px;align-items:center;margin-bottom:6px;">
-      <span style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;padding:4px 10px;border:1px solid var(--gold-dim);background:rgba(201,168,76,0.08);">OPENING NIGHT</span>
-      <span style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">JUN 12 2026</span>
+    <div class="fade-up fade-up-d2" style="display:flex;gap:12px;align-items:center;margin-bottom:8px;">
+      <span style="font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;padding:4px 10px;border:1px solid var(--gold-dim);background:rgba(201,168,76,0.08);">OPENING NIGHT</span>
+      <span style="font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">JUN 12 2026</span>
     </div>
 
-    <p class="landing-subtitle fade-up fade-up-d2" style="margin-bottom:6px;">The one you see with the people who matter.</p>
+    <p class="landing-subtitle fade-up fade-up-d2" style="margin-bottom:16px;">The one you see with the people who matter.</p>
 
-    <p class="fade-up fade-up-d2" style="font-size:14px;color:var(--text-secondary);text-align:center;margin-bottom:20px;max-width:360px;line-height:1.5;">The family is going. RSVP so we can save you a seat.</p>
-
-    <div class="fade-up fade-up-d2" style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:28px;width:100%;max-width:340px;">
+    <div class="fade-up fade-up-d2" style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:28px;width:100%;max-width:340px;">
       <div class="landing-headcount" id="landing-headcount"></div>
       <div class="cta-btn-wrap" style="width:100%;">
         <button class="cta-btn" id="cta-btn" style="width:100%;">COUNT ME IN</button>
       </div>
-      <span style="font-family:var(--mono);font-size:9px;letter-spacing:0.5px;color:var(--text-tertiary);">No payment. No account. Just let us know.</span>
+      <span style="font-family:var(--mono);font-size:11px;letter-spacing:0.5px;color:var(--text-tertiary);">No payment. No account. Just let us know.</span>
     </div>
 
     <div class="news-banner fade-up fade-up-d3" id="landing-banner" style="width:calc(100% + 48px);margin:0 -24px 24px;"></div>
@@ -1404,7 +1399,7 @@ body {
         <div class="landing-status-dot"></div>
         RSVP OPEN
       </div>
-      <div style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);">TICKETS EXPECTED MAY 27</div>
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--text-tertiary);">TICKETS EXPECTED MAY 27</div>
     </div>
   </section>
 
@@ -1834,11 +1829,14 @@ async function fetchAttendees() {
 function updateLandingHeadcount() {
   const active = attendees.filter(a => a.status !== 'cant');
   const totalHeads = active.reduce((s, a) => s + a.party, 0);
+  const names = active.map(a => a.name.split(' ')[0]);
   const el = document.getElementById('landing-headcount');
   if (totalHeads >= 3) {
-    el.innerHTML = `<strong>${totalHeads}</strong> people coming so far`;
+    el.innerHTML = `<strong>${totalHeads}</strong> people going. Join them.`;
+  } else if (names.length > 0) {
+    el.textContent = names.join(' & ') + (names.length === 1 ? ' is going. Join them.' : ' are going. Join them.');
   } else {
-    el.textContent = 'Join the crew';
+    el.textContent = 'Be the first to join';
   }
 }
 
