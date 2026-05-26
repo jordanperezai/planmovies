@@ -1370,42 +1370,21 @@ body {
       <div class="cta-btn-wrap" style="width:100%;">
         <button class="cta-btn" id="cta-btn" style="width:100%;">COUNT ME IN</button>
       </div>
-      <span style="font-family:var(--mono);font-size:11px;letter-spacing:0.5px;color:var(--text-tertiary);">No payment. No account. Just let us know.</span>
     </div>
 
-    <div class="news-banner fade-up fade-up-d3" id="landing-banner" style="width:calc(100% + 48px);margin:0 -24px 24px;"></div>
-
-    <div class="countdown-container fade-up fade-up-d3" id="countdown">
-      <div class="countdown-unit">
-        <div class="countdown-value" id="cd-days">--</div>
-        <div class="countdown-label">Days</div>
-      </div>
-      <div class="countdown-unit">
-        <div class="countdown-value" id="cd-hours">--</div>
-        <div class="countdown-label">Hours</div>
-      </div>
-      <div class="countdown-unit">
-        <div class="countdown-value" id="cd-mins">--</div>
-        <div class="countdown-label">Mins</div>
-      </div>
-      <div class="countdown-unit">
-        <div class="countdown-value" id="cd-secs">--</div>
-        <div class="countdown-label">Secs</div>
-      </div>
-    </div>
-
-    <div class="fade-up fade-up-d4" style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:8px;">
+    <div class="fade-up fade-up-d3" style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
       <div class="landing-status">
         <div class="landing-status-dot"></div>
         RSVP OPEN
       </div>
-      <div style="font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--text-tertiary);">TICKETS EXPECTED MAY 27</div>
+      <span style="font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--text-tertiary);">&middot;</span>
+      <span id="countdown-inline" style="font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--text-tertiary);"></span>
     </div>
+    <div class="fade-up fade-up-d3" style="font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--text-tertiary);">TICKETS EXPECTED MAY 27</div>
   </section>
 
   <div class="sticky-cta" id="sticky-cta" style="display:none;">
     <button class="cta-btn" onclick="initialize()">COUNT ME IN</button>
-    <span class="cta-reassure">No payment. No account. Just let us know.</span>
   </div>
 
   <!-- DASHBOARD -->
@@ -1731,6 +1710,14 @@ body {
       <div class="form-divider"></div>
       <button class="submit-btn" type="submit" id="submit-btn">SUBMIT RSVP</button>
     </form>
+
+    <div style="margin-top:32px;">
+      <div class="section-header">THIS IS REAL</div>
+      <p style="font-size:13px;line-height:1.6;color:var(--text-secondary);margin-bottom:16px;">
+        The headlines below aren't from the movie. They're from the last 6 months.
+      </p>
+      <div id="rsvp-hype-headlines" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
   </section>
 
   <!-- COORDINATION -->
@@ -1861,21 +1848,15 @@ function subscribeToChanges() {
 function updateCountdown() {
   const now = new Date();
   const diff = RELEASE_DATE - now;
+  const el = document.getElementById('countdown-inline');
+  if (!el) return;
   if (diff <= 0) {
-    document.getElementById('cd-days').textContent = '00';
-    document.getElementById('cd-hours').textContent = '00';
-    document.getElementById('cd-mins').textContent = '00';
-    document.getElementById('cd-secs').textContent = '00';
+    el.textContent = 'NOW PLAYING';
     return;
   }
   const d = Math.floor(diff / 86400000);
   const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
-  document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
-  document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
-  document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+  el.textContent = d + 'd ' + h + 'h until opening night';
 }
 setInterval(updateCountdown, 1000);
 updateCountdown();
@@ -2414,19 +2395,12 @@ const HYPE_HEADLINES = [
 ];
 
 function renderHypeTicker() {
-  const banner = document.getElementById('landing-banner');
-  if (!banner) return;
-  const shuffled = [...HYPE_HEADLINES].sort(() => Math.random() - 0.5);
-  banner.innerHTML = shuffled.map((h, i) =>
-    `<div class="news-banner-item${i === 0 ? ' active' : ''}"><a href="${h.url}" target="_blank" rel="noopener">${h.text}</a></div>`
+  const container = document.getElementById('rsvp-hype-headlines');
+  if (!container) return;
+  const shuffled = [...HYPE_HEADLINES].sort(() => Math.random() - 0.5).slice(0, 8);
+  container.innerHTML = shuffled.map(h =>
+    `<a href="${h.url}" target="_blank" rel="noopener" style="display:block;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-family:var(--mono);font-size:11px;letter-spacing:0.5px;color:var(--text-secondary);text-decoration:none;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='var(--gold-dim)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='';this.style.color=''">${h.text}</a>`
   ).join('');
-  let current = 0;
-  const items = banner.querySelectorAll('.news-banner-item');
-  setInterval(() => {
-    items[current].classList.remove('active');
-    current = (current + 1) % items.length;
-    items[current].classList.add('active');
-  }, 4000);
 }
 
 // Ticket status polling
