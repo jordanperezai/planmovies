@@ -26,9 +26,13 @@
   --border-subtle: rgba(255,255,255,0.06);
   --border-medium: rgba(255,255,255,0.1);
   --gold: #c9a84c;
+  --gold-warm: #b8984a;
+  --gold-cool: #8a7d5a;
   --gold-dim: #8a7234;
   --gold-glow: rgba(201,168,76,0.15);
   --gold-bright: #e8c85a;
+  --blue-atmos: #2a3a5a;
+  --blue-atmos-dim: rgba(42,58,90,0.08);
   --amber: #d4943a;
   --green: #3ecf71;
   --green-dim: rgba(62,207,113,0.15);
@@ -63,7 +67,8 @@ body {
 @keyframes pulse-gold { 0%,100%{ opacity:0.4; } 50%{ opacity:1; } }
 @keyframes fade-up { from{ opacity:0; transform:translateY(20px); } to{ opacity:1; transform:translateY(0); } }
 @keyframes shimmer { 0%{ background-position:-200% 0; } 100%{ background-position:200% 0; } }
-@keyframes cta-glow { 0%,100%{ transform:scale(1); opacity:0.4; } 50%{ transform:scale(1.4); opacity:0; } }
+@keyframes cta-glow { 0%,100%{ transform:scale(1); opacity:0.4; } 50%{ transform:scale(1.15); opacity:0; } }
+@keyframes shimmer { 0%{ background-position:0% 50%; } 100%{ background-position:100% 50%; } }
 @keyframes star-drift { 0%{ transform:translateY(0); } 100%{ transform:translateY(-20px); } }
 @keyframes countdown-enter { from{ opacity:0; transform:scale(0.85) translateY(8px); } to{ opacity:1; transform:scale(1) translateY(0); } }
 @keyframes breathe { 0%,100%{ transform:scale(1); opacity:0.5; } 50%{ transform:scale(1.03); opacity:0.8; } }
@@ -172,8 +177,12 @@ body {
   max-height: 45vh;
   width: auto;
   max-width: 100%;
-  border-radius: var(--radius);
-  box-shadow: 0 24px 48px rgba(0,0,0,0.6);
+  border-radius: 4px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.7), 0 0 120px rgba(42,58,90,0.15);
+  transition: opacity 1.2s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1), filter 0.8s;
+}
+@starting-style {
+  .landing-poster { opacity: 0; transform: scale(0.92); filter: blur(8px); }
 }
 .sticky-cta {
   position: fixed;
@@ -198,18 +207,9 @@ body {
 .landing-bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(74,158,255,0.03) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(201,168,76,0.03) 0%, transparent 50%);
-  pointer-events: none;
-}
-.landing-grid {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+    radial-gradient(ellipse 70% 50% at 50% 25%, rgba(42,58,90,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 80%, rgba(42,58,90,0.06) 0%, transparent 50%);
   pointer-events: none;
 }
 .landing-eyebrow {
@@ -221,32 +221,36 @@ body {
   margin-bottom: 24px;
 }
 .landing-title {
-  font-size: clamp(2.2rem, 8vw, 4.5rem);
-  font-weight: 900;
-  letter-spacing: -1px;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 2px;
   text-align: center;
-  line-height: 1.05;
+  line-height: 1.1;
   margin-bottom: 4px;
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold) 50%, var(--text-primary) 100%);
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-warm) 50%, var(--text-primary) 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: shimmer 8s ease-in-out infinite;
+  text-shadow: 0 0 80px rgba(201,168,76,0.2);
 }
 .landing-credit {
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 4px;
-  color: var(--gold);
+  color: var(--gold-cool);
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 .landing-subtitle {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--text-secondary);
   text-align: center;
   margin-bottom: 48px;
-  font-weight: 300;
+  font-weight: 400;
   max-width: 400px;
+  line-height: 1.45;
 }
 .countdown-container {
   display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
@@ -297,7 +301,7 @@ body {
 .landing-headcount {
   font-family: var(--mono);
   font-size: 13px;
-  color: var(--text-secondary);
+  color: var(--gold-cool);
   margin-bottom: 32px;
   letter-spacing: 1px;
 }
@@ -326,9 +330,9 @@ body {
   position: relative;
   padding: 16px 40px;
   font-family: var(--mono);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 3px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-inverse);
   background: var(--gold);
@@ -1335,19 +1339,18 @@ body {
   <!-- LANDING -->
   <section id="landing" class="landing">
     <div class="landing-bg"></div>
-    <div class="landing-grid"></div>
     <div class="landing-stars"></div>
 
     <div class="fade-up" style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
-      <span style="font-family:var(--mono);font-size:18px;font-weight:300;letter-spacing:6px;color:var(--gold);text-transform:uppercase;">PLAN</span>
+      <span style="font-family:var(--mono);font-size:18px;font-weight:300;letter-spacing:6px;color:var(--gold-cool);text-transform:uppercase;">PLAN</span>
       <svg viewBox="-2 14 104 72" style="width:52px;height:34px;" aria-hidden="true">
         <g transform="rotate(-12 50 50)">
-          <path d="M 6 24 L 94 24 L 94 40 A 6 6 0 0 0 94 60 L 94 76 L 6 76 L 6 60 A 6 6 0 0 0 6 40 Z" fill="#c9a84c"/>
+          <path d="M 6 24 L 94 24 L 94 40 A 6 6 0 0 0 94 60 L 94 76 L 6 76 L 6 60 A 6 6 0 0 0 6 40 Z" fill="#b8984a"/>
         </g>
-        <circle cx="50" cy="50" r="30" fill="#07080a" stroke="#c9a84c" stroke-width="5"/>
-        <polygon points="42,36 42,64 64,50" fill="#c9a84c"/>
+        <circle cx="50" cy="50" r="30" fill="#07080a" stroke="#b8984a" stroke-width="5"/>
+        <polygon points="42,36 42,64 64,50" fill="#b8984a"/>
       </svg>
-      <span style="font-family:var(--mono);font-size:18px;font-weight:300;letter-spacing:6px;color:var(--gold);text-transform:uppercase;">MOVIES</span>
+      <span style="font-family:var(--mono);font-size:18px;font-weight:300;letter-spacing:6px;color:var(--gold-cool);text-transform:uppercase;">MOVIES</span>
     </div>
 
     <img class="landing-poster fade-up fade-up-d1"
@@ -1355,32 +1358,32 @@ body {
          alt="Disclosure Day poster"
          onerror="this.style.display='none'">
 
-    <h1 class="landing-title fade-up fade-up-d1">DISCLOSURE<br>DAY</h1>
-    <div class="landing-credit fade-up fade-up-d1">A STEVEN SPIELBERG FILM</div>
+    <h1 class="landing-title fade-up fade-up-d2">DISCLOSURE DAY</h1>
+    <div class="landing-credit fade-up fade-up-d2">A STEVEN SPIELBERG FILM</div>
 
     <div class="fade-up fade-up-d2" style="display:flex;gap:12px;align-items:center;margin-bottom:8px;">
-      <span style="font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;padding:4px 10px;border:1px solid var(--gold-dim);background:rgba(201,168,76,0.08);">OPENING NIGHT</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;color:var(--gold-warm);text-transform:uppercase;padding:4px 10px;border:1px solid var(--gold-dim);background:rgba(201,168,76,0.06);">OPENING NIGHT</span>
       <span style="font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">JUN 12 2026</span>
     </div>
 
-    <p class="landing-subtitle fade-up fade-up-d2" style="margin-bottom:16px;">The one you see with the people who matter.</p>
+    <p class="landing-subtitle fade-up fade-up-d2" style="margin-bottom:12px;">The one you see with the people who matter.</p>
 
-    <div class="fade-up fade-up-d2" style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:28px;width:100%;max-width:340px;">
+    <div class="fade-up fade-up-d3" style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;width:100%;max-width:340px;">
       <div class="landing-headcount" id="landing-headcount"></div>
       <div class="cta-btn-wrap" style="width:100%;">
         <button class="cta-btn" id="cta-btn" style="width:100%;">COUNT ME IN</button>
       </div>
     </div>
 
-    <div class="fade-up fade-up-d3" style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+    <div class="fade-up fade-up-d3" style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
       <div class="landing-status">
         <div class="landing-status-dot"></div>
-        RSVP OPEN
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;">RSVP OPEN</span>
       </div>
-      <span style="font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--text-tertiary);">&middot;</span>
-      <span id="countdown-inline" style="font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--text-tertiary);"></span>
+      <span style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);">&middot;</span>
+      <span id="countdown-inline" style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);"></span>
     </div>
-    <div class="fade-up fade-up-d3" style="font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--text-tertiary);">TICKETS EXPECTED MAY 27</div>
+    <div class="fade-up fade-up-d3" style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);">TICKETS EXPECTED MAY 27</div>
   </section>
 
   <div class="sticky-cta" id="sticky-cta" style="display:none;">
