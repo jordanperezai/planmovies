@@ -1123,8 +1123,9 @@ body {
   color: var(--gold);
 }
 
-/* NEWS TICKER */
+/* NEWS BANNER */
 @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes headline-fade { 0%,8%{ opacity:1; } 10%,100%{ opacity:0; } }
 
 .news-ticker {
   display: flex;
@@ -1167,6 +1168,40 @@ body {
 }
 .news-ticker-content:hover .news-ticker-scroll {
   animation-play-state: paused;
+}
+.news-banner {
+  width: 100%;
+  text-align: center;
+  padding: 10px 20px;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(10,10,10,0.5);
+  position: relative;
+  height: 38px;
+  overflow: hidden;
+}
+.news-banner-item {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.news-banner-item.active { opacity: 1; }
+.news-banner-item a {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.news-banner-item a:hover {
+  color: var(--gold);
 }
 .news-ticker-text {
   font-family: 'Barlow Condensed', sans-serif;
@@ -1343,12 +1378,7 @@ body {
       <span style="font-family:var(--mono);font-size:9px;letter-spacing:0.5px;color:var(--text-tertiary);">No payment. No account. Just let us know.</span>
     </div>
 
-    <div class="news-ticker fade-up fade-up-d3" id="landing-ticker" style="width:calc(100% + 48px);margin:0 -24px 24px;">
-      <div class="news-ticker-flag">NEWS</div>
-      <div class="news-ticker-content">
-        <div class="news-ticker-scroll" id="landing-ticker-scroll"></div>
-      </div>
-    </div>
+    <div class="news-banner fade-up fade-up-d3" id="landing-banner" style="width:calc(100% + 48px);margin:0 -24px 24px;"></div>
 
     <div class="countdown-container fade-up fade-up-d3" id="countdown">
       <div class="countdown-unit">
@@ -2386,20 +2416,19 @@ const HYPE_HEADLINES = [
 ];
 
 function renderHypeTicker() {
-  const targets = ['landing-ticker-scroll'];
+  const banner = document.getElementById('landing-banner');
+  if (!banner) return;
   const shuffled = [...HYPE_HEADLINES].sort(() => Math.random() - 0.5);
-  const items = shuffled.map(h =>
-    `<a class="news-ticker-text" href="${h.url}" target="_blank" rel="noopener">${h.text}</a><span class="news-ticker-sep">&bull;</span>`
+  banner.innerHTML = shuffled.map((h, i) =>
+    `<div class="news-banner-item${i === 0 ? ' active' : ''}"><a href="${h.url}" target="_blank" rel="noopener">${h.text}</a></div>`
   ).join('');
-
-  targets.forEach(id => {
-    const scroll = document.getElementById(id);
-    if (!scroll) return;
-    scroll.innerHTML = items + items;
-    const totalWidth = scroll.scrollWidth / 2;
-    const duration = totalWidth / 35;
-    scroll.style.animation = `ticker-scroll ${duration}s linear infinite`;
-  });
+  let current = 0;
+  const items = banner.querySelectorAll('.news-banner-item');
+  setInterval(() => {
+    items[current].classList.remove('active');
+    current = (current + 1) % items.length;
+    items[current].classList.add('active');
+  }, 4000);
 }
 
 // Ticket status polling
