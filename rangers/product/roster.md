@@ -1,8 +1,8 @@
-# Design Rangers
+# Product Rangers
 
-> **Invoked via:** `/design-rangers`
-> **For:** Product design decisions on PlanMovies: mobile UX, form design, layout, conversion, accessibility, group coordination flows, CSS implementation.
-> **NOT for:** Brand identity, logo, color palette (future Brand Rangers). Not for backend architecture or infra decisions.
+> **Invoked via:** `/product-rangers`
+> **For:** Structure decisions: what's on the page, where it goes, how it converts. Mobile UX, form design, layout, conversion, accessibility, group coordination flows, CSS correctness.
+> **NOT for:** Visual craft, typography rhythm, color atmosphere, motion polish (→ Visual Rangers). Not for backend architecture or infra decisions.
 
 ## The Voices
 
