@@ -1356,7 +1356,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <div class="cta-btn-wrap" style="width:100%;">
         <button class="cta-btn" id="cta-btn" style="width:100%;" onclick="initialize()">COUNT ME IN</button>
       </div>
-      <button onclick="initialize();showPage('briefing');" style="background:none;border:none;font-family:var(--font);font-size:13px;color:var(--text-secondary);cursor:pointer;padding:8px 16px;letter-spacing:0.3px;transition:color 0.2s;">What is Disclosure Day?</button>
+      <button onclick="initialize();showPage('briefing');setTimeout(()=>{document.getElementById('reality-break').scrollIntoView({behavior:'smooth'})},100);" style="background:none;border:none;font-family:var(--font);font-size:13px;color:var(--text-secondary);cursor:pointer;padding:8px 16px;letter-spacing:0.3px;transition:color 0.2s;">What is Disclosure Day?</button>
     </div>
   </section>
 
@@ -1402,7 +1402,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <a class="buy-tickets-btn" href="https://www.regmovies.com/theatres/regal-secaucus-showplace-1665" target="_blank" rel="noopener" id="dash-tickets-link" style="display:block;text-align:center;padding:14px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:2px;color:var(--text-inverse);background:var(--gold);border-radius:var(--radius-sm);text-decoration:none;">BUY YOUR TICKET</a>
 
     <div style="text-align:center;padding:24px 0 8px;">
-      <button onclick="showPage('briefing')" style="background:none;border:none;font-family:var(--font);font-size:13px;color:var(--text-secondary);cursor:pointer;padding:8px 16px;">What is Disclosure Day? &rarr;</button>
+      <button onclick="showPage('briefing');setTimeout(()=>{document.getElementById('reality-break').scrollIntoView({behavior:'smooth'})},100);" style="background:none;border:none;font-family:var(--font);font-size:13px;color:var(--text-secondary);cursor:pointer;padding:8px 16px;">What is Disclosure Day? &rarr;</button>
     </div>
 
     <div class="org-only">
@@ -1553,7 +1553,12 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <div class="hype-quote-source">Emily Blunt</div>
     </div>
 
-    <div class="section-header" style="margin-top:24px;">THIS IS ACTUALLY HAPPENING</div>
+    <div id="reality-break" style="margin:48px 0 40px;text-align:center;padding:32px 16px;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);">
+      <div style="font-family:var(--font);font-size:18px;font-weight:300;color:var(--text-primary);line-height:1.5;letter-spacing:0.3px;">The movie is based on real events.</div>
+      <div style="font-family:var(--font);font-size:18px;font-weight:600;color:var(--gold);margin-top:8px;line-height:1.5;letter-spacing:0.3px;">These events are happening now.</div>
+    </div>
+
+    <div class="section-header">THIS IS ACTUALLY HAPPENING</div>
     <p style="font-size:13px;line-height:1.6;color:var(--text-secondary);margin-bottom:12px;">
       These aren't from the movie. They're from the last 6 months.
     </p>
@@ -2407,12 +2412,8 @@ function toast(msg) {
 // Trailers
 const TRAILERS = [
   { id: 'SCYT8vb2siQ', title: 'Official Trailer', label: 'OFFICIAL TRAILER' },
-  { id: 'UFe6NRgoXCM', title: 'Official Teaser', label: 'TEASER' },
-  { id: 'N32YL6wV2j0', title: 'Super Bowl Spot', label: 'SUPER BOWL SPOT' },
   { id: 'cYXOEjB85HQ', title: 'A First Look with Spielberg', label: 'SPIELBERG FIRST LOOK' },
-  { id: '8z0liKIe4Cc', title: 'Everything Spot', label: 'TV SPOT' },
   { id: 'LdDYbevgMTk', title: 'Spielberg on Colbert', label: 'SPIELBERG ON COLBERT' },
-  { id: 'n3yr5r3sUv0', title: 'Emily Blunt on Close Encounters Connection', label: 'EMILY BLUNT INTERVIEW' },
 ];
 
 function renderTrailers() {
