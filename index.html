@@ -81,8 +81,9 @@ body {
   .landing-poster { opacity: 1 !important; transform: none !important; filter: none !important; }
 }
 
-#rsvp-hype-headlines a, #rsvp-hype-headlines a:visited { color: var(--text-secondary); }
-#rsvp-hype-headlines a:hover { border-color: var(--gold-dim) !important; color: var(--gold) !important; }
+#rsvp-hype-headlines a, #rsvp-hype-headlines a:visited,
+#briefing-headlines a, #briefing-headlines a:visited { color: var(--text-secondary); }
+#rsvp-hype-headlines a:hover, #briefing-headlines a:hover { border-color: var(--gold-dim) !important; color: var(--gold) !important; }
 
 .org-only { display: none; }
 body.org-mode .org-only { display: revert; }
@@ -1388,8 +1389,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div id="crew-list-family" style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);overflow:hidden;"></div>
 
     <div style="display:flex;gap:8px;margin:20px 0;">
-      <button class="submit-btn" onclick="shareWhatsApp()" style="background:var(--green);flex:1;">SHARE ON WHATSAPP</button>
-      <button class="submit-btn" onclick="shareIMessage()" style="background:var(--blue);flex:1;">TEXT A FRIEND</button>
+      <button class="submit-btn" onclick="shareWhatsApp()" style="background:transparent;border:1px solid var(--gold-dim);color:var(--gold);flex:1;">SHARE ON WHATSAPP</button>
+      <button class="submit-btn" onclick="shareIMessage()" style="background:transparent;border:1px solid var(--gold-dim);color:var(--gold);flex:1;">TEXT A FRIEND</button>
     </div>
 
     <a class="buy-tickets-btn" href="https://www.regmovies.com/theatres/regal-secaucus-showplace-1665" target="_blank" rel="noopener" id="dash-tickets-link" style="display:block;text-align:center;padding:14px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:2px;color:var(--text-inverse);background:var(--gold);border-radius:var(--radius-sm);text-decoration:none;">BUY YOUR TICKET</a>
@@ -1405,8 +1406,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
         <div class="share-bar">
           <input type="text" id="share-url" readonly aria-label="Share URL">
           <button class="share-btn" onclick="copyShareLink()">Copy</button>
-          <button class="share-btn" onclick="shareWhatsApp()" style="background:var(--green);color:white;">WhatsApp</button>
-          <button class="share-btn" onclick="shareIMessage()" style="background:var(--blue);color:white;">Text</button>
+          <button class="share-btn" onclick="shareWhatsApp()">WhatsApp</button>
+          <button class="share-btn" onclick="shareIMessage()">Text</button>
         </div>
 
         <div class="stats-grid" id="stats-grid"></div>
@@ -1553,41 +1554,42 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div id="briefing-headlines" style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;"></div>
 
     <div class="section-header">DOWN THE RABBIT HOLE</div>
-    <p style="font-size:13px;line-height:1.6;color:var(--text-secondary);margin-bottom:16px;">
-      The real hearings. The real whistleblowers. The files the government just unsealed.
+    <p style="font-size:14px;line-height:1.6;color:var(--text-secondary);margin-bottom:24px;">
+      They knew. They didn't tell us. Now it's all coming out.
     </p>
 
+    <div style="font-size:11px;font-family:var(--mono);color:var(--gold-dim);letter-spacing:2px;margin-bottom:16px;">THE WITNESSES</div>
+    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">Career military officers. Under oath. Facing federal perjury if lying.</p>
+
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">OBAMA: "THEY'RE REAL" (FEB 2026)</div>
-      <div class="trailer-container" id="rabbit-obama" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-obama','8dvpZXv30jY')">
-        <img src="https://img.youtube.com/vi/8dvpZXv30jY/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Obama says aliens are real">
+      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">60 MINUTES: NAVY PILOTS DESCRIBE ENCOUNTERS</div>
+      <div class="trailer-container" id="rabbit-60min" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-60min','TppFEA5dYfM')">
+        <img src="https://img.youtube.com/vi/TppFEA5dYfM/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="60 Minutes Navy pilot UFO encounters">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
       </div>
+      <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Cmdr. David Fravor (TOPGUN, 3,500 flight hours) and Lt. Cmdr. Alex Dietrich describe an object that defied known physics. The Pentagon authenticated the footage.</p>
     </div>
 
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">TRUMP ORDERS FULL DECLASSIFICATION (5 DAYS LATER)</div>
-      <div class="trailer-container" id="rabbit-trump" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-trump','cluuW49CBQM')">
-        <img src="https://img.youtube.com/vi/cluuW49CBQM/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Trump orders UFO declassification">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
-      </div>
-    </div>
-
-    <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">GRUSCH OPENING STATEMENT TO CONGRESS</div>
+      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">GRUSCH TESTIFIES TO CONGRESS (UNDER OATH)</div>
       <div class="trailer-container" id="rabbit-grusch" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-grusch','lcrCMLVk614')">
-        <img src="https://img.youtube.com/vi/lcrCMLVk614/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Grusch testimony">
+        <img src="https://img.youtube.com/vi/lcrCMLVk614/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Grusch congressional testimony">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
       </div>
+      <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Intelligence officer David Grusch testifies about crash retrieval programs and "non-human biologics." His whistleblower complaint was found "credible and urgent" by the Inspector General.</p>
     </div>
 
-    <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">FRAVOR DESCRIBES THE TIC TAC ENCOUNTER</div>
-      <div class="trailer-container" id="rabbit-fravor" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-fravor','_p0kCVzDqpY')">
-        <img src="https://img.youtube.com/vi/_p0kCVzDqpY/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Fravor Tic Tac testimony">
+    <div style="margin-bottom:24px;">
+      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">NEWSNATION: THE INTERVIEW THAT BROKE THE STORY</div>
+      <div class="trailer-container" id="rabbit-newsnation" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-newsnation','RBAISwCZ2v0')">
+        <img src="https://img.youtube.com/vi/RBAISwCZ2v0/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Grusch NewsNation interview">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
       </div>
+      <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">The original bombshell. Ross Coulthart's interview with Grusch before the congressional testimony. This is where the public first heard the claims.</p>
     </div>
+
+    <div style="font-size:11px;font-family:var(--mono);color:var(--gold-dim);letter-spacing:2px;margin-bottom:16px;">THE FILES</div>
+    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">The government's own evidence. 222 declassified records. 1 billion visits to the portal.</p>
 
     <div style="margin-bottom:16px;">
       <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">PENTAGON RELEASES 40+ UAP VIDEOS (MAY 2026)</div>
@@ -1597,14 +1599,53 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       </div>
     </div>
 
+    <div style="margin-bottom:16px;">
+      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">UAP ACCELERATES FROM STANDSTILL TO WARP SPEED (2021)</div>
+      <div class="trailer-container" id="rabbit-syrian" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-syrian','sZwh8wlaoXE')">
+        <img src="https://img.youtube.com/vi/sZwh8wlaoXE/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Syrian UAP instant acceleration">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+      </div>
+      <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Infrared footage from the declassified files. An object goes from stationary to extreme velocity instantaneously. No known technology does this.</p>
+    </div>
+
     <a href="https://www.war.gov/ufo/" target="_blank" rel="noopener" style="display:block;text-align:center;padding:14px;font-family:var(--font);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--gold);border:1px solid var(--gold-dim);border-radius:var(--radius-sm);text-decoration:none;margin-bottom:24px;transition:background 0.2s;">Read the Declassified Files on WAR.GOV/UFO</a>
 
-    <div class="section-header">WATCH BEFORE YOU GO</div>
+    <div style="font-size:11px;font-family:var(--mono);color:var(--gold-dim);letter-spacing:2px;margin-bottom:16px;">HOW WE GOT HERE</div>
+    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">A former president said it out loud. Five days later, the current president ordered full declassification.</p>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">OBAMA: "THEY'RE REAL" (FEB 14, 2026)</div>
+      <div class="trailer-container" id="rabbit-obama" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-obama','8dvpZXv30jY')">
+        <img src="https://img.youtube.com/vi/8dvpZXv30jY/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Obama says aliens are real">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">TRUMP ORDERS FULL DECLASSIFICATION (FEB 19, 2026)</div>
+      <div class="trailer-container" id="rabbit-trump" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-trump','cluuW49CBQM')">
+        <img src="https://img.youtube.com/vi/cluuW49CBQM/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Trump orders UFO declassification">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+      </div>
+    </div>
+
+    <div style="font-size:11px;font-family:var(--mono);color:var(--gold-dim);letter-spacing:2px;margin-bottom:16px;">GO DEEPER</div>
+    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">For when you can't stop thinking about it.</p>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">JOE ROGAN #1361: FRAVOR TELLS THE FULL STORY (2 HRS)</div>
+      <div class="trailer-container" id="rabbit-rogan" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-rogan','Eco2s3-0zsQ')">
+        <img src="https://img.youtube.com/vi/Eco2s3-0zsQ/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Rogan Fravor full interview">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+      </div>
+      <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">The full deep dive. Fravor walks through every detail of the Tic Tac encounter in his own words. Calm, matter-of-fact, undeniable.</p>
+    </div>
+
     <div class="card" style="margin-bottom:10px;padding:14px 16px;">
       <div style="display:flex;justify-content:space-between;align-items:center;">
         <div>
           <div style="font-size:14px;font-weight:600;">The Age of Disclosure</div>
-          <div style="font-size:11px;color:var(--text-tertiary);margin-top:2px;">Documentary. Amazon Prime. The doc that broke streaming records.</div>
+          <div style="font-size:11px;color:var(--text-tertiary);margin-top:2px;">Documentary. 34 government insiders on camera. Broke Amazon Prime's streaming record in 48 hours.</div>
         </div>
         <a href="https://www.amazon.com/Age-Disclosure/dp/B0DXN6YWXG" target="_blank" rel="noopener" class="share-btn" style="font-size:9px;padding:6px 12px;">WATCH</a>
       </div>
@@ -1613,7 +1654,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <div style="display:flex;justify-content:space-between;align-items:center;">
         <div>
           <div style="font-size:14px;font-weight:600;">Close Encounters of the Third Kind</div>
-          <div style="font-size:11px;color:var(--text-tertiary);margin-top:2px;">Spielberg, 1977. The movie Disclosure Day answers questions from.</div>
+          <div style="font-size:11px;color:var(--text-tertiary);margin-top:2px;">Spielberg, 1977. Blunt says Disclosure Day "answers questions posed by Close Encounters."</div>
         </div>
         <a href="https://www.amazon.com/Close-Encounters-Third-Kind-Directors/dp/B000SEGDI2" target="_blank" rel="noopener" class="share-btn" style="font-size:9px;padding:6px 12px;">WATCH</a>
       </div>
@@ -1621,37 +1662,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div class="card" style="margin-bottom:10px;padding:14px 16px;">
       <div style="display:flex;justify-content:space-between;align-items:center;">
         <div>
-          <div style="font-size:14px;font-weight:600;">E.T. the Extra-Terrestrial</div>
-          <div style="font-size:11px;color:var(--text-tertiary);margin-top:2px;">Spielberg, 1982. The emotional register Disclosure Day is reaching for.</div>
-        </div>
-        <a href="https://www.amazon.com/E-T-Extra-Terrestrial-Henry-Thomas/dp/B009GN6DV4" target="_blank" rel="noopener" class="share-btn" style="font-size:9px;padding:6px 12px;">WATCH</a>
-      </div>
-    </div>
-    <div class="card" style="margin-bottom:10px;padding:14px 16px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <div style="font-size:14px;font-weight:600;">Sleeping Dog</div>
-          <div style="font-size:11px;color:var(--text-tertiary);margin-top:2px;">Corbell, 2026. The secret UAP cleanup program. Just dropped.</div>
-        </div>
-        <a href="https://www.amazon.com/Sleeping-Dog-Michael-Lazovsky/dp/B0GW4JT9X1" target="_blank" rel="noopener" class="share-btn" style="font-size:9px;padding:6px 12px;">WATCH</a>
-      </div>
-    </div>
-    <div class="card" style="margin-bottom:10px;padding:14px 16px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <div style="font-size:14px;font-weight:600;">Arrival</div>
-          <div style="font-size:11px;color:var(--text-tertiary);margin-top:2px;">Villeneuve, 2016. The tone comparison everyone is making.</div>
-        </div>
-        <a href="https://www.amazon.com/Arrival-Amy-Adams/dp/B01N1PO9FI" target="_blank" rel="noopener" class="share-btn" style="font-size:9px;padding:6px 12px;">WATCH</a>
-      </div>
-    </div>
-    <div class="card" style="margin-bottom:10px;padding:14px 16px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div>
           <div style="font-size:14px;font-weight:600;">Pentagon UAP Files</div>
-          <div style="font-size:11px;color:var(--text-tertiary);margin-top:2px;">The actual declassified files. 222 records, 51 videos. Read them yourself.</div>
+          <div style="font-size:11px;color:var(--text-tertiary);margin-top:2px;">222 declassified records. 51 videos. 1 billion visits. Read them yourself.</div>
         </div>
-        <a href="https://warufo.com/" target="_blank" rel="noopener" class="share-btn" style="font-size:9px;padding:6px 12px;">READ</a>
+        <a href="https://www.war.gov/ufo/" target="_blank" rel="noopener" class="share-btn" style="font-size:9px;padding:6px 12px;">READ</a>
       </div>
     </div>
 
@@ -1710,8 +1724,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <div class="section-header">THE CREW SO FAR</div>
       <div id="confirm-crew" style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;"></div>
       <div style="display:flex;gap:8px;">
-        <button class="submit-btn" onclick="shareWhatsApp()" style="background:var(--green);flex:1;">SHARE ON WHATSAPP</button>
-        <button class="submit-btn" onclick="shareIMessage()" style="background:var(--blue);flex:1;">TEXT A FRIEND</button>
+        <button class="submit-btn" onclick="shareWhatsApp()" style="background:transparent;border:1px solid var(--gold-dim);color:var(--gold);flex:1;">SHARE ON WHATSAPP</button>
+        <button class="submit-btn" onclick="shareIMessage()" style="background:transparent;border:1px solid var(--gold-dim);color:var(--gold);flex:1;">TEXT A FRIEND</button>
       </div>
       <button class="submit-btn" onclick="hideConfirmation()" style="background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-subtle);margin-top:8px;">RSVP AGAIN FOR SOMEONE ELSE</button>
     </div>
