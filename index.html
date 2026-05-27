@@ -125,11 +125,18 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   letter-spacing: 3px;
   color: var(--gold);
   text-transform: uppercase;
+  flex-shrink: 0;
 }
 .nav-brand svg {
   width: 34px;
   height: 22px;
   flex-shrink: 0;
+}
+.nav-brand span { display: inline; }
+@media (max-width: 480px) {
+  .nav-brand span { display: none; }
+  .nav-brand { gap: 0; }
+  .nav-tab { padding: 10px 12px; }
 }
 .nav-status {
   display: flex; align-items: center; gap: 8px;
@@ -163,7 +170,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 .nav-tab:hover { color: var(--text-primary); }
 .nav-tab.active {
   color: var(--gold);
-  background: var(--bg-card);
+  background: none;
 }
 
 /* LANDING */
