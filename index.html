@@ -1617,8 +1617,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <h1 class="landing-title fade-up fade-up-d2">DISCLOSURE DAY</h1>
     <div class="landing-credit fade-up fade-up-d2">A Steven Spielberg Film</div>
 
-    <div class="fade-up fade-up-d2" style="display:flex;gap:12px;align-items:center;margin-bottom:32px;">
-      <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;color:var(--gold-warm);text-transform:uppercase;padding:4px 10px;border:1px solid var(--gold-dim);background:rgba(201,168,76,0.06);">OPENING NIGHT</span>
+    <div class="fade-up fade-up-d2" style="margin-bottom:32px;">
       <span style="font-family:var(--mono);font-size:15px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">FRI JUN 12</span>
     </div>
 
@@ -1626,14 +1625,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
     <div class="fade-up fade-up-d3" style="display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;max-width:340px;">
       <div class="landing-headcount" id="landing-headcount"></div>
-      <div style="display:flex;align-items:center;gap:8px;">
-        <div class="landing-status">
-          <div class="landing-status-dot"></div>
-          <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;">RSVP OPEN</span>
-        </div>
-        <span style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);">&middot;</span>
-        <span id="countdown-inline" style="font-family:var(--mono);font-size:12px;letter-spacing:1px;color:var(--text-tertiary);"></span>
-      </div>
+      <span id="countdown-inline" style="font-family:var(--mono);font-size:12px;letter-spacing:1px;color:var(--text-tertiary);"></span>
       <div class="cta-btn-wrap" style="width:100%;">
         <button class="cta-btn" id="cta-btn" style="width:100%;" onclick="initialize()">COUNT ME IN</button>
       </div>
