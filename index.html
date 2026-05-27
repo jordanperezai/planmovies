@@ -1769,6 +1769,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div id="trailers-section" style="position:relative;overflow:hidden;"></div>
     <div id="trailer-dots" style="display:flex;justify-content:center;gap:8px;margin-top:-12px;margin-bottom:16px;"></div>
 
+    <div class="section-header">BEHIND THE SCENES</div>
+    <div id="bts-section" style="position:relative;overflow:hidden;"></div>
+    <div id="bts-dots" style="display:flex;justify-content:center;gap:8px;margin-top:-12px;margin-bottom:16px;"></div>
+
     <div class="section-header">CAST</div>
     <div class="cast-grid">
       <div class="cast-card">
@@ -2662,8 +2666,15 @@ function toast(msg) {
 // Trailers
 const TRAILERS = [
   { id: 'SCYT8vb2siQ', title: 'Official Trailer', label: 'OFFICIAL TRAILER' },
+  { id: 'UFe6NRgoXCM', title: 'Official Teaser', label: 'TEASER' },
+  { id: 'N32YL6wV2j0', title: 'Super Bowl Spot', label: 'SUPER BOWL SPOT' },
+  { id: '8z0liKIe4Cc', title: 'Everything Spot', label: 'TV SPOT' },
+];
+
+const BTS = [
   { id: 'cYXOEjB85HQ', title: 'A First Look with Spielberg', label: 'SPIELBERG FIRST LOOK' },
   { id: 'LdDYbevgMTk', title: 'Spielberg on Colbert', label: 'SPIELBERG ON COLBERT' },
+  { id: 'n3yr5r3sUv0', title: 'Emily Blunt on Close Encounters Connection', label: 'EMILY BLUNT INTERVIEW' },
 ];
 
 const POSTERS = [
@@ -2787,18 +2798,18 @@ const CONTENT_CATEGORIES = [
   { id: 'books', label: 'Books', icon: '📚', defaultShow: 3 },
 ];
 
-let trailerIdx = 0;
-function renderTrailers() {
-  const container = document.getElementById('trailers-section');
-  const dots = document.getElementById('trailer-dots');
+const videoCarousels = {};
+function initVideoCarousel(items, containerId, dotsId, key) {
+  videoCarousels[key] = 0;
+  const container = document.getElementById(containerId);
+  const dots = document.getElementById(dotsId);
   if (!container) return;
-  container.innerHTML = TRAILERS.map((t, i) => {
-    if (!t.id) return '';
+  container.innerHTML = items.map((t, i) => {
     const active = i === 0;
     return `
-      <div class="trailer-slide" data-idx="${i}" style="position:${active ? 'relative' : 'absolute'};opacity:${active ? 1 : 0};top:0;left:0;width:100%;transition:opacity 0.4s ease;">
+      <div class="vslide vslide-${key}" data-idx="${i}" style="position:${active ? 'relative' : 'absolute'};opacity:${active ? 1 : 0};top:0;left:0;width:100%;transition:opacity 0.4s ease;">
         <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">${t.label || t.title}</div>
-        <div class="trailer-container" id="trailer-${t.id}" onclick="loadVideo('${t.id}')" style="cursor:pointer;">
+        <div class="trailer-container" id="vc-${key}-${t.id}" onclick="loadVideo('${key}','${t.id}')" style="cursor:pointer;">
           <img src="https://img.youtube.com/vi/${t.id}/hqdefault.jpg" alt="${t.title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);">
             <div style="width:60px;height:42px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;">
@@ -2809,20 +2820,21 @@ function renderTrailers() {
       </div>`;
   }).join('');
   if (dots) {
-    dots.innerHTML = TRAILERS.map((_, i) =>
-      `<button onclick="trailerGoTo(${i})" style="width:8px;height:8px;border-radius:50%;border:1px solid var(--gold-dim);background:${i === 0 ? 'var(--gold)' : 'transparent'};padding:0;cursor:pointer;" aria-label="Trailer ${i+1}"></button>`
+    dots.innerHTML = items.map((_, i) =>
+      `<button onclick="videoGoTo('${key}',${i})" style="width:8px;height:8px;border-radius:50%;border:1px solid var(--gold-dim);background:${i === 0 ? 'var(--gold)' : 'transparent'};padding:0;cursor:pointer;" aria-label="Video ${i+1}"></button>`
     ).join('');
   }
   let tx = 0;
   container.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
   container.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - tx;
-    if (Math.abs(dx) > 40) dx > 0 ? trailerGoTo(trailerIdx - 1) : trailerGoTo(trailerIdx + 1);
+    if (Math.abs(dx) > 40) dx > 0 ? videoGoTo(key, videoCarousels[key] - 1) : videoGoTo(key, videoCarousels[key] + 1);
   }, { passive: true });
 }
-function trailerGoTo(i) {
-  if (i < 0 || i >= TRAILERS.length) return;
-  const slides = document.querySelectorAll('.trailer-slide');
+function videoGoTo(key, i) {
+  const items = key === 'trailer' ? TRAILERS : BTS;
+  if (i < 0 || i >= items.length) return;
+  const slides = document.querySelectorAll(`.vslide-${key}`);
   slides.forEach((s, idx) => {
     const isActive = idx === i;
     s.style.position = isActive ? 'relative' : 'absolute';
@@ -2831,19 +2843,23 @@ function trailerGoTo(i) {
       const iframe = s.querySelector('iframe');
       if (iframe) {
         const tc = s.querySelector('.trailer-container');
-        const t = TRAILERS[idx];
+        const t = items[idx];
         tc.innerHTML = `<img src="https://img.youtube.com/vi/${t.id}/hqdefault.jpg" alt="${t.title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:60px;height:42px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-style:solid;border-width:10px 0 10px 18px;border-color:transparent transparent transparent white;margin-left:4px;"></div></div></div>`;
-        tc.onclick = () => loadVideo(t.id);
+        tc.onclick = () => loadVideo(key, t.id);
         tc.style.cursor = 'pointer';
       }
     }
   });
-  const dots = document.querySelectorAll('#trailer-dots button');
-  dots.forEach((d, idx) => { d.style.background = idx === i ? 'var(--gold)' : 'transparent'; });
-  trailerIdx = i;
+  const dotsId = key === 'trailer' ? 'trailer-dots' : 'bts-dots';
+  document.querySelectorAll(`#${dotsId} button`).forEach((d, idx) => { d.style.background = idx === i ? 'var(--gold)' : 'transparent'; });
+  videoCarousels[key] = i;
 }
-function loadVideo(id) {
-  const container = document.getElementById('trailer-' + id);
+function renderTrailers() {
+  initVideoCarousel(TRAILERS, 'trailers-section', 'trailer-dots', 'trailer');
+  initVideoCarousel(BTS, 'bts-section', 'bts-dots', 'bts');
+}
+function loadVideo(key, id) {
+  const container = document.getElementById('vc-' + key + '-' + id);
   if (!container) return;
   container.onclick = null;
   container.style.cursor = 'default';
