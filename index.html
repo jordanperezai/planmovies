@@ -1836,6 +1836,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     </p>
     <div id="briefing-headlines" style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;"></div>
 
+    <div class="section-header">THIS IS HAPPENING AROUND THE WORLD</div>
+    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:16px;">Governments on every continent are investigating. This isn't an American story.</p>
+    <div id="world-quotes-section"></div>
+
     <div class="section-header" style="margin-top:32px;">DOWN THE RABBIT HOLE</div>
     <p style="font-size:14px;line-height:1.6;color:var(--text-secondary);margin-bottom:24px;">
       They knew. They didn't tell us. Now it's all coming out.
@@ -2170,7 +2174,7 @@ function showPage(page) {
   document.getElementById('page-' + page).classList.add('active');
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.page === page));
   if (page === 'dashboard') renderDashboard();
-  if (page === 'briefing') { renderTrailers(); renderOfficialQuotes(); renderGoDeeper(); }
+  if (page === 'briefing') { renderTrailers(); renderOfficialQuotes(); renderWorldQuotes(); renderGoDeeper(); }
   if (page === 'coordination') renderCoordination();
   window.scrollTo(0, 0);
 }
@@ -2737,11 +2741,10 @@ const OFFICIAL_QUOTES = [
 
 const QUOTE_CATEGORIES = [
   { id: 'presidents', label: 'Presidents', defaultOpen: true },
-  { id: 'military', label: 'Military & Defense', defaultOpen: true },
+  { id: 'military', label: 'Military & Defense', defaultOpen: false },
   { id: 'congress', label: 'Congress', defaultOpen: false },
   { id: 'intelligence', label: 'Intelligence', defaultOpen: false },
   { id: 'astronauts', label: 'Astronauts & Scientists', defaultOpen: false },
-  { id: 'world', label: 'World Governments', defaultOpen: false },
 ];
 
 const RECOMMENDED = {
@@ -2948,6 +2951,20 @@ function renderOfficialQuotes() {
   }).join('');
 }
 
+function renderWorldQuotes() {
+  const container = document.getElementById('world-quotes-section');
+  if (!container) return;
+  const quotes = OFFICIAL_QUOTES.filter(q => q.category === 'world');
+  if (!quotes.length) return;
+  container.innerHTML = quotes.map(q => `<div class="quote-card">
+    <div class="quote-text">"${q.quote}"</div>
+    <div class="quote-attribution">
+      <span class="quote-name">${q.name}</span>
+      <span class="quote-title">${q.title} &middot; ${q.source}</span>
+    </div>
+  </div>`).join('');
+}
+
 function toggleQuoteCategory(id) {
   const el = document.getElementById('qcat-' + id);
   if (el) el.classList.toggle('collapsed');
@@ -3046,13 +3063,9 @@ const HYPE_HEADLINES = [
 ];
 
 function renderHypeTicker() {
-  const headlineHtml = (items) => items.map(h => {
-    const isGov = h.tier === 1;
-    const isPress = h.tier === 2;
-    const borderColor = isGov ? 'var(--gold-dim)' : 'var(--border-subtle)';
-    const textColor = isGov ? 'color:var(--gold);' : isPress ? 'color:var(--text-primary);' : '';
-    return `<a href="${h.url}" target="_blank" rel="noopener" style="display:block;padding:10px 14px;background:var(--bg-card);border:1px solid ${borderColor};border-radius:var(--radius-sm);font-family:var(--mono);font-size:11px;letter-spacing:0.5px;text-decoration:none;transition:border-color 0.2s,color 0.2s;${textColor}">${h.text}</a>`;
-  }).join('');
+  const headlineHtml = (items) => items.map(h =>
+    `<a href="${h.url}" target="_blank" rel="noopener" style="display:block;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-family:var(--mono);font-size:11px;letter-spacing:0.5px;text-decoration:none;transition:border-color 0.2s,color 0.2s;">${h.text}</a>`
+  ).join('');
 
   const t1 = HYPE_HEADLINES.filter(h => h.tier === 1).sort(() => Math.random() - 0.5);
   const t2 = HYPE_HEADLINES.filter(h => h.tier === 2).sort(() => Math.random() - 0.5);
