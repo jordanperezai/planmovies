@@ -78,7 +78,7 @@ body {
     transition-duration: 0.01ms !important;
   }
   .landing-poster { opacity: 1 !important; transform: none !important; filter: none !important; }
-  .poster-flip-inner { transition-duration: 0.01ms !important; }
+  .poster-carousel-track img { transition-duration: 0.01ms !important; }
 }
 
 #rsvp-hype-headlines a, #rsvp-hype-headlines a:visited,
@@ -729,87 +729,302 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
-.poster-flip-container {
-  perspective: 1000px;
-  cursor: pointer;
-  margin-bottom: 32px;
-}
-.poster-flip-inner {
+.poster-carousel {
   position: relative;
-  transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
-  transform-style: preserve-3d;
+  margin-bottom: 32px;
+  user-select: none;
+  touch-action: pan-y;
 }
-.poster-flip-inner.flipped { transform: rotateY(180deg); }
-.poster-flip-front, .poster-flip-back {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+.poster-carousel-track {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  min-height: 200px;
 }
-.poster-flip-front { display: block; }
-.poster-flip-back {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  transform: rotateY(180deg);
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+.poster-carousel-track img {
+  max-height: 45vh;
+  width: auto;
+  max-width: 100%;
   border-radius: 4px;
   box-shadow: 0 24px 64px rgba(0,0,0,0.7), 0 0 120px rgba(42,58,90,0.15);
-  display: flex; flex-direction: column;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.poster-carousel-track img.carousel-active {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+}
+.poster-carousel-dots {
+  display: flex;
+  gap: 8px;
   justify-content: center;
-  padding: 24px 20px;
-  box-sizing: border-box;
-  overflow: hidden;
+  margin-top: 14px;
 }
-.dossier-stamp {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: var(--red);
-  border: 2px solid var(--red);
-  padding: 4px 12px;
-  display: inline-block;
-  transform: rotate(-3deg);
-  opacity: 0.8;
-  margin-bottom: 20px;
-}
-.dossier-line {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.5px;
-  color: var(--text-secondary);
-  line-height: 2;
-}
-.dossier-redacted {
-  background: var(--text-secondary);
-  color: transparent;
-  border-radius: 2px;
-  padding: 0 2px;
-  user-select: none;
-}
-.dossier-divider {
+.poster-carousel-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  opacity: 0.3;
+  cursor: pointer;
+  transition: opacity 0.2s, background 0.2s;
   border: none;
-  border-top: 1px solid var(--border-subtle);
-  margin: 16px 0;
+  padding: 0;
 }
-.dossier-event {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--gold-warm);
-  line-height: 2.2;
-  text-transform: uppercase;
+.poster-carousel-dot.active {
+  opacity: 1;
+  background: var(--gold);
 }
-.poster-flip-hint {
+.poster-carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(7,8,10,0.6);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: var(--transition);
+  z-index: 2;
+}
+.poster-carousel-nav:hover { background: rgba(7,8,10,0.85); color: var(--gold); }
+.poster-carousel-nav.prev { left: -12px; }
+.poster-carousel-nav.next { right: -12px; }
+@media (min-width: 768px) {
+  .poster-carousel:hover .poster-carousel-nav { display: flex; }
+}
+.poster-carousel-hint {
   font-family: var(--font);
   font-size: 11px;
   color: var(--text-tertiary);
   text-align: center;
-  margin-top: 8px;
-  opacity: 0;
-  transition: opacity 0.3s;
+  margin-top: 6px;
 }
-.poster-flip-container:hover .poster-flip-hint { opacity: 1; }
-@media (max-width: 768px) { .poster-flip-hint { opacity: 1; } }
+@media (min-width: 768px) { .poster-carousel-hint { display: none; } }
+
+/* OFFICIAL QUOTES */
+.quotes-category {
+  margin-bottom: 16px;
+}
+.quotes-category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 10px;
+}
+.quotes-category-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.quotes-category-count {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+}
+.quotes-category-toggle {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  transition: transform 0.2s;
+}
+.quotes-category.collapsed .quotes-category-toggle { transform: rotate(-90deg); }
+.quotes-category.collapsed .quotes-category-items { display: none; }
+.quote-card {
+  padding: 12px 0;
+}
+.quote-card + .quote-card {
+  border-top: 1px solid var(--border-subtle);
+}
+.quote-text {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+.quote-attribution {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.quote-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold-warm);
+}
+.quote-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.5px;
+}
+
+/* GO DEEPER EXPANSION */
+.deeper-category {
+  margin-bottom: 20px;
+}
+.deeper-category-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.deeper-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.deeper-item:hover { border-color: var(--border-medium); }
+.deeper-item-icon {
+  width: 36px; height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.deeper-item-info { flex: 1; min-width: 0; }
+.deeper-item-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.deeper-item-creator {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 1px;
+}
+.deeper-item-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-top: 4px;
+}
+.deeper-item-platform {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  background: var(--bg-elevated);
+  color: var(--text-tertiary);
+  border: 1px solid var(--border-subtle);
+  align-self: center;
+  flex-shrink: 0;
+}
+.deeper-show-toggle {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-tertiary);
+  background: none;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+.deeper-show-toggle:hover { color: var(--gold); border-color: var(--gold-dim); }
+
+/* PAYMENT SECTION */
+.payment-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  padding: 20px 16px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.payment-price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.payment-price-amount {
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gold);
+}
+.payment-price-label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+.payment-explain {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.payment-proof {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-bottom: 16px;
+  transition: color 0.2s;
+}
+.payment-proof:hover { color: var(--gold); }
+.payment-stripe-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-inverse);
+  background: var(--gold);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.payment-stripe-btn:hover {
+  background: var(--gold-bright);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px rgba(201,168,76,0.25);
+}
+.payment-fallback {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 10px;
+}
 
 /* BRIEFING TAB */
 .movie-hero {
@@ -1391,26 +1606,12 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <span style="font-family:var(--mono);font-size:18px;font-weight:300;letter-spacing:6px;color:var(--gold-cool);text-transform:uppercase;">MOVIES</span>
     </div>
 
-    <div class="poster-flip-container fade-up fade-up-d1" onclick="this.querySelector('.poster-flip-inner').classList.toggle('flipped')">
-      <div class="poster-flip-inner">
-        <img class="landing-poster poster-flip-front"
-             src="https://image.tmdb.org/t/p/w500/3o5YPjDGDTcTDL5ftDA9NwN9dLd.jpg"
-             alt="Disclosure Day poster"
-             onerror="this.parentElement.parentElement.style.display='none'">
-        <div class="poster-flip-back">
-          <div class="dossier-stamp">CLASSIFIED</div>
-          <div class="dossier-line">DIRECTOR: Steven Spielberg</div>
-          <div class="dossier-line">SCORE: <span class="dossier-redacted">John</span> Williams</div>
-          <div class="dossier-line">SCREENPLAY: <span class="dossier-redacted">David</span> Koepp</div>
-          <div class="dossier-line">CAST: <span class="dossier-redacted">Millie Bobby Brown</span></div>
-          <div class="dossier-line"><span class="dossier-redacted">Based on events the U.S. government</span></div>
-          <div class="dossier-line"><span class="dossier-redacted">confirmed between 2023 and 2026</span></div>
-          <hr class="dossier-divider">
-          <div class="dossier-event">Regal Secaucus</div>
-          <div class="dossier-event">Fri Jun 12 &middot; Opening Night</div>
-        </div>
-      </div>
-      <div class="poster-flip-hint">tap to flip</div>
+    <div class="poster-carousel fade-up fade-up-d1" id="poster-carousel">
+      <button class="poster-carousel-nav prev" onclick="carouselPrev()" aria-label="Previous poster">&lsaquo;</button>
+      <button class="poster-carousel-nav next" onclick="carouselNext()" aria-label="Next poster">&rsaquo;</button>
+      <div class="poster-carousel-track" id="poster-carousel-track"></div>
+      <div class="poster-carousel-dots" id="poster-carousel-dots"></div>
+      <div class="poster-carousel-hint">tap to see more posters</div>
     </div>
 
     <h1 class="landing-title fade-up fade-up-d2">DISCLOSURE DAY</h1>
@@ -1474,7 +1675,16 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
     <div id="crew-list-family" style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);overflow:hidden;"></div>
 
-    <a class="buy-tickets-btn" href="https://www.regmovies.com/theatres/regal-secaucus-showplace-1665" target="_blank" rel="noopener" id="dash-tickets-link" style="display:block;text-align:center;padding:14px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:2px;color:var(--text-inverse);background:var(--gold);border-radius:var(--radius-sm);text-decoration:none;margin-top:20px;">BUY YOUR TICKET</a>
+    <div class="payment-section" id="payment-section">
+      <div class="payment-price">
+        <span class="payment-price-amount" id="payment-price-display">TBD</span>
+        <span class="payment-price-label">per ticket</span>
+      </div>
+      <div class="payment-explain">Jordan buys all tickets together so the crew sits in the same row. Pay your share below.</div>
+      <a class="payment-proof" id="payment-proof-link" href="https://www.fandango.com/regal-secaucus-showplace-aankh/theater-page" target="_blank" rel="noopener">Verify price on Fandango</a>
+      <a class="payment-stripe-btn" id="payment-stripe-btn" href="#" target="_blank" rel="noopener" style="display:none;">PAY FOR YOUR TICKET</a>
+      <div class="payment-fallback">Prefer Zelle? Text Jordan.</div>
+    </div>
 
     <div style="text-align:center;padding:16px 0 8px;font-family:var(--font);font-size:13px;color:var(--text-tertiary);">
       <span style="color:var(--text-tertiary);font-size:12px;">Send this to someone</span> <button onclick="shareWhatsApp()" style="background:none;border:none;cursor:pointer;padding:4px 8px;vertical-align:middle;" aria-label="Share on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button><button onclick="shareIMessage()" style="background:none;border:none;cursor:pointer;padding:4px 8px;vertical-align:middle;" aria-label="Share via Text"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg></button>
@@ -1592,7 +1802,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       </p>
     </div>
 
-    <div class="section-header">IN THEIR WORDS</div>
+    <div class="section-header">FROM THE FILMMAKERS</div>
     <div class="hype-quote">
       <div class="hype-quote-text">"I finished reading the script and I bawled. Steven Spielberg believes in the possibility of the human beings we could be."</div>
       <div class="hype-quote-source">Colman Domingo</div>
@@ -1613,6 +1823,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <div class="hype-quote-text">"Half a century later, I made Disclosure Day with certainty that there is a lot more truth than fiction."</div>
       <div class="hype-quote-source">Spielberg, CinemaCon 2026</div>
     </div>
+    <div class="hype-quote">
+      <div class="hype-quote-text">"There are questions posed by Close Encounters that are answered in Disclosure Day."</div>
+      <div class="hype-quote-source">Emily Blunt</div>
+    </div>
 
     <div class="section-header" style="margin-top:24px;">WHAT PEOPLE ARE SAYING</div>
     <div class="hype-quote">
@@ -1622,10 +1836,6 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div class="hype-quote">
       <div class="hype-quote-text">"My most anticipated film of the year. Looking forward to seeing my first Spielberg movie in theaters."</div>
       <div class="hype-quote-source">Letterboxd</div>
-    </div>
-    <div class="hype-quote">
-      <div class="hype-quote-text">"There are questions posed by Close Encounters that are answered in Disclosure Day."</div>
-      <div class="hype-quote-source">Emily Blunt</div>
     </div>
 
     <div id="reality-break" style="margin:48px 0 40px;text-align:center;padding:32px 16px;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);">
@@ -1639,7 +1849,11 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     </p>
     <div id="briefing-headlines" style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;"></div>
 
-    <div class="section-header">DOWN THE RABBIT HOLE</div>
+    <div class="section-header">IN THEIR WORDS</div>
+    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:16px;">Presidents. Generals. Intelligence directors. Under oath, on camera, on the record.</p>
+    <div id="official-quotes-section"></div>
+
+    <div class="section-header" style="margin-top:32px;">DOWN THE RABBIT HOLE</div>
     <p style="font-size:14px;line-height:1.6;color:var(--text-secondary);margin-bottom:24px;">
       They knew. They didn't tell us. Now it's all coming out.
     </p>
@@ -1726,43 +1940,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
     <div style="font-size:11px;font-family:var(--mono);color:var(--gold-dim);letter-spacing:2px;margin-bottom:16px;">GO DEEPER</div>
     <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">For when you can't stop thinking about it.</p>
-
-    <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">JOE ROGAN #1361: FRAVOR TELLS THE FULL STORY (2 HRS)</div>
-      <div class="trailer-container" id="rabbit-rogan" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-rogan','Eco2s3-0zsQ')">
-        <img src="https://img.youtube.com/vi/Eco2s3-0zsQ/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Rogan Fravor full interview">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
-      </div>
-      <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">The full deep dive. Fravor walks through every detail of the Tic Tac encounter in his own words. Calm, matter-of-fact, undeniable.</p>
-    </div>
-
-    <div class="card" style="margin-bottom:10px;padding:14px 16px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <div style="font-size:14px;font-weight:600;">The Age of Disclosure</div>
-          <div style="font-size:11px;color:var(--text-tertiary);margin-top:2px;">Documentary. 34 government insiders on camera. Broke Amazon Prime's streaming record in 48 hours.</div>
-        </div>
-        <a href="https://www.amazon.com/Age-Disclosure/dp/B0DXN6YWXG" target="_blank" rel="noopener" class="share-btn" style="font-size:9px;padding:6px 12px;">WATCH</a>
-      </div>
-    </div>
-    <div class="card" style="margin-bottom:10px;padding:14px 16px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <div style="font-size:14px;font-weight:600;">Close Encounters of the Third Kind</div>
-          <div style="font-size:11px;color:var(--text-tertiary);margin-top:2px;">Spielberg, 1977. Blunt says Disclosure Day "answers questions posed by Close Encounters."</div>
-        </div>
-        <a href="https://www.amazon.com/Close-Encounters-Third-Kind-Directors/dp/B000SEGDI2" target="_blank" rel="noopener" class="share-btn" style="font-size:9px;padding:6px 12px;">WATCH</a>
-      </div>
-    </div>
-    <div class="card" style="margin-bottom:10px;padding:14px 16px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <div style="font-size:14px;font-weight:600;">Pentagon UAP Files</div>
-          <div style="font-size:11px;color:var(--text-tertiary);margin-top:2px;">222 declassified records. 51 videos. 1 billion visits. Read them yourself.</div>
-        </div>
-        <a href="https://www.war.gov/ufo/" target="_blank" rel="noopener" class="share-btn" style="font-size:9px;padding:6px 12px;">READ</a>
-      </div>
-    </div>
+    <div id="go-deeper-section"></div>
 
     <div style="text-align:center;margin-top:32px;margin-bottom:16px;">
       <button class="cta-btn" onclick="showPage('rsvp')" style="padding:14px 32px;">RSVP NOW</button>
@@ -2009,7 +2187,7 @@ function showPage(page) {
   document.getElementById('page-' + page).classList.add('active');
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.page === page));
   if (page === 'dashboard') renderDashboard();
-  if (page === 'briefing') renderTrailers();
+  if (page === 'briefing') { renderTrailers(); renderOfficialQuotes(); renderGoDeeper(); }
   if (page === 'coordination') renderCoordination();
   window.scrollTo(0, 0);
 }
@@ -2509,6 +2687,117 @@ const TRAILERS = [
   { id: 'LdDYbevgMTk', title: 'Spielberg on Colbert', label: 'SPIELBERG ON COLBERT' },
 ];
 
+const POSTERS = [
+  { path: '/3o5YPjDGDTcTDL5ftDA9NwN9dLd.jpg', alt: 'Disclosure Day - Advance Eye' },
+  { path: '/l9IBLQc4OYxBQaHD9IVSR2otR0P.jpg', alt: 'Disclosure Day - Creature Teaser' },
+  { path: '/h26XOO2LDSPQjpyg4TXiZp7o6pA.jpg', alt: 'Disclosure Day - Josh O\'Connor + Deer' },
+  { path: '/AnJ8IQJI23hNpYXVNaythu061Ru.jpg', alt: 'Disclosure Day - Emily Blunt + Cardinal' },
+];
+
+const STRIPE_PAYMENT_URL = '';
+const TICKET_PRICE = '18';
+const TICKET_PROOF_URL = 'https://www.fandango.com/regal-secaucus-showplace-aankh/theater-page';
+
+const OFFICIAL_QUOTES = [
+  // PRESIDENTS
+  { category: 'presidents', quote: 'I can assure you that flying saucers, given that they exist, are not constructed by any power on Earth.', name: 'Harry S. Truman', title: '33rd President of the United States', source: 'Press Conference, 1950' },
+  { category: 'presidents', quote: 'I strongly recommend that there be a committee investigation of the UFO phenomena. I think we owe it to the people to establish credibility regarding UFOs.', name: 'Gerald Ford', title: 'House Minority Leader (later 38th President)', source: 'Letter to Congress, March 1966' },
+  { category: 'presidents', quote: 'I don\'t laugh at people any more when they say they\'ve seen UFOs. I\'ve seen one myself.', name: 'Jimmy Carter', title: '39th President of the United States', source: 'Campaign Trail, 1976' },
+  { category: 'presidents', quote: 'Perhaps we need some outside, universal threat to make us recognize this common bond. I occasionally think how quickly our differences worldwide would vanish if we were facing an alien threat from outside this world.', name: 'Ronald Reagan', title: '40th President of the United States', source: 'UN General Assembly, Sept 1987' },
+  { category: 'presidents', quote: 'There\'s footage and records of objects in the skies that we don\'t know exactly what they are. We can\'t explain how they moved, their trajectory.', name: 'Barack Obama', title: '44th President of the United States', source: 'Late Late Show, May 2021' },
+  { category: 'presidents', quote: 'With these new Documents and Videos, the people can decide for themselves: WHAT THE HELL IS GOING ON?', name: 'Donald Trump', title: '45th & 47th President of the United States', source: 'Truth Social, Feb 2026' },
+  // MILITARY & DEFENSE
+  { category: 'military', quote: 'The phenomenon reported is something real and not visionary or fictitious.', name: 'Lt. Gen. Nathan Twining', title: 'Commanding General, Air Materiel Command', source: 'Official Memo (declassified), Sept 1947' },
+  { category: 'military', quote: 'Behind the scenes, high-ranking Air Force officers are soberly concerned about the UFOs. But through official secrecy and ridicule, many citizens are led to believe the unknown flying objects are nonsense.', name: 'Vice Adm. Roscoe Hillenkoetter', title: 'First Director of the CIA', source: 'New York Times, Feb 1960' },
+  { category: 'military', quote: 'I can tell you, I think it was not from this world.', name: 'Cmdr. David Fravor', title: 'Navy Fighter Pilot, TOPGUN Graduate (USS Nimitz, 2004)', source: 'ABC News / Congressional Testimony, 2017-2023' },
+  { category: 'military', quote: 'These sightings are not rare and they are not isolated. They are routine.', name: 'Lt. Ryan Graves', title: 'Navy Fighter Pilot, F/A-18F', source: 'Congressional Testimony, July 2023' },
+  { category: 'military', quote: 'Non-human intelligence exists. Non-human intelligence has been interacting with humanity. This interaction is not new. Zero doubt.', name: 'Col. Karl Nell', title: 'U.S. Army (ret.), UAP Task Force', source: 'SALT Conference, May 2024' },
+  { category: 'military', quote: 'UAP are real. Advanced technologies not made by our government, or any other government, are monitoring sensitive military installations around the globe.', name: 'Lue Elizondo', title: 'Former Director, AATIP (Pentagon UAP Program)', source: 'Congressional Testimony, Nov 2024' },
+  { category: 'military', quote: 'I have seen with my own eyes non-human craft, and non-human beings.', name: 'RADM Tim Gallaudet', title: 'Former NOAA Administrator, Rear Admiral USN', source: 'The Age of Disclosure Documentary, Jan 2025' },
+  // CONGRESS
+  { category: 'congress', quote: 'The American public has a right to learn about technologies of unknown origins, non-human intelligence, and unexplainable phenomena.', name: 'Sen. Chuck Schumer', title: 'Senate Majority Leader (D-NY)', source: 'UAP Disclosure Act, July 2023' },
+  { category: 'congress', quote: 'I was told for decades that Lockheed had some of these retrieved materials. I tried to get classified approval by the Pentagon to go look at the stuff. They would not approve that.', name: 'Sen. Harry Reid', title: 'Senate Majority Leader (D-NV)', source: 'The New Yorker, 2021' },
+  { category: 'congress', quote: 'Either they are telling the truth, and that would be the biggest story in human history, or we have people in really important positions in government who are crazy.', name: 'Sen. Marco Rubio', title: 'Vice Chair, Senate Intelligence Committee', source: 'Fox News, Sept 2024' },
+  { category: 'congress', quote: 'I called Curtis LeMay and said, General, could I go in that room at Wright-Patterson? I\'ve never heard him get mad, but he got madder than hell at me and said: Don\'t ever ask me that question again!', name: 'Sen. Barry Goldwater', title: 'Chairman, Senate Intelligence Committee; USAF Major General', source: 'Larry King Live, 1994' },
+  { category: 'congress', quote: 'Holy crap is coming.', name: 'Rep. Tim Burchett', title: 'U.S. House of Representatives (R-TN)', source: 'Post-briefing Statement, 2026' },
+  // INTELLIGENCE
+  { category: 'intelligence', quote: 'I was informed in the course of my official duties of a multi-decade UAP crash retrieval and reverse-engineering program.', name: 'David Grusch', title: 'Intelligence Officer, NGA/NRO (Under Oath)', source: 'Congressional Testimony, July 2023' },
+  { category: 'intelligence', quote: 'There are a lot more sightings than have been made public. Objects that engage in actions that are difficult to explain, traveling at speeds that exceed the sound barrier without a sonic boom.', name: 'John Ratcliffe', title: 'Director of National Intelligence', source: 'Fox News, March 2021' },
+  { category: 'intelligence', quote: 'Some of the phenomena we\'re seeing might constitute a different form of life.', name: 'John Brennan', title: 'Former Director of the CIA', source: 'Conversations with Tyler, Dec 2020' },
+  { category: 'intelligence', quote: 'Is there something else that we simply do not understand, that might come extraterrestrially?', name: 'Avril Haines', title: 'Director of National Intelligence', source: 'Our Future in Space Forum, Nov 2021' },
+  { category: 'intelligence', quote: 'Off-world vehicles not made on this Earth.', name: 'Dr. Eric Davis', title: 'Astrophysicist, Pentagon Briefer', source: 'New York Times, July 2020' },
+  // ASTRONAUTS & SCIENTISTS
+  { category: 'astronauts', quote: 'I believe that these extra-terrestrial vehicles and their crews are visiting this planet from other planets, which are a little more technically advanced than we are here on Earth.', name: 'Col. Gordon Cooper', title: 'Mercury 7 Astronaut, USAF', source: 'Letter to the United Nations, 1978' },
+  { category: 'astronauts', quote: 'I happen to have been privileged enough to be in on the fact that we\'ve been visited on this planet, and the UFO phenomenon is real.', name: 'Dr. Edgar Mitchell', title: 'Apollo 14 Astronaut (6th person on the Moon)', source: 'Kerrang Radio, July 2008' },
+  { category: 'astronauts', quote: 'Ridicule is not a part of the scientific method, and the public should not be taught that it is.', name: 'Dr. J. Allen Hynek', title: 'Chair of Astronomy, Northwestern; Project Blue Book Advisor', source: 'Statement to Congress, 1968' },
+  { category: 'astronauts', quote: 'We\'ve reached a turning point. Now the burden of proof is on the government to prove they\'re not from intelligent beings in outer space.', name: 'Dr. Michio Kaku', title: 'Theoretical Physicist, CUNY', source: 'Ufology World Congress, 2019' },
+  { category: 'astronauts', quote: 'I give the probability as 100 percent that extraterrestrials have visited Earth and have been here for a long time.', name: 'Dr. Garry Nolan', title: 'Professor of Pathology, Stanford University', source: 'SALT Conference, May 2023' },
+  { category: 'astronauts', quote: 'Flying saucers are real, and they are space ships from another solar system.', name: 'Hermann Oberth', title: 'Founding Father of Rocketry (mentor to von Braun)', source: 'The American Weekly, Oct 1954' },
+  { category: 'astronauts', quote: 'The phenomenon of UFOs does exist, and it must be treated seriously.', name: 'Mikhail Gorbachev', title: 'President of the Soviet Union', source: 'Soviet Youth, May 1990' },
+];
+
+const QUOTE_CATEGORIES = [
+  { id: 'presidents', label: 'Presidents', defaultOpen: true },
+  { id: 'military', label: 'Military & Defense', defaultOpen: true },
+  { id: 'congress', label: 'Congress', defaultOpen: false },
+  { id: 'intelligence', label: 'Intelligence', defaultOpen: false },
+  { id: 'astronauts', label: 'Astronauts, Scientists & World Leaders', defaultOpen: false },
+];
+
+const RECOMMENDED = {
+  documentaries: [
+    { title: 'The Phenomenon', creator: 'James Fox', platform: 'Amazon', desc: 'The definitive UAP documentary. Covers 70 years of evidence in 100 minutes.', url: 'https://www.amazon.com/Phenomenon-John-Podesta/dp/B08HR6QD8V' },
+    { title: 'Sleeping Dog', creator: 'Jeremy Corbell', platform: 'YouTube', desc: 'Secret UAP program exposed. The footage the Pentagon confirmed is real.', videoId: 'ICv6I6bSGkQ' },
+    { title: 'The Program', creator: 'James Fox', platform: 'Theaters', desc: 'Follow-up to The Phenomenon. Goes deeper into the retrieval programs.', url: 'https://www.amazon.com/Program-James-Fox/dp/B0F15WSKWF' },
+    { title: 'The Age of Disclosure', creator: 'Serena DC', platform: 'Amazon', desc: '34 government insiders on camera. Broke Amazon Prime streaming records.', url: 'https://www.amazon.com/Age-Disclosure/dp/B0DXN6YWXG' },
+    { title: 'Encounters', creator: 'Netflix', platform: 'Netflix', desc: 'Four communities. Four mass sighting events. Hundreds of witnesses.', url: 'https://www.netflix.com/title/81488669' },
+    { title: 'Moment of Contact', creator: 'James Fox', platform: 'Amazon', desc: 'The Varginha incident in Brazil. An entire town saw something land.', url: 'https://www.amazon.com/Moment-Contact-James-Fox/dp/B0BMHLB9M6' },
+    { title: 'Unacknowledged', creator: 'Steven Greer', platform: 'Amazon', desc: 'Government secrecy focused. 20+ military witnesses.', url: 'https://www.amazon.com/Unacknowledged-Steven-M-Greer/dp/B0711MDBNG' },
+  ],
+  podcasts: [
+    { title: 'JRE #1361: Cmdr. David Fravor', creator: 'Joe Rogan', platform: 'YouTube', desc: 'The full Tic Tac story. Calm, detailed, undeniable.', videoId: 'Eco2s3-0zsQ' },
+    { title: 'JRE #2065: David Grusch', creator: 'Joe Rogan', platform: 'Spotify', desc: 'Grusch goes beyond his congressional testimony. 3 hours.', url: 'https://open.spotify.com/episode/5lKBGECMYG4amFYoTNYah6' },
+    { title: 'Congressional Hearing (Full)', creator: 'C-SPAN', platform: 'YouTube', desc: 'Grusch, Graves, Fravor testify under oath. The hearing that changed everything.', videoId: 'KQ7Dw-739VY' },
+    { title: '60 Minutes: Navy Pilots', creator: 'CBS', platform: 'YouTube', desc: 'The segment that brought UAP into mainstream news.', videoId: 'TppFEA5dYfM' },
+    { title: 'Need to Know', creator: 'Coulthart & Zabel', platform: 'YouTube', desc: 'Weekly UAP news from the journalists who broke the story.', url: 'https://www.youtube.com/@NeedToKnow-Ross' },
+    { title: 'Weaponized', creator: 'Corbell & Knapp', platform: 'YouTube', desc: 'Investigative journalist George Knapp and filmmaker Jeremy Corbell.', url: 'https://www.youtube.com/@WeaponizedPodcast' },
+    { title: 'That UFO Podcast', creator: 'Andy McGrillen', platform: 'Spotify', desc: 'Long-form interviews with researchers, witnesses, and insiders.', url: 'https://open.spotify.com/show/3G8biwXCy1dv2GxlPRFDjl' },
+    { title: 'JRE: Lue Elizondo', creator: 'Joe Rogan', platform: 'Spotify', desc: 'Former Pentagon UAP program director. His first long-form interview.', url: 'https://open.spotify.com/episode/4VRhC0iXXvlcM1nMjbfwnW' },
+    { title: 'JRE: Rep. Tim Burchett', creator: 'Joe Rogan', platform: 'Spotify', desc: 'Congressman describes being stonewalled by the Pentagon.', url: 'https://open.spotify.com/episode/6W2YYHuQlIYdDwHxpZqelr' },
+    { title: 'Rogan May 2026 (UAP Special)', creator: 'Joe Rogan', platform: 'Spotify', desc: 'Recorded after the Pentagon file drops. Rogan connects the dots.', url: 'https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk' },
+  ],
+  channels: [
+    { title: 'Jesse Michels', creator: 'American Alchemy', platform: 'YouTube', desc: 'Deep investigative interviews. Connects UAP to physics, history, and politics.', url: 'https://www.youtube.com/@JesseMichels' },
+    { title: 'UAP Gerb', creator: 'UAP Gerb', platform: 'YouTube', desc: 'Short, well-sourced explainers. Good starting point.', url: 'https://www.youtube.com/@UAPGerb' },
+    { title: 'Richard Dolan', creator: 'Richard Dolan', platform: 'YouTube', desc: 'Historian. 20+ years of UAP research. The long view.', url: 'https://www.youtube.com/@RichardDolan' },
+    { title: 'Lehto Files', creator: 'Chris Lehto', platform: 'YouTube', desc: 'Former F-16 pilot analyzes UAP footage frame by frame.', url: 'https://www.youtube.com/@ChrisLehtoF16' },
+    { title: 'Eyes on Cinema', creator: 'Eyes on Cinema', platform: 'YouTube', desc: 'Rare archival footage. Government hearings, historical sightings.', url: 'https://www.youtube.com/@EyesOnCinema' },
+  ],
+  fiction: [
+    { title: 'Close Encounters of the Third Kind', creator: 'Steven Spielberg (1977)', platform: 'Amazon', desc: 'Where it started. Blunt says Disclosure Day answers questions Close Encounters posed.', url: 'https://www.amazon.com/Close-Encounters-Third-Kind-Directors/dp/B000SEGDI2' },
+    { title: 'Taken', creator: 'Steven Spielberg, producer (2002)', platform: 'Peacock', desc: '10-episode miniseries. Three families, four generations, one alien truth. Spielberg\'s other UFO project.', url: 'https://www.peacocktv.com/stream-tv/taken' },
+    { title: 'Arrival', creator: 'Denis Villeneuve (2016)', platform: 'Amazon', desc: 'First contact as a linguistics puzzle. The emotional benchmark.', url: 'https://www.amazon.com/Arrival-Amy-Adams/dp/B01N18Y3PW' },
+    { title: 'Contact', creator: 'Robert Zemeckis (1997)', platform: 'Amazon', desc: 'Carl Sagan\'s story. Science vs. faith when the signal arrives.', url: 'https://www.amazon.com/Contact-Jodie-Foster/dp/B001AH6PQO' },
+    { title: 'District 9', creator: 'Neill Blomkamp (2009)', platform: 'Amazon', desc: 'What happens after they land. Allegory as body horror.', url: 'https://www.amazon.com/District-9-Sharlto-Copley/dp/B002U1Q5TO' },
+    { title: 'Fire in the Sky', creator: 'Robert Lieberman (1993)', platform: 'Amazon', desc: 'Based on Travis Walton\'s alleged 1975 abduction. The most disturbing depiction on film.', url: 'https://www.amazon.com/Fire-Sky-Craig-Sheffer/dp/B009CGVFPS' },
+  ],
+  books: [
+    { title: 'In Plain Sight', creator: 'Ross Coulthart', platform: 'Book', desc: 'The journalist who broke the Grusch story. The full investigation.', url: 'https://www.amazon.com/Plain-Sight-investigation-impossible-science/dp/1460759060' },
+    { title: 'Imminent', creator: 'Lue Elizondo', platform: 'Book', desc: 'Former AATIP director\'s account. What he saw inside the program.', url: 'https://www.amazon.com/Imminent-Inside-Pentagons-Retrieval-Cover-Up/dp/006341627X' },
+    { title: 'UFOs', creator: 'Leslie Kean', platform: 'Book', desc: 'The 2010 book that restarted serious UAP journalism.', url: 'https://www.amazon.com/UFOs-Generals-Pilots-Government-Officials/dp/0307717089' },
+    { title: 'Passport to Magonia', creator: 'Jacques Vallee', platform: 'Book', desc: 'The deeper pattern. Vallee connects UAP to folklore and consciousness.', url: 'https://www.amazon.com/Passport-Magonia-Folklore-Flying-Saucers/dp/0987422480' },
+    { title: 'UFOs and Nukes', creator: 'Robert Hastings', platform: 'Book', desc: '150+ military witnesses. UAP have been disabling nuclear weapons since the 1940s.', url: 'https://www.amazon.com/UFOs-Nukes-Extraordinary-Encounters-Nuclear/dp/1544822197' },
+  ],
+};
+
+const CONTENT_CATEGORIES = [
+  { id: 'documentaries', label: 'Documentaries', icon: '🎥', defaultShow: 4 },
+  { id: 'podcasts', label: 'Podcasts & Interviews', icon: '🎙️', defaultShow: 4 },
+  { id: 'channels', label: 'YouTube Channels', icon: '📺', defaultShow: 3 },
+  { id: 'fiction', label: 'Fiction Films', icon: '🌟', defaultShow: 3 },
+  { id: 'books', label: 'Books', icon: '📚', defaultShow: 3 },
+];
+
 function renderTrailers() {
   const container = document.getElementById('trailers-section');
   if (!container) return;
@@ -2543,6 +2832,132 @@ function loadRabbitVideo(containerId, videoId) {
   container.onclick = null;
   container.style.cursor = 'default';
   container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>`;
+}
+
+// Poster Carousel
+let carouselIndex = 0;
+let carouselTimer = null;
+
+function renderCarousel() {
+  const track = document.getElementById('poster-carousel-track');
+  const dots = document.getElementById('poster-carousel-dots');
+  if (!track || !dots) return;
+  track.innerHTML = POSTERS.map((p, i) =>
+    `<img class="landing-poster${i === 0 ? ' carousel-active' : ''}" src="https://image.tmdb.org/t/p/w500${p.path}" alt="${p.alt}" onerror="this.remove()">`
+  ).join('');
+  dots.innerHTML = POSTERS.map((_, i) =>
+    `<button class="poster-carousel-dot${i === 0 ? ' active' : ''}" onclick="carouselGoTo(${i})" aria-label="Poster ${i + 1}"></button>`
+  ).join('');
+
+  const carousel = document.getElementById('poster-carousel');
+  if (!carousel) return;
+  let touchStartX = 0;
+  carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  carousel.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) { dx < 0 ? carouselNext() : carouselPrev(); }
+  }, { passive: true });
+  carousel.addEventListener('click', e => {
+    if (e.target.closest('.poster-carousel-nav') || e.target.closest('.poster-carousel-dot')) return;
+    carouselNext();
+  });
+}
+
+function carouselGoTo(i) {
+  const track = document.getElementById('poster-carousel-track');
+  const dots = document.getElementById('poster-carousel-dots');
+  if (!track) return;
+  const imgs = track.querySelectorAll('img');
+  const dotBtns = dots ? dots.querySelectorAll('.poster-carousel-dot') : [];
+  imgs.forEach((img, idx) => img.classList.toggle('carousel-active', idx === i));
+  dotBtns.forEach((d, idx) => d.classList.toggle('active', idx === i));
+  carouselIndex = i;
+  clearInterval(carouselTimer);
+  carouselTimer = setInterval(carouselNext, 5000);
+}
+
+function carouselNext() { carouselGoTo((carouselIndex + 1) % POSTERS.length); }
+function carouselPrev() { carouselGoTo((carouselIndex - 1 + POSTERS.length) % POSTERS.length); }
+
+// Official Quotes
+function renderOfficialQuotes() {
+  const container = document.getElementById('official-quotes-section');
+  if (!container) return;
+  container.innerHTML = QUOTE_CATEGORIES.map(cat => {
+    const quotes = OFFICIAL_QUOTES.filter(q => q.category === cat.id);
+    if (!quotes.length) return '';
+    const collapsed = cat.defaultOpen ? '' : ' collapsed';
+    return `<div class="quotes-category${collapsed}" id="qcat-${cat.id}">
+      <div class="quotes-category-header" onclick="toggleQuoteCategory('${cat.id}')">
+        <span class="quotes-category-label">${cat.label}</span>
+        <span style="display:flex;align-items:center;gap:8px;">
+          <span class="quotes-category-count">${quotes.length}</span>
+          <span class="quotes-category-toggle">&#9660;</span>
+        </span>
+      </div>
+      <div class="quotes-category-items">
+        ${quotes.map(q => `<div class="quote-card">
+          <div class="quote-text">"${q.quote}"</div>
+          <div class="quote-attribution">
+            <span class="quote-name">${q.name}</span>
+            <span class="quote-title">${q.title} &middot; ${q.source}</span>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleQuoteCategory(id) {
+  const el = document.getElementById('qcat-' + id);
+  if (el) el.classList.toggle('collapsed');
+}
+
+// Go Deeper
+const deeperExpanded = {};
+function renderGoDeeper() {
+  const container = document.getElementById('go-deeper-section');
+  if (!container) return;
+  container.innerHTML = CONTENT_CATEGORIES.map(cat => {
+    const items = RECOMMENDED[cat.id];
+    if (!items || !items.length) return '';
+    const isExpanded = deeperExpanded[cat.id];
+    const show = isExpanded ? items.length : cat.defaultShow;
+    const visible = items.slice(0, show);
+    const hasMore = items.length > cat.defaultShow;
+    return `<div class="deeper-category">
+      <div class="deeper-category-label">${cat.icon} ${cat.label}</div>
+      ${visible.map(item => {
+        const href = item.videoId ? `https://www.youtube.com/watch?v=${item.videoId}` : (item.url || '#');
+        return `<a class="deeper-item" href="${href}" target="_blank" rel="noopener">
+          <div class="deeper-item-info">
+            <div class="deeper-item-title">${item.title}</div>
+            <div class="deeper-item-creator">${item.creator}</div>
+            <div class="deeper-item-desc">${item.desc}</div>
+          </div>
+          <span class="deeper-item-platform">${item.platform}</span>
+        </a>`;
+      }).join('')}
+      ${hasMore ? `<button class="deeper-show-toggle" onclick="toggleDeeperCategory('${cat.id}')">
+        ${isExpanded ? 'Show less' : `Show all ${items.length}`}
+      </button>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function toggleDeeperCategory(id) {
+  deeperExpanded[id] = !deeperExpanded[id];
+  renderGoDeeper();
+}
+
+// Payment section
+function renderPaymentSection() {
+  const priceEl = document.getElementById('payment-price-display');
+  const stripeBtn = document.getElementById('payment-stripe-btn');
+  const proofLink = document.getElementById('payment-proof-link');
+  if (TICKET_PRICE && priceEl) priceEl.textContent = '$' + TICKET_PRICE;
+  if (STRIPE_PAYMENT_URL && stripeBtn) { stripeBtn.href = STRIPE_PAYMENT_URL; stripeBtn.style.display = 'block'; }
+  if (TICKET_PROOF_URL && proofLink) proofLink.href = TICKET_PROOF_URL;
 }
 
 // Admin mode: append ?admin=1 to URL to show management controls
@@ -2632,6 +3047,8 @@ if (isOrg) document.body.classList.add('org-mode');
   await fetchAttendees();
   subscribeToChanges();
   renderHypeTicker();
+  renderCarousel();
+  renderPaymentSection();
   checkTicketStatus();
 
   sb.channel('ticket-status-realtime')

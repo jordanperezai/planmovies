@@ -1,0 +1,16 @@
+name = "planmovies-api"
+main = "src/index.js"
+compatibility_date = "2026-05-27"
+account_id = "0ac90ecc2fb8de376efd32b25a466bfe"
+
+[vars]
+SUPABASE_URL = "https://aahaurqqkrgwqdqkohuu.supabase.co"
+PLATFORM_FEE_CENTS = "250"
+
+# Set these as secrets via:
+#   cd workers/planmovies-api
+#   wrangler secret put STRIPE_SECRET_KEY
+#   wrangler secret put STRIPE_WEBHOOK_SECRET
+#   wrangler secret put SUPABASE_SERVICE_KEY
+#   wrangler secret put TELEGRAM_BOT_TOKEN
+#   wrangler secret put TELEGRAM_CHAT_ID
