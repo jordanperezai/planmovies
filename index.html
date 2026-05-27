@@ -168,11 +168,11 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
 /* LANDING */
 .landing {
-  min-height: 100vh;
+  height: 100dvh;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   position: relative;
-  padding: 80px 24px 100px;
+  padding: 48px 24px 32px;
   overflow: hidden;
 }
 .landing-stars {
@@ -255,10 +255,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   margin-bottom: 14px;
 }
 .landing-subtitle {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--text-secondary);
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   font-weight: 300;
   max-width: 380px;
   line-height: 1.55;
@@ -734,9 +734,14 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
 .poster-carousel {
   position: relative;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   user-select: none;
   touch-action: pan-y;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .poster-carousel-track {
   position: relative;
@@ -746,7 +751,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   min-height: 200px;
 }
 .poster-carousel-track img {
-  max-height: 45vh;
+  max-height: 100%;
   width: auto;
   max-width: 100%;
   border-radius: 4px;
@@ -804,14 +809,6 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 @media (min-width: 768px) {
   .poster-carousel:hover .poster-carousel-nav { display: flex; }
 }
-.poster-carousel-hint {
-  font-family: var(--font);
-  font-size: 11px;
-  color: var(--text-tertiary);
-  text-align: center;
-  margin-top: 6px;
-}
-@media (min-width: 768px) { .poster-carousel-hint { display: none; } }
 
 /* OFFICIAL QUOTES */
 .quotes-category {
@@ -1595,7 +1592,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div class="landing-bg"></div>
     <div class="landing-stars"></div>
 
-    <div class="fade-up" style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+    <div class="fade-up" style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
       <span style="font-family:var(--mono);font-size:18px;font-weight:300;letter-spacing:6px;color:var(--gold-cool);text-transform:uppercase;">PLAN</span>
       <svg viewBox="-2 14 104 72" style="width:52px;height:34px;" aria-hidden="true">
         <g transform="rotate(-12 50 50)">
@@ -1612,14 +1609,13 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <button class="poster-carousel-nav next" onclick="carouselNext()" aria-label="Next poster">&rsaquo;</button>
       <div class="poster-carousel-track" id="poster-carousel-track"></div>
       <div class="poster-carousel-dots" id="poster-carousel-dots"></div>
-      <div class="poster-carousel-hint">tap to see more posters</div>
     </div>
 
     <h1 class="landing-title fade-up fade-up-d2">DISCLOSURE DAY</h1>
     <div class="landing-credit fade-up fade-up-d2">A Steven Spielberg Film</div>
 
-    <div class="fade-up fade-up-d2" style="margin-bottom:32px;">
-      <span style="font-family:var(--mono);font-size:15px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">FRI JUN 12 · 7:00 PM</span>
+    <div class="fade-up fade-up-d2" style="margin-bottom:16px;">
+      <span style="font-family:var(--mono);font-size:14px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">FRI JUN 12 · 7:00 PM</span>
     </div>
 
     <p class="landing-subtitle fade-up fade-up-d2">The one you see with the people who matter.</p>
