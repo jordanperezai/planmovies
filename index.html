@@ -1304,7 +1304,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <button class="nav-tab org-only" data-page="rsvp" onclick="showPage('rsvp')">RSVP</button>
       <button class="nav-tab" data-page="coordination" onclick="showPage('coordination')">Seats</button>
     </div>
-    <div class="nav-status">
+    <div class="nav-status org-only">
       <div class="nav-dot"></div>
       <span>LIVE</span>
     </div>
@@ -1394,15 +1394,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
     <div id="crew-list-family" style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);overflow:hidden;"></div>
 
-    <div style="display:flex;gap:8px;margin:20px 0;">
-      <button class="submit-btn" onclick="shareWhatsApp()" style="background:transparent;border:1px solid var(--gold-dim);color:var(--gold);flex:1;">SHARE ON WHATSAPP</button>
-      <button class="submit-btn" onclick="shareIMessage()" style="background:transparent;border:1px solid var(--gold-dim);color:var(--gold);flex:1;">TEXT A FRIEND</button>
-    </div>
+    <a class="buy-tickets-btn" href="https://www.regmovies.com/theatres/regal-secaucus-showplace-1665" target="_blank" rel="noopener" id="dash-tickets-link" style="display:block;text-align:center;padding:14px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:2px;color:var(--text-inverse);background:var(--gold);border-radius:var(--radius-sm);text-decoration:none;margin-top:20px;">BUY YOUR TICKET</a>
 
-    <a class="buy-tickets-btn" href="https://www.regmovies.com/theatres/regal-secaucus-showplace-1665" target="_blank" rel="noopener" id="dash-tickets-link" style="display:block;text-align:center;padding:14px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:2px;color:var(--text-inverse);background:var(--gold);border-radius:var(--radius-sm);text-decoration:none;">BUY YOUR TICKET</a>
-
-    <div style="text-align:center;padding:24px 0 8px;">
-      <button onclick="showPage('briefing');setTimeout(()=>{document.getElementById('reality-break').scrollIntoView({behavior:'smooth'})},100);" style="background:none;border:none;font-family:var(--font);font-size:13px;color:var(--text-secondary);cursor:pointer;padding:8px 16px;">What is Disclosure Day? &rarr;</button>
+    <div style="text-align:center;padding:16px 0 8px;font-family:var(--font);font-size:13px;color:var(--text-tertiary);">
+      <span style="color:var(--text-tertiary);font-size:12px;">Send this to someone</span> <button onclick="shareWhatsApp()" style="background:none;border:none;cursor:pointer;padding:4px 8px;vertical-align:middle;" aria-label="Share on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button><button onclick="shareIMessage()" style="background:none;border:none;cursor:pointer;padding:4px 8px;vertical-align:middle;" aria-label="Share via Text"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg></button>
     </div>
 
     <div class="org-only">
@@ -1735,11 +1730,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       </div>
       <div class="section-header">THE CREW SO FAR</div>
       <div id="confirm-crew" style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;"></div>
-      <div style="display:flex;gap:8px;">
-        <button class="submit-btn" onclick="shareWhatsApp()" style="background:transparent;border:1px solid var(--gold-dim);color:var(--gold);flex:1;">SHARE ON WHATSAPP</button>
-        <button class="submit-btn" onclick="shareIMessage()" style="background:transparent;border:1px solid var(--gold-dim);color:var(--gold);flex:1;">TEXT A FRIEND</button>
+      <button class="submit-btn" onclick="hideConfirmation()" style="background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-subtle);">RSVP AGAIN FOR SOMEONE ELSE</button>
+      <div style="text-align:center;padding:16px 0 0;font-family:var(--font);font-size:13px;color:var(--text-tertiary);">
+        <span style="color:var(--text-tertiary);font-size:12px;">Send this to someone</span> <button onclick="shareWhatsApp()" style="background:none;border:none;cursor:pointer;padding:4px 8px;vertical-align:middle;" aria-label="Share on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button><button onclick="shareIMessage()" style="background:none;border:none;cursor:pointer;padding:4px 8px;vertical-align:middle;" aria-label="Share via Text"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg></button>
       </div>
-      <button class="submit-btn" onclick="hideConfirmation()" style="background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-subtle);margin-top:8px;">RSVP AGAIN FOR SOMEONE ELSE</button>
     </div>
 
     <div id="rsvp-headlines" style="margin-top:32px;">
