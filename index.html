@@ -1816,25 +1816,22 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <div class="hype-quote-text">"I finished reading the script and I bawled. Steven Spielberg believes in the possibility of the human beings we could be."</div>
       <div class="hype-quote-source">Colman Domingo</div>
     </div>
-    <div class="hype-quote">
-      <div class="hype-quote-text">"There are questions posed by Close Encounters that are answered in Disclosure Day."</div>
-      <div class="hype-quote-source">Emily Blunt</div>
-    </div>
 
     <div id="reality-break" style="margin:48px 0 40px;text-align:center;padding:32px 16px;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);">
       <div style="font-family:var(--font);font-size:18px;font-weight:300;color:var(--text-primary);line-height:1.5;letter-spacing:0.3px;">The movie is based on real events.</div>
       <div style="font-family:var(--font);font-size:18px;font-weight:600;color:var(--gold);margin-top:8px;line-height:1.5;letter-spacing:0.3px;">These events are happening now.</div>
     </div>
 
-    <div class="section-header">IN THEIR WORDS</div>
-    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:16px;">Presidents. Generals. Intelligence directors. Under oath, on camera, on the record.</p>
-    <div id="official-quotes-section"></div>
-
     <div class="section-header">THIS IS ACTUALLY HAPPENING</div>
     <p style="font-size:13px;line-height:1.6;color:var(--text-secondary);margin-bottom:12px;">
       None of this is from the movie. It started with a New York Times investigation in 2017. It hasn't stopped.
     </p>
-    <div id="briefing-headlines" style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;"></div>
+    <div id="briefing-headlines" style="display:flex;flex-direction:column;gap:8px;"></div>
+    <button id="headlines-more-btn" onclick="showMoreHeadlines()" style="display:none;width:100%;padding:10px;margin:8px 0 24px;background:transparent;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-tertiary);font-family:var(--mono);font-size:11px;letter-spacing:1px;cursor:pointer;transition:border-color 0.2s,color 0.2s;">SHOW MORE</button>
+
+    <div class="section-header">IN THEIR WORDS</div>
+    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:16px;">Presidents. Generals. Intelligence directors. Under oath, on camera, on the record.</p>
+    <div id="official-quotes-section"></div>
 
     <div class="section-header">THIS IS HAPPENING AROUND THE WORLD</div>
     <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:16px;">Governments on every continent are investigating. This isn't an American story.</p>
@@ -3032,55 +3029,59 @@ function shareIMessage() {
   window.open(`sms:&body=${encodeURIComponent(text)}`, '_blank');
 }
 
-// Headlines: three tiers. Government → Major Journalism → Hollywood.
-// Tier 1 (government/institutional) always leads. Tier 2 (journalism) follows. Tier 3 (Hollywood) fills.
+// Headlines ranked by impact. No randomization. Most potent first.
 const HYPE_HEADLINES = [
-  // TIER 1: Government & Institutional Actions
-  { text: 'PENTAGON UNSEALS 222 UAP FILES ON WAR.GOV', url: 'https://www.cnn.com/2026/05/08/politics/ufo-files-pentagon-release-aliens', tier: 1 },
-  { text: 'TRUMP ORDERS "MAXIMUM TRANSPARENCY" ON UFOS', url: 'https://www.pbs.org/newshour/politics/trump-drops-hints-of-whats-coming-in-new-batch-of-ufo-files-set-for-release', tier: 1 },
-  { text: 'WHITE HOUSE: "UNPRECEDENTED LEVEL OF TRANSPARENCY"', url: 'https://x.com/WhiteHouse/status/2052745783858929909', tier: 1 },
-  { text: 'CONGRESS DEMANDS SCIF BRIEFING ON NEW WHISTLEBLOWER', url: 'https://www.ufouap.com/articles/new-uap-whistleblower-2026-disclosure-push/', tier: 1 },
-  { text: '2ND FILE DROP: 51 VIDEOS, FIRST ENGAGEMENT FOOTAGE', url: 'https://www.hollywoodreporter.com/news/general-news/pentagon-ufo-files-2-1236604232/', tier: 1 },
-  { text: 'NASA PUBLISHES FORMAL UAP STUDY, APPOINTS DIRECTOR', url: 'https://science.nasa.gov/uap/', tier: 1 },
-  { text: 'SCHUMER-ROUNDS UAP DISCLOSURE ACT: BIPARTISAN, LEADERSHIP-LEVEL', url: 'https://www.democrats.senate.gov/newsroom/press-releases/schumer-rounds-introduce-new-legislation-to-declassify-government-records-related-to-unidentified-anomalous-phenomena-and-ufos_modeled-after-jfk-assassination-records-collection-act--as-an-amendment-to-ndaa', tier: 1 },
-  { text: 'ODNI REPORT: 144 INCIDENTS, ONLY 1 EXPLAINED', url: 'https://www.dni.gov/files/ODNI/documents/assessments/Prelimary-Assessment-UAP-20210625.pdf', tier: 1 },
-  { text: 'AARO CASELOAD NOW EXCEEDS 2,000 UAP REPORTS', url: 'https://defensescoop.com/2026/02/25/hegseth-ufo-disclosure-trump-aaro-uap-caseload/', tier: 1 },
-  { text: 'FY2026 NDAA FORCES NORAD UAP INTERCEPT BRIEFINGS', url: 'https://defensescoop.com/2025/12/10/uap-ufo-military-intercepts-north-america-fy-2026-ndaa/', tier: 1 },
-  // TIER 2: Major Journalism (tier-1 publications only)
-  { text: 'NEW YORK TIMES: "THE PENTAGON\'S MYSTERIOUS U.F.O. PROGRAM"', url: 'https://www.nytimes.com/2017/12/16/us/politics/pentagon-program-ufo-harry-reid.html', tier: 2 },
-  { text: '60 MINUTES: NAVY PILOTS DESCRIBE UAP ENCOUNTERS ON CAMERA', url: 'https://www.cbsnews.com/news/ufo-military-intelligence-60-minutes-2021-05-16/', tier: 2 },
-  { text: 'NPR: WHISTLEBLOWER TESTIFIES U.S. SALVAGED "NON-HUMAN BIOLOGICS"', url: 'https://www.npr.org/2023/07/27/1190390376/ufo-hearing-non-human-biologics-uaps', tier: 2 },
-  { text: 'THE NEW YORKER: HOW THE PENTAGON STARTED TAKING UFOS SERIOUSLY', url: 'https://www.newyorker.com/magazine/2021/05/10/how-the-pentagon-started-taking-u-f-o-s-seriously', tier: 2 },
-  { text: 'NYT: "OFF-WORLD VEHICLES NOT MADE ON THIS EARTH"', url: 'https://www.nytimes.com/2020/07/23/us/politics/pentagon-ufo-harry-reid-navy.html', tier: 2 },
-  { text: 'POLITICO: NAVY DRAFTING NEW GUIDELINES FOR REPORTING UFOS', url: 'https://www.politico.com/story/2019/04/23/us-navy-guidelines-reporting-ufos-1375290', tier: 2 },
-  { text: 'WASHINGTON POST: HOW ANGRY PILOTS GOT THE NAVY TO LISTEN', url: 'https://www.washingtonpost.com/national-security/2019/04/24/how-angry-pilots-got-navy-stop-dismissing-ufo-sightings/', tier: 2 },
-  { text: 'WAR.GOV/UFO HITS 1 BILLION VISITS IN 2 WEEKS', url: 'https://warufo.com/', tier: 2 },
-  // TIER 3: Hollywood Responds
-  { text: 'SPIELBERG: "MORE TRUTH THAN FICTION"', url: 'https://variety.com/2026/film/news/steven-spielberg-hollywood-original-movies-disclosure-day-cinemacon-1236722625/', tier: 3 },
-  { text: 'BLUNT: "CLOSE ENCOUNTERS QUESTIONS ANSWERED"', url: 'https://www.nbc.com/nbc-insider/everything-to-know-about-steven-spielbergs-disclosure-day', tier: 3 },
-  { text: 'SPIELBERG HIDING ENTIRE THIRD ACT FROM MARKETING', url: 'https://x.com/DiscussingFilm/status/2044582448512803239', tier: 3 },
-  { text: 'DOMINGO: "I FINISHED THE SCRIPT AND I BAWLED"', url: 'https://www.yahoo.com/entertainment/movies/articles/spielberg-disclosure-day-trailer-most-142032751.html', tier: 3 },
+  // Top 6: the most credible, undeniable headlines (shown by default)
+  { text: 'NEW YORK TIMES: "THE PENTAGON\'S MYSTERIOUS U.F.O. PROGRAM"', url: 'https://www.nytimes.com/2017/12/16/us/politics/pentagon-program-ufo-harry-reid.html' },
+  { text: 'PENTAGON UNSEALS 222 UAP FILES ON WAR.GOV', url: 'https://www.cnn.com/2026/05/08/politics/ufo-files-pentagon-release-aliens' },
+  { text: '60 MINUTES: NAVY PILOTS DESCRIBE UAP ENCOUNTERS ON CAMERA', url: 'https://www.cbsnews.com/news/ufo-military-intelligence-60-minutes-2021-05-16/' },
+  { text: 'NPR: WHISTLEBLOWER TESTIFIES U.S. SALVAGED "NON-HUMAN BIOLOGICS"', url: 'https://www.npr.org/2023/07/27/1190390376/ufo-hearing-non-human-biologics-uaps' },
+  { text: 'NYT: "OFF-WORLD VEHICLES NOT MADE ON THIS EARTH"', url: 'https://www.nytimes.com/2020/07/23/us/politics/pentagon-ufo-harry-reid-navy.html' },
+  { text: 'TRUMP ORDERS "MAXIMUM TRANSPARENCY" ON UFOS', url: 'https://www.pbs.org/newshour/politics/trump-drops-hints-of-whats-coming-in-new-batch-of-ufo-files-set-for-release' },
+  // Remaining (behind "Show more")
+  { text: 'THE NEW YORKER: HOW THE PENTAGON STARTED TAKING UFOS SERIOUSLY', url: 'https://www.newyorker.com/magazine/2021/05/10/how-the-pentagon-started-taking-u-f-o-s-seriously' },
+  { text: 'WASHINGTON POST: HOW ANGRY PILOTS GOT THE NAVY TO LISTEN', url: 'https://www.washingtonpost.com/national-security/2019/04/24/how-angry-pilots-got-navy-stop-dismissing-ufo-sightings/' },
+  { text: 'ODNI REPORT: 144 INCIDENTS, ONLY 1 EXPLAINED', url: 'https://www.dni.gov/files/ODNI/documents/assessments/Prelimary-Assessment-UAP-20210625.pdf' },
+  { text: '2ND FILE DROP: 51 VIDEOS, FIRST ENGAGEMENT FOOTAGE', url: 'https://www.hollywoodreporter.com/news/general-news/pentagon-ufo-files-2-1236604232/' },
+  { text: 'NASA PUBLISHES FORMAL UAP STUDY, APPOINTS DIRECTOR', url: 'https://science.nasa.gov/uap/' },
+  { text: 'SCHUMER-ROUNDS UAP DISCLOSURE ACT: BIPARTISAN, LEADERSHIP-LEVEL', url: 'https://www.democrats.senate.gov/newsroom/press-releases/schumer-rounds-introduce-new-legislation-to-declassify-government-records-related-to-unidentified-anomalous-phenomena-and-ufos_modeled-after-jfk-assassination-records-collection-act--as-an-amendment-to-ndaa' },
+  { text: 'CONGRESS DEMANDS SCIF BRIEFING ON NEW WHISTLEBLOWER', url: 'https://www.ufouap.com/articles/new-uap-whistleblower-2026-disclosure-push/' },
+  { text: 'WHITE HOUSE: "UNPRECEDENTED LEVEL OF TRANSPARENCY"', url: 'https://x.com/WhiteHouse/status/2052745783858929909' },
+  { text: 'POLITICO: NAVY DRAFTING NEW GUIDELINES FOR REPORTING UFOS', url: 'https://www.politico.com/story/2019/04/23/us-navy-guidelines-reporting-ufos-1375290' },
+  { text: 'AARO CASELOAD NOW EXCEEDS 2,000 UAP REPORTS', url: 'https://defensescoop.com/2026/02/25/hegseth-ufo-disclosure-trump-aaro-uap-caseload/' },
+  { text: 'WAR.GOV/UFO HITS 1 BILLION VISITS IN 2 WEEKS', url: 'https://warufo.com/' },
+  { text: 'FY2026 NDAA FORCES NORAD UAP INTERCEPT BRIEFINGS', url: 'https://defensescoop.com/2025/12/10/uap-ufo-military-intercepts-north-america-fy-2026-ndaa/' },
+  { text: 'SPIELBERG: "MORE TRUTH THAN FICTION"', url: 'https://variety.com/2026/film/news/steven-spielberg-hollywood-original-movies-disclosure-day-cinemacon-1236722625/' },
 ];
+
+const HEADLINES_INITIAL = 6;
+let headlinesExpanded = false;
 
 function renderHypeTicker() {
   const headlineHtml = (items) => items.map(h =>
     `<a href="${h.url}" target="_blank" rel="noopener" style="display:block;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-family:var(--mono);font-size:11px;letter-spacing:0.5px;text-decoration:none;transition:border-color 0.2s,color 0.2s;">${h.text}</a>`
   ).join('');
 
-  const t1 = HYPE_HEADLINES.filter(h => h.tier === 1).sort(() => Math.random() - 0.5);
-  const t2 = HYPE_HEADLINES.filter(h => h.tier === 2).sort(() => Math.random() - 0.5);
-  const t3 = HYPE_HEADLINES.filter(h => h.tier === 3).sort(() => Math.random() - 0.5);
-  const ordered = [...t1, ...t2, ...t3];
-
   const rsvpContainer = document.getElementById('rsvp-hype-headlines');
   if (rsvpContainer) {
-    rsvpContainer.innerHTML = headlineHtml(ordered.slice(0, 8));
+    rsvpContainer.innerHTML = headlineHtml(HYPE_HEADLINES.slice(0, 6));
   }
 
   const briefingContainer = document.getElementById('briefing-headlines');
+  const moreBtn = document.getElementById('headlines-more-btn');
   if (briefingContainer) {
-    briefingContainer.innerHTML = headlineHtml(ordered.slice(0, 14));
+    const count = headlinesExpanded ? HYPE_HEADLINES.length : HEADLINES_INITIAL;
+    briefingContainer.innerHTML = headlineHtml(HYPE_HEADLINES.slice(0, count));
+    if (moreBtn) {
+      moreBtn.style.display = HYPE_HEADLINES.length > HEADLINES_INITIAL ? 'block' : 'none';
+      moreBtn.textContent = headlinesExpanded ? 'SHOW LESS' : `SHOW ${HYPE_HEADLINES.length - HEADLINES_INITIAL} MORE`;
+    }
   }
+}
+
+function showMoreHeadlines() {
+  headlinesExpanded = !headlinesExpanded;
+  renderHypeTicker();
 }
 
 // Ticket status polling
