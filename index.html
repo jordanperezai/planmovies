@@ -2734,6 +2734,15 @@ const OFFICIAL_QUOTES = [
   { category: 'astronauts', quote: 'I give the probability as 100 percent that extraterrestrials have visited Earth and have been here for a long time.', name: 'Dr. Garry Nolan', title: 'Professor of Pathology, Stanford University', source: 'SALT Conference, May 2023' },
   { category: 'astronauts', quote: 'Flying saucers are real, and they are space ships from another solar system.', name: 'Hermann Oberth', title: 'Founding Father of Rocketry (mentor to von Braun)', source: 'The American Weekly, Oct 1954' },
   { category: 'astronauts', quote: 'The phenomenon of UFOs does exist, and it must be treated seriously.', name: 'Mikhail Gorbachev', title: 'President of the Soviet Union', source: 'Soviet Youth, May 1990' },
+  // WORLD GOVERNMENTS
+  { category: 'world', quote: 'The performance characteristics went beyond the possibilities of existing technology.', name: 'Maj. Gen. Wilfried De Brouwer', title: 'Chief of Operations, Belgian Air Force', source: 'Official Press Conference, 1990' },
+  { category: 'world', quote: 'It\'s not about whether or not you believe. We can only give technical information. There are several assumptions. Technically, we have no explanation.', name: 'Brig. Octávio Moreira Lima', title: 'Minister of Aeronautics, Brazil', source: 'Official Press Conference, May 1986' },
+  { category: 'world', quote: 'Either an intrusion into our air space took place at Rendlesham, or the Deputy Commander of an operational nuclear-armed US Air Force Base and a large number of his men were hallucinating. Either is of defence interest.', name: 'Admiral Lord Hill-Norton', title: 'Former Chief of Defence Staff, UK; Chairman of NATO Military Committee', source: 'House of Lords, 1997' },
+  { category: 'world', quote: 'We do not know what it was, but we do know what it was not.', name: 'Gen. Ricardo Bermúdez', title: 'Director of CEFAA, Chilean Government', source: 'Official Investigation Conclusion, 2017' },
+  { category: 'world', quote: 'Japan possesses its own UAP video footage. Disclosure decisions will be made case by case.', name: 'Minoru Kihara', title: 'Chief Cabinet Secretary, Japan', source: 'Press Briefing, May 2026' },
+  { category: 'world', quote: 'A single hypothesis sufficiently takes into account the facts: the hypothesis of extraterrestrial visitors.', name: 'Gen. Denis Letty', title: 'French Air Force (ret.), Chairman of COMETA', source: 'Report to the French Prime Minister, 1999' },
+  { category: 'world', quote: 'Over 80 lawmakers formed the Parliamentary League for Unraveling UAP from a National Security Perspective.', name: 'Japan Diet (Parliament)', title: 'Cross-Party UAP Caucus', source: 'Formal Proposal to Ministry of Defense, 2024-2026' },
+  { category: 'world', quote: 'The Peruvian Air Force has the duty to look into these phenomena in order to safeguard order and proper use of the national air corridors.', name: 'Peruvian Air Ministry', title: 'DIFAA Reactivation Statement', source: 'Official Order, 2013' },
 ];
 
 const QUOTE_CATEGORIES = [
@@ -2741,7 +2750,8 @@ const QUOTE_CATEGORIES = [
   { id: 'military', label: 'Military & Defense', defaultOpen: true },
   { id: 'congress', label: 'Congress', defaultOpen: false },
   { id: 'intelligence', label: 'Intelligence', defaultOpen: false },
-  { id: 'astronauts', label: 'Astronauts, Scientists & World Leaders', defaultOpen: false },
+  { id: 'astronauts', label: 'Astronauts & Scientists', defaultOpen: false },
+  { id: 'world', label: 'World Governments', defaultOpen: false },
 ];
 
 const RECOMMENDED = {
@@ -2977,47 +2987,52 @@ function shareIMessage() {
 
 // Hype ticker headlines (all sourced from real news, with links)
 const HYPE_HEADLINES = [
-  { text: 'PENTAGON UNSEALS 222 UAP FILES ON WAR.GOV', url: 'https://www.cnn.com/2026/05/08/politics/ufo-files-pentagon-release-aliens' },
-  { text: 'SPIELBERG: "MORE TRUTH THAN FICTION"', url: 'https://variety.com/2026/film/news/steven-spielberg-hollywood-original-movies-disclosure-day-cinemacon-1236722625/' },
-  { text: 'TRUMP ORDERS "MAXIMUM TRANSPARENCY" ON UFOS', url: 'https://www.militarytimes.com/news/pentagon-congress/2026/05/08/trump-administration-releases-first-tranche-of-never-before-seen-ufo-files/' },
-  { text: 'AARO CASELOAD NOW EXCEEDS 2,000 UAP REPORTS', url: 'https://defensescoop.com/2026/02/25/hegseth-ufo-disclosure-trump-aaro-uap-caseload/' },
-  { text: 'KOEPP WROTE 42 DRAFTS BEFORE SPIELBERG APPROVED', url: 'https://gizmodo.com/david-koepp-wrote-42-drafts-of-disclosure-day-before-spielbergs-approval-2000762349' },
-  { text: 'AGE OF DISCLOSURE BREAKS AMAZON PRIME RECORD', url: 'https://www.worldofreel.com/blog/2025/12/8/the-age-of-disclosure-becomes-vod-phenomenon' },
-  { text: 'BLUNT: "CLOSE ENCOUNTERS QUESTIONS ANSWERED"', url: 'https://www.nbc.com/nbc-insider/everything-to-know-about-steven-spielbergs-disclosure-day' },
-  { text: 'CONGRESS DEMANDS SCIF BRIEFING ON NEW WHISTLEBLOWER', url: 'https://www.ufouap.com/articles/new-uap-whistleblower-2026-disclosure-push/' },
-  { text: 'PENTAGON DROPS UAP FILES 3 WEEKS BEFORE SPIELBERG', url: 'https://www.hollywoodreporter.com/news/general-news/pentagon-ufo-files-2-1236604232/' },
-  { text: 'SPIELBERG: "ALL YOU NEED IS A SEATBELT"', url: 'https://variety.com/2026/film/news/steven-spielberg-hollywood-original-movies-disclosure-day-cinemacon-1236722625/' },
+  // PINNED: institutional/government sources always lead (pin: true)
+  { text: 'PENTAGON UNSEALS 222 UAP FILES ON WAR.GOV', url: 'https://www.cnn.com/2026/05/08/politics/ufo-files-pentagon-release-aliens', pin: true },
+  { text: 'WHITE HOUSE: "UNPRECEDENTED LEVEL OF TRANSPARENCY"', url: 'https://x.com/WhiteHouse/status/2052745783858929909', pin: true },
+  { text: 'CONGRESS DEMANDS SCIF BRIEFING ON NEW WHISTLEBLOWER', url: 'https://www.ufouap.com/articles/new-uap-whistleblower-2026-disclosure-push/', pin: true },
+  { text: 'AARO CASELOAD NOW EXCEEDS 2,000 UAP REPORTS', url: 'https://defensescoop.com/2026/02/25/hegseth-ufo-disclosure-trump-aaro-uap-caseload/', pin: true },
+  { text: 'TRUMP ORDERS "MAXIMUM TRANSPARENCY" ON UFOS', url: 'https://www.militarytimes.com/news/pentagon-congress/2026/05/08/trump-administration-releases-first-tranche-of-never-before-seen-ufo-files/', pin: true },
+  { text: '2ND FILE DROP: FIGHTER JET DOWNS UAP OVER LAKE HURON', url: 'https://x.com/WhiteHouse/status/2057812941630505362', pin: true },
+  // REST: shuffled to fill remaining slots
+  { text: 'LUNA PUSHES IMMUNITY FOR UAP WHISTLEBLOWERS', url: 'https://x.com/UAPJames/status/2009041674337394961' },
+  { text: 'FY2026 NDAA FORCES NORAD UAP INTERCEPT BRIEFINGS', url: 'https://defensescoop.com/2025/12/10/uap-ufo-military-intercepts-north-america-fy-2026-ndaa/' },
+  { text: 'UAP WHISTLEBLOWER PROTECTION ACT ADVANCES', url: 'https://defensescoop.com/2025/12/10/uap-ufo-military-intercepts-north-america-fy-2026-ndaa/' },
   { text: 'GRUSCH NOW SPECIAL ADVISOR TO HOUSE UAP TASK FORCE', url: 'https://defensescoop.com/2025/09/09/military-whistleblowers-share-new-evidence-alleged-uap-ufo-hearing/' },
   { text: '2ND FILE DROP: 51 VIDEOS, FIRST ENGAGEMENT FOOTAGE', url: 'https://www.hollywoodreporter.com/news/general-news/pentagon-ufo-files-2-1236604232/' },
-  { text: 'DISCLOSURE DAY VS TOY STORY 5: JUNE BOX OFFICE WAR', url: 'https://www.comingsoon.net/movies/features/2134823-disclosure-day-average-box-office-prediction-early-projection-steven-spielberg' },
-  { text: 'FY2026 NDAA FORCES NORAD UAP INTERCEPT BRIEFINGS', url: 'https://defensescoop.com/2025/12/10/uap-ufo-military-intercepts-north-america-fy-2026-ndaa/' },
-  { text: 'SPIELBERG DEBUTS DISCLOSURE DAY AT CINEMACON', url: 'https://www.hollywoodreporter.com/movies/movie-news/disclosure-day-steven-spielberg-emily-blunt-cinemacon-1236564322/' },
   { text: 'WAR.GOV/UFO HITS 1 BILLION VISITS IN 2 WEEKS', url: 'https://warufo.com/' },
-  { text: 'DOMINGO: "I FINISHED THE SCRIPT AND I BAWLED"', url: 'https://www.yahoo.com/entertainment/movies/articles/spielberg-disclosure-day-trailer-most-142032751.html' },
-  { text: 'UAP WHISTLEBLOWER PROTECTION ACT ADVANCES', url: 'https://defensescoop.com/2025/12/10/uap-ufo-military-intercepts-north-america-fy-2026-ndaa/' },
-  { text: 'WHITE HOUSE: "UNPRECEDENTED LEVEL OF TRANSPARENCY"', url: 'https://x.com/WhiteHouse/status/2052745783858929909' },
   { text: 'REP. BURCHETT: "HOLY CRAP IS COMING"', url: 'https://x.com/CollinRugg/status/2052769793321975945' },
-  { text: 'SPIELBERG HIDING ENTIRE THIRD ACT FROM MARKETING', url: 'https://x.com/DiscussingFilm/status/2044582448512803239' },
+  { text: 'PENTAGON DROPS UAP FILES 3 WEEKS BEFORE SPIELBERG', url: 'https://www.hollywoodreporter.com/news/general-news/pentagon-ufo-files-2-1236604232/' },
+  { text: 'BLUNT: "CLOSE ENCOUNTERS QUESTIONS ANSWERED"', url: 'https://www.nbc.com/nbc-insider/everything-to-know-about-steven-spielbergs-disclosure-day' },
+  { text: 'SPIELBERG: "MORE TRUTH THAN FICTION"', url: 'https://variety.com/2026/film/news/steven-spielberg-hollywood-original-movies-disclosure-day-cinemacon-1236722625/' },
+  { text: 'SPIELBERG: "ALL YOU NEED IS A SEATBELT"', url: 'https://variety.com/2026/film/news/steven-spielberg-hollywood-original-movies-disclosure-day-cinemacon-1236722625/' },
+  { text: 'AGE OF DISCLOSURE BREAKS AMAZON PRIME RECORD', url: 'https://www.worldofreel.com/blog/2025/12/8/the-age-of-disclosure-becomes-vod-phenomenon' },
   { text: 'CORBELL DROPS "SLEEPING DOG" DOC ON SECRET UAP PROGRAM', url: 'https://x.com/JeremyCorbell/status/2044448583475470710' },
+  { text: 'SPIELBERG DEBUTS DISCLOSURE DAY AT CINEMACON', url: 'https://www.hollywoodreporter.com/movies/movie-news/disclosure-day-steven-spielberg-emily-blunt-cinemacon-1236564322/' },
+  { text: 'KOEPP WROTE 42 DRAFTS BEFORE SPIELBERG APPROVED', url: 'https://gizmodo.com/david-koepp-wrote-42-drafts-of-disclosure-day-before-spielbergs-approval-2000762349' },
+  { text: 'DOMINGO: "I FINISHED THE SCRIPT AND I BAWLED"', url: 'https://www.yahoo.com/entertainment/movies/articles/spielberg-disclosure-day-trailer-most-142032751.html' },
+  { text: 'SPIELBERG HIDING ENTIRE THIRD ACT FROM MARKETING', url: 'https://x.com/DiscussingFilm/status/2044582448512803239' },
+  { text: 'DISCLOSURE DAY VS TOY STORY 5: JUNE BOX OFFICE WAR', url: 'https://www.comingsoon.net/movies/features/2134823-disclosure-day-average-box-office-prediction-early-projection-steven-spielberg' },
   { text: 'ROGAN QUESTIONS IF SPIELBERG IS "AHEAD OF THE CURVE"', url: 'https://x.com/UAPWatchers/status/2001718934060347471' },
   { text: 'MOVIE ACCOUNT: "SOON THE TIMING WILL BE RIGHT"', url: 'https://x.com/disclosureday/status/2056419546454516024' },
-  { text: '2ND FILE DROP: FIGHTER JET DOWNS UAP OVER LAKE HURON', url: 'https://x.com/WhiteHouse/status/2057812941630505362' },
-  { text: 'LUNA PUSHES IMMUNITY FOR UAP WHISTLEBLOWERS', url: 'https://x.com/UAPJames/status/2009041674337394961' },
 ];
 
 function renderHypeTicker() {
   const headlineHtml = (items) => items.map(h =>
-    `<a href="${h.url}" target="_blank" rel="noopener" style="display:block;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-family:var(--mono);font-size:11px;letter-spacing:0.5px;text-decoration:none;transition:border-color 0.2s,color 0.2s;">${h.text}</a>`
+    `<a href="${h.url}" target="_blank" rel="noopener" style="display:block;padding:10px 14px;background:var(--bg-card);border:1px solid ${h.pin ? 'var(--gold-dim)' : 'var(--border-subtle)'};border-radius:var(--radius-sm);font-family:var(--mono);font-size:11px;letter-spacing:0.5px;text-decoration:none;transition:border-color 0.2s,color 0.2s;${h.pin ? 'color:var(--gold);' : ''}">${h.text}</a>`
   ).join('');
+
+  const pinned = HYPE_HEADLINES.filter(h => h.pin);
+  const rest = HYPE_HEADLINES.filter(h => !h.pin).sort(() => Math.random() - 0.5);
 
   const rsvpContainer = document.getElementById('rsvp-hype-headlines');
   if (rsvpContainer) {
-    rsvpContainer.innerHTML = headlineHtml([...HYPE_HEADLINES].sort(() => Math.random() - 0.5).slice(0, 8));
+    rsvpContainer.innerHTML = headlineHtml([...pinned.slice(0, 3), ...rest].slice(0, 8));
   }
 
   const briefingContainer = document.getElementById('briefing-headlines');
   if (briefingContainer) {
-    briefingContainer.innerHTML = headlineHtml([...HYPE_HEADLINES].sort(() => Math.random() - 0.5).slice(0, 12));
+    briefingContainer.innerHTML = headlineHtml([...pinned, ...rest].slice(0, 12));
   }
 }
 
