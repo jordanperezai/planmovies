@@ -18,7 +18,7 @@
 - Zordon is a live repo. Always re-diff after each sync pass — it changes between sessions.
 - Jordan's preference: Murthy (social dynamics) and Kim (coordinator burden) lenses over Frisby (conversion) for small-n decisions.
 
-- Money flow: Scenario B. $18/ticket (Fandango = $15.46). Payment section on crew page. STRIPE_PAYMENT_URL still empty — needs live link.
+- Money flow: Scenario B. $18/ticket. Live Stripe Payment Link: `https://buy.stripe.com/bJe00jdykaNS4Tj8D2`. PlanMovies Stripe account live. PLANMOVIES on statements.
 - Content live: 4-poster carousel, 31 quotes (1947-2026), 33 Go Deeper items, payment section. All data arrays + render functions.
 - Stripe Connect Express proven: `workers/planmovies-api/` Worker live. Full flow tested: product→price→Payment Link on connected account, $2.50 platform fee via `application_fee_amount`. PLANMOVIES on statement.
 - PlanMovies Stripe account separate from Jordan/Arugami. Test connected account: `acct_1TbmyLGaAORvGiJm`. Platform fee = $2.50/ticket → $25K/month at 1K events.
@@ -44,3 +44,4 @@
 | 2026-05-27 (s4) | Rabbit hole research + restructure. Rangers 04 (page structure, 3-2). Family personas 01 (RSVP flow). Nav fixes. RSVP form persona fixes. |
 | 2026-05-27 (s5) | Money flow resolved (B: Stripe + Zelle). Visual Rangers 02 (ticket icon). Auto-deploy. Research: 17 quotes, 33 content items, 6 posters. Plan written for content expansion. |
 | 2026-05-27 (s6) | Content expansion shipped (carousel, 31 quotes, 33 Go Deeper). Payment section. Stripe Connect Express proven end-to-end. workers/planmovies-api/ built and deployed. Platform revenue model validated. |
+| 2026-05-27 (s7) | PlanMovies Stripe account activated (live). Live Payment Link wired in ($18). planmovies.com fully live. No more blockers. |

@@ -6,7 +6,7 @@
 
 ## Where We Left Off
 
-Session 6 complete. Content expansion shipped. Stripe Connect platform proven. One blocker before the link goes to family: the live Stripe Payment Link URL needs to be wired in.
+Session 7 complete. Everything is live. planmovies.com has a working $18 Stripe payment button. PlanMovies Stripe account activated. No more blockers. The only thing left is sending the link to family.
 
 **What shipped (session 6):**
 - Poster carousel (4 TMDB variants, tap/swipe/dots/auto-cycle)
@@ -19,9 +19,14 @@ Session 6 complete. Content expansion shipped. Stripe Connect platform proven. O
 - Supabase: organizers, events, payments tables created
 - Platform revenue model validated: $2.50/ticket fee via `application_fee_amount`
 
-**What's still pending:**
-- `STRIPE_PAYMENT_URL` in index.html is empty — needs live Stripe Payment Link URL
-- planmovies.com not yet sent to family (15 days until Jun 12)
+**What's fully live:**
+- Poster carousel, 31 official quotes, 33 Go Deeper items, payment section
+- `STRIPE_PAYMENT_URL = 'https://buy.stripe.com/bJe00jdykaNS4Tj8D2'` — real $18 checkout
+- PlanMovies Stripe account live (not sandbox). PLANMOVIES on bank statements.
+- Stripe Connect platform proven in sandbox ($20.50 test payment, $2.50 fee split)
+
+**Only remaining blocker:**
+- planmovies.com not yet sent to family. 15 days until Jun 12. No technical blockers remain.
 
 **Infrastructure state:**
 - planmovies.com live (commit 0baff12, auto-deploy via GitHub Actions)
@@ -33,11 +38,8 @@ Session 6 complete. Content expansion shipped. Stripe Connect platform proven. O
 
 ## Immediate Next Actions
 
-1. **Jordan: Create live Stripe Payment Link** in PlanMovies live account
-   - Product: Disclosure Day Ticket, $18, one-time, adjustable quantity
-   - Then update `STRIPE_PAYMENT_URL` constant in index.html (one line)
-2. **Send planmovies.com to family.** 15 days. Still not sent.
-3. **RSVP yourself** — crew list is empty when family arrives
+1. **Send planmovies.com to family.** Everything is live. 15 days. Send it.
+2. **RSVP yourself** — crew list is empty when family arrives
 
 ## Goals
 
