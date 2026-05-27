@@ -1766,7 +1766,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     </div>
 
     <div class="section-header">TRAILERS &amp; SPOTS</div>
-    <div id="trailers-section"></div>
+    <div id="trailers-section" style="position:relative;overflow:hidden;"></div>
+    <div id="trailer-dots" style="display:flex;justify-content:center;gap:8px;margin-top:-12px;margin-bottom:16px;"></div>
 
     <div class="section-header">CAST</div>
     <div class="cast-grid">
@@ -1804,38 +1805,16 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
     <div class="section-header">FROM THE FILMMAKERS</div>
     <div class="hype-quote">
-      <div class="hype-quote-text">"I finished reading the script and I bawled. Steven Spielberg believes in the possibility of the human beings we could be."</div>
-      <div class="hype-quote-source">Colman Domingo</div>
-    </div>
-    <div class="hype-quote">
       <div class="hype-quote-text">"Isn't it going to be wonderful when people realize after seeing this movie that everything is true, and has been true?"</div>
       <div class="hype-quote-source">Spielberg on Colbert</div>
     </div>
     <div class="hype-quote">
-      <div class="hype-quote-text">"All you need to get from beginning to end is a seat belt."</div>
-      <div class="hype-quote-source">Spielberg, CinemaCon 2026</div>
-    </div>
-    <div class="hype-quote">
-      <div class="hype-quote-text">"I saw this more as a '70s paranoid thriller. I wanted to write something that maybe Alan Pakula would look down and smile on."</div>
-      <div class="hype-quote-source">David Koepp, Screenwriter (42 drafts)</div>
-    </div>
-    <div class="hype-quote">
-      <div class="hype-quote-text">"Half a century later, I made Disclosure Day with certainty that there is a lot more truth than fiction."</div>
-      <div class="hype-quote-source">Spielberg, CinemaCon 2026</div>
+      <div class="hype-quote-text">"I finished reading the script and I bawled. Steven Spielberg believes in the possibility of the human beings we could be."</div>
+      <div class="hype-quote-source">Colman Domingo</div>
     </div>
     <div class="hype-quote">
       <div class="hype-quote-text">"There are questions posed by Close Encounters that are answered in Disclosure Day."</div>
       <div class="hype-quote-source">Emily Blunt</div>
-    </div>
-
-    <div class="section-header" style="margin-top:24px;">WHAT PEOPLE ARE SAYING</div>
-    <div class="hype-quote">
-      <div class="hype-quote-text">"He didn't make it a joke, though many people joked about his movies."</div>
-      <div class="hype-quote-source">Reddit /r/UFOs</div>
-    </div>
-    <div class="hype-quote">
-      <div class="hype-quote-text">"My most anticipated film of the year. Looking forward to seeing my first Spielberg movie in theaters."</div>
-      <div class="hype-quote-source">Letterboxd</div>
     </div>
 
     <div id="reality-break" style="margin:48px 0 40px;text-align:center;padding:32px 16px;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);">
@@ -2808,13 +2787,16 @@ const CONTENT_CATEGORIES = [
   { id: 'books', label: 'Books', icon: '📚', defaultShow: 3 },
 ];
 
+let trailerIdx = 0;
 function renderTrailers() {
   const container = document.getElementById('trailers-section');
+  const dots = document.getElementById('trailer-dots');
   if (!container) return;
-  container.innerHTML = TRAILERS.map(t => {
+  container.innerHTML = TRAILERS.map((t, i) => {
     if (!t.id) return '';
+    const active = i === 0;
     return `
-      <div style="margin-bottom:16px;">
+      <div class="trailer-slide" data-idx="${i}" style="position:${active ? 'relative' : 'absolute'};opacity:${active ? 1 : 0};top:0;left:0;width:100%;transition:opacity 0.4s ease;">
         <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">${t.label || t.title}</div>
         <div class="trailer-container" id="trailer-${t.id}" onclick="loadVideo('${t.id}')" style="cursor:pointer;">
           <img src="https://img.youtube.com/vi/${t.id}/hqdefault.jpg" alt="${t.title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
@@ -2826,8 +2808,40 @@ function renderTrailers() {
         </div>
       </div>`;
   }).join('');
+  if (dots) {
+    dots.innerHTML = TRAILERS.map((_, i) =>
+      `<button onclick="trailerGoTo(${i})" style="width:8px;height:8px;border-radius:50%;border:1px solid var(--gold-dim);background:${i === 0 ? 'var(--gold)' : 'transparent'};padding:0;cursor:pointer;" aria-label="Trailer ${i+1}"></button>`
+    ).join('');
+  }
+  let tx = 0;
+  container.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  container.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) dx > 0 ? trailerGoTo(trailerIdx - 1) : trailerGoTo(trailerIdx + 1);
+  }, { passive: true });
 }
-
+function trailerGoTo(i) {
+  if (i < 0 || i >= TRAILERS.length) return;
+  const slides = document.querySelectorAll('.trailer-slide');
+  slides.forEach((s, idx) => {
+    const isActive = idx === i;
+    s.style.position = isActive ? 'relative' : 'absolute';
+    s.style.opacity = isActive ? 1 : 0;
+    if (!isActive) {
+      const iframe = s.querySelector('iframe');
+      if (iframe) {
+        const tc = s.querySelector('.trailer-container');
+        const t = TRAILERS[idx];
+        tc.innerHTML = `<img src="https://img.youtube.com/vi/${t.id}/hqdefault.jpg" alt="${t.title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:60px;height:42px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-style:solid;border-width:10px 0 10px 18px;border-color:transparent transparent transparent white;margin-left:4px;"></div></div></div>`;
+        tc.onclick = () => loadVideo(t.id);
+        tc.style.cursor = 'pointer';
+      }
+    }
+  });
+  const dots = document.querySelectorAll('#trailer-dots button');
+  dots.forEach((d, idx) => { d.style.background = idx === i ? 'var(--gold)' : 'transparent'; });
+  trailerIdx = i;
+}
 function loadVideo(id) {
   const container = document.getElementById('trailer-' + id);
   if (!container) return;
