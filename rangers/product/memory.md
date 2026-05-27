@@ -21,8 +21,18 @@
 
 Jordan gravitates toward Murthy's social dynamics lens and Kim's coordinator-burden lens. Frisby's conversion instincts are strong but need override on small-n decisions (can't A/B test with 25 users). Johnson's accessibility catches are consistently actionable. Shadeed's CSS findings are always correct but sometimes over-detailed for the pace Jordan works at.
 
+- **Coordinator dashboard metrics (payment %, readiness ring) are organizer anxiety, not participant motivation.** Context: 5/5 voices session 03. Family members who just RSVPed see "0% payment" and feel confusion, not momentum. Hide from family view entirely. cadence: stable. last-confirmed: 2026-05-26
+- **The crew list IS the home page for participants.** Context: 5/5 voices session 03. "Aunt Lisa, Marco, your mom" is motivating. A percentage ring is not. Names beat metrics every time for small-n social events. cadence: stable. last-confirmed: 2026-05-26
+- **The nudge loop belongs in-product, not in WhatsApp.** Context: Kim session 03. Jordan is manually checking who paid and nudging in group chat. The product should draft the WhatsApp message, Jordan sends it. Absorb the coordination labor. cadence: tactical. last-confirmed: 2026-05-26
+- **Three beats over 17 days: list growing → seats/payment → anticipation.** Context: Murthy session 03. Days 1-5: social proof compounds as list grows. Days 6-12: logistics earn their place, framed as social (sit next to whoever). Days 13-17: countdown and lightweight prompts. A static page earns no re-opens. cadence: tactical. last-confirmed: 2026-05-26
+
+## Dead Directions
+
+- **Showing organizer tools (stats, seat map, payment tracker) to all family members.** Why: 5/5 voices session 03. Creates anxiety (0% payment) without giving participants anything actionable. Gate behind org param or role. last-confirmed: 2026-05-26
+
 ## Distillation Log
 
 | Date | Entries reviewed | Promoted | Archived |
 |---|---|---|---|
 | 2026-05-26 | Initial creation from sessions 01 + 02 | 0 | 0 |
+| 2026-05-26 | Session 03 additions | 4 new principles, 1 dead direction | 0 |

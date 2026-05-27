@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PlanMovies // Disclosure Day</title>
 <meta property="og:title" content="Disclosure Day // PlanMovies">
 <meta property="og:description" content="The family is going to see Disclosure Day together. RSVP so we can save you a seat. June 12, 2026.">
@@ -12,6 +12,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%23c9a84c' stroke-width='10'/%3E%3Cpolygon points='38,30 38,70 70,50' fill='%23c9a84c'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
@@ -66,15 +67,32 @@ body {
 
 @keyframes pulse-gold { 0%,100%{ opacity:0.4; } 50%{ opacity:1; } }
 @keyframes fade-up { from{ opacity:0; transform:translateY(20px); } to{ opacity:1; transform:translateY(0); } }
-@keyframes shimmer { 0%{ background-position:-200% 0; } 100%{ background-position:200% 0; } }
 @keyframes cta-glow { 0%,100%{ transform:scale(1); opacity:0.4; } 50%{ transform:scale(1.15); opacity:0; } }
-@keyframes shimmer { 0%{ background-position:0% 50%; } 100%{ background-position:100% 50%; } }
-@keyframes star-drift { 0%{ transform:translateY(0); } 100%{ transform:translateY(-20px); } }
-@keyframes countdown-enter { from{ opacity:0; transform:scale(0.85) translateY(8px); } to{ opacity:1; transform:scale(1) translateY(0); } }
-@keyframes breathe { 0%,100%{ transform:scale(1); opacity:0.5; } 50%{ transform:scale(1.03); opacity:0.8; } }
-@keyframes count-pulse { 0%,100%{ text-shadow: 0 0 20px rgba(201,168,76,0.3); } 50%{ text-shadow: 0 0 40px rgba(201,168,76,0.6); } }
 @keyframes status-blink { 0%,100%{ opacity:1; } 50%{ opacity:0.3; } }
 @keyframes spin { to { transform: rotate(360deg); } }
+@keyframes title-glow { 0%,100%{ text-shadow: 0 0 60px rgba(201,168,76,0.15); } 50%{ text-shadow: 0 0 80px rgba(201,168,76,0.3); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .landing-poster { opacity: 1 !important; transform: none !important; filter: none !important; }
+}
+
+#rsvp-hype-headlines a, #rsvp-hype-headlines a:visited { color: var(--text-secondary); }
+#rsvp-hype-headlines a:hover { border-color: var(--gold-dim) !important; color: var(--gold) !important; }
+
+.org-only { display: none; }
+body.org-mode .org-only { display: revert; }
+body:not(.org-mode) .nav-tab[data-page="coordination"] { display: none; }
+
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, .radio-pill:focus-within {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
 .fade-up { animation: fade-up 0.6s ease both; }
 .fade-up-d1 { animation-delay: 0.1s; }
@@ -129,7 +147,7 @@ body {
   padding: 3px;
 }
 .nav-tab {
-  padding: 6px 14px;
+  padding: 10px 14px;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -226,64 +244,28 @@ body {
   letter-spacing: 2px;
   text-align: center;
   line-height: 1.1;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
   text-transform: uppercase;
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-warm) 50%, var(--text-primary) 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 8s ease-in-out infinite;
-  text-shadow: 0 0 80px rgba(201,168,76,0.2);
+  color: var(--gold-warm);
+  animation: title-glow 8s ease-in-out infinite;
 }
 .landing-credit {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 4px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
   color: var(--gold-cool);
-  text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
 }
 .landing-subtitle {
-  font-size: 17px;
+  font-size: 18px;
   color: var(--text-secondary);
   text-align: center;
-  margin-bottom: 48px;
-  font-weight: 400;
-  max-width: 400px;
-  line-height: 1.45;
-}
-.countdown-container {
-  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-  margin-bottom: 48px;
-}
-.countdown-unit {
-  display: flex; flex-direction: column; align-items: center;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius);
-  padding: 16px 14px 12px;
-  min-width: 70px;
-  animation: countdown-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-.countdown-unit:nth-child(1) { animation-delay: 0.3s; }
-.countdown-unit:nth-child(2) { animation-delay: 0.4s; }
-.countdown-unit:nth-child(3) { animation-delay: 0.5s; }
-.countdown-unit:nth-child(4) { animation-delay: 0.6s; }
-.countdown-value {
-  font-family: var(--mono);
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
-  font-weight: 700;
-  color: var(--gold);
-  animation: count-pulse 3s ease infinite;
-  line-height: 1;
-}
-.countdown-label {
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  margin-top: 8px;
-  font-family: var(--mono);
+  margin-bottom: 32px;
+  font-weight: 300;
+  max-width: 380px;
+  line-height: 1.55;
+  letter-spacing: 0.3px;
 }
 .landing-status {
   display: flex; align-items: center; gap: 8px;
@@ -291,7 +273,6 @@ body {
   font-size: 11px;
   color: var(--gold-dim);
   letter-spacing: 2px;
-  margin-bottom: 16px;
 }
 .landing-status-dot {
   width: 8px; height: 8px; border-radius: 50%;
@@ -299,11 +280,9 @@ body {
   animation: pulse-gold 2s ease infinite;
 }
 .landing-headcount {
-  font-family: var(--mono);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--gold-cool);
-  margin-bottom: 32px;
-  letter-spacing: 1px;
+  letter-spacing: 0.2px;
 }
 .landing-headcount strong {
   color: var(--gold);
@@ -329,10 +308,10 @@ body {
 .cta-btn {
   position: relative;
   padding: 16px 40px;
-  font-family: var(--mono);
-  font-size: 13px;
+  font-family: var(--font);
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--text-inverse);
   background: var(--gold);
@@ -428,7 +407,7 @@ body {
 
 .radio-group { display: flex; flex-wrap: wrap; gap: 8px; }
 .radio-pill {
-  padding: 8px 16px;
+  padding: 10px 16px;
   font-size: 12px;
   font-weight: 500;
   color: var(--text-secondary);
@@ -456,10 +435,10 @@ body {
 .submit-btn {
   width: 100%;
   padding: 14px;
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--text-inverse);
   background: var(--gold);
@@ -590,9 +569,9 @@ body {
 }
 .attendee-tag {
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 1px;
-  padding: 2px 8px;
+  padding: 3px 8px;
   border-radius: 10px;
   text-transform: uppercase;
   font-weight: 500;
@@ -610,7 +589,7 @@ body {
   display: flex; gap: 6px;
 }
 .icon-btn {
-  width: 30px; height: 30px;
+  width: 36px; height: 36px;
   display: flex; align-items: center; justify-content: center;
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
@@ -755,15 +734,6 @@ body {
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
-/* POSTER */
-.landing-poster {
-  width: 180px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border-medium);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(201,168,76,0.1);
-  margin-bottom: 32px;
-  transition: transform 0.4s ease;
-}
 .landing-poster:hover { transform: scale(1.03); }
 
 /* BRIEFING TAB */
@@ -856,8 +826,8 @@ body {
 
 .hype-quote {
   background: var(--bg-card);
-  border-left: 3px solid var(--gold-dim);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   padding: 14px 16px;
   margin-bottom: 10px;
 }
@@ -868,12 +838,10 @@ body {
   font-style: italic;
 }
 .hype-quote-source {
-  font-family: var(--mono);
-  font-size: 10px;
+  font-size: 11px;
   color: var(--text-tertiary);
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   margin-top: 8px;
-  text-transform: uppercase;
 }
 
 /* SEAT MAP */
@@ -1294,7 +1262,6 @@ body {
 
 /* RESPONSIVE */
 @media (max-width: 400px) {
-  .countdown-unit { min-width: 58px; padding: 12px 10px 10px; }
   .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
   .stat-card { padding: 12px; }
   .nav-tabs { overflow-x: auto; }
@@ -1313,7 +1280,7 @@ body {
 <div id="app" class="app">
   <!-- NAV -->
   <nav id="nav" class="nav hidden">
-    <div class="nav-brand">
+    <div class="nav-brand" onclick="showLanding()" style="cursor:pointer;" role="button" tabindex="0" aria-label="Back to landing page">
       <span>PLAN</span>
       <svg viewBox="-2 14 104 72" aria-hidden="true">
         <g transform="rotate(-12 50 50)">
@@ -1325,9 +1292,9 @@ body {
       <span>MOVIES</span>
     </div>
     <div class="nav-tabs">
-      <button class="nav-tab active" data-page="dashboard" onclick="showPage('dashboard')">Home</button>
-      <button class="nav-tab" data-page="briefing" onclick="showPage('briefing')">Movie</button>
-      <button class="nav-tab" data-page="rsvp" onclick="showPage('rsvp')">RSVP</button>
+      <button class="nav-tab active" data-page="dashboard" onclick="showPage('dashboard')">The Crew</button>
+      <button class="nav-tab" data-page="briefing" onclick="showPage('briefing')">The Movie</button>
+      <button class="nav-tab org-only" data-page="rsvp" onclick="showPage('rsvp')">RSVP</button>
       <button class="nav-tab" data-page="coordination" onclick="showPage('coordination')">Seats</button>
     </div>
     <div class="nav-status">
@@ -1341,7 +1308,7 @@ body {
     <div class="landing-bg"></div>
     <div class="landing-stars"></div>
 
-    <div class="fade-up" style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+    <div class="fade-up" style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
       <span style="font-family:var(--mono);font-size:18px;font-weight:300;letter-spacing:6px;color:var(--gold-cool);text-transform:uppercase;">PLAN</span>
       <svg viewBox="-2 14 104 72" style="width:52px;height:34px;" aria-hidden="true">
         <g transform="rotate(-12 50 50)">
@@ -1356,37 +1323,37 @@ body {
     <img class="landing-poster fade-up fade-up-d1"
          src="https://image.tmdb.org/t/p/w500/3o5YPjDGDTcTDL5ftDA9NwN9dLd.jpg"
          alt="Disclosure Day poster"
-         onerror="this.style.display='none'">
+         onerror="this.style.display='none'"
+         style="margin-bottom:32px;">
 
     <h1 class="landing-title fade-up fade-up-d2">DISCLOSURE DAY</h1>
-    <div class="landing-credit fade-up fade-up-d2">A STEVEN SPIELBERG FILM</div>
+    <div class="landing-credit fade-up fade-up-d2">A Steven Spielberg Film</div>
 
-    <div class="fade-up fade-up-d2" style="display:flex;gap:12px;align-items:center;margin-bottom:8px;">
+    <div class="fade-up fade-up-d2" style="display:flex;gap:12px;align-items:center;margin-bottom:32px;">
       <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;color:var(--gold-warm);text-transform:uppercase;padding:4px 10px;border:1px solid var(--gold-dim);background:rgba(201,168,76,0.06);">OPENING NIGHT</span>
       <span style="font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">JUN 12 2026</span>
     </div>
 
-    <p class="landing-subtitle fade-up fade-up-d2" style="margin-bottom:12px;">The one you see with the people who matter.</p>
+    <p class="landing-subtitle fade-up fade-up-d2">The one you see with the people who matter.</p>
 
-    <div class="fade-up fade-up-d3" style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;width:100%;max-width:340px;">
+    <div class="fade-up fade-up-d3" style="display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;max-width:340px;">
       <div class="landing-headcount" id="landing-headcount"></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="landing-status">
+          <div class="landing-status-dot"></div>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;">RSVP OPEN</span>
+        </div>
+        <span style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);">&middot;</span>
+        <span id="countdown-inline" style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);"></span>
+      </div>
       <div class="cta-btn-wrap" style="width:100%;">
-        <button class="cta-btn" id="cta-btn" style="width:100%;">COUNT ME IN</button>
+        <button class="cta-btn" id="cta-btn" style="width:100%;" onclick="initialize()">COUNT ME IN</button>
       </div>
+      <button onclick="initialize();showPage('briefing');" style="background:none;border:none;font-family:var(--font);font-size:13px;color:var(--text-secondary);cursor:pointer;padding:8px 16px;letter-spacing:0.3px;transition:color 0.2s;">What is Disclosure Day?</button>
     </div>
-
-    <div class="fade-up fade-up-d3" style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-      <div class="landing-status">
-        <div class="landing-status-dot"></div>
-        <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;">RSVP OPEN</span>
-      </div>
-      <span style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);">&middot;</span>
-      <span id="countdown-inline" style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);"></span>
-    </div>
-    <div class="fade-up fade-up-d3" style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);">TICKETS EXPECTED MAY 27</div>
   </section>
 
-  <div class="sticky-cta" id="sticky-cta" style="display:none;">
+  <div class="sticky-cta" id="sticky-cta" style="opacity:0;">
     <button class="cta-btn" onclick="initialize()">COUNT ME IN</button>
   </div>
 
@@ -1394,7 +1361,7 @@ body {
   <section id="page-dashboard" class="page">
     <div class="page-header">
       <div class="page-eyebrow">DISCLOSURE DAY</div>
-      <h2 class="page-title">The Crew So Far</h2>
+      <h2 class="page-title">The Crew</h2>
     </div>
 
     <div id="tickets-live-banner" class="tickets-banner" style="display:none;">
@@ -1413,35 +1380,59 @@ body {
       <a id="tickets-live-link" class="tickets-banner-cta" href="https://www.regmovies.com/movies/disclosure-day-ho00020460" target="_blank" rel="noopener">BUY NOW</a>
     </div>
 
-    <div class="share-bar">
-      <input type="text" id="share-url" readonly>
-      <button class="share-btn" onclick="copyShareLink()">Copy</button>
-      <button class="share-btn" onclick="shareWhatsApp()" style="background:var(--green);color:white;">WhatsApp</button>
-      <button class="share-btn" onclick="shareIMessage()" style="background:var(--blue);color:white;">Text</button>
+    <div id="crew-countdown" style="text-align:center;padding:16px 0 20px;">
+      <div style="font-family:var(--mono);font-size:13px;color:var(--text-secondary);letter-spacing:1px;" id="dash-countdown"></div>
+      <div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">Regal Secaucus &middot; Opening Night</div>
     </div>
 
-    <div class="stats-grid" id="stats-grid"></div>
+    <div id="crew-list-family" style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);overflow:hidden;"></div>
 
-    <div class="readiness-ring" id="readiness-container">
-      <svg class="ring-svg" viewBox="0 0 100 100">
-        <circle class="ring-bg" cx="50" cy="50" r="45"/>
-        <circle class="ring-fill" id="ring-fill" cx="50" cy="50" r="45" stroke-dashoffset="283"/>
-      </svg>
-      <div class="ring-label">GROUP READINESS</div>
-      <div class="ring-value" id="ring-value">0%</div>
+    <div style="display:flex;gap:8px;margin:20px 0;">
+      <button class="submit-btn" onclick="shareWhatsApp()" style="background:var(--green);flex:1;">SHARE ON WHATSAPP</button>
+      <button class="submit-btn" onclick="shareIMessage()" style="background:var(--blue);flex:1;">TEXT A FRIEND</button>
     </div>
 
-    <div class="section-header">THE CREW</div>
-    <div id="attendee-list"></div>
+    <a class="buy-tickets-btn" href="https://www.regmovies.com/theatres/regal-secaucus-showplace-1665" target="_blank" rel="noopener" id="dash-tickets-link" style="display:block;text-align:center;padding:14px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:2px;color:var(--text-inverse);background:var(--gold);border-radius:var(--radius-sm);text-decoration:none;">BUY YOUR TICKET</a>
 
-    <div style="margin-top:20px;">
-      <div class="section-header">THEATER</div>
-      <div id="theater-summary" class="card" style="font-size:13px; color:var(--text-secondary);">Loading...</div>
+    <div style="text-align:center;padding:24px 0 8px;">
+      <button onclick="showPage('briefing')" style="background:none;border:none;font-family:var(--font);font-size:13px;color:var(--text-secondary);cursor:pointer;padding:8px 16px;">What is Disclosure Day? &rarr;</button>
     </div>
 
-    <div style="margin-top:20px;">
-      <div class="section-header">SHOWTIME</div>
-      <div id="showtime-summary" class="card" style="font-size:13px; color:var(--text-secondary);">Loading...</div>
+    <div class="org-only">
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-subtle);">
+        <div class="section-header">ORGANIZER TOOLS</div>
+
+        <div class="share-bar">
+          <input type="text" id="share-url" readonly aria-label="Share URL">
+          <button class="share-btn" onclick="copyShareLink()">Copy</button>
+          <button class="share-btn" onclick="shareWhatsApp()" style="background:var(--green);color:white;">WhatsApp</button>
+          <button class="share-btn" onclick="shareIMessage()" style="background:var(--blue);color:white;">Text</button>
+        </div>
+
+        <div class="stats-grid" id="stats-grid"></div>
+
+        <div class="readiness-ring" id="readiness-container">
+          <svg class="ring-svg" viewBox="0 0 100 100">
+            <circle class="ring-bg" cx="50" cy="50" r="45"/>
+            <circle class="ring-fill" id="ring-fill" cx="50" cy="50" r="45" stroke-dashoffset="283"/>
+          </svg>
+          <div class="ring-label">GROUP READINESS</div>
+          <div class="ring-value" id="ring-value">0%</div>
+        </div>
+
+        <div class="section-header">ALL ATTENDEES</div>
+        <div id="attendee-list"></div>
+
+        <div style="margin-top:20px;">
+          <div class="section-header">THEATER</div>
+          <div id="theater-summary" class="card" style="font-size:13px; color:var(--text-secondary);">Loading...</div>
+        </div>
+
+        <div style="margin-top:20px;">
+          <div class="section-header">SHOWTIME</div>
+          <div id="showtime-summary" class="card" style="font-size:13px; color:var(--text-secondary);">Loading...</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1449,7 +1440,7 @@ body {
   <section id="page-briefing" class="page">
     <div class="page-header">
       <div class="page-eyebrow">THE MOVIE</div>
-      <h2 class="page-title">Why We're Going</h2>
+      <h2 class="page-title">The World of Disclosure Day</h2>
     </div>
 
     <div class="movie-hero">
@@ -1555,7 +1546,60 @@ body {
       <div class="hype-quote-source">Emily Blunt</div>
     </div>
 
-    <div class="section-header" style="margin-top:24px;">WATCH BEFORE YOU GO</div>
+    <div class="section-header" style="margin-top:24px;">THIS IS ACTUALLY HAPPENING</div>
+    <p style="font-size:13px;line-height:1.6;color:var(--text-secondary);margin-bottom:12px;">
+      These aren't from the movie. They're from the last 6 months.
+    </p>
+    <div id="briefing-headlines" style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;"></div>
+
+    <div class="section-header">DOWN THE RABBIT HOLE</div>
+    <p style="font-size:13px;line-height:1.6;color:var(--text-secondary);margin-bottom:16px;">
+      The real hearings. The real whistleblowers. The files the government just unsealed.
+    </p>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">OBAMA: "THEY'RE REAL" (FEB 2026)</div>
+      <div class="trailer-container" id="rabbit-obama" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-obama','8dvpZXv30jY')">
+        <img src="https://img.youtube.com/vi/8dvpZXv30jY/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Obama says aliens are real">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">TRUMP ORDERS FULL DECLASSIFICATION (5 DAYS LATER)</div>
+      <div class="trailer-container" id="rabbit-trump" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-trump','cluuW49CBQM')">
+        <img src="https://img.youtube.com/vi/cluuW49CBQM/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Trump orders UFO declassification">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">GRUSCH OPENING STATEMENT TO CONGRESS</div>
+      <div class="trailer-container" id="rabbit-grusch" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-grusch','lcrCMLVk614')">
+        <img src="https://img.youtube.com/vi/lcrCMLVk614/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Grusch testimony">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">FRAVOR DESCRIBES THE TIC TAC ENCOUNTER</div>
+      <div class="trailer-container" id="rabbit-fravor" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-fravor','_p0kCVzDqpY')">
+        <img src="https://img.youtube.com/vi/_p0kCVzDqpY/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Fravor Tic Tac testimony">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">PENTAGON RELEASES 40+ UAP VIDEOS (MAY 2026)</div>
+      <div class="trailer-container" id="rabbit-pentagon" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-pentagon','rhjTZTFjW8k')">
+        <img src="https://img.youtube.com/vi/rhjTZTFjW8k/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Pentagon UAP video release">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+      </div>
+    </div>
+
+    <a href="https://www.war.gov/ufo/" target="_blank" rel="noopener" style="display:block;text-align:center;padding:14px;font-family:var(--font);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--gold);border:1px solid var(--gold-dim);border-radius:var(--radius-sm);text-decoration:none;margin-bottom:24px;transition:background 0.2s;">Read the Declassified Files on WAR.GOV/UFO</a>
+
+    <div class="section-header">WATCH BEFORE YOU GO</div>
     <div class="card" style="margin-bottom:10px;padding:14px 16px;">
       <div style="display:flex;justify-content:space-between;align-items:center;">
         <div>
@@ -1651,70 +1695,28 @@ body {
         </div>
       </div>
 
-      <div class="form-divider"></div>
-
-      <div class="venue-card">
-        <div class="venue-icon">&#127916;</div>
-        <div class="venue-info">
-          <div class="venue-name">Regal Secaucus ShowPlace 14</div>
-          <div class="venue-addr">650 Plaza Drive, Secaucus NJ 07094</div>
-          <div class="venue-tags">
-            <span class="venue-tag">Recliners</span>
-            <span class="venue-tag">Reserved Seating</span>
-            <span class="venue-tag">Stadium</span>
-          </div>
-        </div>
-      </div>
       <input type="hidden" id="f-theater" value="regal-secaucus">
       <input type="hidden" name="format" value="standard">
 
-      <div class="form-group">
-        <label class="form-label">When Works For You?</label>
-        <div class="radio-group" id="f-showtime">
-          <label class="radio-pill selected"><input type="radio" name="showtime" value="opening-night" checked>Opening Night</label>
-          <label class="radio-pill"><input type="radio" name="showtime" value="opening-weekend">Opening Weekend</label>
-          <label class="radio-pill"><input type="radio" name="showtime" value="matinee">Matinee</label>
-          <label class="radio-pill"><input type="radio" name="showtime" value="evening">Evening</label>
-          <label class="radio-pill"><input type="radio" name="showtime" value="any">Any</label>
-        </div>
-      </div>
-
-      <div class="form-divider"></div>
-
-      <div class="form-group">
-        <label class="form-label">Transportation</label>
-        <div class="radio-group" id="f-transport">
-          <label class="radio-pill selected"><input type="radio" name="transport" value="driving" checked>Driving</label>
-          <label class="radio-pill"><input type="radio" name="transport" value="need-ride">Need Ride</label>
-          <label class="radio-pill"><input type="radio" name="transport" value="offering-rides">Offering Rides</label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Where Do You Like To Sit?</label>
-        <div class="radio-group" id="f-seat">
-          <label class="radio-pill"><input type="radio" name="seat" value="front">Front</label>
-          <label class="radio-pill"><input type="radio" name="seat" value="middle">Middle</label>
-          <label class="radio-pill"><input type="radio" name="seat" value="back">Back</label>
-          <label class="radio-pill"><input type="radio" name="seat" value="aisle">Aisle</label>
-          <label class="radio-pill selected"><input type="radio" name="seat" value="no-pref" checked>No Pref</label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Ticket Budget</label>
-        <div class="radio-group" id="f-budget">
-          <label class="radio-pill selected"><input type="radio" name="budget" value="comfortable" checked>Comfortable</label>
-          <label class="radio-pill"><input type="radio" name="budget" value="cheaper">Prefer Cheaper</label>
-          <label class="radio-pill"><input type="radio" name="budget" value="need-help">Need Help</label>
-        </div>
-      </div>
-
-      <div class="form-divider"></div>
       <button class="submit-btn" type="submit" id="submit-btn">SUBMIT RSVP</button>
     </form>
 
-    <div style="margin-top:32px;">
+    <div id="rsvp-confirmation" style="display:none;">
+      <div style="text-align:center;padding:32px 0 24px;">
+        <div style="font-size:32px;margin-bottom:16px;">&#127916;</div>
+        <h3 id="confirm-heading" style="font-size:1.3rem;font-weight:700;margin-bottom:8px;"></h3>
+        <p id="confirm-position" style="font-size:14px;color:var(--text-secondary);margin-bottom:24px;"></p>
+      </div>
+      <div class="section-header">THE CREW SO FAR</div>
+      <div id="confirm-crew" style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;"></div>
+      <div style="display:flex;gap:8px;">
+        <button class="submit-btn" onclick="shareWhatsApp()" style="background:var(--green);flex:1;">SHARE ON WHATSAPP</button>
+        <button class="submit-btn" onclick="shareIMessage()" style="background:var(--blue);flex:1;">TEXT A FRIEND</button>
+      </div>
+      <button class="submit-btn" onclick="hideConfirmation()" style="background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-subtle);margin-top:8px;">RSVP AGAIN FOR SOMEONE ELSE</button>
+    </div>
+
+    <div id="rsvp-headlines" style="margin-top:32px;">
       <div class="section-header">THIS IS REAL</div>
       <p style="font-size:13px;line-height:1.6;color:var(--text-secondary);margin-bottom:16px;">
         The headlines below aren't from the movie. They're from the last 6 months.
@@ -1865,19 +1867,30 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // Nav
+function showLanding() {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('landing').style.display = '';
+  document.getElementById('nav').classList.add('hidden');
+  document.getElementById('sticky-cta').style.opacity = '0';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function initialize() {
   document.getElementById('landing').style.display = 'none';
   document.getElementById('nav').classList.remove('hidden');
-  document.getElementById('sticky-cta').style.display = 'none';
+  document.getElementById('sticky-cta').style.opacity = '0';
   showPage('rsvp');
 }
 
 const stickyCta = document.getElementById('sticky-cta');
 const landingEl = document.getElementById('landing');
 if (stickyCta && landingEl) {
+  stickyCta.style.transition = 'opacity 0.3s ease';
+  const stickyBtn = stickyCta.querySelector('.cta-btn');
   const observer = new IntersectionObserver(([entry]) => {
-    if (landingEl.style.display === 'none') { stickyCta.style.display = 'none'; return; }
-    stickyCta.style.display = entry.isIntersecting ? 'none' : 'flex';
+    const hide = landingEl.style.display === 'none' || entry.isIntersecting;
+    stickyCta.style.opacity = hide ? '0' : '1';
+    if (stickyBtn) stickyBtn.style.pointerEvents = hide ? 'none' : 'auto';
   }, { threshold: 0.5 });
   observer.observe(document.getElementById('cta-btn'));
 }
@@ -1929,10 +1942,6 @@ async function submitRSVP(e) {
     party: parseInt(getRadioValue('party')) || 1,
     theater: document.getElementById('f-theater').value || null,
     format: getRadioValue('format'),
-    showtime: getRadioValue('showtime'),
-    transport: getRadioValue('transport'),
-    seat: getRadioValue('seat'),
-    budget: getRadioValue('budget'),
   };
 
   const existing = attendees.find(a => a.name.toLowerCase() === name.toLowerCase());
@@ -1952,9 +1961,9 @@ async function submitRSVP(e) {
   if (error) {
     if (error.code === '23505') {
       const res = await sb.from('rsvps').update(entry).eq('name', name);
-      if (res.error) { toast('Error: ' + res.error.message); return; }
+      if (res.error) { toast('Something went wrong. Try again.'); return; }
     } else {
-      toast('Error: ' + error.message);
+      toast('Something went wrong. Try again.');
       return;
     }
   }
@@ -1965,11 +1974,6 @@ async function submitRSVP(e) {
   });
   document.querySelector('input[name="status"][value="confirmed"]').checked = true;
   document.querySelector('input[name="party"][value="1"]').checked = true;
-  document.querySelector('input[name="format"][value="no-pref"]').checked = true;
-  document.querySelector('input[name="showtime"][value="opening-night"]').checked = true;
-  document.querySelector('input[name="transport"][value="driving"]').checked = true;
-  document.querySelector('input[name="seat"][value="no-pref"]').checked = true;
-  document.querySelector('input[name="budget"][value="comfortable"]').checked = true;
   document.querySelectorAll('.radio-group').forEach(g => {
     g.querySelectorAll('.radio-pill').forEach(p => {
       const inp = p.querySelector('input');
@@ -1978,13 +1982,81 @@ async function submitRSVP(e) {
   });
 
   await fetchAttendees();
-  toast(existing ? `${name} updated` : `${name} confirmed`);
-  showPage('dashboard');
+  showConfirmation(name, entry.status);
+}
+
+function showConfirmation(name, status) {
+  const active = attendees.filter(a => a.status !== 'cant');
+  const position = active.findIndex(a => a.name.toLowerCase() === name.toLowerCase()) + 1;
+  const total = active.length;
+
+  const heading = status === 'cant' ? `We'll miss you, ${name.split(' ')[0]}.` : `You're in, ${name.split(' ')[0]}.`;
+  const posText = status === 'cant' ? 'Maybe next time.' : `You're #${position} of ${total} going.`;
+
+  document.getElementById('confirm-heading').textContent = heading;
+  document.getElementById('confirm-position').textContent = posText;
+
+  const crewHtml = active.map(a => {
+    const isSelf = a.name.toLowerCase() === name.toLowerCase();
+    const tag = a.status === 'confirmed' ? 'confirmed' : a.status === 'probably' ? 'probably' : 'maybe';
+    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg-card);border:1px solid ${isSelf ? 'var(--gold-dim)' : 'var(--border-subtle)'};border-radius:var(--radius-sm);">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--gold);flex-shrink:0;">${a.name.charAt(0).toUpperCase()}</div>
+      <span style="flex:1;font-size:13px;font-weight:${isSelf ? '700' : '400'};">${a.name}${isSelf ? ' (you)' : ''}</span>
+      <span class="attendee-tag tag-${tag}" style="font-size:9px;">${a.status}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('confirm-crew').innerHTML = crewHtml;
+
+  document.getElementById('rsvp-form').style.display = 'none';
+  document.getElementById('rsvp-headlines').style.display = 'none';
+  document.getElementById('rsvp-confirmation').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function hideConfirmation() {
+  document.getElementById('rsvp-confirmation').style.display = 'none';
+  document.getElementById('rsvp-form').style.display = 'block';
+  document.getElementById('rsvp-headlines').style.display = 'block';
+}
+
+function renderFamilyCrew() {
+  const el = document.getElementById('crew-list-family');
+  if (!el) return;
+  const active = attendees.filter(a => a.status !== 'cant');
+  if (active.length === 0) {
+    el.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text-tertiary);font-size:14px;">No one has RSVPed yet. Be the first.</div>';
+    return;
+  }
+  el.innerHTML = active.map(a => {
+    const tag = a.status === 'confirmed' ? 'confirmed' : a.status === 'probably' ? 'probably' : 'maybe';
+    const partyText = a.party > 1 ? ` +${a.party - 1}` : '';
+    return `<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border-subtle);">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--bg-elevated);border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">${a.name.charAt(0).toUpperCase()}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.name}${partyText}</div>
+      </div>
+      <span class="attendee-tag tag-${tag}">${a.status}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderDashCountdown() {
+  const el = document.getElementById('dash-countdown');
+  if (!el) return;
+  const diff = RELEASE_DATE - new Date();
+  if (diff <= 0) { el.textContent = 'NOW PLAYING'; return; }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  el.textContent = d + 'd ' + h + 'h until opening night';
 }
 
 // Dashboard
 function renderDashboard() {
-  document.getElementById('share-url').value = window.location.href.split('?')[0];
+  const shareEl = document.getElementById('share-url');
+  if (shareEl) shareEl.value = window.location.href.split('?')[0];
+
+  renderFamilyCrew();
+  renderDashCountdown();
 
   const list = attendees;
   const active = list.filter(a => a.status !== 'cant');
@@ -2320,7 +2392,6 @@ const TRAILERS = [
   { id: 'cYXOEjB85HQ', title: 'A First Look with Spielberg', label: 'SPIELBERG FIRST LOOK' },
   { id: '8z0liKIe4Cc', title: 'Everything Spot', label: 'TV SPOT' },
   { id: 'LdDYbevgMTk', title: 'Spielberg on Colbert', label: 'SPIELBERG ON COLBERT' },
-  { id: 'wRefuYXXZLQ', title: 'Spielberg Wants to Meet the Aliens', label: 'COLBERT INTERVIEW' },
   { id: 'n3yr5r3sUv0', title: 'Emily Blunt on Close Encounters Connection', label: 'EMILY BLUNT INTERVIEW' },
 ];
 
@@ -2350,6 +2421,14 @@ function loadVideo(id) {
   container.onclick = null;
   container.style.cursor = 'default';
   container.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>`;
+}
+
+function loadRabbitVideo(containerId, videoId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.onclick = null;
+  container.style.cursor = 'default';
+  container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>`;
 }
 
 // Admin mode: append ?admin=1 to URL to show management controls
@@ -2398,12 +2477,19 @@ const HYPE_HEADLINES = [
 ];
 
 function renderHypeTicker() {
-  const container = document.getElementById('rsvp-hype-headlines');
-  if (!container) return;
-  const shuffled = [...HYPE_HEADLINES].sort(() => Math.random() - 0.5).slice(0, 8);
-  container.innerHTML = shuffled.map(h =>
-    `<a href="${h.url}" target="_blank" rel="noopener" style="display:block;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-family:var(--mono);font-size:11px;letter-spacing:0.5px;color:var(--text-secondary);text-decoration:none;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='var(--gold-dim)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='';this.style.color=''">${h.text}</a>`
+  const headlineHtml = (items) => items.map(h =>
+    `<a href="${h.url}" target="_blank" rel="noopener" style="display:block;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-family:var(--mono);font-size:11px;letter-spacing:0.5px;text-decoration:none;transition:border-color 0.2s,color 0.2s;">${h.text}</a>`
   ).join('');
+
+  const rsvpContainer = document.getElementById('rsvp-hype-headlines');
+  if (rsvpContainer) {
+    rsvpContainer.innerHTML = headlineHtml([...HYPE_HEADLINES].sort(() => Math.random() - 0.5).slice(0, 8));
+  }
+
+  const briefingContainer = document.getElementById('briefing-headlines');
+  if (briefingContainer) {
+    briefingContainer.innerHTML = headlineHtml([...HYPE_HEADLINES].sort(() => Math.random() - 0.5).slice(0, 12));
+  }
 }
 
 // Ticket status polling
@@ -2425,6 +2511,9 @@ async function checkTicketStatus() {
 }
 
 // Boot
+const isOrg = new URLSearchParams(window.location.search).has('org');
+if (isOrg) document.body.classList.add('org-mode');
+
 (async function boot() {
   await fetchAttendees();
   subscribeToChanges();

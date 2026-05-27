@@ -50,3 +50,6 @@ Every journal entry follows the magazine format:
 
 | # | Date | Title |
 |---|---|---|
+| 01 | 2026-05-25 | [Genesis](2026-05-25-01-genesis.md) |
+| 02 | 2026-05-26 | [The Council](2026-05-26-01-the-council.md) |
+| 03 | 2026-05-26 | [The Pipeline](2026-05-26-02-the-pipeline.md) |

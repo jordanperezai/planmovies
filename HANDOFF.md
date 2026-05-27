@@ -1,56 +1,62 @@
 # HANDOFF.md -- PlanMovies Session Handoff
 
 > **Purpose:** Bring a new session up to speed instantly.
-> **Last updated:** 2026-05-26
+> **Last updated:** 2026-05-26 (Session 3)
 > **Not for:** Permanent knowledge (-> MEMORY.md), mistakes (-> LEARNINGS.md).
 
 ## Where We Left Off
 
-Session 2 complete. Major design work done. The landing page has been through two ranger audits (Product Rangers sessions 01-02, Visual Rangers session 01). The visual overhaul landed: poster commands the frame, three gold registers, blue atmosphere from the poster, typography hierarchy fixed.
+Session 3 complete. Full design pipeline ran. App restructured for two audiences.
+
+**What shipped:**
+- `.impeccable.md` design context created
+- RSVP form stripped to 3 fields (name, status, party size)
+- Post-submit confirmation with crew list + share buttons (was toast-and-reset dead end)
+- Family/organizer view split: `planmovies.com` = family view, `planmovies.com?org=1` = organizer
+- Family dashboard: crew list + countdown + share + BUY YOUR TICKET (no metrics)
+- Organizer dashboard: same + stats, readiness ring, full admin tools
+- Monospace font fix: "Jordan is going. Join them." and CTA buttons now use Inter
+- "A Steven Spielberg Film" credit now in Barlow Condensed (film credit register)
+- The Movie tab: "The World of Disclosure Day" with rabbit hole section (Grusch, Fravor, Pentagon videos) and WAR.GOV/UFO link
+- Visited link color bug fixed on RSVP headlines
+- Sticky CTA jitter fixed (opacity transition replaces display toggle)
+- Two-path landing: COUNT ME IN + "What is Disclosure Day?"
+- Product Rangers session 03: app structure advisory, 5/5 voices unanimous on crew list as home
 
 **Infrastructure state:**
-- planmovies.com serving the app (Cloudflare Pages, latest: cb8b3f00.planmovies.pages.dev)
-- GitHub webhook to Cloudflare Pages is BROKEN — deploy manually with `CLOUDFLARE_ACCOUNT_ID=0ac90ecc2fb8de376efd32b25a466bfe npx wrangler pages deploy . --project-name=planmovies --branch=main`
-- Ticket monitoring Worker running every 15 min
-- Stripe payment link: TEST mode, hidden on page (display:none)
-- Zordon scaffold fully synced to latest (13 files, skills, hooks, infra)
+- planmovies.com live (Cloudflare Pages, latest: e40ce24b.planmovies.pages.dev)
+- GitHub webhook BROKEN — deploy manually: `CLOUDFLARE_ACCOUNT_ID=0ac90ecc2fb8de376efd32b25a466bfe npx wrangler pages deploy /Users/jordan/Desktop/PlanMovies --project-name=planmovies --branch=main --commit-dirty=true`
+- Stripe: TEST mode, payment link hidden (display:none)
+- Ticket monitoring Worker: running every 15 min
 
-**Link has still NOT been shared with family. Tickets reportedly drop TODAY (May 27).**
+**Link has still NOT been shared with family. Tickets may be dropping.**
 
 ## Immediate Next Actions
 
-1. **CRITICAL: Jordan sends planmovies.com to family TODAY.** Tickets reportedly drop May 27. Every hour the link sits unsent is RSVPs not collected.
-2. **Run /impeccable teach** to create `.impeccable.md` design context. Required before any design pipeline skill runs.
-3. **Strip RSVP form to 3 fields** (name, status, party size). Product Rangers unanimous in session 01. Transportation, seating, budget, showtime all to be killed.
-4. **Activate Stripe live account** before purchasing tickets.
-5. **Call Regal Group Sales:** (844) 462-7342.
+1. **Send planmovies.com to family.** The app is ready. Tickets may already be on sale.
+2. **Test social preview** — paste planmovies.com into WhatsApp/iMessage, confirm OG image shows.
+3. **Regal Group Sales: (844) 462-7342** — call for group seating.
+4. **Activate Stripe live account** before collecting payments.
 
 ## Goals
 
-**Now:**
-- Send planmovies.com to family (TODAY — tickets drop May 27)
-- RSVP yourself with real info (replace test "Jordan" entry)
+**Now (before tickets sell out):**
+- Send planmovies.com to family
 - Call Regal Group Sales: (844) 462-7342
 - Activate Stripe live account
-- Test social preview (paste link in WhatsApp/iMessage)
+- RSVP yourself with real info
 
-**Next (design pipeline):**
-- /impeccable teach → .impeccable.md
-- /shape → design brief for landing page
-- /audit → technical quality report
-- /critique → visual quality report
-- Strip RSVP form to 3 fields
-
-**Next (after tickets purchased):**
-- Assign seats in seat map
-- Collect payments via Stripe
-- Coordinate rides
+**Next (app polish):**
+- Visual Rangers session 02: run on crew page and movie tab
+- Kim's nudge loop: in-product WhatsApp nudge drafting for organizer
+- Seats tab: prepare for when tickets go on sale
+- Hype room expansion: podcasts, more congress clips, Reddit embeds
 
 **Later (platform):**
-- Recruit Growth Rangers
 - Make PlanMovies generic (any movie, any theater, any group)
 - Stripe Connect for organizer payouts
 - Framework rebuild (React/Next.js)
+- Growth Rangers
 
 ## Things NOT to Do
 
