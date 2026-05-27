@@ -1618,7 +1618,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div class="landing-credit fade-up fade-up-d2">A Steven Spielberg Film</div>
 
     <div class="fade-up fade-up-d2" style="margin-bottom:32px;">
-      <span style="font-family:var(--mono);font-size:15px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">FRI JUN 12</span>
+      <span style="font-family:var(--mono);font-size:15px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">FRI JUN 12 · 7:00 PM</span>
     </div>
 
     <p class="landing-subtitle fade-up fade-up-d2">The one you see with the people who matter.</p>
@@ -2147,10 +2147,16 @@ function updateCountdown() {
   if (!el) return;
   if (diff <= 0) {
     el.textContent = 'NOW PLAYING';
+    el.style.display = '';
     return;
   }
   const d = Math.floor(diff / 86400000);
   const h = Math.floor((diff % 86400000) / 3600000);
+  if (d > 3) {
+    el.style.display = 'none';
+    return;
+  }
+  el.style.display = '';
   el.textContent = d + 'd ' + h + 'h until opening night';
 }
 setInterval(updateCountdown, 1000);
