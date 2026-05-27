@@ -378,13 +378,12 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 .form-group { margin-bottom: 20px; }
 .form-label {
   display: block;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 2px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
   color: var(--text-secondary);
-  text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .form-input, .form-select {
   width: 100%;
@@ -399,7 +398,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   transition: var(--transition);
   -webkit-appearance: none;
 }
-.form-input::placeholder { color: var(--text-tertiary); }
+.form-input::placeholder { color: var(--text-secondary); opacity: 0.6; }
 .form-input:focus, .form-select:focus {
   border-color: var(--gold-dim);
   box-shadow: 0 0 0 3px var(--gold-glow);
@@ -414,8 +413,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
 .radio-group { display: flex; flex-wrap: wrap; gap: 8px; }
 .radio-pill {
-  padding: 10px 16px;
-  font-size: 12px;
+  padding: 12px 18px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-secondary);
   background: var(--bg-card);
@@ -427,9 +426,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .radio-pill:hover { border-color: var(--border-medium); color: var(--text-primary); }
 .radio-pill.selected {
-  border-color: var(--gold-dim);
-  color: var(--gold);
-  background: var(--gold-glow);
+  border-color: var(--gold);
+  color: var(--text-inverse);
+  background: var(--gold);
+  font-weight: 600;
 }
 .radio-pill input { display: none; }
 
@@ -1338,7 +1338,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
     <div class="fade-up fade-up-d2" style="display:flex;gap:12px;align-items:center;margin-bottom:32px;">
       <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;color:var(--gold-warm);text-transform:uppercase;padding:4px 10px;border:1px solid var(--gold-dim);background:rgba(201,168,76,0.06);">OPENING NIGHT</span>
-      <span style="font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">JUN 12 2026</span>
+      <span style="font-family:var(--mono);font-size:15px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">FRI JUN 12</span>
     </div>
 
     <p class="landing-subtitle fade-up fade-up-d2">The one you see with the people who matter.</p>
@@ -1351,7 +1351,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
           <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;">RSVP OPEN</span>
         </div>
         <span style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);">&middot;</span>
-        <span id="countdown-inline" style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--text-tertiary);"></span>
+        <span id="countdown-inline" style="font-family:var(--mono);font-size:12px;letter-spacing:1px;color:var(--text-tertiary);"></span>
       </div>
       <div class="cta-btn-wrap" style="width:100%;">
         <button class="cta-btn" id="cta-btn" style="width:100%;" onclick="initialize()">COUNT ME IN</button>
@@ -1389,7 +1389,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
     <div id="crew-countdown" style="text-align:center;padding:16px 0 20px;">
       <div style="font-family:var(--mono);font-size:13px;color:var(--text-secondary);letter-spacing:1px;" id="dash-countdown"></div>
-      <div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">Regal Secaucus &middot; Opening Night</div>
+      <div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">Regal Secaucus &middot; Opening Night &middot; ~$15</div>
     </div>
 
     <div id="crew-list-family" style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);overflow:hidden;"></div>
@@ -1702,7 +1702,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <div class="form-group">
         <label class="form-label">Are You Coming?</label>
         <div class="radio-group" id="f-status">
-          <label class="radio-pill selected"><input type="radio" name="status" value="confirmed" checked>Confirmed</label>
+          <label class="radio-pill selected"><input type="radio" name="status" value="confirmed" checked>I'm Going</label>
           <label class="radio-pill"><input type="radio" name="status" value="probably">Probably</label>
           <label class="radio-pill"><input type="radio" name="status" value="maybe">Maybe</label>
           <label class="radio-pill"><input type="radio" name="status" value="cant">Can't Make It</label>
@@ -1710,13 +1710,13 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       </div>
 
       <div class="form-group">
-        <label class="form-label">How Many People? (Including You)</label>
+        <label class="form-label">How many people total?</label>
         <div class="radio-group" id="f-party">
-          <label class="radio-pill selected"><input type="radio" name="party" value="1" checked>Just Me</label>
-          <label class="radio-pill"><input type="radio" name="party" value="2">+1</label>
-          <label class="radio-pill"><input type="radio" name="party" value="3">+2</label>
-          <label class="radio-pill"><input type="radio" name="party" value="4">+3</label>
-          <label class="radio-pill"><input type="radio" name="party" value="5">+4</label>
+          <label class="radio-pill selected"><input type="radio" name="party" value="1" checked>1</label>
+          <label class="radio-pill"><input type="radio" name="party" value="2">2</label>
+          <label class="radio-pill"><input type="radio" name="party" value="3">3</label>
+          <label class="radio-pill"><input type="radio" name="party" value="4">4</label>
+          <label class="radio-pill"><input type="radio" name="party" value="5">5</label>
         </div>
       </div>
 
@@ -1724,6 +1724,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <input type="hidden" name="format" value="standard">
 
       <button class="submit-btn" type="submit" id="submit-btn">SUBMIT RSVP</button>
+      <p style="font-size:12px;color:var(--text-tertiary);text-align:center;margin-top:12px;line-height:1.5;">You can update your RSVP anytime. Tickets are separate and available closer to the date.</p>
     </form>
 
     <div id="rsvp-confirmation" style="display:none;">
@@ -2010,6 +2011,9 @@ async function submitRSVP(e) {
   showConfirmation(name, entry.status);
 }
 
+const STATUS_LABELS = {confirmed:'Going',probably:'Probably',maybe:'Maybe',cant:"Can't"};
+function statusLabel(s) { return STATUS_LABELS[s] || s; }
+
 function showConfirmation(name, status) {
   const active = attendees.filter(a => a.status !== 'cant');
   const position = active.findIndex(a => a.name.toLowerCase() === name.toLowerCase()) + 1;
@@ -2027,7 +2031,7 @@ function showConfirmation(name, status) {
     return `<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg-card);border:1px solid ${isSelf ? 'var(--gold-dim)' : 'var(--border-subtle)'};border-radius:var(--radius-sm);">
       <div style="width:28px;height:28px;border-radius:50%;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--gold);flex-shrink:0;">${a.name.charAt(0).toUpperCase()}</div>
       <span style="flex:1;font-size:13px;font-weight:${isSelf ? '700' : '400'};">${a.name}${isSelf ? ' (you)' : ''}</span>
-      <span class="attendee-tag tag-${tag}" style="font-size:9px;">${a.status}</span>
+      <span class="attendee-tag tag-${tag}" style="font-size:9px;">${statusLabel(a.status)}</span>
     </div>`;
   }).join('');
   document.getElementById('confirm-crew').innerHTML = crewHtml;
@@ -2060,7 +2064,7 @@ function renderFamilyCrew() {
       <div style="flex:1;min-width:0;">
         <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.name}${partyText}</div>
       </div>
-      <span class="attendee-tag tag-${tag}">${a.status}</span>
+      <span class="attendee-tag tag-${tag}">${statusLabel(a.status)}</span>
     </div>`;
   }).join('');
 }
@@ -2163,7 +2167,7 @@ function renderDashboard() {
       <div class="attendee-info">
         <div class="attendee-name">${esc(a.name)}${a.party > 1 ? ` <span style="color:var(--text-tertiary);font-weight:400;">+${a.party - 1}</span>` : ''}</div>
         <div class="attendee-meta">
-          <span class="attendee-tag tag-${a.status}">${a.status === 'cant' ? "Can't" : a.status}</span>
+          <span class="attendee-tag tag-${a.status}">${statusLabel(a.status)}</span>
           <span class="attendee-tag ${a.paid ? 'tag-paid' : 'tag-unpaid'}">${a.paid ? 'Paid' : 'Unpaid'}</span>
           ${a.transport === 'offering-rides' ? '<span class="attendee-tag tag-driver">Driver</span>' : ''}
           ${a.transport === 'need-ride' ? '<span class="attendee-tag tag-rider">Needs Ride</span>' : ''}
