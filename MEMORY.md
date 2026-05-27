@@ -7,16 +7,20 @@
 
 ## Hot (active)
 
-- PlanMovies scaffolded 2026-05-25. Single HTML file. Cloudflare Pages. Supabase. Stripe (test mode). Cloudflare Worker for ticket alerts.
-- First event: Disclosure Day (Spielberg) at Regal Secaucus. Opening night June 12 2026. Tickets may be on sale now.
-- GitHub webhook to Cloudflare Pages is BROKEN. Deploy with: `CLOUDFLARE_ACCOUNT_ID=0ac90ecc2fb8de376efd32b25a466bfe npx wrangler pages deploy /Users/jordan/Desktop/PlanMovies --project-name=planmovies --branch=main --commit-dirty=true`
-- Two ranger teams in place. Product Rangers (structure/conversion, 3 sessions, memory earned). Visual Rangers (surface/feel, 1 session).
+- PlanMovies scaffolded 2026-05-25. Single HTML file. Cloudflare Pages. Supabase. Stripe LIVE (pk_live_51Sl2z64). Cloudflare Worker for ticket alerts.
+- First event: Disclosure Day (Spielberg) at Regal Secaucus. Opening night June 12 2026. Tickets ON SALE on Fandango (up to 20 seats/order).
+- Auto-deploy via GitHub Actions: push to main triggers `.github/workflows/deploy.yml` which deploys to Cloudflare Pages. Secrets in GitHub repo settings. Manual fallback: `CLOUDFLARE_ACCOUNT_ID=0ac90ecc2fb8de376efd32b25a466bfe npx wrangler pages deploy /Users/jordan/Desktop/PlanMovies --project-name=planmovies --branch=main --commit-dirty=true`
+- Two ranger teams in place. Product Rangers (structure/conversion, 5 sessions, memory earned). Visual Rangers (surface/feel, 2 sessions).
 - Family/organizer split: planmovies.com = family view (crew list, 2 tabs). planmovies.com?org=1 = organizer (full dashboard, 4 tabs).
 - .impeccable.md exists in project root. Design context locked. Run any design skill without needing /impeccable teach.
 - Monospace reserved for data only: countdowns, status labels, metadata. Emotional content uses Inter. Credits use Barlow Condensed.
 - The Movie tab = "The World of Disclosure Day." Pattern: every movie gets a world page immersing skeptics in the film's universe.
 - Zordon is a live repo. Always re-diff after each sync pass — it changes between sessions.
 - Jordan's preference: Murthy (social dynamics) and Kim (coordinator burden) lenses over Frisby (conversion) for small-n decisions.
+
+- Money flow: Scenario B. Jordan buys block on Fandango, collects via Stripe Payment Link + Zelle fallback. Payment status org-only. Ticket icon for all.
+- Content expansion plan approved: `.claude/plans/piped-spinning-lamport.md`. Poster carousel, In Their Words (17 quotes), Go Deeper (33 items), payment flow.
+- Cloudflare native git integration blocked: jordanperezai personal GitHub account doesn't appear in Cloudflare Pages dropdown. GitHub Actions is the workaround.
 
 ## Warm (reference)
 
@@ -34,3 +38,4 @@
 | 2026-05-26 | Full UX audit. Product Rangers (2 sessions). Visual Rangers (1 session). Cinematic landing page overhaul. |
 | 2026-05-26 (s3) | Full design pipeline. RSVP form 7→3. Post-submit confirmation. Family/org split. Crew list home. Movie world tab. |
 | 2026-05-27 (s4) | Rabbit hole research + restructure. Rangers 04 (page structure, 3-2). Family personas 01 (RSVP flow). Nav fixes. RSVP form persona fixes. |
+| 2026-05-27 (s5) | Money flow resolved (B: Stripe + Zelle). Visual Rangers 02 (ticket icon). Auto-deploy. Research: 17 quotes, 33 content items, 6 posters. Plan written for content expansion. |

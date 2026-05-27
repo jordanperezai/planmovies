@@ -54,3 +54,4 @@ Every journal entry follows the magazine format:
 | 02 | 2026-05-26 | [The Council](2026-05-26-01-the-council.md) |
 | 03 | 2026-05-26 | [The Pipeline](2026-05-26-02-the-pipeline.md) |
 | 04 | 2026-05-27 | [The Witnesses](2026-05-27-01-the-witnesses.md) |
+| 05 | 2026-05-27 | [The Money Question](2026-05-27-02-the-money-question.md) |
