@@ -2083,6 +2083,9 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 <div class="toast" id="toast"></div>
 
 <script>
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 const SUPABASE_URL = 'https://aahaurqqkrgwqdqkohuu.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFhaGF1cnFxa3Jnd3FkcWtvaHV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NzQ5MjEsImV4cCI6MjA5NTI1MDkyMX0.S4mtSrQuuNfeRNABALwe0pzjXkXDrxwhQTUI_7DTzs4';
 
