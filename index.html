@@ -401,10 +401,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .form-select option { background: var(--bg-card); color: var(--text-primary); }
 
-.radio-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.radio-group { display: flex; flex-wrap: wrap; gap: 12px; }
 .radio-pill {
-  padding: 12px 18px;
-  font-size: 13px;
+  padding: 16px 24px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
   background: var(--bg-card);
@@ -1010,17 +1010,16 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
-  color: var(--text-inverse);
-  background: var(--gold);
-  border: none;
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--gold);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition);
 }
 .payment-stripe-btn:hover {
-  background: var(--gold-bright);
+  background: rgba(201,168,76,0.1);
   transform: translateY(-1px);
-  box-shadow: 0 8px 30px rgba(201,168,76,0.25);
 }
 .payment-fallback {
   text-align: center;
@@ -1664,14 +1663,15 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
     <div style="margin-bottom:20px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-subtle);">
       <img src="assets/regal-secaucus.jpg" alt="Regal Secaucus ShowPlace 14" style="width:100%;display:block;">
-      <div style="padding:10px 14px;background:var(--bg-card);font-family:var(--mono);font-size:11px;letter-spacing:0.5px;color:var(--text-tertiary);">REGAL SECAUCUS · FRI JUN 12 · 7:00 PM</div>
+      <div style="padding:10px 14px;background:var(--bg-card);font-family:var(--mono);font-size:13px;letter-spacing:0.5px;color:var(--text-tertiary);">REGAL SECAUCUS · FRI JUN 12 · 7:00 PM</div>
     </div>
 
+    <div class="section-header">THE CREW</div>
     <div id="crew-list-family" style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;"></div>
 
     <div id="inline-rsvp">
-      <div style="padding:20px 0 16px;border-top:1px solid var(--border-subtle);">
-        <div class="section-header">JOIN THE CREW</div>
+      <div style="padding:12px 0 16px;">
+        <p style="font-family:var(--font);font-size:15px;color:var(--text-secondary);">Your turn.</p>
       </div>
       <form id="rsvp-form" onsubmit="submitRSVP(event)">
         <div class="form-group">
@@ -1698,7 +1698,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
         <input type="hidden" id="f-theater" value="regal-secaucus">
         <input type="hidden" name="format" value="standard">
         <button class="submit-btn" type="submit" id="submit-btn">SUBMIT RSVP</button>
-        <p style="font-size:12px;color:var(--text-tertiary);text-align:center;margin-top:12px;line-height:1.5;">You can update your RSVP anytime.</p>
+        <p style="font-size:13px;color:var(--text-tertiary);text-align:center;margin-top:12px;line-height:1.5;">You can update your RSVP anytime.</p>
       </form>
       <div id="rsvp-confirmation" style="display:none;">
         <div style="text-align:center;padding:32px 0 24px;">
@@ -1712,7 +1712,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       </div>
     </div>
 
-    <div class="payment-section" id="payment-section">
+    <div class="payment-section" id="payment-section" style="display:none;">
       <div class="payment-price">
         <span class="payment-price-amount" id="payment-price-display">TBD</span>
         <span class="payment-price-label">per ticket</span>
@@ -2301,6 +2301,8 @@ function showConfirmation(name, status) {
 
   document.getElementById('rsvp-form').style.display = 'none';
   document.getElementById('rsvp-confirmation').style.display = 'block';
+  const paySection = document.getElementById('payment-section');
+  if (paySection && status !== 'cant') paySection.style.display = '';
   document.getElementById('inline-rsvp').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -2308,6 +2310,9 @@ function hideConfirmation() {
   document.getElementById('rsvp-confirmation').style.display = 'none';
   document.getElementById('rsvp-form').style.display = 'block';
 }
+
+const CREW_LIST_MAX = 8;
+let crewExpanded = false;
 
 function renderFamilyCrew() {
   const el = document.getElementById('crew-list-family');
@@ -2317,17 +2322,18 @@ function renderFamilyCrew() {
     el.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text-tertiary);font-size:14px;">No one has RSVPed yet. Be the first.</div>';
     return;
   }
-  el.innerHTML = active.map(a => {
-    const tag = a.status === 'confirmed' ? 'confirmed' : a.status === 'probably' ? 'probably' : 'maybe';
+  const visible = crewExpanded ? active : active.slice(0, CREW_LIST_MAX);
+  const remaining = active.length - CREW_LIST_MAX;
+  el.innerHTML = visible.map(a => {
     const partyText = a.party > 1 ? ` +${a.party - 1}` : '';
-    return `<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border-subtle);">
+    return `<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border-subtle);">
       <div style="width:32px;height:32px;border-radius:50%;background:var(--bg-elevated);border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">${a.name.charAt(0).toUpperCase()}</div>
       <div style="flex:1;min-width:0;">
         <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.name}${partyText}</div>
       </div>
       ${statusMark(a.status)}
     </div>`;
-  }).join('');
+  }).join('') + (remaining > 0 && !crewExpanded ? `<button onclick="crewExpanded=true;renderFamilyCrew();" style="width:100%;padding:12px;background:transparent;border:none;font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--text-tertiary);cursor:pointer;">+${remaining} MORE</button>` : '');
 }
 
 function renderDashCountdown() {
@@ -3030,12 +3036,14 @@ function toggleDeeperCategory(id) {
 
 // Payment section
 function renderPaymentSection() {
+  const paySection = document.getElementById('payment-section');
   const priceEl = document.getElementById('payment-price-display');
   const stripeBtn = document.getElementById('payment-stripe-btn');
   const proofLink = document.getElementById('payment-proof-link');
   if (TICKET_PRICE && priceEl) priceEl.textContent = '$' + TICKET_PRICE;
   if (STRIPE_PAYMENT_URL && stripeBtn) { stripeBtn.href = STRIPE_PAYMENT_URL; stripeBtn.style.display = 'block'; }
   if (TICKET_PROOF_URL && proofLink) proofLink.href = TICKET_PROOF_URL;
+  if (paySection && isOrg) paySection.style.display = '';
 }
 
 // Admin mode: append ?admin=1 to URL to show management controls
