@@ -143,9 +143,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .nav-tabs {
   display: flex; gap: 2px;
-  background: var(--bg-surface);
-  border-radius: var(--radius-sm);
-  padding: 3px;
+  background: none;
+  padding: 0;
 }
 .nav-tab {
   padding: 10px 14px;
@@ -1265,7 +1264,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 @media (max-width: 400px) {
   .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
   .stat-card { padding: 12px; }
-  .nav-tabs { overflow-x: auto; background: none; padding: 0; gap: 0; }
+  .nav-tabs { overflow-x: auto; }
   .movie-hero { flex-direction: column; align-items: center; text-align: center; }
   .movie-hero-poster { width: 120px; }
   .cast-grid { grid-template-columns: 1fr; }
