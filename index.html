@@ -1840,6 +1840,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div class="section-header">THIS IS HAPPENING AROUND THE WORLD</div>
     <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:16px;">Belgium. Brazil. Japan. France. Chile. Peru. The UK. Governments are investigating, declassifying, and going on the record.</p>
     <div id="world-quotes-section"></div>
+    <button id="world-more-btn" onclick="showMoreWorld()" style="display:none;width:100%;padding:10px;margin:8px 0 24px;background:transparent;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-tertiary);font-family:var(--mono);font-size:11px;letter-spacing:1px;cursor:pointer;transition:border-color 0.2s,color 0.2s;">SHOW MORE</button>
 
     <div class="section-header" style="margin-top:32px;">DOWN THE RABBIT HOLE</div>
     <p style="font-size:14px;line-height:1.6;color:var(--text-secondary);margin-bottom:24px;">
@@ -2970,18 +2971,32 @@ function renderOfficialQuotes() {
   }).join('');
 }
 
+const WORLD_INITIAL = 3;
+let worldExpanded = false;
+
 function renderWorldQuotes() {
   const container = document.getElementById('world-quotes-section');
+  const moreBtn = document.getElementById('world-more-btn');
   if (!container) return;
   const quotes = OFFICIAL_QUOTES.filter(q => q.category === 'world');
   if (!quotes.length) return;
-  container.innerHTML = quotes.map(q => `<div class="quote-card">
+  const count = worldExpanded ? quotes.length : WORLD_INITIAL;
+  container.innerHTML = quotes.slice(0, count).map(q => `<div class="quote-card">
     <div class="quote-text">"${q.quote}"</div>
     <div class="quote-attribution">
       <span class="quote-name">${q.name}</span>
       <span class="quote-title">${q.title} &middot; ${q.source}</span>
     </div>
   </div>`).join('');
+  if (moreBtn && quotes.length > WORLD_INITIAL) {
+    moreBtn.style.display = 'block';
+    moreBtn.textContent = worldExpanded ? 'SHOW LESS' : `SHOW ${quotes.length - WORLD_INITIAL} MORE`;
+  }
+}
+
+function showMoreWorld() {
+  worldExpanded = !worldExpanded;
+  renderWorldQuotes();
 }
 
 function toggleQuoteCategory(id) {
