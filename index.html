@@ -2814,11 +2814,11 @@ const RECOMMENDED = {
 };
 
 const CONTENT_CATEGORIES = [
-  { id: 'documentaries', label: 'Documentaries', icon: '🎥', defaultShow: 4 },
-  { id: 'podcasts', label: 'Podcasts & Interviews', icon: '🎙️', defaultShow: 4 },
-  { id: 'channels', label: 'YouTube Channels', icon: '📺', defaultShow: 3 },
-  { id: 'fiction', label: 'Fiction Films', icon: '🌟', defaultShow: 3 },
-  { id: 'books', label: 'Books', icon: '📚', defaultShow: 3 },
+  { id: 'documentaries', label: 'Documentaries', defaultShow: 4 },
+  { id: 'podcasts', label: 'Podcasts & Interviews', defaultShow: 4 },
+  { id: 'channels', label: 'YouTube Channels', defaultShow: 3 },
+  { id: 'fiction', label: 'Fiction Films', defaultShow: 3 },
+  { id: 'books', label: 'Books', defaultShow: 3 },
 ];
 
 const videoCarousels = {};
@@ -3017,7 +3017,7 @@ function renderGoDeeper() {
     const visible = items.slice(0, show);
     const hasMore = items.length > cat.defaultShow;
     return `<div class="deeper-category">
-      <div class="deeper-category-label">${cat.icon} ${cat.label}</div>
+      <div class="deeper-category-label">${cat.label}</div>
       ${visible.map(item => {
         const href = item.videoId ? `https://www.youtube.com/watch?v=${item.videoId}` : (item.url || '#');
         return `<a class="deeper-item" href="${href}" target="_blank" rel="noopener">
