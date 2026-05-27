@@ -30,9 +30,18 @@ Jordan gravitates toward Murthy's social dynamics lens and Kim's coordinator-bur
 
 - **Showing organizer tools (stats, seat map, payment tracker) to all family members.** Why: 5/5 voices session 03. Creates anxiety (0% payment) without giving participants anything actionable. Gate behind org param or role. last-confirmed: 2026-05-26
 
+- **One long page beats split when the tonal shift IS the experience.** Context: Session 04, 3-2 vote. Frisby/Kim/Shadeed: the transition from "movie info" to "this is real" is the page's argument. Splitting it breaks the argument at its strongest joint. Every extra tap costs 40-60% dropoff for a family WhatsApp audience. cadence: stable. last-confirmed: 2026-05-27
+- **Immersive content on the RSVP page is Jordan's call.** Context: Session 04. Lisa/Sofia/Marco flagged UAP headlines as conspiracy-adjacent. Jordan overruled: immersion converts. Do not re-suggest removing. cadence: frozen. last-confirmed: 2026-05-27
+
+## Dead Directions
+
+- **Splitting a page when the tonal transition is the rhetorical point.** Why: 3-2 ranger vote session 04. The transition from entertainment to evidence on The Movie page is intentional. Splitting would break the "this movie is based on real events" argument mid-scroll. last-confirmed: 2026-05-27
+- **Hiding the nav during the RSVP form.** Why: Jordan's explicit call. The nav stays visible. last-confirmed: 2026-05-27
+
 ## Distillation Log
 
 | Date | Entries reviewed | Promoted | Archived |
 |---|---|---|---|
 | 2026-05-26 | Initial creation from sessions 01 + 02 | 0 | 0 |
 | 2026-05-26 | Session 03 additions | 4 new principles, 1 dead direction | 0 |
+| 2026-05-27 | Session 04 additions | 2 new principles, 2 new dead directions | 0 |

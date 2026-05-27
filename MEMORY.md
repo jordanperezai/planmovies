@@ -22,6 +22,10 @@
 
 ## Cold (archived)
 
+- Family persona panel live: `personas/family/roster.md`. 5 archetypes: Marco 28, Lisa 55, Carmen 62, Sofia 16, Ray 68. Session 01 run on RSVP flow 2026-05-27.
+- Disclosure Day + UAP ethos fully researched: `research/2026-05-27-01-disclosure-ethos.md`. Key themes: mode-switch from entertainment to evidence, government credibility chain, John Williams at 93.
+- Rabbit hole structured as 4-layer cascade: THE WITNESSES → THE FILES → HOW WE GOT HERE → GO DEEPER. Lead with credibility, not politics.
+
 ## Session History
 
 | Date | Key work |
@@ -29,3 +33,4 @@
 | 2026-05-25 | Zordon framework morph. 19 core files + 17 skills + hooks + infra. |
 | 2026-05-26 | Full UX audit. Product Rangers (2 sessions). Visual Rangers (1 session). Cinematic landing page overhaul. |
 | 2026-05-26 (s3) | Full design pipeline. RSVP form 7→3. Post-submit confirmation. Family/org split. Crew list home. Movie world tab. |
+| 2026-05-27 (s4) | Rabbit hole research + restructure. Rangers 04 (page structure, 3-2). Family personas 01 (RSVP flow). Nav fixes. RSVP form persona fixes. |

@@ -6,7 +6,7 @@ Different from rangers/ (adversarial debate where voices argue with each other).
 
 ## Active Panels
 
-None yet. Panels created when a decision needs validation against real-world archetypes.
+- **family/** — The 25 family members who open the WhatsApp link. 5 personas: Marco (28, early adopter), Aunt Lisa (55, skeptic), Mom/Carmen (62, supportive but lost), Sofia (16, dragged along), Uncle Ray (68, slow adopter).
 
 ## Structure
 
