@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — concepts 2, 3, 8</title>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg-deep:#07080a; --bg-card:#12151b; --gold:#c9a84c; --cream:#e8e6e1; --text-secondary:#8a8880; }
+  *{box-sizing:border-box;}
+  body{background:var(--bg-deep);color:var(--cream);font-family:system-ui,sans-serif;margin:0;padding:34px 22px 70px;}
+  h1{font-weight:800;font-size:20px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--text-secondary);font-size:13px;margin-bottom:10px;max-width:780px;line-height:1.5;}
+  .section{color:var(--gold);font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin:30px 0 4px;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:6px;max-width:1000px;}
+  .desc{color:var(--text-secondary);font-size:12px;margin-bottom:16px;max-width:780px;line-height:1.5;}
+  .card{background:var(--bg-card);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:22px;max-width:1000px;}
+  .word{display:inline-flex;align-items:baseline;font-family:'Clash Display',sans-serif;font-weight:700;letter-spacing:-1px;text-transform:uppercase;font-size:40px;}
+  .word .a{color:var(--cream);} .word .b{color:var(--gold);} .word svg{display:block;}
+  .ctr{display:flex;align-items:center;}
+  .row{display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap;}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .cap{color:var(--text-secondary);font-size:10px;}
+  .chip{background:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:8px;}
+  .dark{background:#07080a;border:1px solid rgba(255,255,255,.07);border-radius:7px;display:flex;align-items:center;justify-content:center;padding:8px;}
+</style>
+</head>
+<body>
+<h1>Concepts 2 · 3 · 8 — sketches</h1>
+<div class="sub">Hand-drawn letterforms, so these are rough. Judge the idea. Gold on dark, one color.</div>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <!-- #2 ROLL CALL: the M as four figures standing on the row-rule -->
+  <symbol id="rollM" viewBox="0 0 130 110">
+    <!-- four staves (bodies), outer taller; rounded tops = heads -->
+    <g fill="var(--gold)">
+      <rect x="8"  y="20" width="16" height="74" rx="8"/>
+      <rect x="40" y="40" width="16" height="54" rx="8"/>
+      <rect x="74" y="40" width="16" height="54" rx="8"/>
+      <rect x="106" y="20" width="16" height="74" rx="8"/>
+      <!-- the row they stand on -->
+      <rect x="2" y="98" width="126" height="8" rx="4"/>
+    </g>
+  </symbol>
+  <!-- standalone "row" glyph: same four, tighter -->
+  <symbol id="rollGlyph" viewBox="0 0 130 110"><use href="#rollM"/></symbol>
+
+  <!-- #3 THE HANDOFF: lowercase n of PLAN sharing its right stem with cap M of MOVIES -->
+  <symbol id="handoff" viewBox="0 0 110 100">
+    <!-- n (cream) : left stem + arch + shared right stem -->
+    <path d="M10,82 V52 a16,16 0 0 1 32,0 V82" fill="none" stroke="var(--cream)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- M (gold) : shares the x=42 stem, rises to cap, apex valley, right stem -->
+    <path d="M42,82 V24 L66,54 L90,24 V82" fill="none" stroke="var(--gold)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- #8 SHOWTIME: clock ring + two hands that are two people leaning together -->
+  <symbol id="showtime" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="40" fill="none" stroke="var(--gold)" stroke-width="6"/>
+    <!-- two hands from shared center, square-capped, narrow V near top -->
+    <line x1="50" y1="55" x2="43" y2="24" stroke="var(--gold)" stroke-width="8" stroke-linecap="round"/>
+    <line x1="50" y1="55" x2="60" y2="30" stroke="var(--gold)" stroke-width="8" stroke-linecap="round"/>
+    <!-- heads at the tips = two people -->
+    <circle cx="43" cy="22" r="6.5" fill="var(--gold)"/>
+    <circle cx="61" cy="28" r="6.5" fill="var(--gold)"/>
+    <circle cx="50" cy="55" r="4" fill="var(--gold)"/>
+  </symbol>
+</defs></svg>
+
+<div class="section">2 · The Roll Call</div>
+<div class="desc">The M in MOVIES is four people standing shoulder to shoulder on the row (the gold rule under the word). Outer two taller, like a crowd. In-app the figures light up one at a time as people join. HONEST RISK Scher named: a four-stave M flirts with reading as a fence / "Ш". See if it survives.</div>
+<div class="card">
+  <div class="ctr"><div class="word"><span class="a">PLAN</span><svg width="48" height="40" viewBox="0 0 130 110" style="align-self:center"><use href="#rollM"/></svg><span class="b">OVIES</span></div></div>
+  <div class="row">
+    <div class="cell"><div class="dark"><svg width="56" height="48" viewBox="0 0 130 110"><use href="#rollGlyph"/></svg></div><span class="cap">glyph</span></div>
+    <div class="cell"><div class="dark"><svg width="28" height="24" viewBox="0 0 130 110"><use href="#rollGlyph"/></svg></div><span class="cap">24</span></div>
+    <div class="cell"><div class="dark"><svg width="18" height="15" viewBox="0 0 130 110"><use href="#rollGlyph"/></svg></div><span class="cap">16</span></div>
+    <div class="cell"><div class="chip"><svg width="40" height="34" viewBox="0 0 130 110"><use href="#rollGlyph"/></svg></div><span class="cap">white</span></div>
+  </div>
+</div>
+
+<div class="section">3 · The Handoff</div>
+<div class="desc">The "n" of Plan (cream) and the "M" of Movies (gold) share one stem — the two words physically hold hands at the seam where they meet. The join IS the togetherness. Set as "Pla[nM]ovies".</div>
+<div class="card">
+  <div class="ctr"><div class="word" style="text-transform:none"><span class="a">Pla</span><svg width="56" height="51" viewBox="0 0 110 100" style="align-self:flex-end"><use href="#handoff"/></svg><span class="b">ovies</span></div></div>
+  <div class="row">
+    <div class="cell"><div class="dark"><svg width="64" height="58" viewBox="0 0 110 100"><use href="#handoff"/></svg></div><span class="cap">the join</span></div>
+    <div class="cell"><div class="dark"><svg width="26" height="24" viewBox="0 0 110 100"><use href="#handoff"/></svg></div><span class="cap">24</span></div>
+    <div class="cell"><div class="dark"><svg width="18" height="16" viewBox="0 0 110 100"><use href="#handoff"/></svg></div><span class="cap">16</span></div>
+    <div class="cell"><div class="chip"><svg width="40" height="36" viewBox="0 0 110 100"><use href="#handoff"/></svg></div><span class="cap">white</span></div>
+  </div>
+</div>
+
+<div class="section">8 · Showtime (the two o'clock)</div>
+<div class="desc">A clock set near showtime whose two hands are also two people leaning together (heads at the tips, shared center = their ground). "Be there" + "together" in one circle. The link always arrives with a time.</div>
+<div class="card">
+  <div class="ctr"><div class="word"><svg width="40" height="40" viewBox="0 0 100 100" style="margin-right:14px"><use href="#showtime"/></svg><span class="a">Plan</span><span class="b">Movies</span></div></div>
+  <div class="row">
+    <div class="cell"><div class="dark"><svg width="64" height="64"><use href="#showtime"/></svg></div><span class="cap">hero</span></div>
+    <div class="cell"><div class="dark"><svg width="24" height="24"><use href="#showtime"/></svg></div><span class="cap">24</span></div>
+    <div class="cell"><div class="dark"><svg width="16" height="16"><use href="#showtime"/></svg></div><span class="cap">16</span></div>
+    <div class="cell"><div class="chip"><svg width="22" height="22"><use href="#showtime"/></svg></div><span class="cap">white</span></div>
+  </div>
+</div>
+</body>
+</html>

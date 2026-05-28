@@ -1,38 +1,30 @@
 # HANDOFF.md -- PlanMovies Session Handoff
 
 > **Purpose:** Bring a new session up to speed instantly.
-> **Last updated:** 2026-05-28 (Session 13)
+> **Last updated:** 2026-05-28 (Session 15)
 > **Not for:** Permanent knowledge (-> MEMORY.md), mistakes (-> LEARNINGS.md).
 
 ## Where We Left Off
 
-Session 13 complete. Full audit pass on index.html (15.5/20 → all recommended fixes applied). Major logo exploration session: 13 HTML boards, 200+ concepts, 2 ranger sessions, no winner. Logo decision is the open thread.
+Session 15 complete. The entire session was a logo hunt. The screen-O wordmark (PLANM[screen-O]VIES, Clash Display, cream+gold) shipped live to planmovies.com as commit `a7f2d94` and is the current logo. Jordan rejected it on feeling but said "keep it for now." ~20 total directions tried across all sessions; the meta-conclusion is parked: no static SVG mark delivers the emotional hit; the feeling lives in the brand world.
 
-**Current state of index.html (uncommitted, audit-fixed):**
-- All P0/P1/P2 audit fixes applied: `--amber-dim` token, toast live region, heading semantics, nav aria-current, video keyboard access, Supabase non-blocking, scaleX progress bar, cached countdown selectors, 44px tap targets, 11px font floor, safe-area-inset nav, contrast tokens nudged.
-- JS syntax verified clean (`node --check` passed).
-- Everything from Session 12 still intact (3e1e9af base).
+**Current state of planmovies.com (live, `a7f2d94`):**
+- Screen-O wordmark in nav + landing. Clash Display. Favicon updated.
+- Mobile horizontal-scroll fixed (`overflow-x:hidden` on `html`).
+- All Session 13 audit fixes included.
 
 **Logo state:**
-- `logos/` folder: 13 exploration boards + README with dead-ends map.
-- Dead ends: literal cinema objects, type-led tropes, cold diagrams.
-- Latest open board: `logos/logo-board-2.html` (12 fresh concepts).
-- No mark selected. Jordan is pointing at directions.
+- Screen-O is a PLACEHOLDER. Intentionally parked. Do NOT spend more sessions on this until after June 12.
+- Logo Rangers team at `rangers/logo/`, 2 sessions logged.
+- logo-maker skill at `.claude/skills/logo-maker/` with full memory + references.
+- Full dead-ends map: `logos/README.md`, ranger sessions, skill memory.
 
 ## Immediate Next Actions
 
-1. **Logo** — pick from `logos/logo-board-2.html` or request another board. Once picked, wire into `index.html` (nav, landing, favicon).
-2. **Commit audit fixes** — index.html has significant uncommitted improvements. Commit before any new work.
-3. **TMDB API key** — Jordan: register at themoviedb.org → paste into `TMDB_API_KEY` constant (~line 4090).
-4. **Twilio Verify** — Jordan: Supabase → Auth → Providers → Phone.
-5. **Send to family** — June 12, 15 days out. Everything else is secondary.
-
-## Key Decisions (Session 13)
-
-- **Audit applied.** All P0-P3 audit findings fixed. Score was 15.5/20. No issues were P0 except `--amber-dim` token (now fixed). 
-- **Logo exploration complete for now.** 200+ concepts. Visual + Product rangers + family panel all ran. No winner. The direction: warm, cinematic, social, "we're all seeing it together." Not nostalgic, not clever-but-cold.
-- **Share card is the real logo leverage.** Product rangers (Frisby + Kim) found the og:image is what recruits clicks in a group chat, not the favicon. Logo matters for brand identity, not funnel conversion.
-- **Logo folder organized.** `logos/README.md` maps every exploration file with status and dead-end reasons.
+1. **TMDB API key** — Jordan: register at themoviedb.org → paste into `TMDB_API_KEY` constant (~line 4090). Unblocks One Movie / poster search.
+2. **Twilio Verify** — Jordan: Supabase → Auth → Providers → Phone. Unblocks phone OTP before RSVP.
+3. **Send to family** — June 12 is 14 days out. Everything else is secondary.
+4. **Commit wrap-up artifacts** — session log, updated HANDOFF, journal entry, memory updates.
 
 ## Goals
 
@@ -44,15 +36,16 @@ Session 13 complete. Full audit pass on index.html (15.5/20 → all recommended 
 - ✅ Full impeccable pipeline
 - ✅ Codex adversarial review
 - ✅ Desktop responsive
-- ✅ Audit pass (session 13) — fixes verified, uncommitted
-- ☐ Logo picked and wired
+- ✅ Audit pass (session 13) — fixes committed
+- ✅ Logo placeholder live (screen-O, Clash Display)
+- ✅ Mobile horizontal scroll fixed
 - ☐ TMDB API key (Jordan)
 - ☐ Twilio Verify (Jordan)
-- ☐ Commit audit fixes
-- ☐ Send to family — **15 days**
+- ☐ Send to family — **14 days**
 
 **After family send:**
-- Dynamic crew-forward og:image share card (highest-leverage branding surface)
+- Logo: human brand designer, with the documented brief
+- Dynamic crew-forward og:image share card
 - Anticipation phase: content unlock calendar, milestone markers
 - Named Crew page + Founding Crew badge
 - Platform: Stripe Connect Express, multi-organizer
@@ -70,10 +63,10 @@ Session 13 complete. Full audit pass on index.html (15.5/20 → all recommended 
 9. Don't add a theme/template selector. The movie poster IS the theme.
 10. Don't build public discovery yet.
 11. Don't apply mono font to non-data text. var(--mono) = countdown, prices, timestamps, phone/OTP, seats only.
-12. Don't push the RSVP form below screen 3. Crew avatars + pitch before form. Never a press kit before the form.
-13. Don't re-open the tabs vs. single-scroll debate. Three-act merge is validated, shipped, and Codex-hardened.
-14. Don't use a single-seat mark. Reads "one lonely person" — the opposite of the brand. (visual-03, product-09)
-15. Don't re-explore literal cinema objects (seat, ticket, marquee, reel), type tropes (lowercase wordmark, play-in-O, three dots), or cold diagrams (filling row, brackets). All killed with evidence. See `logos/README.md`.
+12. Don't push the RSVP form below screen 3. Crew avatars + pitch before form.
+13. Don't re-open the tabs vs. single-scroll debate. Three-act merge is validated and shipped.
+14. Don't re-open the logo debate before June 12. Screen-O is the placeholder; it ships. Post-launch: human designer.
+15. Don't keep generating logo boards past 3 misses. ~20 tried; the next board won't fix it.
 
 ## Reference Docs
 
@@ -81,8 +74,9 @@ Session 13 complete. Full audit pass on index.html (15.5/20 → all recommended 
 |---|---|
 | `DESIGN.md` | Platform design system. Page DNA, spacing, typography rules, anti-patterns. Read before ANY UI work. |
 | `.impeccable.md` | Design context + validated decisions. |
-| `logos/README.md` | Logo exploration map — all 13 boards, status, dead ends, constraints. |
-| `rangers/visual/sessions/visual-03-logo-direction.md` | Full 5-voice visual ranger session on logo |
-| `rangers/product/sessions/product-09-logo-direction-A.md` | Product rangers + family panel on Direction A |
-| `scripts/` | Node scripts used for batch HTML/CSS restructuring. |
+| `logos/README.md` | Logo exploration map — all boards, status, dead ends. |
+| `rangers/logo/sessions/logo-01-wordmark-vs-symbol-and-the-O.md` | Session 01: screen-O decision |
+| `rangers/logo/sessions/logo-02-fresh-concepts.md` | Session 02: 12 fresh concepts, all rejected |
+| `.claude/skills/logo-maker/memory.md` | Full logo hunt memory: ~20 dead directions, meta-conclusion |
+| `scripts/` | Node scripts for batch HTML/CSS restructuring. |
 | `research/2026-05-27-05-product-feature-map.md` | 79-feature product map |

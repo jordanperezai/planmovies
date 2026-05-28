@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — fresh concepts (ranger session 02)</title>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg-deep:#07080a; --bg-card:#12151b; --gold:#c9a84c; --cream:#e8e6e1; --text-secondary:#8a8880; }
+  *{box-sizing:border-box;}
+  body{background:var(--bg-deep);color:var(--cream);font-family:system-ui,sans-serif;margin:0;padding:34px 22px 70px;}
+  h1{font-weight:800;font-size:20px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--text-secondary);font-size:13px;margin-bottom:10px;max-width:780px;line-height:1.55;}
+  .section{color:var(--gold);font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin:30px 0 4px;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:6px;max-width:1000px;}
+  .desc{color:var(--text-secondary);font-size:12px;margin-bottom:16px;max-width:780px;line-height:1.5;}
+  .card{background:var(--bg-card);border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:20px;max-width:1000px;}
+  .word{display:inline-flex;align-items:center;gap:14px;font-family:'Clash Display',sans-serif;font-weight:700;letter-spacing:-1px;text-transform:uppercase;font-size:30px;}
+  .word .a{color:var(--cream);} .word .b{color:var(--gold);} .word svg{display:block;}
+  .states{display:flex;gap:30px;align-items:center;flex-wrap:wrap;}
+  .st{display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .cap{color:var(--text-secondary);font-size:10px;}
+  .row{display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap;}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .chip{background:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:7px;}
+  .dark{background:#07080a;border:1px solid rgba(255,255,255,.07);border-radius:7px;display:flex;align-items:center;justify-content:center;padding:7px;}
+  .sharecard{background:linear-gradient(160deg,#15110a,#07080a);border:1px solid rgba(201,168,76,.18);border-radius:16px;padding:22px 24px;max-width:300px;display:flex;flex-direction:column;gap:12px;}
+  .sharecard .sc-h{font-family:'Clash Display',sans-serif;font-weight:700;text-transform:uppercase;font-size:18px;}
+  .sharecard .sc-h .b{color:var(--gold);}
+  .sharecard .sc-sub{color:var(--text-secondary);font-size:12px;}
+</style>
+</head>
+<body>
+<h1>Fresh concepts — Logo Rangers session 02</h1>
+<div class="sub">Three of the four standouts, built. One-color gold, true-transparency cuts, tested small + on white. The big idea the panel kept landing on: the mark isn't "movies," it's <i>who's coming</i>.</div>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <!-- a person pip: filled and outline variants via fill/stroke at use-site -->
+  <symbol id="pip" viewBox="0 0 50 95">
+    <circle cx="25" cy="28" r="12"/>
+    <path d="M5,84 C5,60 13,52 25,52 C37,52 45,60 45,84 Z"/>
+  </symbol>
+
+  <!-- THE GAP: row of three; left+right solid, middle punched out (held seat) -->
+  <mask id="gapcut"><rect width="160" height="100" fill="#fff"/>
+    <circle cx="80" cy="34" r="16" fill="#000"/>
+    <path d="M58,90 C58,62 67,53 80,53 C93,53 102,62 102,90 Z" fill="#000"/>
+  </mask>
+  <symbol id="gap" viewBox="0 0 160 100"><g mask="url(#gapcut)" fill="var(--gold)">
+    <circle cx="34" cy="34" r="16"/><path d="M12,90 C12,62 21,53 34,53 C47,53 56,62 56,90 Z"/>
+    <circle cx="80" cy="34" r="16"/><path d="M58,90 C58,62 67,53 80,53 C93,53 102,62 102,90 Z"/>
+    <circle cx="126" cy="34" r="16"/><path d="M104,90 C104,62 113,53 126,53 C139,53 148,62 148,90 Z"/>
+  </g></symbol>
+
+  <!-- THE HOLLER: chunky "I'm in" hand -->
+  <mask id="hollercut"><rect width="100" height="100" fill="#fff"/><circle cx="34" cy="56" r="6" fill="#000"/></mask>
+  <symbol id="holler" viewBox="0 0 100 100">
+    <g transform="rotate(-12 50 55)" mask="url(#hollercut)" fill="var(--gold)">
+      <rect x="32" y="24" width="42" height="34" rx="19"/>          <!-- fused fingers -->
+      <rect x="30" y="42" width="46" height="46" rx="17"/>          <!-- palm -->
+      <rect x="13" y="48" width="22" height="17" rx="8.5" transform="rotate(-22 24 56)"/> <!-- thumb -->
+    </g>
+  </symbol>
+</defs></svg>
+
+<div class="section">1 · The Count</div>
+<div class="desc">A row of your people that fills in gold as they RSVP. Empty when you send the link, solid when the row's full. Every group chat renders a different mark — and the same art is your share card (the thing that earns the next tap). Favicon = one pip.</div>
+<div class="card">
+  <div class="states">
+    <div class="st">
+      <svg width="200" height="76" viewBox="0 0 250 95">
+        <g fill="var(--gold)"><use href="#pip" x="0"/><use href="#pip" x="50"/></g>
+        <g fill="none" stroke="var(--gold)" stroke-width="4"><use href="#pip" x="100"/><use href="#pip" x="150"/><use href="#pip" x="200"/></g>
+      </svg><span class="cap">2 in</span></div>
+    <div class="st">
+      <svg width="200" height="76" viewBox="0 0 250 95">
+        <g fill="var(--gold)"><use href="#pip" x="0"/><use href="#pip" x="50"/><use href="#pip" x="100"/><use href="#pip" x="150"/></g>
+        <g fill="none" stroke="var(--gold)" stroke-width="4"><use href="#pip" x="200"/></g>
+      </svg><span class="cap">4 in</span></div>
+    <div class="st">
+      <svg width="200" height="76" viewBox="0 0 250 95">
+        <g fill="var(--gold)"><use href="#pip" x="0"/><use href="#pip" x="50"/><use href="#pip" x="100"/><use href="#pip" x="150"/><use href="#pip" x="200"/></g>
+      </svg><span class="cap">full house</span></div>
+  </div>
+  <div class="word"><svg width="64" height="24" viewBox="0 0 250 95"><g fill="var(--gold)"><use href="#pip" x="0"/><use href="#pip" x="50"/><use href="#pip" x="100"/></g><g fill="none" stroke="var(--gold)" stroke-width="4"><use href="#pip" x="150"/><use href="#pip" x="200"/></g></svg><span class="a">Plan</span><span class="b">Movies</span></div>
+  <div class="row">
+    <div class="cell"><div class="dark"><svg width="20" height="20" viewBox="0 0 50 95"><g fill="var(--gold)"><use href="#pip"/></g></svg></div><span class="cap">16 favicon</span></div>
+    <div class="cell"><div class="chip"><svg width="60" height="24" viewBox="0 0 250 95"><g fill="var(--gold)"><use href="#pip" x="0"/><use href="#pip" x="50"/><use href="#pip" x="100"/></g><g fill="none" stroke="var(--gold)" stroke-width="4"><use href="#pip" x="150"/><use href="#pip" x="200"/></g></svg></div><span class="cap">on white</span></div>
+    <div class="sharecard">
+      <svg width="150" height="46" viewBox="0 0 250 95"><g fill="var(--gold)"><use href="#pip" x="0"/><use href="#pip" x="50"/><use href="#pip" x="100"/><use href="#pip" x="150"/></g><g fill="none" stroke="var(--gold)" stroke-width="4"><use href="#pip" x="200"/></g></svg>
+      <div class="sc-h">Disclosure Day</div>
+      <div class="sc-sub">4 of 5 going · Fri Jun 12 · tap to grab your seat</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">2 · The Gap</div>
+<div class="desc">Two of you are in; the space between is a third person, a held-open seat. You don't draw the missing friend — the two who showed up draw them by leaving room. The hole is the invitation. "Save my spot."</div>
+<div class="card">
+  <div class="states">
+    <div class="st"><svg width="160" height="100"><use href="#gap"/></svg><span class="cap">hero</span></div>
+    <div class="word"><svg width="56" height="35" viewBox="0 0 160 100"><use href="#gap"/></svg><span class="a">Plan</span><span class="b">Movies</span></div>
+  </div>
+  <div class="row">
+    <div class="cell"><div class="dark"><svg width="38" height="24" viewBox="0 0 160 100"><use href="#gap"/></svg></div><span class="cap">24</span></div>
+    <div class="cell"><div class="dark"><svg width="26" height="16" viewBox="0 0 160 100"><use href="#gap"/></svg></div><span class="cap">16</span></div>
+    <div class="cell"><div class="chip"><svg width="40" height="25" viewBox="0 0 160 100"><use href="#gap"/></svg></div><span class="cap">on white</span></div>
+  </div>
+</div>
+
+<div class="section">3 · The Holler</div>
+<div class="desc">The "I'm in" hand thrown up when the plan lands. The only concept that's a person. Pure warmth and energy — aimed straight at "it has no life." (Roughest build of the three; judge the energy, not the finish.)</div>
+<div class="card">
+  <div class="states">
+    <div class="st"><svg width="92" height="92"><use href="#holler"/></svg><span class="cap">hero</span></div>
+    <div class="word"><svg width="34" height="34" viewBox="0 0 100 100"><use href="#holler"/></svg><span class="a">Plan</span><span class="b">Movies</span></div>
+  </div>
+  <div class="row">
+    <div class="cell"><div class="dark"><svg width="24" height="24"><use href="#holler"/></svg></div><span class="cap">24</span></div>
+    <div class="cell"><div class="dark"><svg width="16" height="16"><use href="#holler"/></svg></div><span class="cap">16</span></div>
+    <div class="cell"><div class="chip"><svg width="22" height="22"><use href="#holler"/></svg></div><span class="cap">on white</span></div>
+  </div>
+</div>
+</body>
+</html>

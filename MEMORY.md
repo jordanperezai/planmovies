@@ -40,7 +40,9 @@
 - var(--mono) = data only. 8 type scale tokens: --text-xs(11px) through --text-3xl(clamp). Tokenized throughout.
 - Single-scroll three-act page SHIPPED (session 12). No Movie tab. Timeline + category toggle. Commit 3e1e9af.
 - Audit score 15.5/20 (session 13). All P0-P3 fixes applied to index.html (uncommitted). Key: amber-dim token, toast live region, heading semantics, non-blocking Supabase, scaleX progress bar, 44px tap targets, safe-area nav.
-- Logo exploration: 13 boards, 200+ concepts, 2 ranger sessions (visual-03, product-09). No winner. Dead ends in `logos/README.md`. Brief: warm/cinematic/social/"we're all seeing it together," NOT nostalgic/precious/type-tropes/cold-diagrams.
+- Logo: screen-O wordmark LIVE as placeholder (PLANM[screen-O]VIES, Clash Display, planmovies.com). ~20 directions tried across sessions 13-15; all rejected on feeling. Meta-conclusion: no static SVG mark delivers the hit; feeling lives in the brand world. Park post-launch; brief documented in logo-maker skill + Logo Rangers sessions.
+- Logo Rangers team: `rangers/logo/` (Haviv/Scher/Hische/Draplin/Leader + Bierut verifier). 2 sessions logged. Run via `/logo-rangers`.
+- logo-maker skill: `.claude/skills/logo-maker/`. Full memory + references. Anti-thrash rule: stop after 3 misses, get positive reference or run `/logo-rangers`.
 - og:image share card (not favicon) is the branding surface that drives group-chat tap-through. See product-09.
 - Crew hero is playable: tap opens official trailer inline. No modal, no new page.
 - Landing page: carousel dots replaced by crew avatars. Director badge on organizer. "Jordan & Sarai are going" stays below.

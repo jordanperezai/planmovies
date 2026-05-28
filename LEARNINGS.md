@@ -67,6 +67,12 @@ Root cause: Tested the mark only on its home page background. Favicons and chat-
 Rule: Any SVG mark intended for favicon/app-icon/unfurl use must use true transparency for cuts (mask or fill-rule:evenodd). Never use a background-color fill to fake negative space. Test on both dark AND white backgrounds before calling it done.
 Enforced in: `rangers/visual/memory.md` § Dead Directions.
 
+**#11 Logo boards without a positive reference always thrash — stop at 3 misses -- 2026-05-28**
+Mistake: Kept generating new logo boards (20 total across sessions 13–15) after repeated rejections, each time guessing at a new direction instead of diagnosing why every direction was failing.
+Root cause: The search was defined entirely by "no"s with zero "yes" anchors. Jordan never named a real-world logo he admired — so every board was a blind guess into the dark. Also: we kept asking a 32px static glyph to deliver an emotional hit that structurally lives in the brand world (motion, photography, copy), not a mark.
+Rule: After 3 consecutive rejected logo directions, STOP generating. Do one of: (1) ask for 2–3 real-world logos the user loves and what specifically hits; (2) run `/logo-rangers` to diagnose; (3) name the meta-problem ("this is a world problem, not a mark problem") and recommend a human designer. More boards won't fix a missing positive reference.
+Enforced in: `.claude/skills/logo-maker/SKILL.md` § Step 3.5 Anti-thrash.
+
 ---
 
 ### Format

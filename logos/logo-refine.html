@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — refining the screen-O</title>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg-deep:#07080a; --bg-card:#12151b; --gold:#c9a84c; --cream:#e8e6e1; --text-secondary:#8a8880; }
+  *{box-sizing:border-box;}
+  body{background:var(--bg-deep);color:var(--cream);font-family:system-ui,sans-serif;margin:0;padding:34px 22px 70px;}
+  h1{font-weight:800;font-size:20px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--text-secondary);font-size:13px;margin-bottom:24px;max-width:760px;line-height:1.55;}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:1040px;}
+  @media(max-width:740px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--bg-card);border-radius:14px;padding:24px 20px 18px;display:flex;flex-direction:column;gap:16px;}
+  .lab{color:var(--gold);font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;}
+  .note{color:var(--text-secondary);font-size:11px;margin-top:-10px;line-height:1.4;}
+  .word{display:inline-flex;align-items:center;font-family:'Clash Display',sans-serif;font-weight:700;letter-spacing:-1.5px;text-transform:uppercase;font-size:42px;}
+  .word .a{color:var(--cream);} .word .b{color:var(--gold);} .word svg{display:block;}
+  .row{display:flex;gap:16px;align-items:flex-end;}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .cap{color:var(--text-secondary);font-size:9px;}
+  .chip{background:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:6px;}
+  .dark{background:#07080a;border:1px solid rgba(255,255,255,.07);border-radius:7px;display:flex;align-items:center;justify-content:center;padding:6px;}
+</style>
+</head>
+<body>
+<h1>Refining the screen-O — the real spec this time</h1>
+<div class="sub">Heavy ring vs the slot, cinemascope width, floated high vs centered, round vs squircle. Each shown big in the word (where it lives) and tiny (where it has to survive). The live one is V0 — the lazy ellipse. Pick the tuning that finally looks intentional.</div>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <!-- V0 live (lazy): medium ring, smallish centered-ish slot -->
+  <mask id="v0"><rect width="100" height="100" fill="#fff"/><rect x="23" y="33" width="54" height="23" rx="5" fill="#000"/></mask>
+  <symbol id="O0" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="44" ry="43" fill="var(--gold)" mask="url(#v0)"/></symbol>
+
+  <!-- V1 panel spec: heavy ring, wide cinemascope slot (3.1:1), floated high -->
+  <mask id="v1"><rect width="100" height="100" fill="#fff"/><rect x="21" y="33" width="58" height="18" rx="3.5" fill="#000"/></mask>
+  <symbol id="O1" viewBox="0 0 100 100"><ellipse cx="50" cy="51" rx="46" ry="45" fill="var(--gold)" mask="url(#v1)"/></symbol>
+
+  <!-- V2 cinemascope 2.35:1, floated high, heavy ring -->
+  <mask id="v2"><rect width="100" height="100" fill="#fff"/><rect x="24" y="35" width="52" height="22" rx="4" fill="#000"/></mask>
+  <symbol id="O2" viewBox="0 0 100 100"><ellipse cx="50" cy="51" rx="46" ry="45" fill="var(--gold)" mask="url(#v2)"/></symbol>
+
+  <!-- V3 squircle O (more TV/screen), wide slot floated high -->
+  <mask id="v3"><rect width="100" height="100" fill="#fff"/><rect x="22" y="34" width="56" height="20" rx="4" fill="#000"/></mask>
+  <symbol id="O3" viewBox="0 0 100 100"><rect x="5" y="9" width="90" height="84" rx="30" fill="var(--gold)" mask="url(#v3)"/></symbol>
+
+  <!-- V4 screen-forward: lighter ring, big slot, slight float -->
+  <mask id="v4"><rect width="100" height="100" fill="#fff"/><rect x="19" y="37" width="62" height="25" rx="5" fill="#000"/></mask>
+  <symbol id="O4" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="46" ry="45" fill="var(--gold)" mask="url(#v4)"/></symbol>
+</defs></svg>
+
+<div class="grid">
+
+  <div class="card"><div class="lab">V0 · live now (lazy ellipse)</div><div class="note">medium ring, narrow-ish slot, centered — the one you're looking at</div>
+    <div class="word"><span class="a">PLANM</span><svg width="38" height="38" viewBox="0 0 100 100"><use href="#O0"/></svg><span class="b">VIES</span></div>
+    <div class="row"><div class="cell"><div class="dark"><svg width="48" height="48"><use href="#O0"/></svg></div><span class="cap">48</span></div><div class="cell"><div class="dark"><svg width="24" height="24"><use href="#O0"/></svg></div><span class="cap">24</span></div><div class="cell"><div class="dark"><svg width="16" height="16"><use href="#O0"/></svg></div><span class="cap">16</span></div><div class="cell"><div class="chip"><svg width="20" height="20"><use href="#O0"/></svg></div><span class="cap">white</span></div></div></div>
+
+  <div class="card"><div class="lab">V1 · panel spec — heavy ring, wide slot, floated high</div><div class="note">3.1:1 letterbox, fat ring, screen pushed up = "seen from a seat"</div>
+    <div class="word"><span class="a">PLANM</span><svg width="38" height="38" viewBox="0 0 100 100"><use href="#O1"/></svg><span class="b">VIES</span></div>
+    <div class="row"><div class="cell"><div class="dark"><svg width="48" height="48"><use href="#O1"/></svg></div><span class="cap">48</span></div><div class="cell"><div class="dark"><svg width="24" height="24"><use href="#O1"/></svg></div><span class="cap">24</span></div><div class="cell"><div class="dark"><svg width="16" height="16"><use href="#O1"/></svg></div><span class="cap">16</span></div><div class="cell"><div class="chip"><svg width="20" height="20"><use href="#O1"/></svg></div><span class="cap">white</span></div></div></div>
+
+  <div class="card"><div class="lab">V2 · cinemascope 2.35:1, floated high</div><div class="note">a touch taller slot than V1, still heavy ring</div>
+    <div class="word"><span class="a">PLANM</span><svg width="38" height="38" viewBox="0 0 100 100"><use href="#O2"/></svg><span class="b">VIES</span></div>
+    <div class="row"><div class="cell"><div class="dark"><svg width="48" height="48"><use href="#O2"/></svg></div><span class="cap">48</span></div><div class="cell"><div class="dark"><svg width="24" height="24"><use href="#O2"/></svg></div><span class="cap">24</span></div><div class="cell"><div class="dark"><svg width="16" height="16"><use href="#O2"/></svg></div><span class="cap">16</span></div><div class="cell"><div class="chip"><svg width="20" height="20"><use href="#O2"/></svg></div><span class="cap">white</span></div></div></div>
+
+  <div class="card"><div class="lab">V3 · squircle O (more "screen/TV")</div><div class="note">rounded-square instead of round — reads more like a literal screen</div>
+    <div class="word"><span class="a">PLANM</span><svg width="38" height="38" viewBox="0 0 100 100"><use href="#O3"/></svg><span class="b">VIES</span></div>
+    <div class="row"><div class="cell"><div class="dark"><svg width="48" height="48"><use href="#O3"/></svg></div><span class="cap">48</span></div><div class="cell"><div class="dark"><svg width="24" height="24"><use href="#O3"/></svg></div><span class="cap">24</span></div><div class="cell"><div class="dark"><svg width="16" height="16"><use href="#O3"/></svg></div><span class="cap">16</span></div><div class="cell"><div class="chip"><svg width="20" height="20"><use href="#O3"/></svg></div><span class="cap">white</span></div></div></div>
+
+  <div class="card"><div class="lab">V4 · screen-forward (lighter ring, big slot)</div><div class="note">slot dominates — most obviously a screen, least like an O</div>
+    <div class="word"><span class="a">PLANM</span><svg width="38" height="38" viewBox="0 0 100 100"><use href="#O4"/></svg><span class="b">VIES</span></div>
+    <div class="row"><div class="cell"><div class="dark"><svg width="48" height="48"><use href="#O4"/></svg></div><span class="cap">48</span></div><div class="cell"><div class="dark"><svg width="24" height="24"><use href="#O4"/></svg></div><span class="cap">24</span></div><div class="cell"><div class="dark"><svg width="16" height="16"><use href="#O4"/></svg></div><span class="cap">16</span></div><div class="cell"><div class="chip"><svg width="20" height="20"><use href="#O4"/></svg></div><span class="cap">white</span></div></div></div>
+
+</div>
+</body>
+</html>

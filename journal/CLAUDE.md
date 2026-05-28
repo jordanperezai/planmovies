@@ -62,3 +62,4 @@ Every journal entry follows the magazine format:
 | 10 | 2026-05-28 | [The Mirror](2026-05-28-01-the-mirror.md) |
 | 11 | 2026-05-28 | [The Merge](2026-05-28-02-the-merge.md) |
 | 12 | 2026-05-28 | [The Mark](2026-05-28-03-the-mark.md) |
+| 13 | 2026-05-28 | [The Hunt](2026-05-28-04-the-hunt.md) |
