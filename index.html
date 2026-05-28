@@ -2069,6 +2069,48 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   font-size: 14px; line-height: 1.6; color: var(--text-secondary);
   white-space: pre-wrap; margin-bottom: 12px;
 }
+
+/* CREW PAGE HERO */
+.crew-hero {
+  position: relative; margin: -68px -16px 0; padding: 0;
+  overflow: hidden;
+}
+.crew-hero-poster {
+  width: 100%; height: 320px; object-fit: cover;
+  filter: brightness(0.5) saturate(1.2);
+  display: block;
+}
+.crew-hero-gradient {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+  background: linear-gradient(to top, var(--bg-deep) 0%, transparent 100%);
+}
+.crew-hero-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 0 20px 20px; z-index: 2;
+}
+.crew-hero-venue {
+  font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;
+}
+.crew-hero-title {
+  font-family: var(--display); font-size: 28px; font-weight: 800;
+  color: var(--text-primary); line-height: 1.1; margin-bottom: 4px;
+}
+.crew-hero-sub {
+  font-size: 14px; color: var(--gold-warm); font-weight: 500;
+}
+.crew-body { padding-top: 24px; }
+.crew-body > * + * { margin-top: 24px; }
+.crew-avatars-section { text-align: center; }
+.crew-avatars-section .crew-avatars { justify-content: center; }
+.crew-avatars-section .crew-summary {
+  font-size: 15px; margin-top: 10px; color: var(--text-secondary);
+}
+.crew-rsvp-card {
+  padding: 24px 20px; background: var(--bg-card);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius);
+}
+.crew-rsvp-card .form-group { margin-bottom: 16px; }
+.crew-rsvp-card .form-group:last-of-type { margin-bottom: 20px; }
 </style>
 </head>
 <body>
@@ -2156,10 +2198,16 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   </div>
 
   <!-- DASHBOARD -->
-  <section id="page-dashboard" class="page">
-    <div class="page-header">
-      <div class="page-eyebrow">DISCLOSURE DAY</div>
-      <h2 class="page-title">The Crew</h2>
+  <section id="page-dashboard" class="page" style="padding-top:52px;">
+
+    <div class="crew-hero">
+      <img class="crew-hero-poster" src="https://image.tmdb.org/t/p/w1280/5p6BsJtnPbglYN15MuiUEppPl0f.jpg" alt="Disclosure Day">
+      <div class="crew-hero-gradient"></div>
+      <div class="crew-hero-content">
+        <div class="crew-hero-venue">Regal Secaucus · Fri Jun 12 · 7:00 PM</div>
+        <div class="crew-hero-title">Disclosure Day</div>
+        <div class="crew-hero-sub">Opening Night</div>
+      </div>
     </div>
 
     <div id="tickets-live-banner" class="tickets-banner" style="display:none;">
@@ -2178,10 +2226,13 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <a id="tickets-live-link" class="tickets-banner-cta" href="https://www.regmovies.com/movies/disclosure-day-ho00020460" target="_blank" rel="noopener">BUY NOW</a>
     </div>
 
-    <div class="section-header">The Crew</div>
-    <div id="crew-list-family" style="margin-bottom:16px;"></div>
+    <div class="crew-body">
 
-    <div class="countdown-frame" id="countdown-dash" style="margin-bottom:20px;">
+    <div class="crew-avatars-section">
+      <div id="crew-list-family"></div>
+    </div>
+
+    <div class="countdown-frame" id="countdown-dash">
       <div class="cf-sprocket"><span></span><span></span><span></span><span></span></div>
       <div class="cf-digits">
         <div class="cf-unit"><span class="cf-num cf-days-sync">--</span><span class="cf-label">DAYS</span></div>
@@ -2195,36 +2246,38 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <div class="cf-sprocket"><span></span><span></span><span></span><span></span></div>
     </div>
 
+    <div id="dress-code-area"></div>
+
     <div id="inline-rsvp">
-      <div style="padding:12px 0 16px;">
-        <p style="font-family:var(--font);font-size:15px;color:var(--text-secondary);">Your turn.</p>
+      <div class="crew-rsvp-card">
+        <p style="font-family:var(--font);font-size:15px;color:var(--text-secondary);margin-bottom:16px;">Your turn.</p>
+        <form id="rsvp-form" onsubmit="submitRSVP(event)">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input class="form-input" type="text" id="f-name" placeholder="First and last name" required autocapitalize="words">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Are You Coming?</label>
+            <div class="radio-group" id="f-status">
+              <label class="radio-pill selected"><input type="radio" name="status" value="confirmed" checked>I'm Going</label>
+              <label class="radio-pill"><input type="radio" name="status" value="cant">Can't Make It</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">How many people total?</label>
+            <div class="radio-group" id="f-party">
+              <label class="radio-pill selected"><input type="radio" name="party" value="1" checked>1</label>
+              <label class="radio-pill"><input type="radio" name="party" value="2">2</label>
+              <label class="radio-pill"><input type="radio" name="party" value="3">3</label>
+              <label class="radio-pill"><input type="radio" name="party" value="4">4</label>
+              <label class="radio-pill"><input type="radio" name="party" value="5">5</label>
+            </div>
+          </div>
+          <input type="hidden" id="f-theater" value="regal-secaucus">
+          <input type="hidden" name="format" value="standard">
+          <button class="submit-btn" type="submit" id="submit-btn">Count Me In</button>
+        </form>
       </div>
-      <form id="rsvp-form" onsubmit="submitRSVP(event)">
-        <div class="form-group">
-          <label class="form-label">Your Name</label>
-          <input class="form-input" type="text" id="f-name" placeholder="First and last name" required autocapitalize="words">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Are You Coming?</label>
-          <div class="radio-group" id="f-status">
-            <label class="radio-pill selected"><input type="radio" name="status" value="confirmed" checked>I'm Going</label>
-            <label class="radio-pill"><input type="radio" name="status" value="cant">Can't Make It</label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">How many people total?</label>
-          <div class="radio-group" id="f-party">
-            <label class="radio-pill selected"><input type="radio" name="party" value="1" checked>1</label>
-            <label class="radio-pill"><input type="radio" name="party" value="2">2</label>
-            <label class="radio-pill"><input type="radio" name="party" value="3">3</label>
-            <label class="radio-pill"><input type="radio" name="party" value="4">4</label>
-            <label class="radio-pill"><input type="radio" name="party" value="5">5</label>
-          </div>
-        </div>
-        <input type="hidden" id="f-theater" value="regal-secaucus">
-        <input type="hidden" name="format" value="standard">
-        <button class="submit-btn" type="submit" id="submit-btn">Count Me In</button>
-      </form>
       <div id="rsvp-confirmation" style="display:none;">
         <div style="text-align:center;padding:32px 0 24px;">
           <div style="font-size:32px;margin-bottom:16px;">&#127916;</div>
@@ -2278,18 +2331,6 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
     <div class="atmos-divider"></div>
 
-    <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);margin-bottom:16px;">
-      <div style="width:48px;height:48px;border-radius:var(--radius-sm);overflow:hidden;flex-shrink:0;">
-        <img src="assets/regal-secaucus.jpg" alt="Regal Secaucus" style="width:100%;height:100%;object-fit:cover;">
-      </div>
-      <div>
-        <div style="font-family:var(--display);font-size:14px;font-weight:700;color:var(--text-primary);">Regal Secaucus</div>
-        <div style="font-size:12px;color:var(--text-tertiary);">Fri Jun 12 · 7:00 PM · Recliners</div>
-      </div>
-    </div>
-
-    <div id="dress-code-area"></div>
-
     <div id="activity-feed-section" style="margin-bottom:20px;">
       <div class="section-header">What's Happening</div>
       <div id="activity-feed" class="feed-list"></div>
@@ -2320,6 +2361,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div style="text-align:center;padding:16px 0 8px;font-family:var(--font);font-size:13px;color:var(--text-tertiary);">
       <span style="color:var(--text-tertiary);font-size:12px;">Send this to someone</span> <button onclick="shareWhatsApp()" style="background:none;border:none;cursor:pointer;padding:4px 8px;vertical-align:middle;" aria-label="Share on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button><button onclick="shareIMessage()" style="background:none;border:none;cursor:pointer;padding:4px 8px;vertical-align:middle;" aria-label="Share via Text"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg></button>
     </div>
+
+    </div><!-- end crew-body -->
 
     <div class="org-only">
       <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-subtle);">
