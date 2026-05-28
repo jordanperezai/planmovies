@@ -22,3 +22,8 @@ Always start with `01`. This prevents having to rename the first file when a sec
 
 | Date | Title |
 |---|---|
+| 2026-05-27 | [Disclosure Day Ethos](2026-05-27-01-disclosure-ethos.md) |
+| 2026-05-27 | [Partiful Platform Audit](2026-05-27-02-partiful-audit.md) |
+| 2026-05-27 | [Reddit & Market Demand](2026-05-27-03-reddit-demand.md) |
+| 2026-05-27 | [Atom Tickets Competitive Audit](2026-05-27-04-atom-tickets-audit.md) |
+| 2026-05-27 | [Complete Product Feature Map](2026-05-27-05-product-feature-map.md) |

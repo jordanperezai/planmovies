@@ -1,49 +1,21 @@
 # HANDOFF.md -- PlanMovies Session Handoff
 
 > **Purpose:** Bring a new session up to speed instantly.
-> **Last updated:** 2026-05-27 (Session 8)
+> **Last updated:** 2026-05-27 (Session 9)
 > **Not for:** Permanent knowledge (-> MEMORY.md), mistakes (-> LEARNINGS.md).
 
 ## Where We Left Off
 
-Session 8 complete. Major UX overhaul: RSVP consolidated into crew page, landing locked to single viewport, avatar row crew list (Partiful-style), full movie tab restructure. 31 commits. planmovies.com fully live and polished.
+Session 9 complete. Full product vision session. No code changes. Research, brainstorming, and product design only. planmovies.com unchanged (commit 3b47371).
 
-**What shipped (session 8):**
-- Stripe Payment Link URL fixed (`bJe00jdykaNS4Tj8D23F600` is the working one)
-- "ghgj" test RSVP deleted from Supabase
-- Trailer carousel: 5 trailers (Official, Teaser, Super Bowl, TV Spot, Final Trailer)
-- Behind the Scenes carousel: 3 videos (Spielberg First Look, Colbert, Emily Blunt)
-- Two carousels separated: Trailers & Spots vs Behind the Scenes
-- Movie tab restructured: This Is Actually Happening → In Their Words → World Governments → Declassified Files → Rabbit Hole → Go Deeper
-- 8 World Government quotes (Belgium, Brazil, UK, Chile, Japan x2, France, Peru)
-- "This Is Happening Around the World" standalone section with transition beat "And it's not just America."
-- "The Declassified Files" as featured standalone section (gold border, WAR.GOV button)
-- Headlines: top 6 shown, Show More for 12 more. NYT 2017, 60 Minutes, NPR, Pentagon, Trump order lead.
-- Jake Barber + Matthew Brown added to Witnesses section (NewsNation, verified YouTube IDs)
-- World Governments + headlines: Show 3/Show More pattern
-- Go Deeper: emojis removed
-- Section order: credibility cascade (people → publications → world → files → rabbit hole)
-- RSVP + Crew consolidated into one page (The Crew tab)
-- Payment section hidden until after RSVP submission
-- "THE CREW" label above list, "Your turn." as form intro
-- Radio pills: 16px/24px padding, 12px gaps (accessibility)
-- Payment button: outline gold (not solid, prevents confusion with RSVP submit)
-- Crew list: Partiful-style horizontal avatar row with "+N more" overflow
-- Summary line: "Jordan & Sarai are going"
-- RSVP: 2 options only (I'm Going / Can't Make It)
-- Theater photo (Regal Secaucus) on crew page and RSVP area
-- Landing: locked to 100dvh (single viewport, no scroll)
-- Landing: "Opening Night" badge and "RSVP OPEN" removed
-- Landing: FRI JUN 12 · 7:00 PM (showtime added)
-- Landing: tagline removed, social proof + CTA only
-- Countdown hidden until 3 days out
-- Scroll-to-top on page load/reload
-- OG tags: "You're Invited: Disclosure Day", Jordan-specific description with showtime
-- Name auto-capitalize + Title Case enforcement in JS
-- First names only on crew list (friendlier)
-- "Sarai perez" → "Sarai Perez" fixed in Supabase
-- Product Rangers session 06: organizer flow (verdicts recorded)
-- Product Rangers session 07 + Visual Rangers + Family Personas: crew page audit (6 fixes applied)
+**What was produced (session 9):**
+- Partiful audit: 22 screenshots + web app, 12 feature categories mapped (`research/2026-05-27-02-partiful-audit.md`)
+- Atom Tickets audit: $178M raised, acquired by Fever, social features stripped (`research/2026-05-27-04-atom-tickets-audit.md`)
+- Reddit demand research: market validated, 8-25 person group underserved (`research/2026-05-27-03-reddit-demand.md`)
+- Complete product feature map: 79 features, 12 categories (`research/2026-05-27-05-product-feature-map.md`)
+- Full ranger vision session: 93 new features proposed, 15 "magic" features (`rangers/product/sessions/product-08-complete-product-vision.md`)
+- Auth + profile system designed by rangers (phone auth before RSVP, Supabase Auth + Twilio Verify, no A2P needed)
+- Core product concepts: Named Crew, One Movie Identity, Three-Beat Cadence Engine, Auto-Theme from Poster
 
 **Current live state:**
 - planmovies.com fully live, last commit 3b47371
@@ -54,38 +26,67 @@ Session 8 complete. Major UX overhaul: RSVP consolidated into crew page, landing
 
 ## Immediate Next Actions
 
-1. **Send planmovies.com to family.** 15 days until June 12. Still not sent. This is the only blocker.
-2. **RSVP yourself** if you haven't already (Jordan is in, add +1s if bringing anyone)
-3. **Activity/updates feed** (Partiful-inspired, next feature to build)
-4. **Waitlist email capture** ("Plan your own movie night?") at the bottom
+**Build (no blockers, start immediately):**
+1. **Phone auth RSVP flow** — Supabase Auth + Twilio Verify. Phone + Name → SMS code → RSVP. No A2P registration needed.
+2. **Custom OG image** — 1200x630 landscape. Current portrait poster is center-cropped in iMessage/WhatsApp. Broken.
+3. **Profile photos** — Upload after RSVP confirmation. Photos sort first in avatar row. Jordan's photo goes up first.
+4. **Activity feed** — Automated events ("Sarai RSVPed!") + organizer manual posts. Crew page, chronological.
+5. **Share prompt** — Post-RSVP: "Bring someone else?" with WhatsApp/iMessage buttons.
+6. **Film-frame countdown** — Always visible on landing + crew page. Cinematic style.
+7. **Crew one-line status** — Each crew member sets a one-liner ("Can't wait", "Bringing snacks").
+8. **"What to Know" primer** — Short section for skeptics (Lisa, Carmen). Surface best Movie tab content.
+9. **Organizer manual-add** — Add Carmen/Ray from dashboard. Claim flow for later verification.
+10. **Send planmovies.com to family** — 16 days until June 12.
+
+## Key Decisions (Session 9)
+
+- **Auth model:** Phone auth before RSVP. Supabase Auth + Twilio Verify. No A2P 10DLC needed.
+- **Named Crew:** Persistent social object across events. "The Perez Family Movie Club." Core product concept.
+- **One Movie Identity:** Profile feature where user picks one movie to represent them. Poster = identity.
+- **No public discovery:** Features 9.1-9.6 dropped for now. Security complexity with strangers deferred.
+- **No in-app chat:** WhatsApp owns real-time. PlanMovies generates messages, organizer sends them.
+- **No A2P needed:** Twilio Verify handles OTP on pre-registered channels. All crew communication goes through organizer's WhatsApp/iMessage.
+- **Movie is the theme:** No template selector. Auto-Theme from Poster extracts palette from TMDB poster art.
 
 ## Goals
 
-**Now (before June 12):**
-- Send planmovies.com to family — NOTHING ELSE MATTERS UNTIL THIS IS DONE
-- Activity feed: organizer posts updates crew sees ("Tickets bought!" etc.)
-- Waitlist email capture for platform interest
+**Now (before sending to family):**
+- Phone auth + profiles (photos in avatar row)
+- Fix OG image (landscape 1200x630)
+- Activity feed + share prompt
+- Film-frame countdown
+- "What to Know" primer for skeptics
 
-**Post-June 12 (platform build):**
-- Full Stripe Connect Express onboarding (organizer signup UI, OAuth flow)
-- TMDB movie search + auto poster
-- API-driven event creation (replaces manual form)
-- Webhook payment tracking
-- Tighten Supabase RLS (currently open for testing)
-- Secret token org URL (replace ?org=1)
-- Obsession movie night as second event (proof of platform)
-- Reddit launch: "free tool for Disclosure Day group movie nights"
-- Partiful-inspired: photo album, profile badges, calendar, explore/discover
-- Custom OG image (1200x630, landscape format for iMessage/WhatsApp preview)
+**After family send:**
+- Anticipation phase (content unlock calendar, milestone markers)
+- Organizer payment tracker + nudge generator
+- Post-event: photo album, crew rating, morning-after recap
+- Named Crew page (persistent across events)
+- Crew Picks voting + clone event
+- Ticket delivery as designed artifact
+- Movie Night Kit timeline
+- Event creation wizard (TMDB search → date → theater → price → share)
+- Founding Crew badge for Disclosure Day attendees
 
 ## Things NOT to Do
 
-1. Don't add a framework. Single HTML file intentional. Framework is post-June 12.
-2. Don't expand to other events until Disclosure Day is fully coordinated.
-3. Don't build automated purchasing. NJ criminal statute (4th degree crime). Monitor and alert only.
-4. Don't touch the Supabase anon key hardcoded in index.html. RLS policies are the security layer.
-5. Don't remove "THIS IS REAL" headlines from RSVP page. Jordan's call: immersion converts.
-6. Don't show payment status on family crew list. Payment tracking is organizer-only. Ticket icon for everyone.
-7. Don't hardcode content one-off. Use data arrays (POSTERS, OFFICIAL_QUOTES, RECOMMENDED) + render functions.
-8. Don't commit .env. It is gitignored. Never force-add it.
-9. Don't randomize headlines. They are ranked by impact. Order is intentional.
+1. Don't add a framework. Single HTML file intentional.
+2. Don't build automated purchasing. NJ criminal statute (4th degree crime). Monitor and alert only.
+3. Don't touch the Supabase anon key hardcoded in index.html. RLS policies are the security layer.
+4. Don't show payment status on family crew list. Payment tracking is organizer-only. Ticket icon for everyone.
+5. Don't hardcode content one-off. Use data arrays + render functions.
+6. Don't commit .env. It is gitignored. Never force-add it.
+7. Don't randomize headlines. They are ranked by impact. Order is intentional.
+8. Don't build in-app chat. PlanMovies generates messages for WhatsApp/iMessage. Don't compete with messaging apps.
+9. Don't add a theme/template selector for events. The movie poster IS the theme. Auto-extract, don't ask.
+10. Don't build public discovery yet. Security complexity with strangers joining crews is unresolved.
+
+## Reference Docs (Session 9)
+
+| Doc | What |
+|---|---|
+| `research/2026-05-27-02-partiful-audit.md` | Full Partiful feature audit |
+| `research/2026-05-27-03-reddit-demand.md` | Reddit demand signals + market validation |
+| `research/2026-05-27-04-atom-tickets-audit.md` | Atom Tickets competitive audit |
+| `research/2026-05-27-05-product-feature-map.md` | Complete 79-feature product map |
+| `rangers/product/sessions/product-08-complete-product-vision.md` | Full ranger vision session (487 lines) |

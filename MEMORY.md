@@ -22,7 +22,13 @@
 - Content live: 4-poster carousel, 39 quotes (1947-2026, 6 categories incl. World Governments), 5 trailer videos + 3 BTS videos, Declassified Files section, 33 Go Deeper items. All data arrays + render functions.
 - UX: RSVP + Crew consolidated (one page). Payment hidden until RSVP. Crew list = Partiful avatar row. Landing = 100dvh single frame, no scroll.
 - Credibility cascade on Movie tab: quotes (presidents) → headlines (NYT/60min) → world governments → declassified files → rabbit hole → go deeper.
-- Partiful reference: avatar row shipped. Activity feed + waitlist capture are next. Post-Jun 12: photo album, profiles, calendar, explore.
+- Partiful audited (session 9): 22 screenshots + web app. Key insight: event lifecycle, not static page. Their social proof + onboarding is best-in-class.
+- Atom Tickets audited (session 9): $178M raised from Disney/Fox/Lionsgate. Acquired by Fever 2025. Social features stripped. Gap they left = PlanMovies.
+- Auth decided: Supabase Auth + Twilio Verify for phone OTP before RSVP. No A2P 10DLC needed. Escape valve: organizer manual-add.
+- Named Crew = core product concept. Persistent social object across events. "The Perez Family Movie Club." The product's soul.
+- One Movie Identity: profile feature, pick one movie to represent you. Poster = visual identity. Jordan's idea.
+- Product vision: 79 features mapped + 93 proposed by rangers. Full map: `research/2026-05-27-05-product-feature-map.md`.
+- All crew communication via organizer's WhatsApp/iMessage. PlanMovies generates messages, doesn't send SMS. No A2P needed.
 - Stripe Connect Express proven: `workers/planmovies-api/` Worker live. Full flow tested: product→price→Payment Link on connected account, $2.50 platform fee via `application_fee_amount`. PLANMOVIES on statement.
 - PlanMovies Stripe account separate from Jordan/Arugami. Test connected account: `acct_1TbmyLGaAORvGiJm`. Platform fee = $2.50/ticket → $25K/month at 1K events.
 - Platform plan: `.claude/plans/piped-spinning-lamport.md`. Stripe Connect Express, Cloudflare Worker API, Supabase organizers/events/payments schema. Post-June 12.
@@ -49,3 +55,4 @@
 | 2026-05-27 (s6) | Content expansion shipped (carousel, 31 quotes, 33 Go Deeper). Payment section. Stripe Connect Express proven end-to-end. workers/planmovies-api/ built and deployed. Platform revenue model validated. |
 | 2026-05-27 (s7) | PlanMovies Stripe account activated (live). Live Payment Link wired in ($18). planmovies.com fully live. No more blockers. |
 | 2026-05-27 (s8) | 31 commits. Movie tab restructured (credibility cascade). RSVP+Crew consolidated. Landing single viewport. Partiful avatar row. Rangers 06+07. 6 crew page audit fixes. Jake Barber + Matthew Brown added. World Govts section. Declassified Files featured. |
+| 2026-05-27 (s9) | Product vision session. Partiful audit (22 screenshots). Atom Tickets audit ($178M, acquired). Reddit demand validated. 79 features mapped + 93 proposed. Named Crew + One Movie Identity + auth design. No code changes. |
