@@ -2217,12 +2217,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <a id="tickets-live-link" class="tickets-banner-cta" href="https://www.regmovies.com/movies/disclosure-day-ho00020460" target="_blank" rel="noopener">BUY NOW</a>
     </div>
 
-    <div style="margin-bottom:20px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-subtle);">
-      <img src="assets/regal-secaucus.jpg" alt="Regal Secaucus ShowPlace 14" style="width:100%;display:block;">
-      <div style="padding:10px 14px;background:var(--bg-card);font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--text-tertiary);">REGAL SECAUCUS · FRI JUN 12 · 7:00 PM</div>
-    </div>
-
-    <div id="dress-code-area"></div>
+    <div class="section-header">The Crew</div>
+    <div id="crew-list-family" style="margin-bottom:16px;"></div>
 
     <div class="countdown-frame" id="countdown-dash" style="margin-bottom:20px;">
       <div class="cf-sprocket"><span></span><span></span><span></span><span></span></div>
@@ -2238,31 +2234,6 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <div class="cf-sprocket"><span></span><span></span><span></span><span></span></div>
     </div>
 
-    <div class="section-header">The Crew</div>
-    <div id="crew-list-family" style="margin-bottom:16px;"></div>
-
-    <div class="atmos-divider"></div>
-
-    <div id="primer-section" style="margin-bottom:24px;">
-      <div class="section-header">Before You Go</div>
-      <div class="primer-card">
-        <div class="primer-card-q">What is Disclosure Day?</div>
-        <div class="primer-card-a">A new Steven Spielberg film about a small-town family who witnesses something in the sky that changes everything. Spielberg's first UFO movie since Close Encounters (1977). Written by David Koepp. Score by John Williams at 93.</div>
-      </div>
-      <div class="primer-card">
-        <div class="primer-card-q">Why opening night?</div>
-        <div class="primer-card-a">Some movies you see whenever. This one is a first-night-together movie. The whole crew, same theater, same row, same reaction. That's the point.</div>
-      </div>
-      <div class="primer-card">
-        <div class="primer-card-q">Do I need to know anything about UFOs?</div>
-        <div class="primer-card-a">No. Spielberg makes movies for everyone. But if you're curious, check the Movie tab. There's a reason this film is coming out now.</div>
-      </div>
-      <div class="primer-card">
-        <div class="primer-card-q">How does payment work?</div>
-        <div class="primer-card-a">Jordan buys all tickets together so the crew sits in the same row. After you RSVP, you'll see a link to pay your share ($18). Zelle works too.</div>
-      </div>
-    </div>
-
     <div id="inline-rsvp">
       <div style="padding:12px 0 16px;">
         <p style="font-family:var(--font);font-size:15px;color:var(--text-secondary);">Your turn.</p>
@@ -2270,19 +2241,19 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <form id="rsvp-form" onsubmit="submitRSVP(event)">
         <div id="auth-step-phone" class="auth-step active">
           <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input class="form-input" type="text" id="f-name" placeholder="First and last name" required autocapitalize="words">
+          </div>
+          <div class="form-group">
             <label class="form-label">Your Phone</label>
             <div class="phone-input-wrap">
               <span class="country-code">+1</span>
               <input class="phone-number" type="tel" id="f-phone" placeholder="(555) 123-4567" inputmode="numeric" autocomplete="tel-national" maxlength="14">
             </div>
           </div>
-          <div class="form-group">
-            <label class="form-label">Your Name</label>
-            <input class="form-input" type="text" id="f-name" placeholder="First and last name" required autocapitalize="words">
-          </div>
           <button class="submit-btn" type="button" id="send-code-btn" onclick="sendVerificationCode()">SEND CODE</button>
-          <p class="auth-subtle">We'll text you a 6-digit code to verify. Standard rates apply.</p>
-          <button type="button" onclick="skipPhoneAuth()" style="display:block;margin:8px auto 0;background:none;border:none;font-size:12px;color:var(--text-tertiary);cursor:pointer;padding:4px 8px;">Skip for now</button>
+          <p class="auth-subtle">We'll text you a code to verify your number.</p>
+          <button type="button" onclick="skipPhoneAuth()" style="display:block;margin:10px auto 0;padding:8px 20px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-size:14px;font-family:var(--font);color:var(--text-secondary);cursor:pointer;">Skip, just RSVP</button>
         </div>
         <div id="auth-step-otp" class="auth-step">
           <div class="form-group">
@@ -2355,6 +2326,35 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <a class="payment-proof" id="payment-proof-link" href="https://www.fandango.com/regal-secaucus-showplace-aankh/theater-page" target="_blank" rel="noopener">Verify price on Fandango</a>
       <a class="payment-stripe-btn" id="payment-stripe-btn" href="#" target="_blank" rel="noopener" style="display:none;">PAY FOR YOUR TICKET</a>
       <div class="payment-fallback">Prefer Zelle? Text Jordan.</div>
+    </div>
+
+    <div class="atmos-divider"></div>
+
+    <div style="margin-bottom:20px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-subtle);">
+      <img src="assets/regal-secaucus.jpg" alt="Regal Secaucus ShowPlace 14" style="width:100%;display:block;">
+      <div style="padding:10px 14px;background:var(--bg-card);font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--text-tertiary);">REGAL SECAUCUS · FRI JUN 12 · 7:00 PM</div>
+    </div>
+
+    <div id="dress-code-area"></div>
+
+    <div id="primer-section" style="margin-bottom:24px;">
+      <div class="section-header">Before You Go</div>
+      <div class="primer-card">
+        <div class="primer-card-q">What is Disclosure Day?</div>
+        <div class="primer-card-a">A new Steven Spielberg film about a small-town family who witnesses something in the sky that changes everything. Spielberg's first UFO movie since Close Encounters (1977). Written by David Koepp. Score by John Williams at 93.</div>
+      </div>
+      <div class="primer-card">
+        <div class="primer-card-q">Why opening night?</div>
+        <div class="primer-card-a">Some movies you see whenever. This one is a first-night-together movie. The whole crew, same theater, same row, same reaction. That's the point.</div>
+      </div>
+      <div class="primer-card">
+        <div class="primer-card-q">Do I need to know anything about UFOs?</div>
+        <div class="primer-card-a">No. Spielberg makes movies for everyone. But if you're curious, check the Movie tab. There's a reason this film is coming out now.</div>
+      </div>
+      <div class="primer-card">
+        <div class="primer-card-q">How does payment work?</div>
+        <div class="primer-card-a">Jordan buys all tickets together so the crew sits in the same row. After you RSVP, you'll see a link to pay your share ($18). Zelle works too.</div>
+      </div>
     </div>
 
     <div class="atmos-divider"></div>
@@ -2874,8 +2874,8 @@ function initialize() {
   document.getElementById('sticky-cta').style.opacity = '0';
   showPage('dashboard');
   setTimeout(() => {
-    const rsvp = document.getElementById('inline-rsvp');
-    if (rsvp) rsvp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const crew = document.getElementById('crew-list-family');
+    if (crew) crew.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 200);
 }
 
