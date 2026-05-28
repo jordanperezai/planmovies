@@ -49,6 +49,18 @@ Root cause: Assumed JSON.stringify makes all strings safe for inline HTML attrib
 Rule: Never pass user-derived strings as inline onclick arguments. Use a data array (movieSearchResults[i]) and pass only an integer index. The data stays in JS, the HTML attribute stays safe.
 Enforced in: pickOneMovieByIndex() pattern — integer index only in HTML, full object in the JS array.
 
+**#8 Node scripts for HTML restructure: use string markers, not line numbers — 2026-05-28**
+Mistake: First merge attempt produced a 10-line file. Node script used `\\n` in split/join causing incorrect line counting. The actual content was fine, but the script's validation reported wrong size.
+Root cause: String escaping in node scripts written via Write tool: `\\n` in the Write tool parameter becomes `\n` in the file, which is a newline in JS. But `html.split('\\n')` in the source becomes `html.split('\n')` which is correct. The line count display was wrong, but the content was valid.
+Rule: After any node script restructure, verify with `wc -l` and `grep` for expected markers, not just the script's own console output. Always check the actual file state independently.
+Enforced in: CLAUDE.md Pattern #1 (success signal without ground-truth check).
+
+**#9 XSS: user-derived strings need esc() in ALL template literal paths — 2026-05-28**
+Mistake: Codex adversarial review found attendee names interpolated without esc() in some renderFamilyCrew, showConfirmation, and activity feed paths. esc() existed but wasn't consistently applied everywhere.
+Root cause: When adding new render paths (crew dots, landing strip, category view), esc() calls were omitted. Each new HTML-building function is a fresh XSS risk.
+Rule: Any function that builds innerHTML from Supabase data must wrap every user-derived field in esc(). Review list: name, status_line, photo_url alt text, activity messages. Treat Supabase data as untrusted input.
+Enforced in: Code review pattern — search for `.name` and `.message` in innerHTML template literals.
+
 ---
 
 ### Format

@@ -35,16 +35,22 @@
 - Supabase now has: rsvps, seat_assignments, ticket_status, organizers, events, payments. Jordan is first organizer row. Disclosure Day is first event row.
 - Cloudflare native git integration blocked: jordanperezai personal GitHub account doesn't appear in Cloudflare Pages dropdown. GitHub Actions is the workaround.
 
-- Design critique scores: heuristics 26/40 (est), AI slop 4.0/10 (est). Uppercase: 29→7. Letter-spacing: 71→24. Inline styles: 230→182. Tokenized font-sizes: 252.
+- Design critique scores: heuristics 26/40, AI slop 3.5/10. Full impeccable pipeline run session 12.
 - DESIGN.md codifies Page DNA: hero visual → social proof → primary action → context. Read before ANY UI work.
-- var(--mono) = data only. 8 type scale tokens: --text-xs(11px) through --text-3xl(clamp). 252 tokenized declarations.
-- RSVP form: name + going + party size + submit. No phone gate. Phone is optional post-RSVP. Confirmed correct by all personas.
-- Crew page: poster hero (backdrop, dimmed, gradient fade) + 24px breathing room. "whoa! so much better" — Jordan.
-- Merged page direction confirmed (3/3 personas). "The Movie" tab → anchor scroll to timeline. Three acts: movie → reality break → evidence. NOT YET BUILT — mockup-merged.html v4.
-- Side panels on mobile rejected: "I think I broke it" (Tia Rosa). "Annoying" (Marco). Scroll, not slide.
+- var(--mono) = data only. 8 type scale tokens: --text-xs(11px) through --text-3xl(clamp). Tokenized throughout.
+- Single-scroll three-act page SHIPPED (session 12). No Movie tab. Timeline + category toggle. Commit 3e1e9af.
+- Crew hero is playable: tap opens official trailer inline. No modal, no new page.
+- Landing page: carousel dots replaced by crew avatars. Director badge on organizer. "Jordan & Sarai are going" stays below.
+- Activity feed language: "joined the crew" / "created the crew". Not "RSVPed".
+- Desktop responsive: full-bleed hero, 720/800px content width. No more phone frame on desktop.
+- Codex adversarial review standard: run every session. Found 11 issues in session 12 (2 XSS P0s). Fixed all.
+- --gold-dim bumped #8a7234→#9a8240 (WCAG AA). --amber-dim token added.
+- Zone backgrounds: .zone-social (gold tint), .zone-form (warm), .zone-movie (blue), .zone-evidence (blue→gold).
+- RSVP form: name + going + party size + submit. Party size hidden when "Can't Make It". Phone post-RSVP optional.
 - One Movie Identity: profile tab, TMDB search, poster badge on crew avatars. Needs TMDB API key (Jordan's task).
-- activity_feed table live. Phone auth built (skip-by-default). crew-photos bucket live. one_movie columns in rsvps.
+- activity_feed table live. crew-photos bucket live. one_movie columns in rsvps.
 - planmovies-api Worker: /api/og live with RSVP count SVG. Static backdrop still og:image (iMessage/WhatsApp don't support SVG).
+- scripts/ directory: 4 node scripts for batch HTML/CSS restructuring. Reference before similar large-scale edits.
 
 ## Warm (reference)
 
@@ -69,3 +75,4 @@
 | 2026-05-27 (s9) | Product vision session. Partiful audit (22 screenshots). Atom Tickets audit ($178M, acquired). Reddit demand validated. 79 features mapped + 93 proposed. Named Crew + One Movie Identity + auth design. No code changes. |
 | 2026-05-27 (s10) | 9 features built + full design overhaul. Design scores: heuristics 24/40, AI slop 5.0/10. Phone auth, activity feed, crew photos, font role reset. index.html 3930 lines. Pushed. |
 | 2026-05-28 (s11) | 7 commits. Poster hero crew page. Auth simplified. Typography cleanup (29→7 uppercase, 71→24 ls, 252 tokenized). Audit pass (a11y, lazy loading). DESIGN.md. Merged page direction confirmed (mockup v4). index.html 4300 lines. |
+| 2026-05-28 (s12) | 1 commit (3e1e9af). Two-tab → single-scroll three-act merge. Full impeccable pipeline. Desktop responsive. Codex review (11 issues fixed). Crew avatars on landing. index.html 4697 lines. |

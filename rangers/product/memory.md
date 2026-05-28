@@ -47,6 +47,12 @@ Jordan gravitates toward Murthy's social dynamics lens and Kim's coordinator-bur
 
 - **Phone auth as the default RSVP gate.** Why: 3/3 personas — Tia Rosa can't complete OTP, Marco is annoyed, Sofia doesn't trust it. RSVP = name only. Phone is post-RSVP optional. Do not re-gate. last-confirmed: 2026-05-28
 - **Full movie press kit (poster + cast + filmmaker quotes + trailers) before the RSVP form.** Why: Pushes the form to screen 6. Tia Rosa never reaches it. Sofia needs a one-line pitch, not a press kit. Keep movie details below the form. last-confirmed: 2026-05-28
+- **Post-RSVP screen showing phone + status + photo + crew list all at once.** Why: Overloads a celebration moment with 7 action areas. Confirmed by Codex review as P1 UX issue. Collapsed behind "Set up your profile" button. last-confirmed: 2026-05-28
+
+## Validated Principles (session 12 additions)
+
+- **Carousel dots as social proof beats carousel dots as indicators.** Context: When people are going, replacing abstract dots with their faces on the landing page is more emotionally compelling and tells you WHO is going before you even tap in. Crew avatars on landing with Director badge. cadence: stable. last-confirmed: 2026-05-28
+- **Run Codex adversarial review before every deploy.** Context: Session 12 found 2 XSS P0s + 9 other issues. A 10-minute adversarial pass prevents production security issues. The ROI is asymmetric. cadence: stable. last-confirmed: 2026-05-28
 
 ## Distillation Log
 

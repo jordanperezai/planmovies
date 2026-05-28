@@ -60,3 +60,4 @@ Every journal entry follows the magazine format:
 | 08 | 2026-05-27 | [The Crew](2026-05-27-05-the-crew.md) |
 | 09 | 2026-05-27 | [The Critique](2026-05-27-06-the-critique.md) |
 | 10 | 2026-05-28 | [The Mirror](2026-05-28-01-the-mirror.md) |
+| 11 | 2026-05-28 | [The Merge](2026-05-28-02-the-merge.md) |

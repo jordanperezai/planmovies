@@ -1,45 +1,36 @@
 # HANDOFF.md -- PlanMovies Session Handoff
 
 > **Purpose:** Bring a new session up to speed instantly.
-> **Last updated:** 2026-05-28 (Session 11)
+> **Last updated:** 2026-05-28 (Session 12)
 > **Not for:** Permanent knowledge (-> MEMORY.md), mistakes (-> LEARNINGS.md).
 
 ## Where We Left Off
 
-Session 11 complete. Massive design quality pass + architecture exploration.
+Session 12 complete. Two-tab layout merged into single-scroll three-act page. Codex adversarial review ran. All 11 issues fixed. Deployed as `3e1e9af`.
 
-**Current state of index.html (4300 lines, commit `7eb82d5`):**
-- Crew page: poster hero, 24px breathing room, name-only RSVP form (no phone gate), "Got questions?" collapsible primer
-- Typography: sentence case everywhere except brand/eyebrows. 252 tokenized font-size declarations.
-- A11y: all form labels linked, aria-labels on inputs, `<main>` landmark, 14 lazy-loaded images
-- One Movie Identity: profile tab built, TMDB search ready (needs API key)
-- RSVP auth: phone is optional post-RSVP, not a gate
-- planmovies-api Worker: `/api/og` live with real RSVP count
-
-**Mockup (mockup-merged.html, untracked) — v4 hybrid:**
-Three-act merged page. Approved direction, not yet built into index.html.
-- Act 1: trailer hero → crew → countdown → one-line pitch → RSVP form
-- Reality Break: "The movie is based on real events. These events are happening now."
-- Act 2: Movie world (poster card, cast chips, filmmaker quotes, 2 trailers)
-- Act 3: Evidence (timeline 1947→2026 + category toggle)
-- Down the Rabbit Hole content library
+**Current state of index.html (4697 lines, commit `3e1e9af`):**
+- Single-scroll three-act page (no Movie tab). The Crew → movie world → reality break → evidence → rabbit hole.
+- Timeline with 35+ curated nodes, 6 category toggle, 17 headlines, declassified files carousel (3 videos).
+- Playable trailer hero (crew hero has play button → official trailer inline).
+- Landing page: carousel dots replaced by crew avatars with Director badge.
+- Desktop responsive: full-bleed hero, 720/800px content max-width.
+- Design scores: heuristics 26/40, AI slop 3.5/10.
+- Codex-hardened: XSS fixed, delegated event handlers, keyboard a11y.
 
 ## Immediate Next Actions
 
-1. **Build the merged page** — implement mockup v4 into index.html. Kill The Movie tab. One scroll, three acts, timeline + category toggle.
-2. **TMDB API key** — Jordan: register at themoviedb.org → paste into `TMDB_API_KEY` constant in index.html. One Movie Identity search becomes live.
-3. **Twilio Verify** — Jordan: Supabase → Auth → Providers → Phone. Phone auth OTP still blocked.
-4. **Send to family** — 15 days until June 12. Everything else is secondary.
+1. **TMDB API key** — Jordan: register at themoviedb.org → paste into `TMDB_API_KEY` constant in index.html (~line 4090). One Movie Identity search is live once this is in.
+2. **Twilio Verify** — Jordan: Supabase → Auth → Providers → Phone. Phone auth OTP still not configured.
+3. **Send to family** — 15 days until June 12. Everything else is secondary.
 
-## Key Decisions (Session 11)
+## Key Decisions (Session 12)
 
-- **Poster hero → RSVP at screen 3.** Crew page confirmed: hero visual → crew → countdown → one-line pitch → form. Never push the form deeper.
-- **RSVP = name only.** Phone is post-RSVP optional. "Get ticket updates via text." Tia Rosa shouldn't see a phone auth gate.
-- **Tabs → one page.** 3/3 personas chose merge over separate tabs. "The Movie" becomes an anchor scroll link to the evidence section.
-- **Three-act structure.** Movie sells. Reality Break pivots. Evidence (timeline) proves. Same content, right order.
-- **Timeline + category toggle.** Chronological builds narrative weight. Category view (Presidents, Military, etc.) delivers pattern recognition. Both. Toggle between them.
-- **Side panel rejected.** 3/3 personas: side panels on mobile = "I think I broke it." Scroll, not slide.
-- **Page DNA codified in DESIGN.md.** Every future page follows: hero visual → social proof → primary action → context.
+- **Merged page shipped.** The Movie tab is gone. One scroll, three acts. Timeline + category toggle handles all 40+ quotes.
+- **Carousel dots → crew avatars on landing.** The social proof is now the first thing you see after the poster. Director badge on Jordan.
+- **Activity feed language.** "Joined the crew" not "RSVPed." Jordan gets "created the crew."
+- **post-RSVP simplified.** Phone/status/photo behind "Set up your profile" button. Confirmation = just the celebration + share.
+- **Desktop responsive.** Page now works at any viewport. Hero is full-bleed. Content is max-width 720/800px.
+- **Codex adversarial review standard.** Ran it this session. Found 11 issues. All fixed. XSS, keyboard a11y, delegated handlers. Run it every session from now on.
 
 ## Goals
 
@@ -48,18 +39,20 @@ Three-act merged page. Approved direction, not yet built into index.html.
 - ✅ Design quality pass (typography, a11y, contrast, type scale)
 - ✅ Crew page redesign (poster hero, breathing room)
 - ✅ DESIGN.md and .impeccable.md updated
-- ☐ Merged page built (mockup v4 ready, not implemented)
+- ✅ Merged page built (session 12)
+- ✅ Full impeccable pipeline (critique, typeset, colorize, audit, adapt, polish)
+- ✅ Codex adversarial review
+- ✅ Desktop responsive
 - ☐ TMDB API key (Jordan)
 - ☐ Twilio Verify (Jordan)
-- ☐ Send to family — **14 days**
+- ☐ Send to family — **15 days**
 
 **After family send:**
-- Merged page: The Movie tab → inline timeline (mockup v4)
 - Anticipation phase: content unlock calendar, milestone markers
 - Organizer payment tracker + nudge generator
-- Post-event: photo album, crew rating, morning-after recap (recap generator built, needs use)
-- Named Crew page
-- Founding Crew badge (Disclosure Day attendees)
+- Post-event: photo album, crew rating, morning-after recap
+- Named Crew page + Founding Crew badge
+- Platform: Stripe Connect Express, multi-organizer
 
 ## Things NOT to Do
 
@@ -74,7 +67,8 @@ Three-act merged page. Approved direction, not yet built into index.html.
 9. Don't add a theme/template selector. The movie poster IS the theme.
 10. Don't build public discovery yet.
 11. Don't apply mono font to non-data text. var(--mono) = countdown, prices, timestamps, phone/OTP, seats only.
-12. Don't push the RSVP form below screen 3. Social proof (crew avatars) and pitch before form, never a full press kit before the form.
+12. Don't push the RSVP form below screen 3. Crew avatars + pitch before form. Never a press kit before the form.
+13. Don't re-open the tabs vs. single-scroll debate. Three-act merge is validated, shipped, and Codex-hardened.
 
 ## Reference Docs
 
@@ -82,6 +76,6 @@ Three-act merged page. Approved direction, not yet built into index.html.
 |---|---|
 | `DESIGN.md` | Platform design system. Page DNA, spacing, typography rules, anti-patterns. Read before ANY UI work. |
 | `.impeccable.md` | Design context + validated decisions. |
-| `mockup-merged.html` | v4 three-act hybrid mockup. The template for the merged page build. |
+| `scripts/` | Node scripts used for batch HTML/CSS restructuring. Reference before running similar changes. |
 | `research/2026-05-27-05-product-feature-map.md` | 79-feature product map |
 | `rangers/product/sessions/product-08-complete-product-vision.md` | Full ranger vision |
