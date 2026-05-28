@@ -1,0 +1,48 @@
+PLANMOVIES LOGO — WINNER VARIATIONS
+Front-runner: solid gold speech bubble, bright SCREEN + 3 backs-of-heads knocked
+out (figure-ground). Keep that core in every prompt. Flat, no gradient, no glow,
+no faces. Vary one thing at a time so it's easy to compare.
+================================================================================
+
+CORE (keep in all): Professional flat vector app logo. A solid gold speech bubble.
+Knocked out of it (figure-ground, true negative space): a bright screen rectangle
+at the top and the silhouettes of heads-and-shoulders seen FROM BEHIND facing the
+screen. No outlines, no gradient, no glow, no faces. Gold #c9a84c. Reads at 16px.
+Square 1:1, no text.
+
+--------------------------------------------------------------------------------
+V1 — ROUNDED-SQUARE BUBBLE (instead of round)
+...same core, but the bubble is a rounded square (squircle) instead of a circle.
+
+V2 — TWO HEADS (just you + one)
+...same core, but only TWO backs-of-heads. More intimate, "you and your person."
+
+V3 — FOUR HEADS (a packed crew)
+...same core, but FOUR backs-of-heads, shoulders overlapping. "Sold out, everyone
+came."
+
+V4 — TAIL BOTTOM-CENTER
+...same core, round bubble, but the speech-bubble tail points straight down from the
+center instead of the bottom-left.
+
+V5 — WIDE CINEMA SCREEN
+...same core, but the knocked-out screen is a wide 16:9 cinema rectangle and the
+heads are smaller beneath it (more "theater," less "meeting").
+
+V6 — PLAY ON THE SCREEN
+...same core, but add a small gold play triangle in the center of the bright screen
+(so the screen clearly reads "movie").
+
+V7 — GOLD ON NEAR-BLACK (dark version — we need this one)
+...same core, round bubble, 3 heads, but on a near-black background (#07080a). The
+bubble is gold, the screen and head-gaps are near-black (true transparency). This is
+how it will actually look in the app.
+
+V8 — TIGHTER CROP / BOLDER
+...same core, but the bubble fills more of the frame, thicker walls, chunkier heads
+— maximum boldness for tiny favicon use.
+
+================================================================================
+Send back the 2-3 you like. I'll trace the final into clean SVG: a full mark for
+hero/nav + a simplified glyph for the 16px favicon, in both gold-on-dark and
+gold-on-white.

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — board 6 · 8 distinct directions</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#07080a; --bg-card:#12151b; --gold:#c9a84c; --gold-mid:#b89a52; --gold-dim:#9c8243;
+    --cream:#e8e6e1; --text-secondary:#8a8880;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--bg-deep);color:var(--cream);font-family:'Inter',sans-serif;margin:0;padding:32px 20px;}
+  h1{font-weight:900;letter-spacing:-1px;font-size:22px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--text-secondary);font-size:13px;letter-spacing:.2px;margin-bottom:18px;max-width:780px;line-height:1.5;}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1180px;}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
+  .card{background:var(--bg-card);border-radius:12px;padding:20px 14px 14px;display:flex;flex-direction:column;align-items:center;gap:11px;}
+  .label{color:var(--gold);font-size:11px;font-weight:800;letter-spacing:.4px;text-align:center;min-height:30px;line-height:1.3;}
+  .job{color:var(--text-secondary);font-size:10px;font-weight:600;text-align:center;margin-top:-7px;}
+  .hero{height:80px;display:flex;align-items:center;justify-content:center;}
+  .wordmark{font-weight:900;letter-spacing:-1.2px;font-size:17px;}
+  .wordmark .a{color:var(--cream);}
+  .wordmark .b{color:var(--gold);}
+  .small{display:flex;align-items:flex-end;gap:11px;padding-top:11px;border-top:1px solid rgba(255,255,255,.06);width:100%;justify-content:center;}
+  .col{display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .cap{font-size:8.5px;color:var(--text-secondary);letter-spacing:.3px;}
+  .chip{width:26px;height:26px;border-radius:6px;background:#fff;display:flex;align-items:center;justify-content:center;}
+  .navsim{display:flex;align-items:center;gap:6px;}
+  .navsim span{font-size:11px;font-weight:900;letter-spacing:-.5px;color:var(--text-secondary);}
+</style>
+</head>
+<body>
+<h1>Board 6 — 8 distinct directions (Codex plan)</h1>
+<div class="sub">One clean candidate per direction, all in the same feel: dark, gold, cinematic, physical ticket/seat objects. Kill on recognition first — read each at 16px and on the white chip and ask "what is this?" before "do you like it?". Then: which one makes you feel the group is actually going?</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+
+  <!-- 1 Ticket as object -->
+  <mask id="d1"><rect width="100" height="100" fill="#fff"/>
+    <circle cx="12" cy="50" r="7" fill="#000"/><circle cx="88" cy="50" r="7" fill="#000"/>
+    <rect x="59" y="36" width="3" height="6" rx="1.5" fill="#000"/><rect x="59" y="47" width="3" height="6" rx="1.5" fill="#000"/><rect x="59" y="58" width="3" height="6" rx="1.5" fill="#000"/>
+  </mask>
+  <symbol id="g1" viewBox="0 0 100 100"><rect x="12" y="32" width="76" height="36" rx="9" fill="var(--gold)" mask="url(#d1)"/></symbol>
+
+  <!-- 2 Confirmed ticket (ticket + check) -->
+  <mask id="d2"><rect width="100" height="100" fill="#fff"/>
+    <circle cx="12" cy="50" r="7" fill="#000"/><circle cx="88" cy="50" r="7" fill="#000"/>
+    <path d="M38,50 L46,59 L63,40" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </mask>
+  <symbol id="g2" viewBox="0 0 100 100"><rect x="12" y="32" width="76" height="36" rx="9" fill="var(--gold)" mask="url(#d2)"/></symbol>
+
+  <!-- 3 Paired tickets -->
+  <symbol id="g3" viewBox="0 0 100 100">
+    <rect x="28" y="30" width="54" height="28" rx="7" fill="var(--gold-dim)"/>
+    <rect x="18" y="44" width="54" height="28" rx="7" fill="var(--gold)"/>
+  </symbol>
+
+  <!-- 4 Ticket fan (the crew) -->
+  <symbol id="g4" viewBox="0 0 100 100">
+    <g transform="rotate(-17 50 74)"><rect x="23" y="34" width="54" height="30" rx="6" fill="var(--gold-dim)"/></g>
+    <g transform="rotate(0 50 74)"><rect x="23" y="32" width="54" height="30" rx="6" fill="var(--gold-mid)"/></g>
+    <g transform="rotate(17 50 74)"><rect x="23" y="34" width="54" height="30" rx="6" fill="var(--gold)"/></g>
+  </symbol>
+
+  <!-- 5 Two-seat bench -->
+  <symbol id="g5" viewBox="0 0 100 100" fill="var(--gold)">
+    <rect x="14" y="54" width="72" height="24" rx="11"/>
+    <rect x="22" y="30" width="27" height="28" rx="11"/>
+    <rect x="51" y="30" width="27" height="28" rx="11"/>
+    <rect x="12" y="48" width="11" height="28" rx="5"/>
+    <rect x="77" y="48" width="11" height="28" rx="5"/>
+    <rect x="46" y="50" width="8" height="22" rx="4"/>
+  </symbol>
+
+  <!-- 6 Reserved row plate (a claimed row of seats, one silhouette) -->
+  <symbol id="g6" viewBox="0 0 100 100" fill="var(--gold)">
+    <rect x="14" y="56" width="72" height="20" rx="9"/>
+    <rect x="20" y="36" width="18" height="24" rx="8"/>
+    <rect x="41" y="36" width="18" height="24" rx="8"/>
+    <rect x="62" y="36" width="18" height="24" rx="8"/>
+  </symbol>
+
+  <!-- 7 Admit-one stamp (ticket + stamped ring) -->
+  <mask id="d7a"><rect width="100" height="100" fill="#fff"/>
+    <circle cx="14" cy="54" r="6.5" fill="#000"/><circle cx="86" cy="54" r="6.5" fill="#000"/>
+  </mask>
+  <mask id="d7b"><rect width="100" height="100" fill="#fff"/>
+    <circle cx="74" cy="32" r="8.5" fill="#000"/><circle cx="74" cy="32" r="3.5" fill="#fff"/>
+  </mask>
+  <symbol id="g7" viewBox="0 0 100 100">
+    <rect x="14" y="40" width="72" height="30" rx="8" fill="var(--gold)" mask="url(#d7a)"/>
+    <circle cx="74" cy="32" r="15" fill="var(--gold-dim)" mask="url(#d7b)"/>
+  </symbol>
+
+  <!-- 8 The stub you keep (torn ticket) -->
+  <mask id="d8"><rect width="100" height="100" fill="#fff"/>
+    <circle cx="14" cy="50" r="6.5" fill="#000"/>
+  </mask>
+  <symbol id="g8" viewBox="0 0 100 100"><g mask="url(#d8)" fill="var(--gold)">
+    <path d="M14,33 H64 l-7,5 l7,5 l-7,5 l7,5 l-7,5 l7,5 l-7,5 H14 a0,0 0 0 1 0,0 V33 Z"/>
+  </g></symbol>
+
+</defs></svg>
+
+<div class="grid">
+
+  <div class="card"><span class="label">1 · Ticket as object</span><span class="job">the plan became real</span>
+    <div class="hero"><svg width="80" height="80"><use href="#g1"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="16" height="16"><use href="#g1"/></svg><span class="cap">16</span></div>
+      <div class="col"><svg width="24" height="24"><use href="#g1"/></svg><span class="cap">24</span></div>
+      <div class="col"><div class="chip"><svg width="20" height="20"><use href="#g1"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="18" height="18"><use href="#g1"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">2 · Confirmed ticket</span><span class="job">I'm in</span>
+    <div class="hero"><svg width="80" height="80"><use href="#g2"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="16" height="16"><use href="#g2"/></svg><span class="cap">16</span></div>
+      <div class="col"><svg width="24" height="24"><use href="#g2"/></svg><span class="cap">24</span></div>
+      <div class="col"><div class="chip"><svg width="20" height="20"><use href="#g2"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="18" height="18"><use href="#g2"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">3 · Paired tickets</span><span class="job">got 'em for us</span>
+    <div class="hero"><svg width="80" height="80"><use href="#g3"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="16" height="16"><use href="#g3"/></svg><span class="cap">16</span></div>
+      <div class="col"><svg width="24" height="24"><use href="#g3"/></svg><span class="cap">24</span></div>
+      <div class="col"><div class="chip"><svg width="20" height="20"><use href="#g3"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="18" height="18"><use href="#g3"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">4 · Ticket fan</span><span class="job">who's in — the crew</span>
+    <div class="hero"><svg width="80" height="80"><use href="#g4"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="16" height="16"><use href="#g4"/></svg><span class="cap">16</span></div>
+      <div class="col"><svg width="24" height="24"><use href="#g4"/></svg><span class="cap">24</span></div>
+      <div class="col"><div class="chip"><svg width="20" height="20"><use href="#g4"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="18" height="18"><use href="#g4"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">5 · Two-seat bench</span><span class="job">same row, not alone</span>
+    <div class="hero"><svg width="80" height="80"><use href="#g5"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="16" height="16"><use href="#g5"/></svg><span class="cap">16</span></div>
+      <div class="col"><svg width="24" height="24"><use href="#g5"/></svg><span class="cap">24</span></div>
+      <div class="col"><div class="chip"><svg width="20" height="20"><use href="#g5"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="18" height="18"><use href="#g5"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">6 · Reserved row plate</span><span class="job">we claimed the row</span>
+    <div class="hero"><svg width="80" height="80"><use href="#g6"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="16" height="16"><use href="#g6"/></svg><span class="cap">16</span></div>
+      <div class="col"><svg width="24" height="24"><use href="#g6"/></svg><span class="cap">24</span></div>
+      <div class="col"><div class="chip"><svg width="20" height="20"><use href="#g6"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="18" height="18"><use href="#g6"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">7 · Admit-one stamp</span><span class="job">admitted (ritual)</span>
+    <div class="hero"><svg width="80" height="80"><use href="#g7"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="16" height="16"><use href="#g7"/></svg><span class="cap">16</span></div>
+      <div class="col"><svg width="24" height="24"><use href="#g7"/></svg><span class="cap">24</span></div>
+      <div class="col"><div class="chip"><svg width="20" height="20"><use href="#g7"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="18" height="18"><use href="#g7"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">8 · The stub you keep</span><span class="job">the keepsake</span>
+    <div class="hero"><svg width="80" height="80"><use href="#g8"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="16" height="16"><use href="#g8"/></svg><span class="cap">16</span></div>
+      <div class="col"><svg width="24" height="24"><use href="#g8"/></svg><span class="cap">24</span></div>
+      <div class="col"><div class="chip"><svg width="20" height="20"><use href="#g8"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="18" height="18"><use href="#g8"/></svg><span>PlanMovies</span></div></div></div>
+
+</div>
+</body>
+</html>

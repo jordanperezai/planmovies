@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — the chair</title>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg-deep:#07080a; --bg-card:#12151b; --gold:#c9a84c; --cream:#e8e6e1; --text-secondary:#8a8880; }
+  *{box-sizing:border-box;}
+  body{background:var(--bg-deep);color:var(--cream);font-family:system-ui,sans-serif;margin:0;padding:36px 22px 70px;}
+  h1{font-weight:800;font-size:20px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--text-secondary);font-size:13px;margin-bottom:26px;max-width:760px;line-height:1.55;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px;}
+  @media(max-width:760px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--bg-card);border-radius:14px;padding:24px 18px 16px;display:flex;flex-direction:column;align-items:center;gap:14px;}
+  .lab{color:var(--gold);font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;text-align:center;}
+  .note{color:var(--text-secondary);font-size:11px;text-align:center;margin-top:-8px;line-height:1.4;}
+  .word{display:inline-flex;align-items:center;font-family:'Clash Display',sans-serif;font-weight:700;letter-spacing:-1px;text-transform:uppercase;font-size:30px;}
+  .word .a{color:var(--cream);} .word .b{color:var(--gold);} .word svg{margin:0 -1px;}
+  .row{display:flex;gap:12px;align-items:flex-end;}
+  .cap{color:var(--text-secondary);font-size:9px;letter-spacing:1px;}
+  .chip{width:30px;height:30px;border-radius:7px;background:#fff;display:flex;align-items:center;justify-content:center;}
+</style>
+</head>
+<body>
+<h1>The chair — in the O, or on its own</h1>
+<div class="sub">The plush seat is the mark that made you feel something. Here it is hidden in the O's counter (negative space), versus standing alone as a legless glyph beside the wordmark. Screen-O shown for comparison. Watch the 16px column — that's where a chair gets muddy.</div>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <!-- screen O (control) -->
+  <mask id="c-scr"><rect width="100" height="100" fill="#fff"/><rect x="24" y="38" width="52" height="24" rx="5" fill="#000"/></mask>
+  <symbol id="Oscreen" viewBox="0 0 100 100"><rect x="8" y="12" width="84" height="76" rx="26" fill="var(--gold)" mask="url(#c-scr)"/></symbol>
+
+  <!-- chair cut into the O counter (legless plush seat as negative space) -->
+  <mask id="c-chair"><rect width="100" height="100" fill="#fff"/>
+    <g fill="#000">
+      <rect x="40" y="36" width="20" height="18" rx="6"/>            <!-- back -->
+      <rect x="34" y="44" width="7" height="16" rx="3"/>             <!-- left arm -->
+      <rect x="59" y="44" width="7" height="16" rx="3"/>             <!-- right arm -->
+      <rect x="37" y="52" width="26" height="12" rx="4"/>            <!-- cushion -->
+    </g>
+  </mask>
+  <symbol id="Ochair" viewBox="0 0 100 100"><rect x="6" y="10" width="88" height="80" rx="27" fill="var(--gold)" mask="url(#c-chair)"/></symbol>
+
+  <!-- standalone legless plush chair glyph (positive) -->
+  <symbol id="chairGlyph" viewBox="0 0 100 100" fill="var(--gold)">
+    <rect x="30" y="24" width="40" height="40" rx="14"/>            <!-- back -->
+    <rect x="19" y="44" width="15" height="32" rx="7"/>            <!-- left arm -->
+    <rect x="66" y="44" width="15" height="32" rx="7"/>            <!-- right arm -->
+    <rect x="26" y="56" width="48" height="22" rx="9"/>           <!-- cushion -->
+  </symbol>
+</defs></svg>
+
+<div class="grid">
+
+  <div class="card"><div class="lab">Chair in the O</div><div class="note">negative space — warmer than a screen, "your seat"</div>
+    <svg width="84" height="84"><use href="#Ochair"/></svg>
+    <div class="word"><span class="a">PLANM</span><svg width="30" height="30" viewBox="0 0 100 100"><use href="#Ochair"/></svg><span class="b">VIES</span></div>
+    <div class="row">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><svg width="16" height="16"><use href="#Ochair"/></svg><span class="cap">16px</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><svg width="24" height="24"><use href="#Ochair"/></svg><span class="cap">24px</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="chip"><svg width="24" height="24"><use href="#Ochair"/></svg></div><span class="cap">white</span></div>
+    </div>
+  </div>
+
+  <div class="card"><div class="lab">Chair as its own glyph</div><div class="note">legless plush seat + clean wordmark</div>
+    <svg width="84" height="84"><use href="#chairGlyph"/></svg>
+    <div class="word"><svg width="34" height="34" viewBox="0 0 100 100" style="margin-right:8px"><use href="#chairGlyph"/></svg><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="row">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><svg width="16" height="16"><use href="#chairGlyph"/></svg><span class="cap">16px</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><svg width="24" height="24"><use href="#chairGlyph"/></svg><span class="cap">24px</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="chip"><svg width="24" height="24"><use href="#chairGlyph"/></svg></div><span class="cap">white</span></div>
+    </div>
+  </div>
+
+  <div class="card"><div class="lab">Screen in the O</div><div class="note">for comparison — cleaner small, cooler feel</div>
+    <svg width="84" height="84"><use href="#Oscreen"/></svg>
+    <div class="word"><span class="a">PLANM</span><svg width="30" height="30" viewBox="0 0 100 100"><use href="#Oscreen"/></svg><span class="b">VIES</span></div>
+    <div class="row">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><svg width="16" height="16"><use href="#Oscreen"/></svg><span class="cap">16px</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><svg width="24" height="24"><use href="#Oscreen"/></svg><span class="cap">24px</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="chip"><svg width="24" height="24"><use href="#Oscreen"/></svg></div><span class="cap">white</span></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

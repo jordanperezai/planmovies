@@ -10,7 +10,7 @@
 - PlanMovies scaffolded 2026-05-25. Single HTML file. Cloudflare Pages. Supabase. Stripe LIVE (pk_live_51Sl2z64). Cloudflare Worker for ticket alerts.
 - First event: Disclosure Day (Spielberg) at Regal Secaucus. Opening night June 12 2026. Tickets ON SALE on Fandango (up to 20 seats/order).
 - Auto-deploy via GitHub Actions: push to main triggers `.github/workflows/deploy.yml` which deploys to Cloudflare Pages. Secrets in GitHub repo settings. Manual fallback: `CLOUDFLARE_ACCOUNT_ID=0ac90ecc2fb8de376efd32b25a466bfe npx wrangler pages deploy /Users/jordan/Desktop/PlanMovies --project-name=planmovies --branch=main --commit-dirty=true`
-- Two ranger teams in place. Product Rangers (structure/conversion, 5 sessions, memory earned). Visual Rangers (surface/feel, 2 sessions).
+- Three ranger teams in place. Product Rangers (structure/conversion). Visual Rangers (surface/feel). Logo Rangers (the brand mark — Haviv/Scher/Hische/Draplin/Leader + Bierut verifier; `rangers/logo/`, run via `/logo-rangers`).
 - Family/organizer split: planmovies.com = family view (crew list, 2 tabs). planmovies.com?org=1 = organizer (full dashboard, 4 tabs).
 - .impeccable.md exists in project root. Design context locked. Run any design skill without needing /impeccable teach.
 - Monospace reserved for data only: countdowns, status labels, metadata. Emotional content uses Inter. Credits use Barlow Condensed.
@@ -39,6 +39,9 @@
 - DESIGN.md codifies Page DNA: hero visual → social proof → primary action → context. Read before ANY UI work.
 - var(--mono) = data only. 8 type scale tokens: --text-xs(11px) through --text-3xl(clamp). Tokenized throughout.
 - Single-scroll three-act page SHIPPED (session 12). No Movie tab. Timeline + category toggle. Commit 3e1e9af.
+- Audit score 15.5/20 (session 13). All P0-P3 fixes applied to index.html (uncommitted). Key: amber-dim token, toast live region, heading semantics, non-blocking Supabase, scaleX progress bar, 44px tap targets, safe-area nav.
+- Logo exploration: 13 boards, 200+ concepts, 2 ranger sessions (visual-03, product-09). No winner. Dead ends in `logos/README.md`. Brief: warm/cinematic/social/"we're all seeing it together," NOT nostalgic/precious/type-tropes/cold-diagrams.
+- og:image share card (not favicon) is the branding surface that drives group-chat tap-through. See product-09.
 - Crew hero is playable: tap opens official trailer inline. No modal, no new page.
 - Landing page: carousel dots replaced by crew avatars. Director badge on organizer. "Jordan & Sarai are going" stays below.
 - Activity feed language: "joined the crew" / "created the crew". Not "RSVPed".

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — Direction A (held seat + play cut)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#07080a;--card:#12151b;--gold:#c9a84c;--ink:#e8e6e1;--mut:#8a8880;--display:'Barlow Condensed',sans-serif;}
+  *{box-sizing:border-box;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--display);margin:0;padding:28px 20px;}
+  h1{font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:18px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--mut);font-size:13px;letter-spacing:1px;margin-bottom:24px;max-width:640px;line-height:1.5;}
+  .eyebrow{color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:30px 0 12px;}
+  .hero{display:flex;align-items:center;gap:20px;background:var(--card);border-radius:14px;padding:30px;}
+  .wm{font-weight:700;letter-spacing:5px;text-transform:uppercase;font-size:30px;}
+  .wm b{color:var(--gold);font-weight:700;}
+  .row{display:flex;align-items:flex-end;gap:30px;flex-wrap:wrap;background:var(--card);border-radius:12px;padding:24px;}
+  .chip{display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .cap{font-size:10px;color:var(--mut);letter-spacing:1px;}
+  /* true-black swatch so the cut reads as a real hole, not card-colored */
+  .tb{background:var(--bg);border:1px solid rgba(255,255,255,.05);border-radius:8px;display:flex;align-items:center;justify-content:center;}
+  .navmock{display:flex;align-items:center;justify-content:space-between;background:rgba(7,8,10,.85);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:0 14px;height:52px;max-width:380px;}
+  .navmock .brand{display:flex;align-items:center;gap:8px;}
+  .navmock .brand span{font-weight:700;letter-spacing:2px;font-size:14px;color:var(--gold);text-transform:uppercase;}
+  .navmock .tabs{display:flex;gap:14px;}
+  .navmock .tabs span{font-size:11px;letter-spacing:1px;color:var(--mut);text-transform:uppercase;}
+</style>
+</head>
+<body>
+<h1>Direction A — held seat with the play cut out</h1>
+<div class="sub">One bold connected silhouette (no merging gaps), play cut to true black (#07080a) so it reads as a hole on any dark surface. Colors hardcoded. The one risk the rangers flagged: cut size. Compare S / M / L at real device sizes below — too small reads as a defect, too large and the seat stops reading.</div>
+
+<div class="hero">
+  <!-- default = Medium cut -->
+  <svg width="120" height="120" viewBox="0 0 100 100" aria-hidden="true">
+    <rect x="26" y="20" width="48" height="58" rx="15" fill="#c9a84c"/>
+    <rect x="15" y="46" width="17" height="30" rx="8" fill="#c9a84c"/>
+    <rect x="68" y="46" width="17" height="30" rx="8" fill="#c9a84c"/>
+    <polygon points="43,29 43,53 62,41" fill="#07080a"/>
+  </svg>
+  <div class="wm">Plan<b>Movies</b></div>
+</div>
+
+<div class="eyebrow">Cut size · S / M / L at 96px</div>
+<div class="row">
+  <div class="chip"><div class="tb" style="width:104px;height:104px;">
+    <svg width="96" height="96" viewBox="0 0 100 100"><rect x="26" y="20" width="48" height="58" rx="15" fill="#c9a84c"/><rect x="15" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><rect x="68" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><polygon points="45,32 45,50 59,41" fill="#07080a"/></svg>
+  </div><span class="cap">S cut</span></div>
+  <div class="chip"><div class="tb" style="width:104px;height:104px;">
+    <svg width="96" height="96" viewBox="0 0 100 100"><rect x="26" y="20" width="48" height="58" rx="15" fill="#c9a84c"/><rect x="15" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><rect x="68" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><polygon points="43,29 43,53 62,41" fill="#07080a"/></svg>
+  </div><span class="cap">M cut</span></div>
+  <div class="chip"><div class="tb" style="width:104px;height:104px;">
+    <svg width="96" height="96" viewBox="0 0 100 100"><rect x="26" y="20" width="48" height="58" rx="15" fill="#c9a84c"/><rect x="15" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><rect x="68" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><polygon points="42,27 42,57 65,42" fill="#07080a"/></svg>
+  </div><span class="cap">L cut</span></div>
+</div>
+
+<div class="eyebrow">M cut at real device sizes (on true black)</div>
+<div class="row">
+  <div class="chip"><div class="tb" style="width:56px;height:56px;">
+    <svg width="40" height="40" viewBox="0 0 100 100"><rect x="26" y="20" width="48" height="58" rx="15" fill="#c9a84c"/><rect x="15" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><rect x="68" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><polygon points="43,29 43,53 62,41" fill="#07080a"/></svg>
+  </div><span class="cap">40px chat</span></div>
+  <div class="chip"><div class="tb" style="width:40px;height:40px;">
+    <svg width="24" height="24" viewBox="0 0 100 100"><rect x="26" y="20" width="48" height="58" rx="15" fill="#c9a84c"/><rect x="15" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><rect x="68" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><polygon points="43,29 43,53 62,41" fill="#07080a"/></svg>
+  </div><span class="cap">24px</span></div>
+  <div class="chip"><div class="tb" style="width:36px;height:36px;">
+    <svg width="20" height="20" viewBox="0 0 100 100"><rect x="26" y="20" width="48" height="58" rx="15" fill="#c9a84c"/><rect x="15" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><rect x="68" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><polygon points="43,29 43,53 62,41" fill="#07080a"/></svg>
+  </div><span class="cap">20px nav</span></div>
+  <div class="chip"><div class="tb" style="width:32px;height:32px;">
+    <svg width="16" height="16" viewBox="0 0 100 100"><rect x="26" y="20" width="48" height="58" rx="15" fill="#c9a84c"/><rect x="15" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><rect x="68" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><polygon points="43,29 43,53 62,41" fill="#07080a"/></svg>
+  </div><span class="cap">16px favicon</span></div>
+</div>
+
+<div class="eyebrow">In the nav (mark beside wordmark, not inside it)</div>
+<div class="navmock">
+  <div class="brand">
+    <svg width="22" height="22" viewBox="0 0 100 100"><rect x="26" y="20" width="48" height="58" rx="15" fill="#c9a84c"/><rect x="15" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><rect x="68" y="46" width="17" height="30" rx="8" fill="#c9a84c"/><polygon points="43,29 43,53 62,41" fill="#07080a"/></svg>
+    <span>PlanMovies</span>
+  </div>
+  <div class="tabs"><span>The Crew</span><span>Seats</span><span>You</span></div>
+</div>
+
+</body>
+</html>

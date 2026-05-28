@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — three seats, two-tone (the reference)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#07080a;--card:#12151b;--gold:#c9a84c;--cream:#e8e6e1;--ink:#e8e6e1;--mut:#8a8880;--display:'Barlow Condensed',sans-serif;}
+  *{box-sizing:border-box;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--display);margin:0;padding:28px 20px;}
+  h1{font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:18px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--mut);font-size:13px;letter-spacing:.5px;margin-bottom:22px;max-width:660px;line-height:1.55;}
+  .eyebrow{color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:30px 0 12px;}
+  .row{display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap;background:var(--card);border-radius:12px;padding:22px;}
+  .chip{display:flex;flex-direction:column;align-items:center;gap:7px;}
+  .cap{font-size:10px;color:var(--mut);letter-spacing:1px;text-align:center;max-width:104px;}
+  .tile{background:var(--bg);border:1px solid rgba(255,255,255,.05);border-radius:22%;display:flex;align-items:center;justify-content:center;}
+  .stack{display:flex;flex-direction:column;align-items:center;gap:10px;background:var(--card);border-radius:14px;padding:30px;}
+  .stack .pm{font-weight:800;letter-spacing:7px;text-transform:uppercase;font-size:26px;color:var(--ink);}
+  .navmock{display:flex;align-items:center;justify-content:space-between;background:rgba(7,8,10,.85);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:0 14px;height:52px;max-width:380px;}
+  .navmock .brand{display:flex;align-items:center;gap:9px;}
+  .navmock .brand span{font-weight:700;letter-spacing:2px;font-size:14px;color:var(--gold);text-transform:uppercase;}
+  .navmock .tabs{display:flex;gap:14px;}
+  .navmock .tabs span{font-size:11px;letter-spacing:1px;color:var(--mut);text-transform:uppercase;}
+</style>
+</head>
+<body>
+<h1>Three seats, two-tone — faithful to your reference</h1>
+<div class="sub">Cream outer seats, gold center ("you"), thin dark armrest gaps between. The two-tone is what makes three seats read as three seats, not one blob. Stacked wordmark below, like the reference. Test sizes show where it stops reading and the favicon may need the simplified version.</div>
+
+<div class="eyebrow">The mark (96px on dark + in tile)</div>
+<div class="row">
+  <div class="chip"><div style="width:108px;height:108px;display:flex;align-items:center;justify-content:center;">
+    <svg width="96" height="60" viewBox="0 0 160 100">
+      <!-- left seat (cream) -->
+      <rect x="6"   y="30" width="40" height="44" rx="11" fill="#e8e6e1"/>
+      <!-- center seat (gold = you) -->
+      <rect x="60"  y="26" width="40" height="48" rx="11" fill="#c9a84c"/>
+      <!-- right seat (cream) -->
+      <rect x="114" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/>
+    </svg>
+  </div><span class="cap">on page bg</span></div>
+  <div class="chip"><div class="tile" style="width:108px;height:108px;">
+    <svg width="92" height="58" viewBox="0 0 160 100">
+      <rect x="6"   y="30" width="40" height="44" rx="11" fill="#e8e6e1"/>
+      <rect x="60"  y="26" width="40" height="48" rx="11" fill="#c9a84c"/>
+      <rect x="114" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/>
+    </svg>
+  </div><span class="cap">app tile</span></div>
+</div>
+
+<div class="eyebrow">Stacked lockup (like the reference)</div>
+<div class="stack">
+  <svg width="150" height="94" viewBox="0 0 160 100">
+    <rect x="6"   y="30" width="40" height="44" rx="11" fill="#e8e6e1"/>
+    <rect x="60"  y="26" width="40" height="48" rx="11" fill="#c9a84c"/>
+    <rect x="114" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/>
+  </svg>
+  <div class="pm">PlanMovies</div>
+</div>
+
+<div class="eyebrow">Real sizes in tile — 40 / 24 / 20 / 16px</div>
+<div class="row">
+  <div class="chip"><div class="tile" style="width:56px;height:56px;"><svg width="44" height="28" viewBox="0 0 160 100"><rect x="6" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/><rect x="60" y="26" width="40" height="48" rx="11" fill="#c9a84c"/><rect x="114" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/></svg></div><span class="cap">40</span></div>
+  <div class="chip"><div class="tile" style="width:40px;height:40px;"><svg width="30" height="19" viewBox="0 0 160 100"><rect x="6" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/><rect x="60" y="26" width="40" height="48" rx="11" fill="#c9a84c"/><rect x="114" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/></svg></div><span class="cap">24</span></div>
+  <div class="chip"><div class="tile" style="width:34px;height:34px;"><svg width="26" height="16" viewBox="0 0 160 100"><rect x="6" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/><rect x="60" y="26" width="40" height="48" rx="11" fill="#c9a84c"/><rect x="114" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/></svg></div><span class="cap">20</span></div>
+  <div class="chip"><div class="tile" style="width:28px;height:28px;"><svg width="22" height="14" viewBox="0 0 160 100"><rect x="6" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/><rect x="60" y="26" width="40" height="48" rx="11" fill="#c9a84c"/><rect x="114" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/></svg></div><span class="cap">16</span></div>
+</div>
+
+<div class="eyebrow">In the nav</div>
+<div class="navmock">
+  <div class="brand">
+    <svg width="34" height="21" viewBox="0 0 160 100"><rect x="6" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/><rect x="60" y="26" width="40" height="48" rx="11" fill="#c9a84c"/><rect x="114" y="30" width="40" height="44" rx="11" fill="#e8e6e1"/></svg>
+    <span>PlanMovies</span>
+  </div>
+  <div class="tabs"><span>The Crew</span><span>Seats</span><span>You</span></div>
+</div>
+
+</body>
+</html>

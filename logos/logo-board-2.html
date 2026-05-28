@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — board 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#07080a;--card:#12151b;--gold:#c9a84c;--goldhi:#f4d97a;--cream:#e8e6e1;--ink:#e8e6e1;--mut:#8a8880;}
+  *{box-sizing:border-box;}
+  body{background:var(--bg);color:var(--ink);font-family:'Barlow Condensed',sans-serif;margin:0;padding:28px 20px;}
+  h1{font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:18px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--mut);font-size:13px;letter-spacing:.5px;margin-bottom:22px;max-width:680px;line-height:1.5;}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:640px){.grid{grid-template-columns:repeat(2,1fr);}}
+  .card{background:var(--card);border-radius:14px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .tile{background:#050507;border:1px solid rgba(255,255,255,.05);border-radius:22%;display:flex;align-items:center;justify-content:center;}
+  .lab{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);text-align:center;min-height:28px;}
+  .row{display:flex;align-items:center;gap:10px;}
+  .cap{font-size:9px;color:var(--mut);}
+</style>
+</head>
+<body>
+<h1>PlanMovies — board 2 (fresh batch)</h1>
+<div class="sub">Distinct directions in the crisp flat style, aimed at "feels like PlanMovies." Big tile + 24px each. Point at any that have something.</div>
+
+<div class="grid">
+
+  <!-- 1 THEATER POV -->
+  <div class="card"><div class="tile" style="width:118px;height:118px;"><svg width="92" height="92" viewBox="0 0 100 100">
+    <rect x="26" y="12" width="48" height="18" rx="3" fill="#f4d97a"/>
+    <rect x="34" y="42" width="32" height="7" rx="3" fill="#c9a84c"/>
+    <rect x="27" y="56" width="46" height="8" rx="3" fill="#c9a84c"/>
+    <rect x="19" y="71" width="62" height="9" rx="4" fill="#c9a84c"/>
+  </svg></div><div class="row"><div class="tile" style="width:30px;height:30px;"><svg width="22" height="22" viewBox="0 0 100 100"><rect x="26" y="12" width="48" height="18" rx="3" fill="#f4d97a"/><rect x="34" y="42" width="32" height="7" rx="3" fill="#c9a84c"/><rect x="27" y="56" width="46" height="8" rx="3" fill="#c9a84c"/><rect x="19" y="71" width="62" height="9" rx="4" fill="#c9a84c"/></svg></div><span class="cap">24</span></div><div class="lab">1 · Theater POV (rows → screen)</div></div>
+
+  <!-- 2 AUDIENCE CROWD -->
+  <div class="card"><div class="tile" style="width:118px;height:118px;"><svg width="92" height="92" viewBox="0 0 100 100">
+    <circle cx="31" cy="48" r="10" fill="#e8e6e1"/><circle cx="69" cy="48" r="10" fill="#e8e6e1"/>
+    <circle cx="50" cy="40" r="11" fill="#c9a84c"/>
+    <circle cx="40" cy="66" r="10" fill="#e8e6e1"/><circle cx="60" cy="66" r="10" fill="#e8e6e1"/>
+  </svg></div><div class="row"><div class="tile" style="width:30px;height:30px;"><svg width="22" height="22" viewBox="0 0 100 100"><circle cx="31" cy="48" r="10" fill="#e8e6e1"/><circle cx="69" cy="48" r="10" fill="#e8e6e1"/><circle cx="50" cy="40" r="11" fill="#c9a84c"/><circle cx="40" cy="66" r="10" fill="#e8e6e1"/><circle cx="60" cy="66" r="10" fill="#e8e6e1"/></svg></div><span class="cap">24</span></div><div class="lab">2 · The crew (you = gold)</div></div>
+
+  <!-- 3 P MONOGRAM -->
+  <div class="card"><div class="tile" style="width:118px;height:118px;"><svg width="92" height="92" viewBox="0 0 100 100">
+    <rect x="30" y="18" width="13" height="62" rx="3" fill="#c9a84c"/>
+    <path d="M43,18 H58 a19,19 0 0 1 0,38 H43 Z" fill="#c9a84c"/>
+    <circle cx="54" cy="37" r="8" fill="#050507"/>
+  </svg></div><div class="row"><div class="tile" style="width:30px;height:30px;"><svg width="22" height="22" viewBox="0 0 100 100"><rect x="30" y="18" width="13" height="62" rx="3" fill="#c9a84c"/><path d="M43,18 H58 a19,19 0 0 1 0,38 H43 Z" fill="#c9a84c"/><circle cx="54" cy="37" r="8" fill="#050507"/></svg></div><span class="cap">24</span></div><div class="lab">3 · "P" monogram</div></div>
+
+  <!-- 4 PLUS ONE -->
+  <div class="card"><div class="tile" style="width:118px;height:118px;"><svg width="92" height="92" viewBox="0 0 100 100">
+    <rect x="22" y="22" width="56" height="56" rx="16" fill="#c9a84c"/>
+    <rect x="46" y="34" width="8" height="32" rx="4" fill="#050507"/>
+    <rect x="34" y="46" width="32" height="8" rx="4" fill="#050507"/>
+  </svg></div><div class="row"><div class="tile" style="width:30px;height:30px;"><svg width="22" height="22" viewBox="0 0 100 100"><rect x="22" y="22" width="56" height="56" rx="16" fill="#c9a84c"/><rect x="46" y="34" width="8" height="32" rx="4" fill="#050507"/><rect x="34" y="46" width="32" height="8" rx="4" fill="#050507"/></svg></div><span class="cap">24</span></div><div class="lab">4 · Count me in (+1)</div></div>
+
+  <!-- 5 CURTAINS -->
+  <div class="card"><div class="tile" style="width:118px;height:118px;"><svg width="92" height="92" viewBox="0 0 100 100">
+    <rect x="42" y="18" width="16" height="64" fill="#f4d97a"/>
+    <path d="M14,18 H42 V82 H14 Q22,50 14,18 Z" fill="#c9a84c"/>
+    <path d="M86,18 H58 V82 H86 Q78,50 86,18 Z" fill="#c9a84c"/>
+  </svg></div><div class="row"><div class="tile" style="width:30px;height:30px;"><svg width="22" height="22" viewBox="0 0 100 100"><rect x="42" y="18" width="16" height="64" fill="#f4d97a"/><path d="M14,18 H42 V82 H14 Q22,50 14,18 Z" fill="#c9a84c"/><path d="M86,18 H58 V82 H86 Q78,50 86,18 Z" fill="#c9a84c"/></svg></div><span class="cap">24</span></div><div class="lab">5 · Curtains (the reveal)</div></div>
+
+  <!-- 6 MODERN SEAL -->
+  <div class="card"><div class="tile" style="width:118px;height:118px;"><svg width="92" height="92" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="32" fill="none" stroke="#c9a84c" stroke-width="6"/>
+    <circle cx="50" cy="50" r="10" fill="#c9a84c"/>
+  </svg></div><div class="row"><div class="tile" style="width:30px;height:30px;"><svg width="22" height="22" viewBox="0 0 100 100"><circle cx="50" cy="50" r="32" fill="none" stroke="#c9a84c" stroke-width="6"/><circle cx="50" cy="50" r="10" fill="#c9a84c"/></svg></div><span class="cap">24</span></div><div class="lab">6 · Modern seal</div></div>
+
+  <!-- 7 MARQUEE GRID -->
+  <div class="card"><div class="tile" style="width:118px;height:118px;"><svg width="92" height="92" viewBox="0 0 100 100">
+    <rect x="22" y="30" width="16" height="16" rx="3" fill="none" stroke="#e8e6e1" stroke-width="3"/>
+    <rect x="42" y="30" width="16" height="16" rx="3" fill="#c9a84c"/>
+    <rect x="62" y="30" width="16" height="16" rx="3" fill="none" stroke="#e8e6e1" stroke-width="3"/>
+    <rect x="22" y="54" width="16" height="16" rx="3" fill="none" stroke="#e8e6e1" stroke-width="3"/>
+    <rect x="42" y="54" width="16" height="16" rx="3" fill="none" stroke="#e8e6e1" stroke-width="3"/>
+    <rect x="62" y="54" width="16" height="16" rx="3" fill="#c9a84c"/>
+  </svg></div><div class="row"><div class="tile" style="width:30px;height:30px;"><svg width="22" height="22" viewBox="0 0 100 100"><rect x="22" y="30" width="16" height="16" rx="3" fill="none" stroke="#e8e6e1" stroke-width="3"/><rect x="42" y="30" width="16" height="16" rx="3" fill="#c9a84c"/><rect x="62" y="30" width="16" height="16" rx="3" fill="none" stroke="#e8e6e1" stroke-width="3"/><rect x="22" y="54" width="16" height="16" rx="3" fill="none" stroke="#e8e6e1" stroke-width="3"/><rect x="42" y="54" width="16" height="16" rx="3" fill="none" stroke="#e8e6e1" stroke-width="3"/><rect x="62" y="54" width="16" height="16" rx="3" fill="#c9a84c"/></svg></div><span class="cap">24</span></div><div class="lab">7 · Letterboard grid</div></div>
+
+  <!-- 8 THREE CHECKS -->
+  <div class="card"><div class="tile" style="width:118px;height:118px;"><svg width="92" height="92" viewBox="0 0 100 100">
+    <path d="M22,50 l6,7 11,-14" fill="none" stroke="#e8e6e1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M44,52 l6,7 11,-14" fill="none" stroke="#c9a84c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M66,50 l6,7 11,-14" fill="none" stroke="#e8e6e1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg></div><div class="row"><div class="tile" style="width:30px;height:30px;"><svg width="22" height="22" viewBox="0 0 100 100"><path d="M22,50 l6,7 11,-14" fill="none" stroke="#e8e6e1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M44,52 l6,7 11,-14" fill="none" stroke="#c9a84c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M66,50 l6,7 11,-14" fill="none" stroke="#e8e6e1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="cap">24</span></div><div class="lab">8 · Everyone's in (checks)</div></div>
+
+  <!-- 9 CONVERGING ARROWS -->
+  <div class="card"><div class="tile" style="width:118px;height:118px;"><svg width="92" height="92" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="8" fill="#c9a84c"/>
+    <g fill="none" stroke="#e8e6e1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M50,18 l-7,8 M50,18 l7,8"/><path d="M50,82 l-7,-8 M50,82 l7,-8"/>
+      <path d="M18,50 l8,-7 M18,50 l8,7"/><path d="M82,50 l-8,-7 M82,50 l-8,7"/>
+    </g>
+  </svg></div><div class="row"><div class="tile" style="width:30px;height:30px;"><svg width="22" height="22" viewBox="0 0 100 100"><circle cx="50" cy="50" r="8" fill="#c9a84c"/><g fill="none" stroke="#e8e6e1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M50,18 l-7,8 M50,18 l7,8"/><path d="M50,82 l-7,-8 M50,82 l7,-8"/><path d="M18,50 l8,-7 M18,50 l8,7"/><path d="M82,50 l-8,-7 M82,50 l-8,7"/></g></svg></div><span class="cap">24</span></div><div class="lab">9 · We converge (meet here)</div></div>
+
+  <!-- 10 GROUP CHEVRONS -->
+  <div class="card"><div class="tile" style="width:118px;height:118px;"><svg width="92" height="92" viewBox="0 0 100 100">
+    <path d="M30,28 L50,50 L30,72" fill="none" stroke="#e8e6e1" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M52,28 L72,50 L52,72" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg></div><div class="row"><div class="tile" style="width:30px;height:30px;"><svg width="22" height="22" viewBox="0 0 100 100"><path d="M30,28 L50,50 L30,72" fill="none" stroke="#e8e6e1" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M52,28 L72,50 L52,72" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="cap">24</span></div><div class="lab">10 · Forward (chevrons)</div></div>
+
+  <!-- 11 TICKET STUB -->
+  <div class="card"><div class="tile" style="width:118px;height:118px;"><svg width="92" height="92" viewBox="0 0 100 100">
+    <rect x="16" y="34" width="68" height="32" rx="7" fill="#c9a84c"/>
+    <circle cx="16" cy="50" r="7" fill="#050507"/><circle cx="84" cy="50" r="7" fill="#050507"/>
+    <line x1="58" y1="38" x2="58" y2="62" stroke="#050507" stroke-width="2.5" stroke-dasharray="3 4"/>
+  </svg></div><div class="row"><div class="tile" style="width:30px;height:30px;"><svg width="22" height="22" viewBox="0 0 100 100"><rect x="16" y="34" width="68" height="32" rx="7" fill="#c9a84c"/><circle cx="16" cy="50" r="7" fill="#050507"/><circle cx="84" cy="50" r="7" fill="#050507"/></svg></div><span class="cap">24</span></div><div class="lab">11 · Ticket stub</div></div>
+
+  <!-- 12 CREW SHIELD -->
+  <div class="card"><div class="tile" style="width:118px;height:118px;"><svg width="92" height="92" viewBox="0 0 100 100">
+    <path d="M50,16 L78,26 V52 Q78,74 50,86 Q22,74 22,52 V26 Z" fill="none" stroke="#c9a84c" stroke-width="5"/>
+    <circle cx="40" cy="48" r="5" fill="#e8e6e1"/><circle cx="60" cy="48" r="5" fill="#e8e6e1"/><circle cx="50" cy="44" r="6.5" fill="#c9a84c"/>
+  </svg></div><div class="row"><div class="tile" style="width:30px;height:30px;"><svg width="22" height="22" viewBox="0 0 100 100"><path d="M50,16 L78,26 V52 Q78,74 50,86 Q22,74 22,52 V26 Z" fill="none" stroke="#c9a84c" stroke-width="5"/><circle cx="40" cy="48" r="5" fill="#e8e6e1"/><circle cx="60" cy="48" r="5" fill="#e8e6e1"/><circle cx="50" cy="44" r="6.5" fill="#c9a84c"/></svg></div><span class="cap">24</span></div><div class="lab">12 · Crew crest</div></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — wordmark as the logo (font test)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@800;900&family=Archivo+Black&family=Bebas+Neue&family=Oswald:wght@700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#07080a; --bg-card:#12151b; --gold:#c9a84c; --gold-warm:#b8984a;
+    --cream:#e8e6e1; --text-secondary:#8a8880;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--bg-deep);color:var(--cream);font-family:system-ui,sans-serif;margin:0;padding:36px 22px 60px;}
+  h1{font-weight:800;letter-spacing:-.5px;font-size:20px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--text-secondary);font-size:13px;margin-bottom:26px;max-width:740px;line-height:1.55;}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:1080px;}
+  @media(max-width:820px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--bg-card);border-radius:14px;padding:30px 26px 22px;}
+  .fontname{color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:2px;}
+  .note{color:var(--text-secondary);font-size:11px;margin-bottom:22px;}
+  .lockups{display:flex;align-items:flex-end;gap:40px;flex-wrap:wrap;}
+
+  /* stacked title-card lockup */
+  .stack{display:flex;flex-direction:column;line-height:.82;}
+  .stack .a{color:var(--cream);}
+  .stack .b{color:var(--gold);}
+  /* horizontal lockup */
+  .row{display:flex;align-items:baseline;}
+  .row .a{color:var(--cream);} .row .b{color:var(--gold);}
+  /* nav size */
+  .nav{display:flex;align-items:baseline;}
+  .nav .a{color:var(--cream);} .nav .b{color:var(--gold);}
+  .cap{display:block;color:var(--text-secondary);font-size:9px;letter-spacing:1px;margin-top:10px;font-family:system-ui;}
+
+  /* per-font tuning */
+  .f-clash .stack,.f-clash .row,.f-clash .nav{font-family:'Clash Display',sans-serif;font-weight:700;letter-spacing:-1px;}
+  .f-anton .stack,.f-anton .row,.f-anton .nav{font-family:'Anton',sans-serif;font-weight:400;letter-spacing:.5px;}
+  .f-archivo .stack,.f-archivo .row,.f-archivo .nav{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:125%;letter-spacing:-1px;}
+  .f-black .stack,.f-black .row,.f-black .nav{font-family:'Archivo Black',sans-serif;font-weight:400;letter-spacing:-1px;}
+
+  .stack{font-size:54px;}
+  .row{font-size:38px;}
+  .nav{font-size:19px;}
+  .f-anton .stack{font-size:60px;} .f-anton .row{font-size:42px;}
+</style>
+</head>
+<body>
+<h1>PlanMovies as a title, not an icon</h1>
+<div class="sub">The mark IS the name, set like a movie title card. Same lockup in four heavy display fonts. Each card shows the stacked title-card, a horizontal version, and nav size. Cream "PLAN" + gold "MOVIES". Which font is "exactly what we want"?</div>
+
+<div class="grid">
+
+  <div class="card f-clash">
+    <div class="fontname">Clash Display</div>
+    <div class="note">Free (Fontshare). Characterful, modern, the Gen-Z display favorite. Closest free cousin to Druk.</div>
+    <div class="lockups">
+      <div><div class="stack"><span class="a">PLAN</span><span class="b">MOVIES</span></div><span class="cap">title card</span></div>
+      <div><div class="row"><span class="a">Plan</span><span class="b">Movies</span></div><span class="cap">horizontal</span></div>
+      <div><div class="nav"><span class="a">PLAN</span><span class="b">MOVIES</span></div><span class="cap">nav size</span></div>
+    </div>
+  </div>
+
+  <div class="card f-anton">
+    <div class="fontname">Anton</div>
+    <div class="note">Free (Google). Ultra-condensed, tall, pure movie-poster impact. Loudest of the four.</div>
+    <div class="lockups">
+      <div><div class="stack"><span class="a">PLAN</span><span class="b">MOVIES</span></div><span class="cap">title card</span></div>
+      <div><div class="row"><span class="a">PLAN</span><span class="b">MOVIES</span></div><span class="cap">horizontal</span></div>
+      <div><div class="nav"><span class="a">PLAN</span><span class="b">MOVIES</span></div><span class="cap">nav size</span></div>
+    </div>
+  </div>
+
+  <div class="card f-archivo">
+    <div class="fontname">Archivo Expanded Black</div>
+    <div class="note">Free (Google). Wide + heavy = premium, modern, confident. The "designed" look.</div>
+    <div class="lockups">
+      <div><div class="stack"><span class="a">PLAN</span><span class="b">MOVIES</span></div><span class="cap">title card</span></div>
+      <div><div class="row"><span class="a">Plan</span><span class="b">Movies</span></div><span class="cap">horizontal</span></div>
+      <div><div class="nav"><span class="a">PLAN</span><span class="b">MOVIES</span></div><span class="cap">nav size</span></div>
+    </div>
+  </div>
+
+  <div class="card f-black">
+    <div class="fontname">Archivo Black</div>
+    <div class="note">Free (Google). Heavy but normal width. Friendly-bold, very legible for mixed ages.</div>
+    <div class="lockups">
+      <div><div class="stack"><span class="a">PLAN</span><span class="b">MOVIES</span></div><span class="cap">title card</span></div>
+      <div><div class="row"><span class="a">Plan</span><span class="b">Movies</span></div><span class="cap">horizontal</span></div>
+      <div><div class="nav"><span class="a">PLAN</span><span class="b">MOVIES</span></div><span class="cap">nav size</span></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

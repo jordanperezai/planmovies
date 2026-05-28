@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — own the behavior</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#07080a;--card:#12151b;--gold:#c9a84c;--goldhi:#f0d066;--cream:#e8e6e1;--ink:#e8e6e1;--mut:#8a8880;}
+  *{box-sizing:border-box;}
+  body{background:var(--bg);color:var(--ink);font-family:'Barlow Condensed',sans-serif;margin:0;padding:28px 20px;}
+  h1{font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:18px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--mut);font-size:13px;letter-spacing:.5px;margin-bottom:8px;max-width:680px;line-height:1.55;}
+  .eyebrow{color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:30px 0 12px;}
+  .card{background:var(--card);border-radius:14px;padding:30px 26px;margin-bottom:14px;}
+  .cap{font-size:11px;color:var(--mut);letter-spacing:1px;text-align:center;}
+  .tile{background:var(--bg);border:1px solid rgba(255,255,255,.06);border-radius:22%;display:flex;align-items:center;justify-content:center;}
+  .row{display:flex;gap:26px;align-items:center;flex-wrap:wrap;}
+  .lt{font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-2px;font-size:40px;}
+  .lt .g{color:var(--gold);} .lt .c{color:var(--cream);}
+  .chip{display:flex;flex-direction:column;align-items:center;gap:7px;}
+</style>
+</head>
+<body>
+<h1>Own the behavior — three ownable directions</h1>
+<div class="sub">Not a movie object, not a generic wordmark. Marks tied to what only PlanMovies does: the row fills as your people lock in.</div>
+
+<div class="eyebrow">1 · THE ROW THAT FILLS  (the signature — and it can animate as RSVPs land)</div>
+<div class="card">
+  <div class="row">
+    <div class="chip"><div class="tile" style="width:104px;height:104px;">
+      <svg width="84" height="84" viewBox="0 0 100 100">
+        <rect x="10" y="40" width="14" height="22" rx="5" fill="#c9a84c"/>
+        <rect x="29" y="40" width="14" height="22" rx="5" fill="#c9a84c"/>
+        <rect x="48" y="40" width="14" height="22" rx="5" fill="#f0d066"/>
+        <rect x="67" y="40" width="14" height="22" rx="5" fill="none" stroke="#c9a84c" stroke-width="3"/>
+        <rect x="86" y="40" width="9" height="22" rx="4" fill="none" stroke="#c9a84c" stroke-width="3"/>
+      </svg>
+    </div><span class="cap">the mark (you = bright center)</span></div>
+    <div class="chip">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <svg width="150" height="34" viewBox="0 0 150 34"><rect x="2" y="6" width="22" height="22" rx="6" fill="#c9a84c"/><rect x="30" y="6" width="22" height="22" rx="6" fill="none" stroke="#c9a84c" stroke-width="3"/><rect x="58" y="6" width="22" height="22" rx="6" fill="none" stroke="#c9a84c" stroke-width="3"/><rect x="86" y="6" width="22" height="22" rx="6" fill="none" stroke="#c9a84c" stroke-width="3"/><rect x="114" y="6" width="22" height="22" rx="6" fill="none" stroke="#c9a84c" stroke-width="3"/></svg>
+        <svg width="150" height="34" viewBox="0 0 150 34"><rect x="2" y="6" width="22" height="22" rx="6" fill="#c9a84c"/><rect x="30" y="6" width="22" height="22" rx="6" fill="#c9a84c"/><rect x="58" y="6" width="22" height="22" rx="6" fill="#f0d066"/><rect x="86" y="6" width="22" height="22" rx="6" fill="none" stroke="#c9a84c" stroke-width="3"/><rect x="114" y="6" width="22" height="22" rx="6" fill="none" stroke="#c9a84c" stroke-width="3"/></svg>
+        <svg width="150" height="34" viewBox="0 0 150 34"><rect x="2" y="6" width="22" height="22" rx="6" fill="#c9a84c"/><rect x="30" y="6" width="22" height="22" rx="6" fill="#c9a84c"/><rect x="58" y="6" width="22" height="22" rx="6" fill="#f0d066"/><rect x="86" y="6" width="22" height="22" rx="6" fill="#c9a84c"/><rect x="114" y="6" width="22" height="22" rx="6" fill="#c9a84c"/></svg>
+      </div>
+      <span class="cap" style="margin-top:8px;">1 in → 3 in → row full</span>
+    </div>
+    <div class="chip"><div class="tile" style="width:40px;height:40px;"><svg width="30" height="30" viewBox="0 0 100 100"><rect x="10" y="40" width="14" height="22" rx="5" fill="#c9a84c"/><rect x="29" y="40" width="14" height="22" rx="5" fill="#c9a84c"/><rect x="48" y="40" width="14" height="22" rx="5" fill="#f0d066"/><rect x="67" y="40" width="14" height="22" rx="5" fill="none" stroke="#c9a84c" stroke-width="3"/><rect x="86" y="40" width="9" height="22" rx="4" fill="none" stroke="#c9a84c" stroke-width="3"/></svg></div><span class="cap">24px</span></div>
+  </div>
+  <div style="margin-top:22px;" class="lt"><span class="c">plan</span><span class="g">movies</span></div>
+</div>
+
+<div class="eyebrow">2 · THE LOCK-IN BRACKET  ( [ you ] are in — "count me in" as a mark )</div>
+<div class="card">
+  <div class="row">
+    <div class="chip"><div class="tile" style="width:104px;height:104px;">
+      <svg width="80" height="80" viewBox="0 0 100 100">
+        <path d="M34 22 H22 V78 H34" fill="none" stroke="#c9a84c" stroke-width="9" stroke-linecap="round"/>
+        <path d="M66 22 H78 V78 H66" fill="none" stroke="#c9a84c" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="50" cy="50" r="11" fill="#f0d066"/>
+      </svg>
+    </div><span class="cap">[ • ] you, locked in</span></div>
+    <div class="lt"><span class="c">[</span><span class="c">plan</span><span class="g">movies</span><span class="c">]</span></div>
+  </div>
+</div>
+
+<div class="eyebrow">3 · THE UNDERLINE ROW  ( the wordmark sits on the row; one seat is you )</div>
+<div class="card">
+  <div style="display:inline-flex;flex-direction:column;align-items:flex-start;gap:8px;">
+    <div class="lt"><span class="c">plan</span><span class="g">movies</span></div>
+    <svg width="230" height="16" viewBox="0 0 230 16"><rect x="0" y="6" width="230" height="6" rx="3" fill="#3a3a32"/><rect x="86" y="2" width="22" height="12" rx="4" fill="#f0d066"/><rect x="40" y="3" width="14" height="10" rx="3" fill="#c9a84c"/><rect x="120" y="3" width="14" height="10" rx="3" fill="#c9a84c"/></svg>
+  </div>
+  <div class="cap" style="text-align:left;margin-top:12px;">the underline IS the row; markers = your crew, gold = you. Reusable as section dividers / progress in-product.</div>
+</div>
+
+</body>
+</html>

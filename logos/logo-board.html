@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — logo board (all 12)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#07080a; --bg-card:#12151b; --gold:#c9a84c; --text-primary:#e8e6e1; --text-secondary:#8a8880;
+    --display:'Barlow Condensed',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--bg-deep);color:var(--text-primary);font-family:var(--display);margin:0;padding:32px 20px;}
+  h1{font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:18px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--text-secondary);font-size:13px;letter-spacing:1px;margin-bottom:24px;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px;}
+  @media(max-width:780px){.grid{grid-template-columns:repeat(2,1fr);}}
+  .card{background:var(--bg-card);border-radius:12px;padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:14px;}
+  .name{font-weight:700;letter-spacing:4px;text-transform:uppercase;font-size:19px;color:var(--text-primary);}
+  .name b{color:var(--gold);font-weight:700;}
+  .label{color:var(--gold);font-size:10px;letter-spacing:2px;text-transform:uppercase;text-align:center;min-height:24px;}
+  .small{display:flex;align-items:center;gap:16px;margin-top:2px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);width:100%;justify-content:center;}
+  .cap{font-size:9px;color:var(--text-secondary);letter-spacing:1px;}
+  .col{display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .navsim{display:flex;align-items:center;gap:7px;}
+  .navsim span{font-size:11px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;}
+  .exp{border:1px solid rgba(201,168,76,.25);}
+</style>
+</head>
+<body>
+<h1>PlanMovies — all 12 directions on one board</h1>
+<div class="sub">1–8 from before. 9–12 are the experimental set (gold-bordered). Bottom strip on each = 24px + nav.</div>
+
+<!-- symbol defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="m1" viewBox="0 0 100 100">
+    <rect x="30" y="22" width="40" height="42" rx="13" fill="var(--gold)"/><rect x="19" y="42" width="15" height="34" rx="7" fill="var(--gold)"/><rect x="66" y="42" width="15" height="34" rx="7" fill="var(--gold)"/><rect x="26" y="54" width="48" height="22" rx="9" fill="var(--gold)"/><rect x="27" y="74" width="8" height="13" rx="2" fill="var(--gold)"/><rect x="65" y="74" width="8" height="13" rx="2" fill="var(--gold)"/>
+  </symbol>
+  <symbol id="m2" viewBox="0 0 100 100">
+    <rect x="14" y="30" width="72" height="40" rx="9" fill="var(--gold)"/><circle cx="14" cy="50" r="8" fill="var(--bg-card)"/><circle cx="86" cy="50" r="8" fill="var(--bg-card)"/><polygon points="44,42 44,58 60,50" fill="var(--bg-card)"/>
+  </symbol>
+  <symbol id="m3" viewBox="0 0 100 100">
+    <rect x="16" y="16" width="68" height="68" rx="18" fill="var(--gold)"/><text x="50" y="52" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed" font-weight="800" font-size="44" letter-spacing="-2" fill="#07080a">PM</text>
+  </symbol>
+  <symbol id="m4" viewBox="0 0 100 100">
+    <path d="M50,16 C31,16 16,31 16,50 C16,74 50,88 50,88 C50,88 84,74 84,50 C84,31 69,16 50,16 Z" fill="var(--gold)"/><polygon points="43,38 43,56 61,47" fill="#07080a"/>
+  </symbol>
+  <symbol id="m5" viewBox="0 0 100 100">
+    <rect x="46" y="17" width="8" height="14" rx="2" fill="var(--gold)"/><rect x="18" y="30" width="64" height="40" rx="8" fill="var(--gold)"/><polygon points="44,40 44,54 59,47" fill="#07080a"/><circle cx="28" cy="64" r="2.6" fill="#07080a"/><circle cx="39" cy="64" r="2.6" fill="#07080a"/><circle cx="50" cy="64" r="2.6" fill="#07080a"/><circle cx="61" cy="64" r="2.6" fill="#07080a"/><circle cx="72" cy="64" r="2.6" fill="#07080a"/>
+  </symbol>
+  <symbol id="m6" viewBox="0 0 100 100">
+    <rect x="16" y="22" width="68" height="46" rx="14" fill="var(--gold)"/><polygon points="30,63 30,82 49,65" fill="var(--gold)"/><polygon points="43,37 43,53 59,45" fill="#07080a"/>
+  </symbol>
+  <symbol id="m7" viewBox="0 0 100 100">
+    <rect x="16" y="54" width="68" height="22" rx="9" fill="var(--gold)"/><rect x="23" y="28" width="25" height="30" rx="9" fill="var(--gold)"/><rect x="52" y="28" width="25" height="30" rx="9" fill="var(--gold)"/><rect x="20" y="74" width="8" height="12" rx="2" fill="var(--gold)"/><rect x="72" y="74" width="8" height="12" rx="2" fill="var(--gold)"/>
+  </symbol>
+  <symbol id="m8" viewBox="0 0 100 100">
+    <rect x="14" y="32" width="72" height="36" rx="8" fill="var(--gold)"/><circle cx="14" cy="50" r="8" fill="var(--bg-card)"/><circle cx="86" cy="50" r="8" fill="var(--bg-card)"/><path d="M40,50 L47,58 L62,42" fill="none" stroke="#07080a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="m9" viewBox="0 0 100 100">
+    <rect x="30" y="22" width="40" height="42" rx="13" fill="var(--gold)"/><rect x="19" y="42" width="15" height="34" rx="7" fill="var(--gold)"/><rect x="66" y="42" width="15" height="34" rx="7" fill="var(--gold)"/><rect x="26" y="54" width="48" height="22" rx="9" fill="var(--gold)"/><rect x="27" y="74" width="8" height="13" rx="2" fill="var(--gold)"/><rect x="65" y="74" width="8" height="13" rx="2" fill="var(--gold)"/><polygon points="44,34 44,52 59,43" fill="var(--bg-card)"/>
+  </symbol>
+  <symbol id="m11" viewBox="0 0 100 100">
+    <circle cx="50" cy="20" r="6" fill="var(--gold)"/><polygon points="50,24 82,76 18,76" fill="var(--gold)"/><circle cx="34" cy="68" r="3" fill="#07080a"/><circle cx="50" cy="70" r="3" fill="#07080a"/><circle cx="66" cy="68" r="3" fill="#07080a"/>
+  </symbol>
+  <symbol id="m12" viewBox="0 0 100 100">
+    <circle cx="78" cy="50" r="4" fill="var(--text-primary)"/><circle cx="70" cy="70" r="4" fill="var(--text-primary)"/><circle cx="50" cy="78" r="4" fill="var(--text-primary)"/><circle cx="30" cy="70" r="4" fill="var(--text-primary)"/><circle cx="22" cy="50" r="4" fill="var(--text-primary)"/><circle cx="30" cy="30" r="4" fill="var(--text-primary)"/><circle cx="50" cy="22" r="5.5" fill="var(--gold)"/><circle cx="70" cy="30" r="4" fill="var(--text-primary)"/><polygon points="44,42 44,58 58,50" fill="var(--gold)"/>
+  </symbol>
+</defs></svg>
+
+<div class="grid">
+
+  <div class="card"><span class="label">1 · Held seat</span>
+    <svg width="80" height="80"><use href="#m1"/></svg>
+    <div class="name">Plan<b>Movies</b></div>
+    <div class="small"><div class="col"><svg width="24" height="24"><use href="#m1"/></svg><span class="cap">24px</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#m1"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">2 · Ticket + play</span>
+    <svg width="80" height="80"><use href="#m2"/></svg>
+    <div class="name">Plan<b>Movies</b></div>
+    <div class="small"><div class="col"><svg width="24" height="24"><use href="#m2"/></svg><span class="cap">24px</span></div>
+      <div class="navsim"><svg width="22" height="22"><use href="#m2"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">3 · PM monogram</span>
+    <svg width="80" height="80"><use href="#m3"/></svg>
+    <div class="name">Plan<b>Movies</b></div>
+    <div class="small"><div class="col"><svg width="24" height="24"><use href="#m3"/></svg><span class="cap">24px</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#m3"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">4 · Meet-here pin</span>
+    <svg width="80" height="80"><use href="#m4"/></svg>
+    <div class="name">Plan<b>Movies</b></div>
+    <div class="small"><div class="col"><svg width="24" height="24"><use href="#m4"/></svg><span class="cap">24px</span></div>
+      <div class="navsim"><svg width="18" height="18"><use href="#m4"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">5 · Marquee</span>
+    <svg width="80" height="80"><use href="#m5"/></svg>
+    <div class="name">Plan<b>Movies</b></div>
+    <div class="small"><div class="col"><svg width="24" height="24"><use href="#m5"/></svg><span class="cap">24px</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#m5"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">6 · The plan (chat + play)</span>
+    <svg width="80" height="80"><use href="#m6"/></svg>
+    <div class="name">Plan<b>Movies</b></div>
+    <div class="small"><div class="col"><svg width="24" height="24"><use href="#m6"/></svg><span class="cap">24px</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#m6"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">7 · Together (two seats)</span>
+    <svg width="80" height="80"><use href="#m7"/></svg>
+    <div class="name">Plan<b>Movies</b></div>
+    <div class="small"><div class="col"><svg width="24" height="24"><use href="#m7"/></svg><span class="cap">24px</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#m7"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">8 · You're in (ticket + check)</span>
+    <svg width="80" height="80"><use href="#m8"/></svg>
+    <div class="name">Plan<b>Movies</b></div>
+    <div class="small"><div class="col"><svg width="24" height="24"><use href="#m8"/></svg><span class="cap">24px</span></div>
+      <div class="navsim"><svg width="22" height="22"><use href="#m8"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card exp"><span class="label">9 · Seat with play cut out (neg-space)</span>
+    <svg width="80" height="80"><use href="#m9"/></svg>
+    <div class="name">Plan<b>Movies</b></div>
+    <div class="small"><div class="col"><svg width="24" height="24"><use href="#m9"/></svg><span class="cap">24px</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#m9"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card exp"><span class="label">10 · Logo lives in the type (O = play)</span>
+    <div style="display:flex;align-items:center;font-weight:800;letter-spacing:3px;font-size:30px;color:var(--text-primary);text-transform:uppercase;height:80px;">
+      <span>PLANM</span>
+      <svg width="30" height="30" viewBox="0 0 100 100" style="margin:0 1px;"><circle cx="50" cy="50" r="42" fill="var(--gold)"/><polygon points="42,34 42,66 68,50" fill="#07080a"/></svg>
+      <span>VIES</span>
+    </div>
+    <div class="name" style="visibility:hidden;">Plan<b>Movies</b></div>
+    <div class="small"><div class="col">
+      <div style="display:flex;align-items:center;font-weight:800;letter-spacing:1px;font-size:13px;color:var(--text-primary);text-transform:uppercase;">PLANM<svg width="13" height="13" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="var(--gold)"/><polygon points="42,34 42,66 68,50" fill="#07080a"/></svg>VIES</div>
+      <span class="cap">small</span></div></div></div>
+
+  <div class="card exp"><span class="label">11 · Projector beam + audience</span>
+    <svg width="80" height="80"><use href="#m11"/></svg>
+    <div class="name">Plan<b>Movies</b></div>
+    <div class="small"><div class="col"><svg width="24" height="24"><use href="#m11"/></svg><span class="cap">24px</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#m11"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card exp"><span class="label">12 · The crew ring (one gold = you)</span>
+    <svg width="80" height="80"><use href="#m12"/></svg>
+    <div class="name">Plan<b>Movies</b></div>
+    <div class="small"><div class="col"><svg width="24" height="24"><use href="#m12"/></svg><span class="cap">24px</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#m12"/></svg><span>PlanMovies</span></div></div></div>
+
+</div>
+</body>
+</html>

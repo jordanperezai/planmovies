@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — giving the wordmark life</title>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg-deep:#07080a; --bg-card:#12151b; --gold:#c9a84c; --gold-lit:#f0d488; --cream:#e8e6e1; --text-secondary:#8a8880; }
+  *{box-sizing:border-box;}
+  body{background:var(--bg-deep);color:var(--cream);font-family:system-ui,sans-serif;margin:0;padding:36px 22px 70px;}
+  h1{font-weight:800;font-size:20px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--text-secondary);font-size:13px;margin-bottom:24px;max-width:760px;line-height:1.55;}
+  .section{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:30px 0 12px;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:6px;max-width:1000px;}
+
+  .word{display:inline-flex;align-items:center;font-family:'Clash Display',sans-serif;font-weight:700;letter-spacing:-1px;text-transform:uppercase;}
+  .word .a{color:var(--cream);} .word .b{color:var(--gold);}
+  .word svg{margin:0 -1px;}
+
+  /* HERO — animated */
+  .hero{background:var(--bg-card);border-radius:16px;padding:54px 30px;display:flex;justify-content:center;position:relative;overflow:hidden;}
+  .hero .word{font-size:60px;}
+  .sweep .b{
+    background:linear-gradient(100deg,var(--gold) 30%,#fff6dd 50%,var(--gold) 70%);
+    background-size:280% 100%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation:sweep 4.5s ease-in-out infinite;
+  }
+  @keyframes sweep{0%,100%{background-position:130% 0}50%{background-position:-30% 0}}
+  .screenlit{animation:lit 4.5s ease-in-out infinite;}
+  @keyframes lit{0%,40%,100%{opacity:0}55%,85%{opacity:.9}}
+  @media(prefers-reduced-motion:reduce){.sweep .b{animation:none}.screenlit{animation:none;opacity:.6}}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px;}
+  @media(max-width:760px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--bg-card);border-radius:14px;padding:24px 18px 16px;display:flex;flex-direction:column;align-items:center;gap:14px;}
+  .lab{color:var(--gold);font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;text-align:center;}
+  .note{color:var(--text-secondary);font-size:11px;text-align:center;margin-top:-8px;line-height:1.4;}
+  .verdict{font-size:10px;text-align:center;padding:3px 8px;border-radius:20px;}
+  .ok{background:rgba(201,168,76,.15);color:var(--gold);}
+  .no{background:rgba(224,99,99,.12);color:#e88;}
+</style>
+</head>
+<body>
+<h1>Giving the wordmark life</h1>
+<div class="sub">Top: the same lockup with motion (light-sweep across MOVIES + the screen turning on). Below: the O treatments compared, including the play-button you asked about. Clean Clash Display throughout.</div>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <!-- screen O (16:9) -->
+  <mask id="scr"><rect width="100" height="100" fill="#fff"/><rect x="24" y="38" width="52" height="24" rx="5" fill="#000"/></mask>
+  <symbol id="Oscreen" viewBox="0 0 100 100"><rect x="8" y="12" width="84" height="76" rx="26" fill="var(--gold)" mask="url(#scr)"/></symbol>
+  <!-- play O (the cliché) -->
+  <mask id="ply"><rect width="100" height="100" fill="#fff"/><polygon points="40,34 40,66 68,50" fill="#000"/></mask>
+  <symbol id="Oplay" viewBox="0 0 100 100"><rect x="8" y="12" width="84" height="76" rx="26" fill="var(--gold)" mask="url(#ply)"/></symbol>
+  <!-- screen + tiny play on it -->
+  <mask id="sp"><rect width="100" height="100" fill="#fff"/><rect x="24" y="38" width="52" height="24" rx="5" fill="#000"/><polygon points="46,44 46,56 58,50" fill="#fff"/></mask>
+  <symbol id="Oscreenplay" viewBox="0 0 100 100"><rect x="8" y="12" width="84" height="76" rx="26" fill="var(--gold)" mask="url(#sp)"/></symbol>
+  <!-- screen lit (warm glow inside) -->
+  <symbol id="Olit" viewBox="0 0 100 100">
+    <rect x="8" y="12" width="84" height="76" rx="26" fill="var(--gold)" mask="url(#scr)"/>
+    <rect x="26" y="40" width="48" height="20" rx="4" fill="var(--gold-lit)" opacity=".55"/>
+  </symbol>
+  <!-- screen + beam -->
+  <symbol id="Obeam" viewBox="0 0 140 100">
+    <polygon points="50,62 12,98 36,62" fill="var(--gold)" opacity=".30"/>
+    <rect x="8" y="12" width="84" height="76" rx="26" fill="var(--gold)" mask="url(#scr)"/>
+  </symbol>
+  <!-- O as a TICKET (the glyph itself is a ticket: notches on the ends + a hole) -->
+  <mask id="tk-glyph"><rect width="100" height="100" fill="#fff"/>
+    <rect x="32" y="36" width="36" height="28" rx="9" fill="#000"/>            <!-- O counter / hole -->
+    <circle cx="8" cy="50" r="8" fill="#000"/><circle cx="92" cy="50" r="8" fill="#000"/>  <!-- end notches -->
+    <rect x="60" y="40" width="2.5" height="20" rx="1.25" fill="#000"/>        <!-- perforation -->
+  </mask>
+  <symbol id="Oticket" viewBox="0 0 100 100"><rect x="8" y="24" width="84" height="52" rx="16" fill="var(--gold)" mask="url(#tk-glyph)"/></symbol>
+  <!-- O ring with a ticket-shaped HOLE inside -->
+  <mask id="tk-hole"><rect width="100" height="100" fill="#fff"/>
+    <rect x="26" y="38" width="48" height="24" rx="6" fill="#000"/>           <!-- ticket-shaped hole -->
+    <circle cx="26" cy="50" r="5" fill="#fff"/><circle cx="74" cy="50" r="5" fill="#fff"/>  <!-- notch pinch -->
+    <rect x="60" y="42" width="2.5" height="16" rx="1.25" fill="#fff"/>       <!-- perforation -->
+  </mask>
+  <symbol id="Otkhole" viewBox="0 0 100 100"><rect x="6" y="10" width="88" height="80" rx="27" fill="var(--gold)" mask="url(#tk-hole)"/></symbol>
+</defs></svg>
+
+<div class="section">With motion (hover/load)</div>
+<div class="hero">
+  <div class="word sweep">
+    <span class="a">PLANM</span>
+    <span style="position:relative;display:inline-flex;">
+      <svg width="60" height="60" viewBox="0 0 100 100"><use href="#Oscreen"/></svg>
+      <svg width="60" height="60" viewBox="0 0 100 100" class="screenlit" style="position:absolute;left:0;top:0;"><rect x="26" y="40" width="48" height="20" rx="4" fill="var(--gold-lit)"/></svg>
+    </span>
+    <span class="b">VIES</span>
+  </div>
+</div>
+
+<div class="section">The O, compared</div>
+<div class="grid">
+  <div class="card"><div class="lab">Screen</div><div class="note">ours, ownable</div><span class="verdict ok">keep</span>
+    <div class="word" style="font-size:30px"><span class="a">PLANM</span><svg width="30" height="30" viewBox="0 0 100 100"><use href="#Oscreen"/></svg><span class="b">VIES</span></div>
+    <svg width="70" height="70"><use href="#Oscreen"/></svg></div>
+
+  <div class="card"><div class="lab">Play button</div><div class="note">Letterboxd / every streamer owns this</div><span class="verdict no">cliché</span>
+    <div class="word" style="font-size:30px"><span class="a">PLANM</span><svg width="30" height="30" viewBox="0 0 100 100"><use href="#Oplay"/></svg><span class="b">VIES</span></div>
+    <svg width="70" height="70"><use href="#Oplay"/></svg></div>
+
+  <div class="card"><div class="lab">Screen + tiny play</div><div class="note">movie cue without being the cliché</div><span class="verdict ok">maybe</span>
+    <div class="word" style="font-size:30px"><span class="a">PLANM</span><svg width="30" height="30" viewBox="0 0 100 100"><use href="#Oscreenplay"/></svg><span class="b">VIES</span></div>
+    <svg width="70" height="70"><use href="#Oscreenplay"/></svg></div>
+
+  <div class="card"><div class="lab">Screen, lit</div><div class="note">a warm glow = the screen is ON</div><span class="verdict ok">life</span>
+    <div class="word" style="font-size:30px"><span class="a">PLANM</span><svg width="30" height="30" viewBox="0 0 100 100"><use href="#Olit"/></svg><span class="b">VIES</span></div>
+    <svg width="70" height="70"><use href="#Olit"/></svg></div>
+
+  <div class="card"><div class="lab">Screen + beam</div><div class="note">projector throw, doubles as underline</div><span class="verdict ok">life</span>
+    <div class="word" style="font-size:30px"><span class="a">PLANM</span><svg width="34" height="30" viewBox="0 0 140 100"><use href="#Obeam"/></svg><span class="b">VIES</span></div>
+    <svg width="92" height="66" viewBox="0 0 140 100"><use href="#Obeam"/></svg></div>
+
+  <div class="card"><div class="lab">Weight contrast</div><div class="note">thin PLAN, heavy MOVIES — rhythm</div><span class="verdict ok">try</span>
+    <div class="word" style="font-size:30px"><span class="a" style="font-weight:500">PLAN</span><span class="b">MOVIES</span></div>
+    <div class="word" style="font-size:22px"><span class="a" style="font-weight:500">PLAN</span><svg width="22" height="22" viewBox="0 0 100 100"><use href="#Oscreen"/></svg><span class="b">VIES</span></div></div>
+</div>
+
+<div class="section">The O as a ticket</div>
+<div class="hero">
+  <div class="word sweep">
+    <span class="a">PLANM</span>
+    <svg width="60" height="60" viewBox="0 0 100 100" style="margin:0 2px"><use href="#Oticket"/></svg>
+    <span class="b">VIES</span>
+  </div>
+</div>
+<div class="grid" style="margin-top:16px">
+  <div class="card"><div class="lab">O is a ticket</div><div class="note">the glyph itself = a ticket (notches + perf)</div><span class="verdict ok">new</span>
+    <svg width="92" height="60" viewBox="0 0 100 100"><use href="#Oticket"/></svg>
+    <div class="word"><span class="a">PLANM</span><svg width="30" height="30" viewBox="0 0 100 100"><use href="#Oticket"/></svg><span class="b">VIES</span></div>
+    <div class="row">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><svg width="18" height="18" viewBox="0 0 100 100"><use href="#Oticket"/></svg><span class="cap">16px</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="chip"><svg width="24" height="24" viewBox="0 0 100 100"><use href="#Oticket"/></svg></div><span class="cap">white</span></div>
+    </div></div>
+
+  <div class="card"><div class="lab">Ticket-shaped hole</div><div class="note">O ring, the counter is a ticket stub</div><span class="verdict ok">new</span>
+    <svg width="84" height="84"><use href="#Otkhole"/></svg>
+    <div class="word"><span class="a">PLANM</span><svg width="30" height="30" viewBox="0 0 100 100"><use href="#Otkhole"/></svg><span class="b">VIES</span></div>
+    <div class="row">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><svg width="16" height="16"><use href="#Otkhole"/></svg><span class="cap">16px</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="chip"><svg width="24" height="24"><use href="#Otkhole"/></svg></div><span class="cap">white</span></div>
+    </div></div>
+
+  <div class="card"><div class="lab">Ticket vs screen</div><div class="note">side by side in the word</div>
+    <div class="word" style="font-size:24px"><span class="a">PLANM</span><svg width="24" height="24" viewBox="0 0 100 100"><use href="#Oticket"/></svg><span class="b">VIES</span></div>
+    <div class="word" style="font-size:24px"><span class="a">PLANM</span><svg width="24" height="24" viewBox="0 0 100 100"><use href="#Oscreen"/></svg><span class="b">VIES</span></div>
+    <div class="note" style="margin-top:6px">ticket = warmer/eventful · screen = cleaner/cooler</div></div>
+</div>
+</body>
+</html>

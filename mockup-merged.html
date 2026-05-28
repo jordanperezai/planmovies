@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — Mockup v4 (Hybrid)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg-deep: #07080a; --bg-card: #12151b; --bg-elevated: #1a1e28;
+  --border-subtle: rgba(255,255,255,0.06);
+  --gold: #c9a84c; --gold-warm: #b8984a; --gold-cool: #8a7d5a; --gold-dim: #8a7234;
+  --blue-atmos: #3a5080; --blue-atmos-dim: rgba(58,80,128,0.12); --blue-atmos-glow: rgba(58,80,128,0.25);
+  --gold-glow: rgba(201,168,76,0.15);
+  --text-primary: #e8e6e1; --text-secondary: #8a8880; --text-tertiary: #8a8878; --text-inverse: #07080a;
+  --radius: 10px; --radius-sm: 6px;
+  --font: 'Inter', -apple-system, sans-serif; --mono: 'JetBrains Mono', monospace; --display: 'Barlow Condensed', sans-serif;
+}
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font); background: var(--bg-deep); color: var(--text-primary); min-height: 100vh; overflow-x: hidden; }
+
+/* FILM GRAIN */
+.film-grain {
+  position: fixed; inset: -50%; z-index: 999; pointer-events: none; opacity: 0.025;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 8s steps(10) infinite;
+}
+@keyframes grain { 0%,100%{transform:translate(0)} 10%{transform:translate(-5%,-10%)} 30%{transform:translate(3%,2%)} 50%{transform:translate(-2%,5%)} 70%{transform:translate(7%,-3%)} 90%{transform:translate(-1%,8%)} }
+@media (prefers-reduced-motion: reduce) { .film-grain { display: none; } }
+
+/* POSTER ATMOSPHERE */
+.page-atmosphere {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: url('https://image.tmdb.org/t/p/w780/3o5YPjDGDTcTDL5ftDA9NwN9dLd.jpg') center / cover no-repeat;
+  filter: blur(40px) saturate(1.4); opacity: 0.06;
+}
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(7,8,10,0.85); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 16px; height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand { font-family: var(--display); font-size: 15px; font-weight: 700; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
+.nav-link { font-size: 12px; color: var(--text-secondary); background: none; border: none; cursor: pointer; font-family: var(--font); padding: 10px 14px; }
+.nav-link:hover { color: var(--text-primary); }
+
+/* HERO */
+.trailer-hero { position: relative; margin-top: 52px; width: 100%; aspect-ratio: 16/9; max-height: 360px; overflow: hidden; background: #000; }
+.trailer-hero img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55) saturate(1.3); }
+.trailer-hero-gradient { position: absolute; bottom: 0; left: 0; right: 0; height: 160px; background: linear-gradient(to top, var(--bg-deep), transparent); }
+.trailer-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.play-circle { width: 64px; height: 64px; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+.play-circle:hover { background: rgba(255,255,255,0.22); }
+.play-tri { width: 0; height: 0; border-left: 22px solid white; border-top: 14px solid transparent; border-bottom: 14px solid transparent; margin-left: 4px; }
+.trailer-hero-info { position: absolute; bottom: 20px; left: 16px; right: 16px; z-index: 2; }
+.trailer-hero-venue { font-size: 12px; color: var(--text-secondary); }
+.trailer-hero-title { font-family: var(--display); font-size: 32px; font-weight: 800; line-height: 1.05; margin-top: 2px; }
+.trailer-hero-sub { font-size: 14px; color: var(--gold-warm); margin-top: 4px; font-weight: 500; }
+
+/* BODY */
+.page-body { padding: 28px 16px 40px; }
+.page-body > * + * { margin-top: 28px; }
+
+/* CREW */
+.crew-section { text-align: center; }
+.crew-avatars { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.crew-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--bg-elevated); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--gold); font-size: 17px; border: 2px solid rgba(201,168,76,0.2); }
+.crew-summary { font-size: 15px; color: var(--text-secondary); margin-top: 12px; }
+
+/* COUNTDOWN */
+.countdown { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 16px; background: linear-gradient(135deg, var(--bg-card), oklch(0.13 0.015 250)); border: 1px solid var(--blue-atmos-dim); border-radius: var(--radius-sm); font-family: var(--mono); max-width: 340px; margin: 0 auto; }
+.cd-unit { text-align: center; }
+.cd-num { font-size: 22px; font-weight: 700; display: block; }
+.cd-label { font-size: 9px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 1px; }
+.cd-sep { font-size: 20px; color: var(--gold-dim); }
+
+/* ONE-LINE PITCH */
+.pitch-line {
+  text-align: center; font-size: 15px; line-height: 1.6;
+  color: var(--text-secondary); padding: 0 8px;
+}
+.pitch-line em { color: var(--gold-warm); font-style: normal; }
+
+/* RSVP CARD */
+.rsvp-card { padding: 24px 20px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius); }
+.rsvp-card > p { font-size: 15px; color: var(--text-secondary); margin-bottom: 18px; }
+.form-group { margin-bottom: 16px; }
+.form-label { font-size: 12px; font-weight: 500; color: var(--text-secondary); margin-bottom: 6px; display: block; }
+.form-input { width: 100%; padding: 12px 14px; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); color: var(--text-primary); font-family: var(--font); font-size: 14px; outline: none; }
+.radio-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.radio-pill { padding: 10px 20px; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); font-size: 14px; color: var(--text-secondary); cursor: pointer; }
+.radio-pill.selected { border-color: var(--gold-dim); color: var(--gold); background: rgba(201,168,76,0.08); }
+.submit-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--gold), #e8c85a); border: none; border-radius: var(--radius); color: var(--text-inverse); font-family: var(--display); font-size: 16px; font-weight: 700; cursor: pointer; }
+
+/* DRESS CODE */
+.dress-code { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.12); border-radius: var(--radius-sm); font-size: 14px; }
+.dress-code-label { font-family: var(--display); font-size: 11px; font-weight: 600; letter-spacing: 1px; color: var(--gold); text-transform: uppercase; flex-shrink: 0; }
+
+/* DIVIDER */
+.atmos-divider { margin: 36px -16px; height: 1px; background: linear-gradient(90deg, transparent, var(--blue-atmos-glow), var(--gold-glow), var(--blue-atmos-glow), transparent); }
+
+/* ================================ */
+/* THE MOVIE (below form, Act 1)    */
+/* ================================ */
+.movie-section { }
+.movie-section-header { font-family: var(--display); font-size: 22px; font-weight: 800; margin-bottom: 16px; text-align: center; }
+
+.movie-card { display: flex; gap: 16px; padding: 16px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius); }
+.movie-card-poster { width: 90px; height: 135px; border-radius: var(--radius-sm); object-fit: cover; flex-shrink: 0; }
+.movie-card-info { flex: 1; }
+.movie-card-title { font-family: var(--display); font-size: 20px; font-weight: 800; margin-bottom: 2px; }
+.movie-card-tagline { font-size: 14px; font-style: italic; color: var(--text-secondary); margin-bottom: 10px; }
+.movie-detail { font-size: 12px; color: var(--text-tertiary); margin-bottom: 3px; }
+.movie-detail strong { color: var(--text-secondary); }
+
+.cast-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+.cast-chip { padding: 8px 14px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); white-space: nowrap; flex-shrink: 0; }
+.cast-chip-name { font-size: 13px; font-weight: 600; }
+.cast-chip-role { font-size: 11px; color: var(--text-tertiary); }
+
+.filmmaker-quote { padding: 16px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius); margin-bottom: 10px; }
+.filmmaker-quote-text { font-size: 15px; line-height: 1.55; color: var(--text-secondary); font-style: italic; }
+.filmmaker-quote-attr { font-size: 12px; color: var(--gold-cool); margin-top: 6px; }
+
+.section-label { font-family: var(--display); font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+
+.trailer-grid { display: flex; flex-direction: column; gap: 10px; }
+.trailer-thumb { position: relative; border-radius: var(--radius-sm); overflow: hidden; aspect-ratio: 16/9; cursor: pointer; }
+.trailer-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.trailer-thumb-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); }
+.tt-play { width: 40px; height: 40px; background: rgba(255,0,0,0.9); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+.tt-tri { width: 0; height: 0; border-left: 12px solid white; border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 2px; }
+.trailer-thumb-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+/* ================================ */
+/* THE TURN (Reality Break)         */
+/* ================================ */
+.reality-break {
+  margin: 0 -16px; text-align: center; padding: 44px 24px;
+  border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);
+  background: linear-gradient(180deg, transparent, rgba(58,80,128,0.06), transparent);
+}
+.rb-line1 { font-size: 18px; font-weight: 300; line-height: 1.5; }
+.rb-line2 { font-size: 18px; font-weight: 600; color: var(--gold); margin-top: 8px; line-height: 1.5; }
+
+/* ================================ */
+/* THE EVIDENCE (Timeline)          */
+/* ================================ */
+.timeline-intro { text-align: center; padding: 0 0 4px; }
+.timeline-intro h2 { font-family: var(--display); font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+.timeline-intro p { font-size: 14px; color: var(--text-secondary); line-height: 1.5; max-width: 340px; margin: 0 auto; }
+
+/* VIEW TOGGLE */
+.view-toggle { display: flex; gap: 4px; justify-content: center; margin: 16px 0 4px; }
+.view-btn {
+  padding: 8px 16px; font-size: 12px; font-family: var(--font); font-weight: 500;
+  background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
+  color: var(--text-tertiary); cursor: pointer; transition: all 0.2s;
+}
+.view-btn.active { border-color: var(--gold-dim); color: var(--gold); background: rgba(201,168,76,0.08); }
+
+.timeline { position: relative; padding-left: 28px; margin-top: 16px; }
+.timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--gold-dim) 0%, var(--blue-atmos) 30%, var(--gold) 85%, var(--gold) 100%); }
+
+.tl-decade { position: relative; padding: 28px 0 6px; font-family: var(--display); font-size: 20px; font-weight: 800; color: var(--gold-warm); }
+.tl-decade::before { content: ''; position: absolute; left: -24px; top: 34px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: 2px solid var(--bg-deep); }
+.tl-decade-sub { font-family: var(--font); font-size: 13px; font-weight: 400; color: var(--text-tertiary); margin-top: 2px; line-height: 1.4; }
+
+.tl-node { position: relative; padding: 8px 0 14px; }
+.tl-node::before { content: ''; position: absolute; left: -23px; top: 14px; width: 6px; height: 6px; border-radius: 50%; background: var(--text-tertiary); }
+.tl-node.highlight::before { background: var(--gold); width: 8px; height: 8px; left: -24px; top: 13px; }
+.tl-year { font-family: var(--mono); font-size: 11px; color: var(--gold-cool); margin-bottom: 4px; }
+.tl-quote { font-size: 14px; line-height: 1.55; color: var(--text-secondary); font-style: italic; }
+.tl-attr { font-size: 12px; color: var(--text-tertiary); margin-top: 4px; }
+.tl-attr strong { color: var(--text-secondary); font-weight: 600; }
+.tl-headline { font-family: var(--display); font-size: 14px; font-weight: 700; color: var(--text-primary); line-height: 1.3; }
+.tl-headline-source { font-size: 11px; color: var(--text-tertiary); font-family: var(--font); margin-top: 2px; }
+
+.tl-featured { position: relative; margin: 8px -8px 12px; padding: 16px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius); }
+.tl-featured::before { display: none; }
+
+.tl-video { position: relative; border-radius: var(--radius-sm); overflow: hidden; aspect-ratio: 16/9; cursor: pointer; margin-top: 8px; }
+.tl-video img { width: 100%; height: 100%; object-fit: cover; }
+.tl-video-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); }
+.tl-video-play { width: 40px; height: 40px; background: rgba(255,0,0,0.9); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+.tl-video-tri { width: 0; height: 0; border-left: 12px solid white; border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 2px; }
+.tl-video-title { font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
+
+/* CATEGORY VIEW (hidden by default) */
+.category-view { display: none; margin-top: 16px; }
+.category-view.active { display: block; }
+.cat-group { margin-bottom: 20px; }
+.cat-group-header {
+  font-family: var(--display); font-size: 15px; font-weight: 700;
+  color: var(--text-primary); padding: 10px 0; cursor: pointer;
+  border-bottom: 1px solid var(--border-subtle); margin-bottom: 8px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.cat-group-header::after { content: '+'; color: var(--text-tertiary); font-size: 18px; }
+.cat-group-header.open::after { content: '−'; }
+.cat-group-items { display: none; }
+.cat-group-items.open { display: block; }
+.cat-quote { padding: 12px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); margin-bottom: 6px; }
+.cat-quote-text { font-size: 14px; line-height: 1.5; color: var(--text-secondary); font-style: italic; }
+.cat-quote-attr { font-size: 11px; color: var(--gold-cool); margin-top: 4px; }
+
+/* DECLASSIFIED */
+.declassified { margin: 24px -8px; padding: 20px 16px; border: 1px solid var(--gold-dim); border-radius: var(--radius); background: linear-gradient(180deg, oklch(0.16 0.01 80), var(--bg-deep)); }
+.declassified h3 { font-family: var(--display); font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.declassified p { font-size: 14px; line-height: 1.6; color: var(--text-secondary); margin-bottom: 12px; }
+.declassified-cta { display: block; text-align: center; padding: 14px; font-family: var(--display); font-size: 14px; font-weight: 700; color: var(--gold); background: oklch(0.18 0.02 80); border: 1px solid var(--gold); border-radius: var(--radius-sm); text-decoration: none; }
+
+/* CONTENT LIBRARY */
+.content-section { margin-top: 28px; }
+.content-header { font-family: var(--display); font-size: 18px; font-weight: 700; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle); }
+.content-card { display: flex; gap: 12px; padding: 12px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); margin-bottom: 8px; text-decoration: none; color: inherit; transition: border-color 0.2s; }
+.content-card:hover { border-color: var(--gold-dim); }
+.cc-title { font-size: 14px; font-weight: 600; }
+.cc-meta { font-size: 11px; color: var(--gold-cool); margin-top: 2px; }
+.cc-desc { font-size: 13px; color: var(--text-tertiary); margin-top: 3px; line-height: 1.4; }
+
+/* FEED */
+.feed-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; }
+.feed-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold-dim); margin-top: 5px; flex-shrink: 0; }
+.feed-text { font-size: 13px; color: var(--text-secondary); }
+.feed-time { font-size: 11px; font-family: var(--mono); color: var(--text-tertiary); margin-top: 2px; }
+.share-row { text-align: center; font-size: 13px; color: var(--text-tertiary); padding: 16px 0; }
+
+.mockup-label { position: fixed; top: 52px; left: 0; right: 0; z-index: 200; background: var(--gold); color: var(--text-inverse); text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px; font-family: var(--display); }
+</style>
+</head>
+<body>
+<div class="film-grain" aria-hidden="true"></div>
+<div class="page-atmosphere" aria-hidden="true"></div>
+<div class="mockup-label">Mockup v4 — Hybrid (form high, depth below)</div>
+
+<nav class="nav">
+  <div class="nav-brand">Plan Movies</div>
+  <button class="nav-link" onclick="document.getElementById('the-evidence').scrollIntoView({behavior:'smooth'})">The Movie</button>
+</nav>
+
+<!-- ====================== -->
+<!-- HERO: TRAILER           -->
+<!-- ====================== -->
+<div class="trailer-hero">
+  <img src="https://image.tmdb.org/t/p/w1280/5p6BsJtnPbglYN15MuiUEppPl0f.jpg" alt="Disclosure Day">
+  <div class="trailer-hero-gradient"></div>
+  <div class="trailer-play"><div class="play-circle"><div class="play-tri"></div></div></div>
+  <div class="trailer-hero-info">
+    <div class="trailer-hero-venue">Regal Secaucus · Fri Jun 12 · 7:00 PM</div>
+    <div class="trailer-hero-title">Disclosure Day</div>
+    <div class="trailer-hero-sub">Opening Night</div>
+  </div>
+</div>
+
+<div class="page-body">
+
+<!-- ====================== -->
+<!-- CREW (screen 1)         -->
+<!-- ====================== -->
+<div class="crew-section">
+  <div class="crew-avatars">
+    <div class="crew-avatar">J</div><div class="crew-avatar">S</div><div class="crew-avatar">M</div><div class="crew-avatar">L</div><div class="crew-avatar">R</div>
+  </div>
+  <div class="crew-summary">Jordan, Sarai, Marco, Lisa & 1 more are going</div>
+</div>
+
+<!-- COUNTDOWN (screen 2) -->
+<div class="countdown">
+  <div class="cd-unit"><span class="cd-num">14</span><span class="cd-label">Days</span></div><span class="cd-sep">:</span>
+  <div class="cd-unit"><span class="cd-num">22</span><span class="cd-label">Hrs</span></div><span class="cd-sep">:</span>
+  <div class="cd-unit"><span class="cd-num">08</span><span class="cd-label">Min</span></div><span class="cd-sep">:</span>
+  <div class="cd-unit"><span class="cd-num">41</span><span class="cd-label">Sec</span></div>
+</div>
+
+<!-- ONE-LINE PITCH (30px, not 600px) -->
+<div class="pitch-line">
+  Spielberg's first UFO film since Close Encounters. John Williams scoring at 93. <em>Nobody knows how this ends.</em>
+</div>
+
+<!-- ====================== -->
+<!-- RSVP (screen 3)         -->
+<!-- ====================== -->
+<div class="rsvp-card">
+  <p>Your turn.</p>
+  <div class="form-group">
+    <label class="form-label">Your Name</label>
+    <input class="form-input" type="text" placeholder="First and last name">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Are You Coming?</label>
+    <div class="radio-group"><div class="radio-pill selected">I'm Going</div><div class="radio-pill">Can't Make It</div></div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">How many people total?</label>
+    <div class="radio-group"><div class="radio-pill selected">1</div><div class="radio-pill">2</div><div class="radio-pill">3</div><div class="radio-pill">4</div><div class="radio-pill">5</div></div>
+  </div>
+  <button class="submit-btn">Count Me In</button>
+</div>
+
+<!-- DRESS CODE -->
+<div class="dress-code">
+  <span class="dress-code-label">Dress Code</span>
+  <span>Come as you are. But if you want to dress like an alien... nobody will stop you.</span>
+</div>
+
+<div class="atmos-divider"></div>
+
+<!-- ======================================= -->
+<!-- THE MOVIE (below form, full detail)     -->
+<!-- ======================================= -->
+<div class="movie-section">
+  <div class="movie-section-header">The World of Disclosure Day</div>
+
+  <div class="movie-card">
+    <img class="movie-card-poster" src="https://image.tmdb.org/t/p/w185/3o5YPjDGDTcTDL5ftDA9NwN9dLd.jpg" alt="Disclosure Day">
+    <div class="movie-card-info">
+      <div class="movie-card-title">Disclosure Day</div>
+      <div class="movie-card-tagline">"We deserve to know."</div>
+      <div class="movie-detail"><strong>Director</strong> Steven Spielberg</div>
+      <div class="movie-detail"><strong>Writer</strong> David Koepp</div>
+      <div class="movie-detail"><strong>Score</strong> John Williams</div>
+      <div class="movie-detail"><strong>Runtime</strong> 145 min · PG-13</div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;">
+    <div class="cast-row">
+      <div class="cast-chip"><div class="cast-chip-name">Emily Blunt</div><div class="cast-chip-role">Margaret Fairchild</div></div>
+      <div class="cast-chip"><div class="cast-chip-name">Josh O'Connor</div><div class="cast-chip-role">Daniel Kellner</div></div>
+      <div class="cast-chip"><div class="cast-chip-name">Colin Firth</div><div class="cast-chip-role">Noah Scanlon</div></div>
+      <div class="cast-chip"><div class="cast-chip-name">Colman Domingo</div><div class="cast-chip-role">Hugo Wakefield</div></div>
+      <div class="cast-chip"><div class="cast-chip-name">Eve Hewson</div><div class="cast-chip-role">Jane Blankenship</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;">
+    <div class="filmmaker-quote">
+      <div class="filmmaker-quote-text">"Isn't it going to be wonderful when people realize after seeing this movie that everything is true, and has been true?"</div>
+      <div class="filmmaker-quote-attr">Spielberg on Colbert</div>
+    </div>
+    <div class="filmmaker-quote">
+      <div class="filmmaker-quote-text">"I finished reading the script and I bawled. Steven Spielberg believes in the possibility of the human beings we could be."</div>
+      <div class="filmmaker-quote-attr">Colman Domingo</div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;">
+    <div class="section-label">Trailers</div>
+    <div class="trailer-grid">
+      <div>
+        <div class="trailer-thumb">
+          <img src="https://img.youtube.com/vi/TppFEA5dYfM/hqdefault.jpg" alt="60 Minutes">
+          <div class="trailer-thumb-overlay"><div class="tt-play"><div class="tt-tri"></div></div></div>
+        </div>
+        <div class="trailer-thumb-label">60 Minutes: Navy Pilots Describe Encounters</div>
+      </div>
+      <div>
+        <div class="trailer-thumb">
+          <img src="https://img.youtube.com/vi/lcrCMLVk614/hqdefault.jpg" alt="Congressional testimony">
+          <div class="trailer-thumb-overlay"><div class="tt-play"><div class="tt-tri"></div></div></div>
+        </div>
+        <div class="trailer-thumb-label">Grusch Congressional Testimony (Full)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================= -->
+<!-- THE TURN                                -->
+<!-- ======================================= -->
+<div class="reality-break">
+  <div class="rb-line1">The movie is based on real events.</div>
+  <div class="rb-line2">These events are happening now.</div>
+</div>
+
+<!-- ======================================= -->
+<!-- THE EVIDENCE                            -->
+<!-- ======================================= -->
+<div id="the-evidence" style="padding-top:8px;">
+
+<div class="timeline-intro">
+  <h2>This Is Actually Happening</h2>
+  <p>80 years of presidents, pilots, and intelligence directors saying the same thing.</p>
+</div>
+
+<!-- VIEW TOGGLE: Timeline vs By Authority -->
+<div class="view-toggle">
+  <button class="view-btn active" onclick="showView('timeline')">Timeline</button>
+  <button class="view-btn" onclick="showView('category')">By Authority</button>
+</div>
+
+<!-- ===== TIMELINE VIEW ===== -->
+<div class="timeline" id="view-timeline">
+
+  <div class="tl-decade">1947<div class="tl-decade-sub">Something crashes in Roswell. The cover-up starts.</div></div>
+  <div class="tl-node"><div class="tl-year">1947</div><div class="tl-quote">"The phenomenon reported is something real and not visionary or fictitious."</div><div class="tl-attr"><strong>Lt. Gen. Twining</strong> · Air Materiel Command</div></div>
+  <div class="tl-node"><div class="tl-year">1950</div><div class="tl-quote">"Flying saucers, given that they exist, are not constructed by any power on Earth."</div><div class="tl-attr"><strong>Harry S. Truman</strong> · 33rd President</div></div>
+
+  <div class="tl-decade">1960s<div class="tl-decade-sub">Official denial. Private concern.</div></div>
+  <div class="tl-node"><div class="tl-year">1960</div><div class="tl-quote">"Behind the scenes, high-ranking Air Force officers are soberly concerned about the UFOs."</div><div class="tl-attr"><strong>Vice Adm. Hillenkoetter</strong> · First CIA Director · NYT</div></div>
+  <div class="tl-node"><div class="tl-year">1966</div><div class="tl-quote">"I strongly recommend a committee investigation of the UFO phenomena."</div><div class="tl-attr"><strong>Gerald Ford</strong> · Later 38th President</div></div>
+
+  <div class="tl-decade">1970s–80s<div class="tl-decade-sub">Astronauts talk. Presidents notice.</div></div>
+  <div class="tl-node"><div class="tl-year">1976</div><div class="tl-quote">"I don't laugh at people any more when they say they've seen UFOs. I've seen one myself."</div><div class="tl-attr"><strong>Jimmy Carter</strong> · 39th President</div></div>
+  <div class="tl-node"><div class="tl-year">1978</div><div class="tl-quote">"These extra-terrestrial vehicles and their crews are visiting this planet."</div><div class="tl-attr"><strong>Col. Gordon Cooper</strong> · Mercury 7 Astronaut · Letter to UN</div></div>
+  <div class="tl-node highlight"><div class="tl-year">1987</div><div class="tl-quote">"Perhaps we need some outside, universal threat to make us recognize this common bond."</div><div class="tl-attr"><strong>Ronald Reagan</strong> · 40th President · UN General Assembly</div></div>
+
+  <div class="tl-decade">1990s<div class="tl-decade-sub">Belgium. UK. France. Governments on record.</div></div>
+  <div class="tl-node"><div class="tl-year">1990</div><div class="tl-quote">"The phenomenon of UFOs does exist, and it must be treated seriously."</div><div class="tl-attr"><strong>Mikhail Gorbachev</strong> · Soviet Union</div></div>
+  <div class="tl-node"><div class="tl-year">1997</div><div class="tl-quote">"Either an intrusion took place, or a nuclear-armed base commander was hallucinating."</div><div class="tl-attr"><strong>Admiral Lord Hill-Norton</strong> · UK Defence Chief · House of Lords</div></div>
+  <div class="tl-node"><div class="tl-year">1999</div><div class="tl-quote">"A single hypothesis sufficiently takes into account the facts: extraterrestrial visitors."</div><div class="tl-attr"><strong>Gen. Denis Letty</strong> · French Air Force · Report to PM</div></div>
+
+  <div class="tl-decade">2000s–2010s<div class="tl-decade-sub">The Pentagon creates a secret program. Then the NYT breaks it.</div></div>
+  <div class="tl-node"><div class="tl-year">2008</div><div class="tl-quote">"I happen to have been privileged enough to be in on the fact that we've been visited."</div><div class="tl-attr"><strong>Dr. Edgar Mitchell</strong> · Apollo 14, 6th man on the Moon</div></div>
+
+  <div class="tl-featured">
+    <div class="tl-year" style="color:var(--gold);">2017 — The break</div>
+    <div class="tl-headline" style="font-size:16px;">New York Times reveals the Pentagon's secret UFO program.</div>
+    <div class="tl-video"><img src="https://img.youtube.com/vi/rhjTZTFjW8k/hqdefault.jpg" alt="Pentagon footage"><div class="tl-video-overlay"><div class="tl-video-play"><div class="tl-video-tri"></div></div></div></div>
+    <div class="tl-video-title">Official Pentagon UAP footage (declassified)</div>
+  </div>
+
+  <div class="tl-node"><div class="tl-year">2017</div><div class="tl-quote">"I think it was not from this world."</div><div class="tl-attr"><strong>Cmdr. David Fravor</strong> · Navy TOPGUN Pilot</div></div>
+
+  <div class="tl-decade" style="color:var(--gold);">2020s<div class="tl-decade-sub" style="color:var(--gold-warm);">The dam breaks.</div></div>
+  <div class="tl-node"><div class="tl-year">2020</div><div class="tl-quote">"Off-world vehicles not made on this Earth."</div><div class="tl-attr"><strong>Dr. Eric Davis</strong> · Pentagon Briefer · NYT</div></div>
+  <div class="tl-node highlight"><div class="tl-year">2021</div><div class="tl-quote">"There's footage of objects in the skies that we don't know exactly what they are."</div><div class="tl-attr"><strong>Barack Obama</strong> · 44th President</div></div>
+  <div class="tl-node"><div class="tl-year">2021</div><div class="tl-headline">ODNI Report: 144 incidents. Only 1 explained.</div></div>
+
+  <div class="tl-featured">
+    <div class="tl-year" style="color:var(--gold);">2023 — Under oath</div>
+    <div class="tl-headline" style="font-size:16px;">Congressional hearing. Three witnesses. The world watches.</div>
+    <div class="tl-video"><img src="https://img.youtube.com/vi/lcrCMLVk614/hqdefault.jpg" alt="Hearing"><div class="tl-video-overlay"><div class="tl-video-play"><div class="tl-video-tri"></div></div></div></div>
+  </div>
+  <div class="tl-node"><div class="tl-year">2023</div><div class="tl-quote">"I was informed of a multi-decade crash retrieval and reverse-engineering program."</div><div class="tl-attr"><strong>David Grusch</strong> · Intelligence Officer · Under Oath</div></div>
+  <div class="tl-node"><div class="tl-year">2023</div><div class="tl-quote">"These sightings are not rare. They are routine."</div><div class="tl-attr"><strong>Lt. Ryan Graves</strong> · Navy Pilot · Under Oath</div></div>
+  <div class="tl-node"><div class="tl-year">2024</div><div class="tl-quote">"Non-human intelligence exists. Zero doubt."</div><div class="tl-attr"><strong>Col. Karl Nell</strong> · U.S. Army, UAP Task Force</div></div>
+  <div class="tl-node"><div class="tl-year">2024</div><div class="tl-quote">"UAP are real. Advanced technologies not made by any government."</div><div class="tl-attr"><strong>Lue Elizondo</strong> · Former AATIP Director · Under Oath</div></div>
+  <div class="tl-node"><div class="tl-year">2025</div><div class="tl-quote">"I have seen with my own eyes non-human craft, and non-human beings."</div><div class="tl-attr"><strong>RADM Tim Gallaudet</strong> · Rear Admiral USN</div></div>
+
+  <div class="tl-featured">
+    <div class="tl-year" style="color:var(--gold);">2026 — Now</div>
+    <div class="tl-headline" style="font-size:16px;">"WHAT THE HELL IS GOING ON?"</div>
+    <div class="tl-attr"><strong>Donald Trump</strong> · 47th President · Feb 2026</div>
+    <div style="margin-top:10px;"><div class="tl-headline">Pentagon unseals 222 UAP files. 1 billion visits in 2 weeks.</div></div>
+  </div>
+  <div class="tl-node"><div class="tl-year">May 2026</div><div class="tl-headline">"Holy crap is coming." — Rep. Burchett</div></div>
+
+  <div class="declassified">
+    <h3>The Declassified Files</h3>
+    <p>On May 8, 2026, the Pentagon published 222 classified UAP records. Videos. Photos. Sensor data spanning 1944 to present.</p>
+    <div class="tl-video" style="margin-bottom:12px;"><img src="https://img.youtube.com/vi/sZwh8wlaoXE/hqdefault.jpg" alt="UAP footage"><div class="tl-video-overlay"><div class="tl-video-play"><div class="tl-video-tri"></div></div></div></div>
+    <div style="font-size:12px;color:var(--text-tertiary);margin-bottom:14px;">Object goes from stationary to extreme velocity instantaneously. No known technology does this.</div>
+    <a class="declassified-cta" href="https://www.war.gov/ufo/" target="_blank">war.gov/ufo — Read the Files</a>
+  </div>
+
+  <div class="tl-node highlight" style="padding-bottom:32px;">
+    <div class="tl-year" style="color:var(--gold);font-size:13px;">June 12, 2026</div>
+    <div class="tl-headline" style="font-size:16px;color:var(--gold);">Disclosure Day opens in theaters.</div>
+    <div style="font-size:14px;color:var(--gold-warm);margin-top:4px;">Opening night. Same row. Same crew.</div>
+  </div>
+</div><!-- end timeline -->
+
+<!-- ===== CATEGORY VIEW (hidden by default) ===== -->
+<div class="category-view" id="view-category">
+
+  <div class="cat-group">
+    <div class="cat-group-header open" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Presidents</div>
+    <div class="cat-group-items open">
+      <div class="cat-quote"><div class="cat-quote-text">"Flying saucers, given that they exist, are not constructed by any power on Earth."</div><div class="cat-quote-attr">Harry S. Truman · 1950</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"I strongly recommend a committee investigation of the UFO phenomena."</div><div class="cat-quote-attr">Gerald Ford · 1966</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"I don't laugh at people any more when they say they've seen UFOs. I've seen one myself."</div><div class="cat-quote-attr">Jimmy Carter · 1976</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"Perhaps we need some outside, universal threat to make us recognize this common bond."</div><div class="cat-quote-attr">Ronald Reagan · UN General Assembly, 1987</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"There's footage of objects in the skies that we don't know exactly what they are."</div><div class="cat-quote-attr">Barack Obama · 2021</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"WHAT THE HELL IS GOING ON?"</div><div class="cat-quote-attr">Donald Trump · 2026</div></div>
+    </div>
+  </div>
+
+  <div class="cat-group">
+    <div class="cat-group-header" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Military & Defense</div>
+    <div class="cat-group-items">
+      <div class="cat-quote"><div class="cat-quote-text">"The phenomenon reported is something real and not visionary or fictitious."</div><div class="cat-quote-attr">Lt. Gen. Twining · 1947</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"I think it was not from this world."</div><div class="cat-quote-attr">Cmdr. David Fravor · 2017</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"These sightings are not rare. They are routine."</div><div class="cat-quote-attr">Lt. Ryan Graves · 2023</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"Non-human intelligence exists. Zero doubt."</div><div class="cat-quote-attr">Col. Karl Nell · 2024</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"UAP are real. Advanced technologies not made by any government."</div><div class="cat-quote-attr">Lue Elizondo · 2024</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"I have seen non-human craft, and non-human beings."</div><div class="cat-quote-attr">RADM Tim Gallaudet · 2025</div></div>
+    </div>
+  </div>
+
+  <div class="cat-group">
+    <div class="cat-group-header" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Intelligence</div>
+    <div class="cat-group-items">
+      <div class="cat-quote"><div class="cat-quote-text">"Behind the scenes, high-ranking officers are soberly concerned about UFOs."</div><div class="cat-quote-attr">Vice Adm. Hillenkoetter · First CIA Director · 1960</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"I was informed of a multi-decade crash retrieval program."</div><div class="cat-quote-attr">David Grusch · Under Oath · 2023</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"Off-world vehicles not made on this Earth."</div><div class="cat-quote-attr">Dr. Eric Davis · NYT · 2020</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"Some phenomena might constitute a different form of life."</div><div class="cat-quote-attr">John Brennan · Former CIA Director · 2020</div></div>
+    </div>
+  </div>
+
+  <div class="cat-group">
+    <div class="cat-group-header" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">World Governments</div>
+    <div class="cat-group-items">
+      <div class="cat-quote"><div class="cat-quote-text">"The phenomenon of UFOs does exist, and it must be treated seriously."</div><div class="cat-quote-attr">Mikhail Gorbachev · Soviet Union · 1990</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"Either an intrusion took place, or a base commander was hallucinating."</div><div class="cat-quote-attr">Admiral Lord Hill-Norton · UK · 1997</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"A single hypothesis: extraterrestrial visitors."</div><div class="cat-quote-attr">Gen. Denis Letty · France · 1999</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"Japan possesses its own UAP video footage."</div><div class="cat-quote-attr">Minoru Kihara · Japan · 2026</div></div>
+    </div>
+  </div>
+
+  <div class="cat-group">
+    <div class="cat-group-header" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Scientists & Astronauts</div>
+    <div class="cat-group-items">
+      <div class="cat-quote"><div class="cat-quote-text">"These vehicles and their crews are visiting from other planets."</div><div class="cat-quote-attr">Col. Gordon Cooper · Mercury 7 · 1978</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"We've been visited on this planet, and the UFO phenomenon is real."</div><div class="cat-quote-attr">Dr. Edgar Mitchell · Apollo 14 · 2008</div></div>
+      <div class="cat-quote"><div class="cat-quote-text">"I give the probability as 100 percent."</div><div class="cat-quote-attr">Dr. Garry Nolan · Stanford · 2023</div></div>
+    </div>
+  </div>
+
+</div><!-- end category view -->
+
+<div class="atmos-divider"></div>
+
+<!-- DOWN THE RABBIT HOLE -->
+<div class="content-section">
+  <div class="content-header">Down the Rabbit Hole</div>
+  <div style="font-size:13px;color:var(--text-tertiary);margin-bottom:14px;">Documentaries, podcasts, and books to go deeper.</div>
+  <a class="content-card" href="#"><div><div class="cc-title">The Phenomenon</div><div class="cc-meta">James Fox · Amazon</div><div class="cc-desc">The definitive UAP documentary. 70 years in 100 minutes.</div></div></a>
+  <a class="content-card" href="#"><div><div class="cc-title">JRE: David Grusch (3 hrs)</div><div class="cc-meta">Joe Rogan · Spotify</div><div class="cc-desc">Beyond the congressional testimony.</div></div></a>
+  <a class="content-card" href="#"><div><div class="cc-title">In Plain Sight</div><div class="cc-meta">Ross Coulthart · Book</div><div class="cc-desc">The journalist who broke the story.</div></div></a>
+  <a class="content-card" href="#"><div><div class="cc-title">The Age of Disclosure</div><div class="cc-meta">Serena DC · Amazon</div><div class="cc-desc">34 government insiders on camera.</div></div></a>
+  <a class="content-card" href="#"><div><div class="cc-title">Close Encounters of the Third Kind</div><div class="cc-meta">Spielberg, 1977</div><div class="cc-desc">Where it started. Disclosure Day answers questions this film posed.</div></div></a>
+  <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.nextElementSibling.style.display==='none'?'Show all':'Show less'" style="display:block;margin:12px auto 0;background:none;border:none;font-size:13px;color:var(--gold-dim);cursor:pointer;font-family:var(--font);padding:8px 16px;">Show all</button>
+  <div style="display:none;">
+    <a class="content-card" href="#"><div><div class="cc-title">Encounters</div><div class="cc-meta">Netflix</div><div class="cc-desc">Four communities. Four mass sightings.</div></div></a>
+    <a class="content-card" href="#"><div><div class="cc-title">Imminent</div><div class="cc-meta">Lue Elizondo · Book</div><div class="cc-desc">Former AATIP director's insider account.</div></div></a>
+    <a class="content-card" href="#"><div><div class="cc-title">Jesse Michels</div><div class="cc-meta">YouTube</div><div class="cc-desc">Deep investigative interviews.</div></div></a>
+    <a class="content-card" href="#"><div><div class="cc-title">Congressional Hearing (Full)</div><div class="cc-meta">C-SPAN</div><div class="cc-desc">The hearing that changed everything.</div></div></a>
+  </div>
+</div>
+
+</div><!-- end #the-evidence -->
+
+<div class="atmos-divider"></div>
+
+<!-- FEED -->
+<div>
+  <div class="section-label">What's Happening</div>
+  <div class="feed-item"><div class="feed-dot"></div><div><div class="feed-text"><strong>Marco</strong> RSVPed for 2</div><div class="feed-time">2h ago</div></div></div>
+  <div class="feed-item"><div class="feed-dot"></div><div><div class="feed-text"><strong>Lisa</strong> RSVPed</div><div class="feed-time">5h ago</div></div></div>
+  <div class="feed-item"><div class="feed-dot"></div><div><div class="feed-text"><strong>Jordan</strong> created the event</div><div class="feed-time">1d ago</div></div></div>
+</div>
+
+<div class="share-row">Send this to someone</div>
+
+</div><!-- end .page-body -->
+
+<script>
+function showView(view) {
+  document.getElementById('view-timeline').style.display = view === 'timeline' ? '' : 'none';
+  document.getElementById('view-category').className = view === 'category' ? 'category-view active' : 'category-view';
+  document.querySelectorAll('.view-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase().includes(view === 'timeline' ? 'timeline' : 'authority'));
+  });
+}
+</script>
+</body>
+</html>

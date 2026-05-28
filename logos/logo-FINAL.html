@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — the screen-O (ranger spec)</title>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg-deep:#07080a; --bg-card:#12151b; --gold:#c9a84c; --cream:#e8e6e1; --text-secondary:#8a8880; }
+  *{box-sizing:border-box;}
+  body{background:var(--bg-deep);color:var(--cream);font-family:system-ui,sans-serif;margin:0;padding:36px 22px 70px;}
+  h1{font-weight:800;font-size:20px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--text-secondary);font-size:13px;margin-bottom:26px;max-width:760px;line-height:1.55;}
+  .section{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:30px 0 14px;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:6px;max-width:1000px;}
+  .word{display:inline-flex;align-items:center;font-family:'Clash Display',sans-serif;font-weight:700;letter-spacing:-1.5px;text-transform:uppercase;}
+  .word .a{color:var(--cream);} .word .b{color:var(--gold);} .word svg{display:block;}
+  .hero{background:var(--bg-card);border-radius:16px;padding:60px 30px;display:flex;justify-content:center;}
+  .hero .word{font-size:66px;}
+  .row{display:flex;gap:30px;align-items:flex-end;flex-wrap:wrap;}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .cap{color:var(--text-secondary);font-size:10px;letter-spacing:.5px;}
+  .chip{background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:8px;}
+  .darkchip{background:var(--bg-card);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:8px;}
+  .panel{background:var(--bg-card);border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:22px;max-width:1000px;}
+  .whitepanel{background:#fff;border-radius:14px;padding:26px;display:flex;justify-content:center;}
+  .word.inv .a{color:#07080a;}
+</style>
+</head>
+<body>
+<h1>The screen-O — built to the ranger spec</h1>
+<div class="sub">Wordmark + the O of MOVIES as a cinemascope screen (≈2.2:1, floated high), heavy ring, pure one-color negative space. The standalone O is the favicon/app glyph. Designed small-first. Tested 16 / 24 / 48px, on dark and on white.</div>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <!-- the screen-O glyph: heavy ring, wide letterbox counter floated high, true-hole -->
+  <mask id="scrO"><rect width="100" height="100" fill="#fff"/>
+    <rect x="23" y="33" width="54" height="23" rx="5" fill="#000"/>
+  </mask>
+  <symbol id="screenO" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="50" rx="44" ry="43" fill="var(--gold)" mask="url(#scrO)"/>
+  </symbol>
+</defs></svg>
+
+<div class="section">The lockup</div>
+<div class="hero">
+  <div class="word"><span class="a">PLANM</span><svg width="58" height="58" viewBox="0 0 100 100"><use href="#screenO"/></svg><span class="b">VIES</span></div>
+</div>
+
+<div class="section">The glyph — your favicon / app icon (the master)</div>
+<div class="panel">
+  <div class="row">
+    <div class="cell"><div class="darkchip"><svg width="64" height="64"><use href="#screenO"/></svg></div><span class="cap">64px</span></div>
+    <div class="cell"><div class="darkchip"><svg width="48" height="48"><use href="#screenO"/></svg></div><span class="cap">48px</span></div>
+    <div class="cell"><div class="darkchip"><svg width="32" height="32"><use href="#screenO"/></svg></div><span class="cap">32px</span></div>
+    <div class="cell"><div class="darkchip"><svg width="24" height="24"><use href="#screenO"/></svg></div><span class="cap">24px nav</span></div>
+    <div class="cell"><div class="darkchip"><svg width="16" height="16"><use href="#screenO"/></svg></div><span class="cap">16px favicon</span></div>
+    <div class="cell"><div class="chip"><svg width="16" height="16"><use href="#screenO"/></svg></div><span class="cap">16px on white</span></div>
+    <div class="cell"><div class="chip"><svg width="32" height="32"><use href="#screenO"/></svg></div><span class="cap">32px on white</span></div>
+  </div>
+</div>
+
+<div class="section">In the nav (real size)</div>
+<div class="panel">
+  <div class="word" style="font-size:22px"><span class="a">PLANM</span><svg width="20" height="20" viewBox="0 0 100 100"><use href="#screenO"/></svg><span class="b">VIES</span></div>
+  <div class="word" style="font-size:17px"><span class="a">PLANM</span><svg width="16" height="16" viewBox="0 0 100 100"><use href="#screenO"/></svg><span class="b">VIES</span></div>
+</div>
+
+<div class="section">On a white chat unfurl (inverted)</div>
+<div class="whitepanel">
+  <div class="word inv" style="font-size:40px"><span class="a">PLANM</span><svg width="36" height="36" viewBox="0 0 100 100"><use href="#screenO"/></svg><span class="b">VIES</span></div>
+</div>
+</body>
+</html>

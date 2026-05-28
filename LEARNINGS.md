@@ -61,6 +61,12 @@ Root cause: When adding new render paths (crew dots, landing strip, category vie
 Rule: Any function that builds innerHTML from Supabase data must wrap every user-derived field in esc(). Review list: name, status_line, photo_url alt text, activity messages. Treat Supabase data as untrusted input.
 Enforced in: Code review pattern — search for `.name` and `.message` in innerHTML template literals.
 
+**#10 SVG negative-space cuts must use true transparency, not a background-matching fill -- 2026-05-28**
+Mistake: Direction A's play cut was filled with `--bg-card` (#12151b). On the dark page it looked like a hole. On a white iMessage/WhatsApp unfurl it inverted into a visible dark gash — looks like a rendering bug.
+Root cause: Tested the mark only on its home page background. Favicons and chat-thumbnail unfurls render on uncontrolled backgrounds (white, gray, light). A filled "background color" is not a hole, it's a painted shape.
+Rule: Any SVG mark intended for favicon/app-icon/unfurl use must use true transparency for cuts (mask or fill-rule:evenodd). Never use a background-color fill to fake negative space. Test on both dark AND white backgrounds before calling it done.
+Enforced in: `rangers/visual/memory.md` § Dead Directions.
+
 ---
 
 ### Format

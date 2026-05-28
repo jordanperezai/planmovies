@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — the O is the screen</title>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg-deep:#07080a; --bg-card:#12151b; --gold:#c9a84c; --cream:#e8e6e1; --text-secondary:#8a8880; }
+  *{box-sizing:border-box;}
+  body{background:var(--bg-deep);color:var(--cream);font-family:system-ui,sans-serif;margin:0;padding:36px 22px 60px;}
+  h1{font-weight:800;font-size:20px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--text-secondary);font-size:13px;margin-bottom:28px;max-width:740px;line-height:1.55;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px;margin-bottom:34px;}
+  @media(max-width:760px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--bg-card);border-radius:14px;padding:26px 18px 18px;display:flex;flex-direction:column;align-items:center;gap:16px;}
+  .lab{color:var(--gold);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;text-align:center;}
+  .note{color:var(--text-secondary);font-size:11px;text-align:center;margin-top:-8px;}
+  /* inline wordmark using the custom O */
+  .word{display:flex;align-items:center;font-family:'Clash Display',sans-serif;font-weight:700;font-size:30px;letter-spacing:-1px;text-transform:uppercase;}
+  .word .a{color:var(--cream);} .word .b{color:var(--gold);}
+  .word svg{margin:0 -1px;}
+  .lockrow{display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .cap{color:var(--text-secondary);font-size:9px;letter-spacing:1px;}
+  .chip{width:30px;height:30px;border-radius:7px;background:#fff;display:flex;align-items:center;justify-content:center;}
+</style>
+</head>
+<body>
+<h1>PLANM<span style="color:var(--cream)">[O]</span>VIES — the O is the screen</h1>
+<div class="sub">The wordmark stays clean Clash Display. Only the O is custom: its counter becomes a cinema screen (a true negative-space cut). Three intensities. The favicon is just the O.</div>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <!-- O1 : 4:3 screen counter -->
+  <mask id="o1"><rect width="100" height="100" fill="#fff"/><rect x="28" y="34" width="44" height="32" rx="7" fill="#000"/></mask>
+  <symbol id="O1" viewBox="0 0 100 100"><rect x="8" y="12" width="84" height="76" rx="26" fill="var(--gold)" mask="url(#o1)"/></symbol>
+  <!-- O2 : wide 16:9 cinema screen -->
+  <mask id="o2"><rect width="100" height="100" fill="#fff"/><rect x="24" y="38" width="52" height="24" rx="5" fill="#000"/></mask>
+  <symbol id="O2" viewBox="0 0 100 100"><rect x="8" y="12" width="84" height="76" rx="26" fill="var(--gold)" mask="url(#o2)"/></symbol>
+  <!-- O3 : screen + the faintest frame line (still one color) -->
+  <mask id="o3"><rect width="100" height="100" fill="#fff"/><rect x="27" y="35" width="46" height="30" rx="6" fill="#000"/></mask>
+  <symbol id="O3" viewBox="0 0 100 100">
+    <rect x="8" y="12" width="84" height="76" rx="26" fill="var(--gold)" mask="url(#o3)"/>
+    <rect x="31" y="39" width="38" height="22" rx="3" fill="none" stroke="var(--gold)" stroke-width="2.5" opacity="0"/>
+  </symbol>
+</defs></svg>
+
+<div class="grid">
+
+  <div class="card"><div class="lab">O1 · 4:3 screen</div><div class="note">squarer, like a TV / classic frame</div>
+    <svg width="92" height="92"><use href="#O1"/></svg>
+    <div class="lockrow"><div class="word"><span class="a">PLANM</span><svg width="30" height="30" viewBox="0 0 100 100"><use href="#O1"/></svg><span class="b">VIES</span></div><span class="cap">wordmark</span></div>
+    <div class="lockrow"><div style="display:flex;gap:12px;align-items:flex-end">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><svg width="20" height="20"><use href="#O1"/></svg><span class="cap">16px</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="chip"><svg width="24" height="24"><use href="#O1"/></svg></div><span class="cap">white</span></div>
+    </div></div></div>
+
+  <div class="card"><div class="lab">O2 · 16:9 cinema</div><div class="note">wide screen — most "movie"</div>
+    <svg width="92" height="92"><use href="#O2"/></svg>
+    <div class="lockrow"><div class="word"><span class="a">PLANM</span><svg width="30" height="30" viewBox="0 0 100 100"><use href="#O2"/></svg><span class="b">VIES</span></div><span class="cap">wordmark</span></div>
+    <div class="lockrow"><div style="display:flex;gap:12px;align-items:flex-end">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><svg width="20" height="20"><use href="#O2"/></svg><span class="cap">16px</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="chip"><svg width="24" height="24"><use href="#O2"/></svg></div><span class="cap">white</span></div>
+    </div></div></div>
+
+  <div class="card"><div class="lab">O3 · subtle</div><div class="note">barely-there screen, reads as O first</div>
+    <svg width="92" height="92"><use href="#O3"/></svg>
+    <div class="lockrow"><div class="word"><span class="a">PLANM</span><svg width="30" height="30" viewBox="0 0 100 100"><use href="#O3"/></svg><span class="b">VIES</span></div><span class="cap">wordmark</span></div>
+    <div class="lockrow"><div style="display:flex;gap:12px;align-items:flex-end">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><svg width="20" height="20"><use href="#O3"/></svg><span class="cap">16px</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="chip"><svg width="24" height="24"><use href="#O3"/></svg></div><span class="cap">white</span></div>
+    </div></div></div>
+
+</div>
+</body>
+</html>

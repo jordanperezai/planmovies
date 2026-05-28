@@ -54,6 +54,14 @@ Jordan gravitates toward Murthy's social dynamics lens and Kim's coordinator-bur
 - **Carousel dots as social proof beats carousel dots as indicators.** Context: When people are going, replacing abstract dots with their faces on the landing page is more emotionally compelling and tells you WHO is going before you even tap in. Crew avatars on landing with Director badge. cadence: stable. last-confirmed: 2026-05-28
 - **Run Codex adversarial review before every deploy.** Context: Session 12 found 2 XSS P0s + 9 other issues. A 10-minute adversarial pass prevents production security issues. The ROI is asymmetric. cadence: stable. last-confirmed: 2026-05-28
 
+## Validated Principles (session 09 / logo additions)
+
+- **The group-chat share card (og:image + title), not the favicon, does the trust and recruiting work at the paste moment.** Context: Frisby + Kim independently, session 09. The favicon is a ~16px corner element apps may not render; family taps because of the sender + the preview content, not the logo (confirmed by Tía Rosa, Marco, Ray: "the logo makes zero difference"). Highest-leverage branding work is a dynamic, crew-forward og:image that updates per event ("Jordan set this up · 4 going"). cadence: stable. last-confirmed: 2026-05-28
+
+## Dead Directions (session 09 / logo)
+
+- **Single-seat logo (Direction A: one cinema seat with a play cut).** Why: reads as "one person / solo / lonely," the opposite of the "your people / together" pitch (Murthy + Marco + Sofia + Ray, + Fernando in visual-03). The negative-space play cut reads as a notch/glitch/defect/chess-rook at 16-20px and for aging eyes (Johnson, Shadeed). The convergent fix is "the row": 2-3 bold seats as one filled silhouette, no cutout. last-confirmed: 2026-05-28
+
 ## Distillation Log
 
 | Date | Entries reviewed | Promoted | Archived |
@@ -62,3 +70,4 @@ Jordan gravitates toward Murthy's social dynamics lens and Kim's coordinator-bur
 | 2026-05-26 | Session 03 additions | 4 new principles, 1 dead direction | 0 |
 | 2026-05-27 | Session 04 additions | 2 new principles, 2 new dead directions | 0 |
 | 2026-05-28 | Session 09+11 additions | 4 new principles, 2 new dead directions | 0 |
+| 2026-05-28 | Session 09 logo + family panel | 1 new principle, 1 dead direction | 0 |

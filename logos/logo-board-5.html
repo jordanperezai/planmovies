@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — board 5 · ticket, deeper</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#07080a; --bg-card:#12151b; --gold:#c9a84c; --gold-mid:#b89a52; --gold-dim:#9c8243;
+    --cream:#e8e6e1; --text-secondary:#8a8880;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--bg-deep);color:var(--cream);font-family:'Inter',sans-serif;margin:0;padding:32px 20px;}
+  h1{font-weight:900;letter-spacing:-1px;font-size:22px;color:var(--gold);margin:0 0 4px;}
+  .sub{color:var(--text-secondary);font-size:13px;letter-spacing:.2px;margin-bottom:6px;max-width:760px;line-height:1.5;}
+  .lane{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin:26px 0 10px;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:6px;}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1180px;}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
+  .card{background:var(--bg-card);border-radius:12px;padding:22px 16px 16px;display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .label{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.5px;text-align:center;min-height:30px;line-height:1.3;}
+  .hero{height:84px;display:flex;align-items:center;justify-content:center;}
+  .wordmark{font-weight:900;letter-spacing:-1.2px;font-size:18px;}
+  .wordmark .a{color:var(--cream);}
+  .wordmark .b{color:var(--gold);}
+  .small{display:flex;align-items:center;gap:13px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);width:100%;justify-content:center;}
+  .col{display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .cap{font-size:9px;color:var(--text-secondary);letter-spacing:.5px;}
+  .chip{width:28px;height:28px;border-radius:6px;background:#fff;display:flex;align-items:center;justify-content:center;}
+  .navsim{display:flex;align-items:center;gap:7px;}
+  .navsim span{font-size:12px;font-weight:900;letter-spacing:-.5px;color:var(--text-secondary);}
+</style>
+</head>
+<body>
+<h1>Board 5 — ticket, deeper</h1>
+<div class="sub">Built off T2 (ticket + check) and T4 (two tickets). Two themes only: <i>you're confirmed</i> (the check) and <i>we all got in</i> (multiples). No new metaphors. All cuts are true holes — safe on a white unfurl. Tested at 84px, 24px dark, white chip, nav.</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+
+  <!-- T5 Ticket + check + perforation -->
+  <mask id="m5"><rect width="100" height="100" fill="#fff"/>
+    <circle cx="12" cy="52" r="7" fill="#000"/><circle cx="88" cy="52" r="7" fill="#000"/>
+    <path d="M30,52 L38,61 L55,42" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="68" y="40" width="3" height="6" rx="1.5" fill="#000"/>
+    <rect x="68" y="49" width="3" height="6" rx="1.5" fill="#000"/>
+    <rect x="68" y="58" width="3" height="6" rx="1.5" fill="#000"/>
+  </mask>
+  <symbol id="t5" viewBox="0 0 100 100"><rect x="12" y="34" width="76" height="36" rx="9" fill="var(--gold)" mask="url(#m5)"/></symbol>
+
+  <!-- T6 Two tickets, clean parallel offset -->
+  <symbol id="t6" viewBox="0 0 100 100">
+    <rect x="28" y="30" width="54" height="28" rx="7" fill="var(--gold-dim)"/>
+    <rect x="18" y="44" width="54" height="28" rx="7" fill="var(--gold)"/>
+  </symbol>
+
+  <!-- T7 Three tickets fanned (the crew) -->
+  <symbol id="t7" viewBox="0 0 100 100">
+    <g transform="rotate(-17 50 74)"><rect x="23" y="34" width="54" height="30" rx="6" fill="var(--gold-dim)"/></g>
+    <g transform="rotate(0 50 74)"><rect x="23" y="32" width="54" height="30" rx="6" fill="var(--gold-mid)"/></g>
+    <g transform="rotate(17 50 74)"><rect x="23" y="34" width="54" height="30" rx="6" fill="var(--gold)"/></g>
+  </symbol>
+
+  <!-- T8 Two tickets + check (pair, confirmed) -->
+  <mask id="m8"><rect width="100" height="100" fill="#fff"/>
+    <path d="M30,52 L38,61 L56,40" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </mask>
+  <symbol id="t8" viewBox="0 0 100 100">
+    <rect x="30" y="28" width="52" height="26" rx="7" fill="var(--gold-dim)"/>
+    <rect x="18" y="42" width="56" height="30" rx="7" fill="var(--gold)" mask="url(#m8)"/>
+  </symbol>
+
+  <!-- T9 Vertical ticket + check -->
+  <mask id="m9"><rect width="100" height="100" fill="#fff"/>
+    <circle cx="50" cy="16" r="7" fill="#000"/><circle cx="50" cy="84" r="7" fill="#000"/>
+    <path d="M40,50 L47,58 L61,42" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </mask>
+  <symbol id="t9" viewBox="0 0 100 100"><rect x="33" y="16" width="34" height="68" rx="9" fill="var(--gold)" mask="url(#m9)"/></symbol>
+
+  <!-- T10 Ticket-check tile (app icon) -->
+  <mask id="m10"><rect width="100" height="100" fill="#fff"/>
+    <rect x="26" y="44" width="48" height="16" rx="8" fill="#000"/>
+    <path d="M40,52 L46,59 L60,43" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </mask>
+  <symbol id="t10" viewBox="0 0 100 100"><rect x="14" y="14" width="72" height="72" rx="20" fill="var(--gold)" mask="url(#m10)"/></symbol>
+
+  <!-- T11 Ticket + corner check badge -->
+  <mask id="m11a"><rect width="100" height="100" fill="#fff"/>
+    <circle cx="14" cy="54" r="6.5" fill="#000"/><circle cx="86" cy="54" r="6.5" fill="#000"/>
+  </mask>
+  <mask id="m11b"><rect width="100" height="100" fill="#fff"/>
+    <path d="M70,30 L75,36 L84,25" fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </mask>
+  <symbol id="t11" viewBox="0 0 100 100">
+    <rect x="14" y="40" width="72" height="30" rx="8" fill="var(--gold)" mask="url(#m11a)"/>
+    <circle cx="77" cy="30" r="14" fill="var(--gold-dim)" mask="url(#m11b)"/>
+  </symbol>
+
+  <!-- T12 Two tickets interlocked (shared perforation) -->
+  <mask id="m12"><rect width="100" height="100" fill="#fff"/>
+    <rect x="48.5" y="40" width="3" height="6" rx="1.5" fill="#000"/>
+    <rect x="48.5" y="49" width="3" height="6" rx="1.5" fill="#000"/>
+    <rect x="48.5" y="58" width="3" height="6" rx="1.5" fill="#000"/>
+  </mask>
+  <symbol id="t12" viewBox="0 0 100 100"><g mask="url(#m12)">
+    <rect x="14" y="38" width="44" height="28" rx="7" fill="var(--gold-dim)"/>
+    <rect x="42" y="38" width="44" height="28" rx="7" fill="var(--gold)"/>
+  </g></symbol>
+
+</defs></svg>
+
+<div class="lane">You're confirmed (the check)</div>
+<div class="grid">
+
+  <div class="card"><span class="label">T5 · Ticket + check + perf<br>the full stub</span>
+    <div class="hero"><svg width="84" height="84"><use href="#t5"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="24" height="24"><use href="#t5"/></svg><span class="cap">24 dark</span></div>
+      <div class="col"><div class="chip"><svg width="22" height="22"><use href="#t5"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#t5"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">T9 · Vertical stub + check<br>portrait ticket</span>
+    <div class="hero"><svg width="84" height="84"><use href="#t9"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="24" height="24"><use href="#t9"/></svg><span class="cap">24 dark</span></div>
+      <div class="col"><div class="chip"><svg width="22" height="22"><use href="#t9"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#t9"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">T10 · Ticket-check tile<br>app icon</span>
+    <div class="hero"><svg width="84" height="84"><use href="#t10"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="24" height="24"><use href="#t10"/></svg><span class="cap">24 dark</span></div>
+      <div class="col"><div class="chip"><svg width="22" height="22"><use href="#t10"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#t10"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">T11 · Ticket + check badge<br>stamped confirmed</span>
+    <div class="hero"><svg width="84" height="84"><use href="#t11"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="24" height="24"><use href="#t11"/></svg><span class="cap">24 dark</span></div>
+      <div class="col"><div class="chip"><svg width="22" height="22"><use href="#t11"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#t11"/></svg><span>PlanMovies</span></div></div></div>
+
+</div>
+
+<div class="lane">We all got in (multiples)</div>
+<div class="grid">
+
+  <div class="card"><span class="label">T6 · Two tickets<br>clean parallel</span>
+    <div class="hero"><svg width="84" height="84"><use href="#t6"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="24" height="24"><use href="#t6"/></svg><span class="cap">24 dark</span></div>
+      <div class="col"><div class="chip"><svg width="22" height="22"><use href="#t6"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#t6"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">T7 · Three tickets fanned<br>the crew</span>
+    <div class="hero"><svg width="84" height="84"><use href="#t7"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="24" height="24"><use href="#t7"/></svg><span class="cap">24 dark</span></div>
+      <div class="col"><div class="chip"><svg width="22" height="22"><use href="#t7"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#t7"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">T8 · Two tickets + check<br>pair, confirmed</span>
+    <div class="hero"><svg width="84" height="84"><use href="#t8"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="24" height="24"><use href="#t8"/></svg><span class="cap">24 dark</span></div>
+      <div class="col"><div class="chip"><svg width="22" height="22"><use href="#t8"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#t8"/></svg><span>PlanMovies</span></div></div></div>
+
+  <div class="card"><span class="label">T12 · Two tickets joined<br>shared perforation</span>
+    <div class="hero"><svg width="84" height="84"><use href="#t12"/></svg></div>
+    <div class="wordmark"><span class="a">Plan</span><span class="b">Movies</span></div>
+    <div class="small">
+      <div class="col"><svg width="24" height="24"><use href="#t12"/></svg><span class="cap">24 dark</span></div>
+      <div class="col"><div class="chip"><svg width="22" height="22"><use href="#t12"/></svg></div><span class="cap">white</span></div>
+      <div class="navsim"><svg width="20" height="20"><use href="#t12"/></svg><span>PlanMovies</span></div></div></div>
+
+</div>
+</body>
+</html>

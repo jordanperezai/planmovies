@@ -13,11 +13,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="You're Invited: Disclosure Day">
 <meta name="twitter:description" content="Jordan is putting together a crew for opening night. Spielberg's new film. Fri Jun 12, 7 PM. RSVP to save your seat.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%23c9a84c' stroke-width='10'/%3E%3Cpolygon points='38,30 38,70 70,50' fill='%23c9a84c'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2307080a'/%3E%3Cellipse cx='50' cy='50' rx='40' ry='39' fill='%23c9a84c'/%3E%3Crect x='24' y='35' width='52' height='22' rx='5' fill='%2307080a'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -31,8 +31,8 @@
   --border-medium: rgba(255,255,255,0.1);
   --gold: #c9a84c;
   --gold-warm: #b8984a;
-  --gold-cool: #8a7d5a;
-  --gold-dim: #9a8240;
+  --gold-cool: #988a63;
+  --gold-dim: #a68b45;
   --gold-glow: rgba(201,168,76,0.15);
   --gold-bright: #e8c85a;
   --blue-atmos: #3a5080;
@@ -43,14 +43,14 @@
   --amber: #d4943a;
   --green: #3ecf71;
   --green-dim: rgba(62,207,113,0.15);
-  --red: #e05555;
+  --red: #e76363;
   --red-dim: rgba(224,85,85,0.15);
   --blue: #4a9eff;
   --blue-dim: rgba(74,158,255,0.12);
-  --amber-dim: var(--amber-dim);
+  --amber-dim: rgba(212,148,58,0.15);
   --text-primary: #e8e6e1;
   --text-secondary: #8a8880;
-  --text-tertiary: #8a8878;
+  --text-tertiary: #82807a;
   --text-inverse: #07080a;
   --radius: 10px;
   --radius-sm: 6px;
@@ -68,13 +68,16 @@
   --text-3xl: clamp(2rem, 7vw, 3.2rem);
 }
 
-html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 body {
   font-family: var(--font);
   background: var(--bg-deep);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
 }
 
 ::-webkit-scrollbar { width: 4px; }
@@ -128,7 +131,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
   padding: 0 16px;
-  height: 52px;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+  height: calc(52px + env(safe-area-inset-top, 0px));
   display: flex; align-items: center; justify-content: space-between;
   transition: var(--transition);
 }
@@ -163,6 +169,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .nav-tab {
   padding: 10px 14px;
+  min-height: 44px;
   font-size: var(--text-xs);
   font-weight: 500;
   color: var(--text-secondary);
@@ -578,7 +585,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .attendee-tag {
   font-family: var(--font);
-  font-size: 10px;
+  font-size: var(--text-xs);
   font-weight: 600;
   padding: 3px 8px;
   border-radius: 10px;
@@ -597,7 +604,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   display: flex; gap: 6px;
 }
 .icon-btn {
-  width: 36px; height: 36px;
+  width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
@@ -622,9 +629,12 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .progress-bar-fill {
   height: 100%;
+  width: 100%;
   background: linear-gradient(90deg, var(--gold-dim), var(--gold));
   border-radius: 3px;
-  transition: width 0.6s ease;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s ease;
 }
 .coord-stat {
   display: flex; justify-content: space-between;
@@ -848,7 +858,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 .crew-avatar-host { border-color: var(--gold-dim); }
 .crew-host-badge {
   position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
-  font-size: 8px; font-weight: 700; font-family: var(--display);
+  font-size: var(--text-xs); font-weight: 700; font-family: var(--display);
   color: var(--gold); background: var(--bg-deep); border: 1px solid var(--gold-dim);
   padding: 1px 6px; border-radius: 4px; white-space: nowrap; z-index: 2;
   letter-spacing: 1px; text-transform: uppercase;
@@ -987,7 +997,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .deeper-item-platform {
   font-family: var(--font);
-  font-size: 9px;
+  font-size: var(--text-xs);
   font-weight: 600;
   padding: 2px 8px;
   border-radius: 10px;
@@ -1113,7 +1123,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .movie-detail-label {
   font-family: var(--font);
-  font-size: 10px;
+  font-size: var(--text-xs);
   font-weight: 600;
   color: var(--text-tertiary);
   min-width: 70px;
@@ -1122,7 +1132,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   display: inline-block;
   padding: 2px 8px;
   font-family: var(--font);
-  font-size: 10px;
+  font-size: var(--text-xs);
   font-weight: 700;
   border-radius: 4px;
 }
@@ -1223,7 +1233,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 .seatmap-row-label {
   width: 18px;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: var(--text-xs);
   color: var(--text-tertiary);
   text-align: center;
   flex-shrink: 0;
@@ -1287,7 +1297,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 10px;
+  font-size: var(--text-xs);
   color: var(--text-tertiary);
 }
 .legend-swatch {
@@ -1340,7 +1350,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 .seat-assign-option:hover { background: var(--bg-elevated); }
 .seat-assign-option .party-count {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: var(--text-xs);
   color: var(--text-tertiary);
 }
 .seat-assign-cancel {
@@ -1394,7 +1404,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .venue-tag {
   font-family: var(--font);
-  font-size: 9px;
+  font-size: var(--text-xs);
   font-weight: 600;
   padding: 2px 8px;
   border-radius: 10px;
@@ -1651,7 +1661,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   line-height: 1;
 }
 .countdown-frame .cf-label {
-  font-size: 9px;
+  font-size: var(--text-xs);
   color: var(--text-tertiary);
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1749,7 +1759,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 .feed-text strong { color: var(--text-primary); font-weight: 600; }
 .feed-time {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: var(--text-xs);
   color: var(--text-tertiary);
   white-space: nowrap;
   margin-top: 4px;
@@ -2014,7 +2024,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   font-family: var(--display); font-size: 22px; font-weight: 700; }
 .profile-badge {
   display: inline-block; margin-top: 6px; padding: 3px 10px;
-  font-size: 10px; font-weight: 600; letter-spacing: 1px;
+  font-size: var(--text-xs); font-weight: 600; letter-spacing: 1px;
   color: var(--gold);
   border: 1px solid var(--gold-dim); border-radius: 20px;
   font-family: var(--display);
@@ -2308,29 +2318,35 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     margin: 0 -24px; padding-left: 24px; padding-right: 24px;
   }
 }
+.skip-link {
+  position: fixed; top: -100px; left: 16px; z-index: 200;
+  background: var(--gold); color: var(--text-inverse);
+  padding: 10px 16px; border-radius: var(--radius-sm);
+  font-family: var(--font); font-weight: 600; font-size: var(--text-base);
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 16px; }
 </style>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to content</a>
 <div class="film-grain" aria-hidden="true"></div>
 <div class="page-atmosphere" aria-hidden="true"></div>
 <div id="app" class="app">
-<main>
+<main id="main-content">
   <!-- NAV -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <mask id="screenO-cut"><rect width="100" height="100" fill="#fff"/><rect x="23" y="33" width="54" height="23" rx="5" fill="#000"/></mask>
+    <symbol id="screenO" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="44" ry="43" fill="var(--gold)" mask="url(#screenO-cut)"/></symbol>
+  </defs></svg>
+
   <nav id="nav" class="nav hidden">
     <div class="nav-brand" onclick="showLanding()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showLanding()}" style="cursor:pointer;" role="button" tabindex="0" aria-label="Back to landing page">
-      <span>PLAN</span>
-      <svg viewBox="-2 14 104 72" aria-hidden="true">
-        <g transform="rotate(-12 50 50)">
-          <path d="M 6 24 L 94 24 L 94 40 A 6 6 0 0 0 94 60 L 94 76 L 6 76 L 6 60 A 6 6 0 0 0 6 40 Z" fill="#c9a84c"/>
-        </g>
-        <circle cx="50" cy="50" r="30" fill="#07080a" stroke="#c9a84c" stroke-width="5"/>
-        <polygon points="42,36 42,64 64,50" fill="#c9a84c"/>
-      </svg>
-      <span>MOVIES</span>
+      <span style="font-family:'Clash Display',sans-serif;font-weight:700;letter-spacing:-.5px;font-size:21px;text-transform:uppercase;color:var(--cream);">PLAN</span><span style="font-family:'Clash Display',sans-serif;font-weight:700;letter-spacing:-.5px;font-size:21px;text-transform:uppercase;color:var(--gold);">M</span><svg viewBox="0 0 100 100" style="width:18px;height:18px;flex-shrink:0;" aria-hidden="true"><use href="#screenO"/></svg><span style="font-family:'Clash Display',sans-serif;font-weight:700;letter-spacing:-.5px;font-size:21px;text-transform:uppercase;color:var(--gold);">VIES</span>
     </div>
     <div class="nav-tabs">
-      <button class="nav-tab active" data-page="dashboard" onclick="showPage('dashboard')">The Crew</button>
+      <button class="nav-tab active" data-page="dashboard" onclick="showPage('dashboard')" aria-current="page">The Crew</button>
       <button class="nav-tab" data-page="coordination" onclick="showPage('coordination')">Seats</button>
       <button class="nav-tab" data-page="profile" onclick="showPage('profile')" id="nav-tab-you" style="display:none;">You</button>
     </div>
@@ -2340,16 +2356,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   <section id="landing" class="landing">
     <div class="landing-bg"></div>
 
-    <div class="fade-up" style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
-      <span style="font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:4px;color:var(--gold-cool);text-transform:uppercase;">PLAN</span>
-      <svg viewBox="-2 14 104 72" style="width:52px;height:34px;" aria-hidden="true">
-        <g transform="rotate(-12 50 50)">
-          <path d="M 6 24 L 94 24 L 94 40 A 6 6 0 0 0 94 60 L 94 76 L 6 76 L 6 60 A 6 6 0 0 0 6 40 Z" fill="#b8984a"/>
-        </g>
-        <circle cx="50" cy="50" r="30" fill="#07080a" stroke="#b8984a" stroke-width="5"/>
-        <polygon points="42,36 42,64 64,50" fill="#b8984a"/>
-      </svg>
-      <span style="font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:4px;color:var(--gold-cool);text-transform:uppercase;">MOVIES</span>
+    <div class="fade-up" style="margin-bottom:12px;font-family:'Clash Display',sans-serif;font-weight:700;letter-spacing:-1px;font-size:34px;text-transform:uppercase;line-height:1;display:flex;align-items:center;">
+      <span style="color:var(--cream);">PLAN</span><span style="color:var(--gold);">M</span><svg viewBox="0 0 100 100" style="width:30px;height:30px;flex-shrink:0;" aria-hidden="true"><use href="#screenO"/></svg><span style="color:var(--gold);">VIES</span>
     </div>
 
     <div class="poster-carousel fade-up fade-up-d1" id="poster-carousel">
@@ -2397,7 +2405,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   <section id="page-dashboard" class="page" style="padding-top:52px;">
 
     <div class="crew-hero" id="crew-hero" onclick="playHeroTrailer()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();playHeroTrailer()}" role="button" tabindex="0" aria-label="Play official trailer">
-      <img class="crew-hero-poster" src="https://image.tmdb.org/t/p/w1280/5p6BsJtnPbglYN15MuiUEppPl0f.jpg" alt="Disclosure Day">
+      <img class="crew-hero-poster" src="https://image.tmdb.org/t/p/w1280/5p6BsJtnPbglYN15MuiUEppPl0f.jpg" alt="Disclosure Day" width="1280" height="320" fetchpriority="high" decoding="async">
       <div class="crew-hero-play"><div class="crew-hero-play-circle"><div class="crew-hero-play-tri"></div></div></div>
       <div class="crew-hero-gradient"></div>
       <div class="crew-hero-content">
@@ -2483,7 +2491,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       </div>
       <div id="rsvp-confirmation" style="display:none;">
         <div style="text-align:center;padding:32px 0 24px;">
-          <div style="font-size:32px;margin-bottom:16px;">&#127916;</div>
+          <div style="font-size:32px;margin-bottom:16px;color:var(--gold);">&#10003;</div>
           <h2 id="confirm-heading" style="font-size:1.3rem;font-weight:700;margin-bottom:8px;"></h2>
           <p id="confirm-position" style="font-size:var(--text-base);color:var(--text-secondary);margin-bottom:4px;"></p>
         </div>
@@ -2628,8 +2636,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       </div>
 
       <div class="view-toggle">
-        <button class="view-btn active" onclick="showView('timeline')">Timeline</button>
-        <button class="view-btn" onclick="showView('category')">By Authority</button>
+        <button class="view-btn active" onclick="showView('timeline')" aria-pressed="true">Timeline</button>
+        <button class="view-btn" onclick="showView('category')" aria-pressed="false">By Authority</button>
       </div>
 
       <!-- TIMELINE VIEW (rendered by JS) -->
@@ -2789,7 +2797,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
           <span class="coord-stat-label">Tickets Secured</span>
           <span class="coord-stat-value" id="tickets-secured">0 / 0</span>
         </div>
-        <div class="progress-bar-bg"><div class="progress-bar-fill" id="ticket-progress" style="width:0%"></div></div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="ticket-progress" style="transform:scaleX(0)"></div></div>
       </div>
     </div>
 
@@ -2863,8 +2871,9 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 </main>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
@@ -2951,6 +2960,14 @@ function subscribeToChanges() {
 }
 
 // Countdown — film frame, always visible
+// Live HTMLCollections: cached once, auto-track injected sync elements (no per-tick DOM scan)
+const cfSync = {
+  days: document.getElementsByClassName('cf-days-sync'),
+  hours: document.getElementsByClassName('cf-hours-sync'),
+  mins: document.getElementsByClassName('cf-mins-sync'),
+  secs: document.getElementsByClassName('cf-secs-sync'),
+};
+const setSync = (coll, val) => { for (let i = 0; i < coll.length; i++) coll[i].textContent = val; };
 function updateCountdown() {
   const now = new Date();
   const diff = RELEASE_DATE - now;
@@ -2973,13 +2990,50 @@ function updateCountdown() {
   if (hoursEl) hoursEl.textContent = pad(h);
   if (minsEl) minsEl.textContent = pad(m);
   if (secsEl) secsEl.textContent = pad(s);
-  document.querySelectorAll('.cf-days-sync').forEach(el => el.textContent = pad(d));
-  document.querySelectorAll('.cf-hours-sync').forEach(el => el.textContent = pad(h));
-  document.querySelectorAll('.cf-mins-sync').forEach(el => el.textContent = pad(m));
-  document.querySelectorAll('.cf-secs-sync').forEach(el => el.textContent = pad(s));
+  setSync(cfSync.days, pad(d));
+  setSync(cfSync.hours, pad(h));
+  setSync(cfSync.mins, pad(m));
+  setSync(cfSync.secs, pad(s));
 }
-setInterval(updateCountdown, 1000);
+let countdownTimer = setInterval(updateCountdown, 1000);
 updateCountdown();
+
+// A11y: give section headers a navigable heading role for screen readers.
+// All .section-header / .movie-section-header / .content-header are static at load.
+['.section-header', '.movie-section-header', '.content-header'].forEach(sel => {
+  document.querySelectorAll(sel).forEach(el => {
+    el.setAttribute('role', 'heading');
+    el.setAttribute('aria-level', '2');
+  });
+});
+
+// A11y: one delegated handler makes every role="button" div keyboard-operable
+// (Enter/Space). Elements with their own onkeydown (hero trailer, nav brand) opt out.
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const el = e.target;
+  if (el && el.getAttribute && el.getAttribute('role') === 'button'
+      && el.tagName !== 'BUTTON' && !el.hasAttribute('onkeydown')) {
+    e.preventDefault();
+    el.click();
+  }
+});
+
+// Perf: pause the per-second countdown and the poster carousel when the tab is
+// backgrounded; resume (and immediately refresh the countdown) when visible.
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    clearInterval(countdownTimer);
+    clearInterval(carouselTimer);
+  } else {
+    updateCountdown();
+    countdownTimer = setInterval(updateCountdown, 1000);
+    if (document.getElementById('poster-carousel-track')) {
+      clearInterval(carouselTimer);
+      carouselTimer = setInterval(carouselNext, 5000);
+    }
+  }
+});
 
 // Nav
 function showLanding() {
@@ -3021,7 +3075,11 @@ function showPage(page) {
   pageEl.classList.add('active');
   if (pageViewed[page]) pageEl.classList.add('no-entrance');
   pageViewed[page] = true;
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.page === page));
+  document.querySelectorAll('.nav-tab').forEach(t => {
+    const on = t.dataset.page === page;
+    t.classList.toggle('active', on);
+    if (on) t.setAttribute('aria-current', 'page'); else t.removeAttribute('aria-current');
+  });
   if (page === 'dashboard') { renderDashboard(); renderMovieWorld(); }
   // briefing merged into dashboard
   if (page === 'coordination') renderCoordination();
@@ -3734,7 +3792,7 @@ async function renderCoordination() {
   const pct = totalHeads ? Math.round(secured / totalHeads * 100) : 0;
 
   document.getElementById('tickets-secured').textContent = `${secured} / ${totalHeads}`;
-  document.getElementById('ticket-progress').style.width = pct + '%';
+  document.getElementById('ticket-progress').style.transform = `scaleX(${pct / 100})`;
 
   // Payment
   const payContainer = document.getElementById('payment-list');
@@ -3948,7 +4006,7 @@ function initVideoCarousel(items, containerId, dotsId, key) {
     return `
       <div class="vslide vslide-${key}" data-idx="${i}" style="position:${active ? 'relative' : 'absolute'};opacity:${active ? 1 : 0};top:0;left:0;width:100%;transition:opacity 0.4s ease;">
         <div class="display-label">${t.label || t.title}</div>
-        <div class="trailer-container" id="vc-${key}-${t.id}" onclick="loadVideo('${key}','${t.id}')" style="cursor:pointer;">
+        <div class="trailer-container" id="vc-${key}-${t.id}" onclick="loadVideo('${key}','${t.id}')" role="button" tabindex="0" aria-label="Play trailer" style="cursor:pointer;">
           <img loading="lazy" src="https://img.youtube.com/vi/${t.id}/hqdefault.jpg" alt="${t.title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);">
             <div style="width:60px;height:42px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;">
@@ -4065,7 +4123,7 @@ function renderOfficialQuotes() {
     if (!quotes.length) return '';
     const collapsed = cat.defaultOpen ? '' : ' collapsed';
     return `<div class="quotes-category${collapsed}" id="qcat-${cat.id}">
-      <div class="quotes-category-header" onclick="toggleQuoteCategory('${cat.id}')">
+      <div class="quotes-category-header" onclick="toggleQuoteCategory('${cat.id}', this)" role="button" tabindex="0" aria-expanded="${cat.defaultOpen ? 'true' : 'false'}">
         <span class="quotes-category-label">${cat.label}</span>
         <span style="display:flex;align-items:center;gap:8px;">
           <span class="quotes-category-count">${quotes.length}</span>
@@ -4113,9 +4171,10 @@ function showMoreWorld() {
   renderWorldQuotes();
 }
 
-function toggleQuoteCategory(id) {
+function toggleQuoteCategory(id, header) {
   const el = document.getElementById('qcat-' + id);
   if (el) el.classList.toggle('collapsed');
+  if (header && el) header.setAttribute('aria-expanded', String(!el.classList.contains('collapsed')));
 }
 
 // Go Deeper
@@ -4447,7 +4506,7 @@ function declassGoTo(i) {
       const iframe = s.querySelector('iframe');
       if (iframe) {
         const v = DECLASSIFIED_VIDEOS[idx];
-        s.innerHTML = '<div class="tl-video" id="declass-vid-' + v.id + '" onclick="loadRabbitVideo(this.id,\'' + v.id + '\')" style="cursor:pointer;"><img loading="lazy" src="https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg" alt="' + v.title + '"><div class="tl-video-overlay"><div class="tl-video-play"><div class="tl-video-tri"></div></div></div></div><div style="font-size:var(--text-sm);color:var(--text-secondary);margin-top:6px;">' + v.title + '</div><div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">' + v.desc + '</div>';
+        s.innerHTML = '<div class="tl-video" id="declass-vid-' + v.id + '" onclick="loadRabbitVideo(this.id,\'' + v.id + '\')" role="button" tabindex="0" aria-label="Play video: ' + v.title + '" style="cursor:pointer;"><img loading="lazy" src="https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg" alt="' + v.title + '"><div class="tl-video-overlay"><div class="tl-video-play"><div class="tl-video-tri"></div></div></div></div><div style="font-size:var(--text-sm);color:var(--text-secondary);margin-top:6px;">' + v.title + '</div><div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">' + v.desc + '</div>';
       }
     }
   });
@@ -4504,7 +4563,9 @@ function showView(view) {
   if (tl) tl.style.display = view === 'timeline' ? '' : 'none';
   if (cat) cat.className = view === 'category' ? 'category-view active' : 'category-view';
   document.querySelectorAll('.view-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.textContent.toLowerCase().includes(view === 'timeline' ? 'timeline' : 'authority'));
+    const on = btn.textContent.toLowerCase().includes(view === 'timeline' ? 'timeline' : 'authority');
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
   });
 }
 
@@ -4592,7 +4653,7 @@ function renderTimeline() {
       if (node.attr) h += '<div class="tl-attr"><strong>' + node.attr.split(',')[0] + '</strong> \u00b7 ' + node.attr.split(',').slice(1).join(',').trim() + '</div>';
       if (node.subheadline) h += '<div style="margin-top:10px;"><div class="tl-headline">' + node.subheadline + '</div></div>';
       if (node.videoId) {
-        h += '<div class="tl-video" id="tl-vid-' + node.videoId + '" onclick="loadRabbitVideo(this.id,\'' + node.videoId + '\')" style="cursor:pointer;"><img loading="lazy" src="https://img.youtube.com/vi/' + node.videoId + '/hqdefault.jpg" alt="Video"><div class="tl-video-overlay"><div class="tl-video-play"><div class="tl-video-tri"></div></div></div></div>';
+        h += '<div class="tl-video" id="tl-vid-' + node.videoId + '" onclick="loadRabbitVideo(this.id,\'' + node.videoId + '\')" role="button" tabindex="0" aria-label="Play video" style="cursor:pointer;"><img loading="lazy" src="https://img.youtube.com/vi/' + node.videoId + '/hqdefault.jpg" alt="Video"><div class="tl-video-overlay"><div class="tl-video-play"><div class="tl-video-tri"></div></div></div></div>';
         if (node.videoTitle) h += '<div class="tl-video-title">' + node.videoTitle + '</div>';
       }
       h += '</div>';
@@ -4605,7 +4666,7 @@ function renderTimeline() {
         '<div id="declass-carousel" style="position:relative;overflow:hidden;margin-bottom:12px;">';
       h += DECLASSIFIED_VIDEOS.map((v, i) =>
         '<div class="declass-slide" style="position:' + (i === 0 ? 'relative' : 'absolute') + ';opacity:' + (i === 0 ? 1 : 0) + ';top:0;left:0;width:100%;transition:opacity 0.4s ease;' + (i !== 0 ? 'pointer-events:none;visibility:hidden;' : '') + '">' +
-        '<div class="tl-video" id="declass-vid-' + v.id + '" onclick="loadRabbitVideo(this.id,\'' + v.id + '\')" style="cursor:pointer;"><img loading="lazy" src="https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg" alt="' + v.title + '"><div class="tl-video-overlay"><div class="tl-video-play"><div class="tl-video-tri"></div></div></div></div>' +
+        '<div class="tl-video" id="declass-vid-' + v.id + '" onclick="loadRabbitVideo(this.id,\'' + v.id + '\')" role="button" tabindex="0" aria-label="Play video: ' + v.title + '" style="cursor:pointer;"><img loading="lazy" src="https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg" alt="' + v.title + '"><div class="tl-video-overlay"><div class="tl-video-play"><div class="tl-video-tri"></div></div></div></div>' +
         '<div style="font-size:var(--text-sm);color:var(--text-secondary);margin-top:6px;">' + v.title + '</div>' +
         '<div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">' + v.desc + '</div>' +
         '</div>'
@@ -4641,7 +4702,7 @@ function renderCategoryView() {
     if (!quotes.length) return '';
     const openClass = catIdx === 0 ? ' open' : '';
     return '<div class="cat-group">' +
-      '<div class="cat-group-header' + openClass + '" onclick="this.classList.toggle(\'open\');this.nextElementSibling.classList.toggle(\'open\')">' + cat.label + ' <span style="font-size:var(--text-xs);color:var(--text-tertiary);font-weight:400;">' + quotes.length + '</span></div>' +
+      '<div class="cat-group-header' + openClass + '" role="button" tabindex="0" aria-expanded="' + (openClass ? 'true' : 'false') + '" onclick="this.classList.toggle(\'open\');this.nextElementSibling.classList.toggle(\'open\');this.setAttribute(\'aria-expanded\',this.classList.contains(\'open\'))">' + cat.label + ' <span style="font-size:var(--text-xs);color:var(--text-tertiary);font-weight:400;">' + quotes.length + '</span></div>' +
       '<div class="cat-group-items' + openClass + '">' +
       quotes.map(q => '<div class="cat-quote"><div class="cat-quote-text">"' + q.quote + '"</div><div class="cat-quote-attr">' + q.name + ' \u00b7 ' + q.source + '</div></div>').join('') +
       '</div></div>';
