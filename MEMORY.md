@@ -35,13 +35,16 @@
 - Supabase now has: rsvps, seat_assignments, ticket_status, organizers, events, payments. Jordan is first organizer row. Disclosure Day is first event row.
 - Cloudflare native git integration blocked: jordanperezai personal GitHub account doesn't appear in Cloudflare Pages dropdown. GitHub Actions is the workaround.
 
-- Design critique scores: heuristics 24/40 (was 20/40), AI slop 5.0/10 (was 6.5/10). Main remaining tells: 76 letter-spacing declarations, uppercase overuse.
-- var(--mono) reserved for data only: countdown digits, prices, timestamps, phone/OTP inputs, seat numbers. Everything else uses var(--display) (Barlow Condensed) or var(--font) (Inter). 13 remaining uses, all legitimate.
-- Barlow Condensed (var(--display)) is the display/label font. Replaces mono's incorrectly-held role. Section headers, eyebrows, stat values, button labels, video captions.
-- activity_feed table live. Types: rsvp, payment, organizer_post, milestone, system. Falls back to RSVP timestamps when empty.
-- crew-photos Supabase Storage bucket live. Public read + upload policies. photos/[name]-[timestamp].[ext].
-- Phone auth (Supabase Auth + Twilio Verify) built. Requires Jordan to configure Twilio in Supabase dashboard. "Skip for now" escape valve keeps RSVP working until configured.
-- Session 10: 9 features built + full design overhaul. index.html 3930 lines. NOT pushed yet — push at next session start.
+- Design critique scores: heuristics 26/40 (est), AI slop 4.0/10 (est). Uppercase: 29→7. Letter-spacing: 71→24. Inline styles: 230→182. Tokenized font-sizes: 252.
+- DESIGN.md codifies Page DNA: hero visual → social proof → primary action → context. Read before ANY UI work.
+- var(--mono) = data only. 8 type scale tokens: --text-xs(11px) through --text-3xl(clamp). 252 tokenized declarations.
+- RSVP form: name + going + party size + submit. No phone gate. Phone is optional post-RSVP. Confirmed correct by all personas.
+- Crew page: poster hero (backdrop, dimmed, gradient fade) + 24px breathing room. "whoa! so much better" — Jordan.
+- Merged page direction confirmed (3/3 personas). "The Movie" tab → anchor scroll to timeline. Three acts: movie → reality break → evidence. NOT YET BUILT — mockup-merged.html v4.
+- Side panels on mobile rejected: "I think I broke it" (Tia Rosa). "Annoying" (Marco). Scroll, not slide.
+- One Movie Identity: profile tab, TMDB search, poster badge on crew avatars. Needs TMDB API key (Jordan's task).
+- activity_feed table live. Phone auth built (skip-by-default). crew-photos bucket live. one_movie columns in rsvps.
+- planmovies-api Worker: /api/og live with RSVP count SVG. Static backdrop still og:image (iMessage/WhatsApp don't support SVG).
 
 ## Warm (reference)
 
@@ -64,4 +67,5 @@
 | 2026-05-27 (s7) | PlanMovies Stripe account activated (live). Live Payment Link wired in ($18). planmovies.com fully live. No more blockers. |
 | 2026-05-27 (s8) | 31 commits. Movie tab restructured (credibility cascade). RSVP+Crew consolidated. Landing single viewport. Partiful avatar row. Rangers 06+07. 6 crew page audit fixes. Jake Barber + Matthew Brown added. World Govts section. Declassified Files featured. |
 | 2026-05-27 (s9) | Product vision session. Partiful audit (22 screenshots). Atom Tickets audit ($178M, acquired). Reddit demand validated. 79 features mapped + 93 proposed. Named Crew + One Movie Identity + auth design. No code changes. |
-| 2026-05-27 (s10) | 9 features built + full design overhaul. Design scores: heuristics 24/40, AI slop 5.0/10. Phone auth, activity feed, crew photos, font role reset. index.html 3930 lines. NOT pushed. |
+| 2026-05-27 (s10) | 9 features built + full design overhaul. Design scores: heuristics 24/40, AI slop 5.0/10. Phone auth, activity feed, crew photos, font role reset. index.html 3930 lines. Pushed. |
+| 2026-05-28 (s11) | 7 commits. Poster hero crew page. Auth simplified. Typography cleanup (29→7 uppercase, 71→24 ls, 252 tokenized). Audit pass (a11y, lazy loading). DESIGN.md. Merged page direction confirmed (mockup v4). index.html 4300 lines. |

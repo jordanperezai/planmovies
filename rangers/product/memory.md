@@ -38,6 +38,16 @@ Jordan gravitates toward Murthy's social dynamics lens and Kim's coordinator-bur
 - **Splitting a page when the tonal transition is the rhetorical point.** Why: 3-2 ranger vote session 04. The transition from entertainment to evidence on The Movie page is intentional. Splitting would break the "this movie is based on real events" argument mid-scroll. last-confirmed: 2026-05-27
 - **Hiding the nav during the RSVP form.** Why: Jordan's explicit call. The nav stays visible. last-confirmed: 2026-05-27
 
+- **Scroll to crew avatars before the form, not to the form itself.** Context: Shadeed verified 5/5 session 09: crew was 400px above the viewport after auto-scroll. User sees a phone input before seeing who's going. Fix: scroll to `crew-list-family`, block:start. cadence: stable. last-confirmed: 2026-05-28
+- **Side panels on mobile = perceived navigation break.** Context: 3/3 family personas rejected the side-panel idea. Tia Rosa: "I'd press home button." Marco: "Side panels on mobile are annoying." Sofia: "Don't hide the reason behind the ask." Scroll is the only safe navigation on mobile for this audience. cadence: stable. last-confirmed: 2026-05-28
+- **Separate tabs break the rhetorical argument.** Context: 3/3 personas preferred merge over tabs. The Movie tab separates "sell me" from "ask me." The three-act structure (movie → reality break → evidence) only works on one scroll. cadence: stable. last-confirmed: 2026-05-28
+- **Sofia's rule: sell me, then ask me.** Context: session 11 personas. Sofia won't fill out a form until she knows why she should care. One-line movie pitch between countdown and form. Never the full press kit before the form — that pushed the form to screen 6. cadence: stable. last-confirmed: 2026-05-28
+
+## Dead Directions
+
+- **Phone auth as the default RSVP gate.** Why: 3/3 personas — Tia Rosa can't complete OTP, Marco is annoyed, Sofia doesn't trust it. RSVP = name only. Phone is post-RSVP optional. Do not re-gate. last-confirmed: 2026-05-28
+- **Full movie press kit (poster + cast + filmmaker quotes + trailers) before the RSVP form.** Why: Pushes the form to screen 6. Tia Rosa never reaches it. Sofia needs a one-line pitch, not a press kit. Keep movie details below the form. last-confirmed: 2026-05-28
+
 ## Distillation Log
 
 | Date | Entries reviewed | Promoted | Archived |
@@ -45,3 +55,4 @@ Jordan gravitates toward Murthy's social dynamics lens and Kim's coordinator-bur
 | 2026-05-26 | Initial creation from sessions 01 + 02 | 0 | 0 |
 | 2026-05-26 | Session 03 additions | 4 new principles, 1 dead direction | 0 |
 | 2026-05-27 | Session 04 additions | 2 new principles, 2 new dead directions | 0 |
+| 2026-05-28 | Session 09+11 additions | 4 new principles, 2 new dead directions | 0 |

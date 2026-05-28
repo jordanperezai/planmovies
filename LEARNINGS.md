@@ -43,6 +43,12 @@ Root cause: Design quality check happened after implementation. "Ship features, 
 Rule: For any session that modifies the UI, run /critique at session START to establish baseline. Build with the critique score in mind. Re-run at end to verify improvement. Never discover the aesthetic is broken after shipping features into it.
 Enforced in: CLAUDE.md § Skill-Before-Adhoc (extended to /critique before UI work, not just audit skills).
 
+**#7 onclick inline styles with user content can break on special characters -- 2026-05-28**
+Mistake: Initial movie search results used `onclick='pickOneMovie(${m.id}, ${JSON.stringify(esc(m.title))}, ...)'`. Movie titles with single quotes (like "It's a Wonderful Life") would break the HTML attribute because JSON.stringify doesn't escape single quotes, and the onclick was wrapped in single quotes.
+Root cause: Assumed JSON.stringify makes all strings safe for inline HTML attributes. It doesn't escape single quotes.
+Rule: Never pass user-derived strings as inline onclick arguments. Use a data array (movieSearchResults[i]) and pass only an integer index. The data stays in JS, the HTML attribute stays safe.
+Enforced in: pickOneMovieByIndex() pattern — integer index only in HTML, full object in the JS array.
+
 ---
 
 ### Format
