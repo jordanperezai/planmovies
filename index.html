@@ -2119,6 +2119,14 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .crew-rsvp-card .form-group { margin-bottom: 16px; }
 .crew-rsvp-card .form-group:last-of-type { margin-bottom: 20px; }
+
+/* VIDEO PLAYER COMPONENTS (extracted from inline styles) */
+.vid-thumb { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.vid-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.vid-play { width: 48px; height: 48px; background: rgba(255,0,0,0.9); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.vid-tri { width: 0; height: 0; border-left: 16px solid white; border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 3px; }
+.meta-sm { font-size: var(--text-sm); color: var(--text-tertiary); line-height: 1.5; }
+.display-label { font-size: var(--text-xs); font-family: var(--display); font-weight: 600; color: var(--text-tertiary); margin-bottom: 6px; }
 </style>
 </head>
 <body>
@@ -2176,7 +2184,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div class="landing-credit fade-up fade-up-d2">A Steven Spielberg Film</div>
 
     <div class="fade-up fade-up-d2" style="margin-bottom:16px;">
-      <span style="font-family:var(--display);font-size:15px;font-weight:600;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">FRI JUN 12 · 7:00 PM</span>
+      <span style="font-family:var(--display);font-size:var(--text-md);font-weight:600;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">FRI JUN 12 · 7:00 PM</span>
     </div>
 
     <div class="fade-up fade-up-d3" style="display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;max-width:340px;">
@@ -2198,7 +2206,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <div class="cta-btn-wrap" style="width:100%;">
         <button class="cta-btn" id="cta-btn" style="width:100%;" onclick="initialize()">COUNT ME IN</button>
       </div>
-      <button onclick="initialize();showPage('briefing');setTimeout(()=>{document.getElementById('reality-break').scrollIntoView({behavior:'smooth'})},100);" style="background:none;border:none;font-family:var(--font);font-size:13px;color:var(--text-secondary);cursor:pointer;padding:8px 16px;transition:color 0.2s;">What is Disclosure Day?</button>
+      <button onclick="initialize();showPage('briefing');setTimeout(()=>{document.getElementById('reality-break').scrollIntoView({behavior:'smooth'})},100);" style="background:none;border:none;font-family:var(--font);font-size:var(--text-base);color:var(--text-secondary);cursor:pointer;padding:8px 16px;transition:color 0.2s;">What is Disclosure Day?</button>
     </div>
   </section>
 
@@ -2259,7 +2267,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
     <div id="inline-rsvp">
       <div class="crew-rsvp-card">
-        <p style="font-family:var(--font);font-size:15px;color:var(--text-secondary);margin-bottom:16px;">Your turn.</p>
+        <p style="font-family:var(--font);font-size:var(--text-md);color:var(--text-secondary);margin-bottom:16px;">Your turn.</p>
         <form id="rsvp-form" onsubmit="submitRSVP(event)">
           <div class="form-group">
             <label class="form-label" for="f-name">Your Name</label>
@@ -2291,7 +2299,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
         <div style="text-align:center;padding:32px 0 24px;">
           <div style="font-size:32px;margin-bottom:16px;">&#127916;</div>
           <h3 id="confirm-heading" style="font-size:1.3rem;font-weight:700;margin-bottom:8px;"></h3>
-          <p id="confirm-position" style="font-size:14px;color:var(--text-secondary);margin-bottom:4px;"></p>
+          <p id="confirm-position" style="font-size:var(--text-base);color:var(--text-secondary);margin-bottom:4px;"></p>
         </div>
         <div class="share-prompt" id="share-prompt">
           <p class="share-prompt-text">Bring someone else?</p>
@@ -2301,23 +2309,23 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
           </div>
         </div>
         <div id="post-rsvp-phone" style="margin-top:16px;padding:14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);">
-          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;">Get ticket updates via text</p>
+          <p style="font-size:var(--text-base);color:var(--text-secondary);margin-bottom:10px;">Get ticket updates via text</p>
           <div style="display:flex;gap:8px;">
             <div class="phone-input-wrap" style="flex:1;">
               <span class="country-code">+1</span>
               <input class="phone-number" type="tel" id="f-phone" placeholder="(555) 123-4567" aria-label="Phone number" inputmode="numeric" autocomplete="tel-national" maxlength="14">
             </div>
-            <button type="button" onclick="savePhoneNumber()" style="padding:8px 16px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:13px;cursor:pointer;font-family:var(--font);white-space:nowrap;">Save</button>
+            <button type="button" onclick="savePhoneNumber()" style="padding:8px 16px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:var(--text-base);cursor:pointer;font-family:var(--font);white-space:nowrap;">Save</button>
           </div>
         </div>
         <div class="form-group" id="status-line-group" style="margin-top:12px;">
           <input class="status-line-input" type="text" id="f-status-line" aria-label="Status line" placeholder="Say something... (e.g. Can't wait, Already watched the trailer 4x)" maxlength="80">
-          <button type="button" onclick="saveStatusLine()" style="display:block;margin:6px auto 0;background:none;border:none;font-size:12px;color:var(--gold-dim);cursor:pointer;">Save</button>
+          <button type="button" onclick="saveStatusLine()" style="display:block;margin:6px auto 0;background:none;border:none;font-size:var(--text-sm);color:var(--gold-dim);cursor:pointer;">Save</button>
         </div>
         <div class="photo-upload-area" id="photo-upload-area">
           <input type="file" id="photo-file" accept="image/*" style="display:none;" onchange="uploadPhoto(this)">
           <button class="photo-upload-btn" type="button" onclick="document.getElementById('photo-file').click()">Add your photo</button>
-          <p style="font-size:11px;color:var(--text-tertiary);">Shows next to your name in the crew list</p>
+          <p style="font-size:var(--text-xs);color:var(--text-tertiary);">Shows next to your name in the crew list</p>
         </div>
         <div style="margin-top:16px;">
           <div class="section-header">The Crew So Far</div>
@@ -2346,7 +2354,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     </div>
 
     <div id="primer-section" style="margin-bottom:24px;">
-      <button type="button" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'':'none';this.textContent=this.nextElementSibling.style.display==='none'?'Got questions?':'Hide'" style="display:block;width:100%;padding:12px 16px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-family:var(--font);font-size:14px;color:var(--text-secondary);cursor:pointer;text-align:left;">Got questions?</button>
+      <button type="button" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'':'none';this.textContent=this.nextElementSibling.style.display==='none'?'Got questions?':'Hide'" style="display:block;width:100%;padding:12px 16px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-family:var(--font);font-size:var(--text-base);color:var(--text-secondary);cursor:pointer;text-align:left;">Got questions?</button>
       <div style="display:none;margin-top:8px;">
         <div class="primer-card">
           <div class="primer-card-q">What is Disclosure Day?</div>
@@ -2367,8 +2375,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       </div>
     </div>
 
-    <div style="text-align:center;padding:16px 0 8px;font-family:var(--font);font-size:13px;color:var(--text-tertiary);">
-      <span style="color:var(--text-tertiary);font-size:12px;">Send this to someone</span> <button onclick="shareWhatsApp()" style="background:none;border:none;cursor:pointer;padding:4px 8px;vertical-align:middle;" aria-label="Share on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button><button onclick="shareIMessage()" style="background:none;border:none;cursor:pointer;padding:4px 8px;vertical-align:middle;" aria-label="Share via Text"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg></button>
+    <div style="text-align:center;padding:16px 0 8px;font-family:var(--font);font-size:var(--text-base);color:var(--text-tertiary);">
+      <span style="color:var(--text-tertiary);font-size:var(--text-sm);">Send this to someone</span> <button onclick="shareWhatsApp()" style="background:none;border:none;cursor:pointer;padding:4px 8px;vertical-align:middle;" aria-label="Share on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button><button onclick="shareIMessage()" style="background:none;border:none;cursor:pointer;padding:4px 8px;vertical-align:middle;" aria-label="Share via Text"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg></button>
     </div>
 
     </div><!-- end crew-body -->
@@ -2397,7 +2405,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
         <div class="section-header">Add Someone Manually</div>
         <div style="margin-bottom:16px;">
-          <p style="font-size:12px;color:var(--text-tertiary);margin-bottom:8px;">For family who won't RSVP themselves (Carmen, Ray). They can claim their RSVP later.</p>
+          <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-bottom:8px;">For family who won't RSVP themselves (Carmen, Ray). They can claim their RSVP later.</p>
           <div class="manual-add-form" id="manual-add-form">
             <input type="text" id="manual-add-name" placeholder="Name" aria-label="Name to add" autocapitalize="words">
             <button type="button" onclick="manualAddRsvp()">ADD</button>
@@ -2409,23 +2417,23 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
         <div style="margin-top:20px;">
           <div class="section-header">Theater</div>
-          <div id="theater-summary" class="card" style="font-size:13px; color:var(--text-secondary);">Loading...</div>
+          <div id="theater-summary" class="card" style="font-size:var(--text-base); color:var(--text-secondary);">Loading...</div>
         </div>
 
         <div style="margin-top:20px;">
           <div class="section-header">Showtime</div>
-          <div id="showtime-summary" class="card" style="font-size:13px; color:var(--text-secondary);">Loading...</div>
+          <div id="showtime-summary" class="card" style="font-size:var(--text-base); color:var(--text-secondary);">Loading...</div>
         </div>
 
         <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-subtle);">
           <div class="section-header">Morning-After Recap</div>
-          <p style="font-size:12px;color:var(--text-tertiary);margin-bottom:8px;">Generate a recap message to send the crew the morning after.</p>
-          <button type="button" onclick="generateMorningRecap()" style="display:block;margin-bottom:12px;padding:8px 16px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-family:var(--font);font-size:13px;cursor:pointer;">Generate Recap</button>
+          <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-bottom:8px;">Generate a recap message to send the crew the morning after.</p>
+          <button type="button" onclick="generateMorningRecap()" style="display:block;margin-bottom:12px;padding:8px 16px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-family:var(--font);font-size:var(--text-base);cursor:pointer;">Generate Recap</button>
           <div class="recap-preview" id="recap-preview" style="display:none;"></div>
           <div id="recap-actions" style="display:none;gap:8px;">
-            <button type="button" onclick="copyRecap()" style="padding:6px 14px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:12px;cursor:pointer;font-family:var(--font);">Copy</button>
-            <button type="button" onclick="shareRecapWhatsApp()" style="padding:6px 14px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:12px;cursor:pointer;font-family:var(--font);">WhatsApp</button>
-            <button type="button" onclick="shareRecapText()" style="padding:6px 14px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:12px;cursor:pointer;font-family:var(--font);">Text</button>
+            <button type="button" onclick="copyRecap()" style="padding:6px 14px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:var(--text-sm);cursor:pointer;font-family:var(--font);">Copy</button>
+            <button type="button" onclick="shareRecapWhatsApp()" style="padding:6px 14px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:var(--text-sm);cursor:pointer;font-family:var(--font);">WhatsApp</button>
+            <button type="button" onclick="shareRecapText()" style="padding:6px 14px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:var(--text-sm);cursor:pointer;font-family:var(--font);">Text</button>
           </div>
         </div>
       </div>
@@ -2503,10 +2511,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
     <div class="section-header">The Premise</div>
     <div class="card" style="margin-bottom:24px;">
-      <p style="font-size:13px;line-height:1.6;color:var(--text-secondary);">
+      <p style="font-size:var(--text-base);line-height:1.6;color:var(--text-secondary);">
         If you found out we weren't alone, if someone showed you, proved it to you, would that frighten you? This summer, the truth belongs to seven billion people.
       </p>
-      <p style="font-size:13px;line-height:1.6;color:var(--text-secondary);margin-top:12px;">
+      <p style="font-size:var(--text-base);line-height:1.6;color:var(--text-secondary);margin-top:12px;">
         Spielberg's first original sci-fi in decades. 42 script drafts. John Williams scoring. The entire third act is being kept out of marketing. Nobody knows how this ends.
       </p>
     </div>
@@ -2522,19 +2530,19 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     </div>
 
     <div id="reality-break" style="margin:48px 0 40px;text-align:center;padding:32px 16px;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);">
-      <div style="font-family:var(--font);font-size:18px;font-weight:300;color:var(--text-primary);line-height:1.5;">The movie is based on real events.</div>
-      <div style="font-family:var(--font);font-size:18px;font-weight:600;color:var(--gold);margin-top:8px;line-height:1.5;">These events are happening now.</div>
+      <div style="font-family:var(--font);font-size:var(--text-lg);font-weight:300;color:var(--text-primary);line-height:1.5;">The movie is based on real events.</div>
+      <div style="font-family:var(--font);font-size:var(--text-lg);font-weight:600;color:var(--gold);margin-top:8px;line-height:1.5;">These events are happening now.</div>
     </div>
 
     <div class="section-header">This Is Actually Happening</div>
-    <p style="font-size:13px;line-height:1.6;color:var(--text-secondary);margin-bottom:12px;">
+    <p style="font-size:var(--text-base);line-height:1.6;color:var(--text-secondary);margin-bottom:12px;">
       None of this is from the movie. It started with a New York Times investigation in 2017. It hasn't stopped.
     </p>
     <div id="briefing-headlines" style="display:flex;flex-direction:column;gap:8px;"></div>
-    <button id="headlines-more-btn" onclick="showMoreHeadlines()" style="display:none;width:100%;padding:10px;margin:8px 0 24px;background:transparent;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-tertiary);font-family:var(--display);font-size:11px;font-weight:600;cursor:pointer;transition:border-color 0.2s,color 0.2s;">SHOW MORE</button>
+    <button id="headlines-more-btn" onclick="showMoreHeadlines()" style="display:none;width:100%;padding:10px;margin:8px 0 24px;background:transparent;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-tertiary);font-family:var(--display);font-size:var(--text-xs);font-weight:600;cursor:pointer;transition:border-color 0.2s,color 0.2s;">SHOW MORE</button>
 
     <div class="section-header">In Their Words</div>
-    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:16px;">Presidents. Generals. Intelligence directors. Under oath, on camera, on the record.</p>
+    <p style="font-size:var(--text-sm);line-height:1.5;color:var(--text-tertiary);margin-bottom:16px;">Presidents. Generals. Intelligence directors. Under oath, on camera, on the record.</p>
     <div id="official-quotes-section"></div>
 
     <div style="margin:40px 0 36px;text-align:center;padding:28px 16px;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);">
@@ -2542,119 +2550,119 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     </div>
 
     <div class="section-header">This Is Happening Around the World</div>
-    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:16px;">Belgium. Brazil. Japan. France. Chile. Peru. The UK. Governments are investigating, declassifying, and going on the record.</p>
+    <p style="font-size:var(--text-sm);line-height:1.5;color:var(--text-tertiary);margin-bottom:16px;">Belgium. Brazil. Japan. France. Chile. Peru. The UK. Governments are investigating, declassifying, and going on the record.</p>
     <div id="world-quotes-section"></div>
-    <button id="world-more-btn" onclick="showMoreWorld()" style="display:none;width:100%;padding:10px;margin:8px 0 24px;background:transparent;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-tertiary);font-family:var(--display);font-size:11px;font-weight:600;cursor:pointer;transition:border-color 0.2s,color 0.2s;">SHOW MORE</button>
+    <button id="world-more-btn" onclick="showMoreWorld()" style="display:none;width:100%;padding:10px;margin:8px 0 24px;background:transparent;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-tertiary);font-family:var(--display);font-size:var(--text-xs);font-weight:600;cursor:pointer;transition:border-color 0.2s,color 0.2s;">SHOW MORE</button>
 
     <div style="margin:40px 0 32px;padding:24px 16px;border:1px solid var(--gold-dim);border-radius:var(--radius);background:linear-gradient(180deg, oklch(0.16 0.01 80) 0%, var(--bg) 100%);">
       <div class="section-header" style="margin-bottom:4px;">The Declassified Files</div>
-      <p style="font-size:13px;line-height:1.6;color:var(--text-secondary);margin-bottom:16px;">
+      <p style="font-size:var(--text-base);line-height:1.6;color:var(--text-secondary);margin-bottom:16px;">
         On May 8, 2026, the Pentagon published 222 classified UAP records on a government website. Videos. Photos. Witness testimony. Military sensor data spanning 1944 to present. The portal hit 1 billion visits in two weeks.
       </p>
 
       <div style="margin-bottom:16px;">
-        <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);margin-bottom:6px;">PENTAGON RELEASES 40+ UAP VIDEOS (MAY 2026)</div>
+        <div class="display-label">PENTAGON RELEASES 40+ UAP VIDEOS (MAY 2026)</div>
         <div class="trailer-container" id="rabbit-pentagon" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-pentagon','rhjTZTFjW8k')">
-          <img loading="lazy" src="https://img.youtube.com/vi/rhjTZTFjW8k/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Pentagon UAP video release">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+          <img loading="lazy" src="https://img.youtube.com/vi/rhjTZTFjW8k/hqdefault.jpg" class="vid-thumb" alt="Pentagon UAP video release">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div class="vid-play"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
         </div>
       </div>
 
       <div style="margin-bottom:16px;">
-        <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);margin-bottom:6px;">UAP ACCELERATES FROM STANDSTILL TO WARP SPEED</div>
+        <div class="display-label">UAP ACCELERATES FROM STANDSTILL TO WARP SPEED</div>
         <div class="trailer-container" id="rabbit-syrian" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-syrian','sZwh8wlaoXE')">
-          <img loading="lazy" src="https://img.youtube.com/vi/sZwh8wlaoXE/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="UAP instant acceleration footage">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+          <img loading="lazy" src="https://img.youtube.com/vi/sZwh8wlaoXE/hqdefault.jpg" class="vid-thumb" alt="UAP instant acceleration footage">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div class="vid-play"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
         </div>
-        <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Infrared footage from the declassified files. An object goes from stationary to extreme velocity instantaneously. No known technology does this.</p>
+        <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Infrared footage from the declassified files. An object goes from stationary to extreme velocity instantaneously. No known technology does this.</p>
       </div>
 
       <div style="margin-bottom:16px;">
-        <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);margin-bottom:6px;">PENTAGON-CONFIRMED UAP FOOTAGE (CORBELL, 2026)</div>
+        <div class="display-label">PENTAGON-CONFIRMED UAP FOOTAGE (CORBELL, 2026)</div>
         <div class="trailer-container" id="rabbit-corbell" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-corbell','ICv6I6bSGkQ')">
-          <img loading="lazy" src="https://img.youtube.com/vi/ICv6I6bSGkQ/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Pentagon-confirmed UAP footage from Corbell documentary">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+          <img loading="lazy" src="https://img.youtube.com/vi/ICv6I6bSGkQ/hqdefault.jpg" class="vid-thumb" alt="Pentagon-confirmed UAP footage from Corbell documentary">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div class="vid-play"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
         </div>
-        <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">UAP clips the Pentagon confirmed are authentic military sensor footage. One minute of what the government says is real.</p>
+        <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-top:6px;line-height:1.4;">UAP clips the Pentagon confirmed are authentic military sensor footage. One minute of what the government says is real.</p>
       </div>
 
-      <a href="https://www.war.gov/ufo/" target="_blank" rel="noopener" style="display:block;text-align:center;padding:14px;font-family:var(--display);font-size:13px;font-weight:700;color:var(--gold);background:oklch(0.18 0.02 80);border:1px solid var(--gold);border-radius:var(--radius-sm);text-decoration:none;transition:background 0.2s;">WAR.GOV/UFO — READ THE FILES</a>
+      <a href="https://www.war.gov/ufo/" target="_blank" rel="noopener" style="display:block;text-align:center;padding:14px;font-family:var(--display);font-size:var(--text-base);font-weight:700;color:var(--gold);background:oklch(0.18 0.02 80);border:1px solid var(--gold);border-radius:var(--radius-sm);text-decoration:none;transition:background 0.2s;">WAR.GOV/UFO — READ THE FILES</a>
     </div>
 
     <div class="section-header" style="margin-top:32px;">Down the Rabbit Hole</div>
-    <p style="font-size:14px;line-height:1.6;color:var(--text-secondary);margin-bottom:24px;">
+    <p style="font-size:var(--text-base);line-height:1.6;color:var(--text-secondary);margin-bottom:24px;">
       They knew. They didn't tell us. Now it's all coming out.
     </p>
 
-    <div style="font-size:11px;font-family:var(--display);font-weight:700;color:var(--gold-dim);margin-bottom:16px;">THE WITNESSES</div>
-    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">Career military officers. Under oath. Facing federal perjury if lying.</p>
+    <div style="font-size:var(--text-xs);font-family:var(--display);font-weight:700;color:var(--gold-dim);margin-bottom:16px;">THE WITNESSES</div>
+    <p style="font-size:var(--text-sm);line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">Career military officers. Under oath. Facing federal perjury if lying.</p>
 
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);margin-bottom:6px;">60 MINUTES: NAVY PILOTS DESCRIBE ENCOUNTERS</div>
+      <div class="display-label">60 MINUTES: NAVY PILOTS DESCRIBE ENCOUNTERS</div>
       <div class="trailer-container" id="rabbit-60min" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-60min','TppFEA5dYfM')">
-        <img loading="lazy" src="https://img.youtube.com/vi/TppFEA5dYfM/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="60 Minutes Navy pilot UFO encounters">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+        <img loading="lazy" src="https://img.youtube.com/vi/TppFEA5dYfM/hqdefault.jpg" class="vid-thumb" alt="60 Minutes Navy pilot UFO encounters">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div class="vid-play"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
       </div>
-      <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Cmdr. David Fravor (TOPGUN, 3,500 flight hours) and Lt. Cmdr. Alex Dietrich describe an object that defied known physics. The Pentagon authenticated the footage.</p>
+      <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Cmdr. David Fravor (TOPGUN, 3,500 flight hours) and Lt. Cmdr. Alex Dietrich describe an object that defied known physics. The Pentagon authenticated the footage.</p>
     </div>
 
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);margin-bottom:6px;">GRUSCH TESTIFIES TO CONGRESS (UNDER OATH)</div>
+      <div class="display-label">GRUSCH TESTIFIES TO CONGRESS (UNDER OATH)</div>
       <div class="trailer-container" id="rabbit-grusch" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-grusch','lcrCMLVk614')">
-        <img loading="lazy" src="https://img.youtube.com/vi/lcrCMLVk614/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Grusch congressional testimony">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+        <img loading="lazy" src="https://img.youtube.com/vi/lcrCMLVk614/hqdefault.jpg" class="vid-thumb" alt="Grusch congressional testimony">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div class="vid-play"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
       </div>
-      <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Intelligence officer David Grusch testifies about crash retrieval programs and "non-human biologics." His whistleblower complaint was found "credible and urgent" by the Inspector General.</p>
+      <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Intelligence officer David Grusch testifies about crash retrieval programs and "non-human biologics." His whistleblower complaint was found "credible and urgent" by the Inspector General.</p>
     </div>
 
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);margin-bottom:6px;">NEWSNATION: THE INTERVIEW THAT BROKE THE STORY</div>
+      <div class="display-label">NEWSNATION: THE INTERVIEW THAT BROKE THE STORY</div>
       <div class="trailer-container" id="rabbit-newsnation" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-newsnation','RBAISwCZ2v0')">
-        <img loading="lazy" src="https://img.youtube.com/vi/RBAISwCZ2v0/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Grusch NewsNation interview">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+        <img loading="lazy" src="https://img.youtube.com/vi/RBAISwCZ2v0/hqdefault.jpg" class="vid-thumb" alt="Grusch NewsNation interview">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div class="vid-play"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
       </div>
-      <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">The original bombshell. Ross Coulthart's interview with Grusch before the congressional testimony. This is where the public first heard the claims.</p>
+      <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-top:6px;line-height:1.4;">The original bombshell. Ross Coulthart's interview with Grusch before the congressional testimony. This is where the public first heard the claims.</p>
     </div>
 
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);margin-bottom:6px;">JAKE BARBER: "I RETRIEVED A UFO WITH MY HELICOPTER"</div>
+      <div class="display-label">JAKE BARBER: "I RETRIEVED A UFO WITH MY HELICOPTER"</div>
       <div class="trailer-container" id="rabbit-barber" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-barber','t37-SKj4rtY')">
-        <img loading="lazy" src="https://img.youtube.com/vi/t37-SKj4rtY/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Jake Barber UFO whistleblower NewsNation">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+        <img loading="lazy" src="https://img.youtube.com/vi/t37-SKj4rtY/hqdefault.jpg" class="vid-thumb" alt="Jake Barber UFO whistleblower NewsNation">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div class="vid-play"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
       </div>
-      <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Former Air Force Special Operations helicopter pilot. Retrieved craft he says were not human-made. Pentagon confirmed it is investigating his claims. Says he would "100% testify under oath."</p>
+      <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Former Air Force Special Operations helicopter pilot. Retrieved craft he says were not human-made. Pentagon confirmed it is investigating his claims. Says he would "100% testify under oath."</p>
     </div>
 
     <div style="margin-bottom:24px;">
-      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);margin-bottom:6px;">MATTHEW BROWN: "IMMACULATE CONSTELLATION" WHISTLEBLOWER</div>
+      <div class="display-label">MATTHEW BROWN: "IMMACULATE CONSTELLATION" WHISTLEBLOWER</div>
       <div class="trailer-container" id="rabbit-brown" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-brown','fqdxyA46EDU')">
-        <img loading="lazy" src="https://img.youtube.com/vi/fqdxyA46EDU/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Matthew Brown Immaculate Constellation whistleblower">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+        <img loading="lazy" src="https://img.youtube.com/vi/fqdxyA46EDU/hqdefault.jpg" class="vid-thumb" alt="Matthew Brown Immaculate Constellation whistleblower">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div class="vid-play"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
       </div>
-      <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Former Office of the Secretary of Defense. Discovered a classified program called "Immaculate Constellation" that collected UAP imagery from military sensors. Reviewed 400+ defense reports. Submitted an 11-page report to Congress.</p>
+      <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Former Office of the Secretary of Defense. Discovered a classified program called "Immaculate Constellation" that collected UAP imagery from military sensors. Reviewed 400+ defense reports. Submitted an 11-page report to Congress.</p>
     </div>
 
-    <div style="font-size:11px;font-family:var(--display);font-weight:700;color:var(--gold-dim);margin-bottom:16px;">HOW WE GOT HERE</div>
-    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">A former president said it out loud. Five days later, the current president ordered full declassification.</p>
+    <div style="font-size:var(--text-xs);font-family:var(--display);font-weight:700;color:var(--gold-dim);margin-bottom:16px;">HOW WE GOT HERE</div>
+    <p style="font-size:var(--text-sm);line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">A former president said it out loud. Five days later, the current president ordered full declassification.</p>
 
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);margin-bottom:6px;">OBAMA: "THEY'RE REAL" (FEB 14, 2026)</div>
+      <div class="display-label">OBAMA: "THEY'RE REAL" (FEB 14, 2026)</div>
       <div class="trailer-container" id="rabbit-obama" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-obama','8dvpZXv30jY')">
-        <img loading="lazy" src="https://img.youtube.com/vi/8dvpZXv30jY/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Obama says aliens are real">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+        <img loading="lazy" src="https://img.youtube.com/vi/8dvpZXv30jY/hqdefault.jpg" class="vid-thumb" alt="Obama says aliens are real">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div class="vid-play"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
       </div>
     </div>
 
     <div style="margin-bottom:24px;">
-      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);margin-bottom:6px;">TRUMP ORDERS FULL DECLASSIFICATION (FEB 19, 2026)</div>
+      <div class="display-label">TRUMP ORDERS FULL DECLASSIFICATION (FEB 19, 2026)</div>
       <div class="trailer-container" id="rabbit-trump" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-trump','cluuW49CBQM')">
-        <img loading="lazy" src="https://img.youtube.com/vi/cluuW49CBQM/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Trump orders UFO declassification">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
+        <img loading="lazy" src="https://img.youtube.com/vi/cluuW49CBQM/hqdefault.jpg" class="vid-thumb" alt="Trump orders UFO declassification">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div class="vid-play"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
       </div>
     </div>
 
-    <div style="font-size:11px;font-family:var(--display);font-weight:700;color:var(--gold-dim);margin-bottom:16px;">GO DEEPER</div>
-    <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">For when you can't stop thinking about it.</p>
+    <div style="font-size:var(--text-xs);font-family:var(--display);font-weight:700;color:var(--gold-dim);margin-bottom:16px;">GO DEEPER</div>
+    <p style="font-size:var(--text-sm);line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">For when you can't stop thinking about it.</p>
     <div id="go-deeper-section"></div>
 
     <div style="text-align:center;margin-top:32px;margin-bottom:16px;">
@@ -2741,7 +2749,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
       <div class="one-movie-section">
         <div class="section-header">Your One Movie</div>
-        <p style="font-size:13px;color:var(--text-tertiary);margin-bottom:12px;">Pick one movie that represents you. The poster becomes your identity.</p>
+        <p style="font-size:var(--text-base);color:var(--text-tertiary);margin-bottom:12px;">Pick one movie that represents you. The poster becomes your identity.</p>
         <div id="one-movie-display"></div>
         <div class="movie-search-wrap" id="movie-search-wrap">
           <input class="movie-search-input" type="text" id="movie-search" placeholder="Search for a movie..." aria-label="Search movies" autocomplete="off">
@@ -2753,9 +2761,9 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
       <div style="margin:20px 0;">
         <div class="section-header">Status Line</div>
-        <p style="font-size:13px;color:var(--text-tertiary);margin-bottom:8px;">One line that shows next to your name.</p>
+        <p style="font-size:var(--text-base);color:var(--text-tertiary);margin-bottom:8px;">One line that shows next to your name.</p>
         <input class="movie-search-input" type="text" id="profile-status-line" aria-label="Your status line" placeholder="e.g. Can't wait, Already watched the trailer 4x" maxlength="80">
-        <button type="button" onclick="saveProfileStatusLine()" style="display:block;margin:8px auto 0;background:none;border:none;font-size:12px;color:var(--gold-dim);cursor:pointer;">Save</button>
+        <button type="button" onclick="saveProfileStatusLine()" style="display:block;margin:8px auto 0;background:none;border:none;font-size:var(--text-sm);color:var(--gold-dim);cursor:pointer;">Save</button>
       </div>
 
       <div class="atmos-divider"></div>
@@ -2764,7 +2772,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
         <div class="section-header">Photo</div>
         <div id="profile-photo-area">
           <input type="file" id="profile-photo-file" accept="image/*" style="display:none;" onchange="uploadPhoto(this)">
-          <button class="photo-upload-btn" type="button" onclick="document.getElementById('profile-photo-file').click()" style="display:block;padding:10px 20px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-family:var(--font);font-size:13px;cursor:pointer;">Change photo</button>
+          <button class="photo-upload-btn" type="button" onclick="document.getElementById('profile-photo-file').click()" style="display:block;padding:10px 20px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-family:var(--font);font-size:var(--text-base);cursor:pointer;">Change photo</button>
         </div>
       </div>
     </div>
@@ -3031,7 +3039,7 @@ async function renderActivityFeed() {
         return `<div class="feed-item"><div class="feed-dot rsvp"></div><div style="flex:1;"><div class="feed-text"><strong>${esc(a.name.split(' ')[0])}</strong> RSVPed${a.party > 1 ? ' for ' + a.party : ''}</div><div class="feed-time">${ago}</div></div></div>`;
       }).join('');
     } else {
-      el.innerHTML = '<div style="padding:12px 0;color:var(--text-tertiary);font-size:13px;">Nothing yet. Be the first to RSVP.</div>';
+      el.innerHTML = '<div style="padding:12px 0;color:var(--text-tertiary);font-size:var(--text-base);">Nothing yet. Be the first to RSVP.</div>';
     }
     return;
   }
@@ -3183,8 +3191,8 @@ const STATUS_LABELS = {confirmed:'Going',probably:'Probably',maybe:'Maybe',cant:
 function statusLabel(s) { return STATUS_LABELS[s] || s; }
 function statusMark(s) {
   if (s === 'confirmed') return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold-warm)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;display:block;filter:drop-shadow(0 0 3px rgba(201,168,76,0.2));"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg><span class="sr-only">Going</span>';
-  if (s === 'probably') return '<span style="font-family:var(--font);font-size:11px;color:var(--text-secondary);font-weight:400;">probably</span>';
-  if (s === 'maybe') return '<span style="font-family:var(--font);font-size:11px;color:var(--text-tertiary);font-weight:400;font-style:italic;">maybe</span>';
+  if (s === 'probably') return '<span style="font-family:var(--font);font-size:var(--text-xs);color:var(--text-secondary);font-weight:400;">probably</span>';
+  if (s === 'maybe') return '<span style="font-family:var(--font);font-size:var(--text-xs);color:var(--text-tertiary);font-weight:400;font-style:italic;">maybe</span>';
   return '';
 }
 
@@ -3207,11 +3215,11 @@ function showConfirmation(name, status) {
     const firstName = a.name.split(' ')[0];
     const avatar = a.photo_url
       ? `<img class="crew-avatar-photo" src="${a.photo_url}" alt="${firstName}" style="width:28px;height:28px;">`
-      : `<div style="width:28px;height:28px;border-radius:50%;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--gold);flex-shrink:0;">${firstName.charAt(0).toUpperCase()}</div>`;
+      : `<div style="width:28px;height:28px;border-radius:50%;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;font-size:var(--text-sm);font-weight:700;color:var(--gold);flex-shrink:0;">${firstName.charAt(0).toUpperCase()}</div>`;
     const statusLine = a.status_line ? `<div class="crew-status-line">${esc(a.status_line)}</div>` : '';
     return `<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg-card);border:1px solid ${isSelf ? 'var(--gold-dim)' : 'var(--border-subtle)'};border-radius:var(--radius-sm);">
       ${avatar}
-      <div style="flex:1;"><span style="font-size:13px;font-weight:${isSelf ? '700' : '400'};">${firstName}${isSelf ? ' (you)' : ''}</span>${statusLine}</div>
+      <div style="flex:1;"><span style="font-size:var(--text-base);font-weight:${isSelf ? '700' : '400'};">${firstName}${isSelf ? ' (you)' : ''}</span>${statusLine}</div>
       ${statusMark(a.status)}
     </div>`;
   }).join('');
@@ -3243,7 +3251,7 @@ async function savePhoneNumber() {
   me.phone = phone;
   toast('Phone saved. We\'ll text you updates.');
   const section = document.getElementById('post-rsvp-phone');
-  if (section) section.innerHTML = '<p style="font-size:13px;color:var(--gold-dim);text-align:center;padding:8px 0;">Saved. We\'ll text you updates.</p>';
+  if (section) section.innerHTML = '<p style="font-size:var(--text-base);color:var(--gold-dim);text-align:center;padding:8px 0;">Saved. We\'ll text you updates.</p>';
 }
 
 const CREW_AVATAR_MAX = 8;
@@ -3253,7 +3261,7 @@ function renderFamilyCrew() {
   if (!el) return;
   const active = attendees.filter(a => a.status !== 'cant');
   if (active.length === 0) {
-    el.innerHTML = '<div style="text-align:center;padding:16px 0;color:var(--text-tertiary);font-size:14px;">No one has RSVPed yet. Be the first.</div>';
+    el.innerHTML = '<div style="text-align:center;padding:16px 0;color:var(--text-tertiary);font-size:var(--text-base);">No one has RSVPed yet. Be the first.</div>';
     return;
   }
   const withPhotos = active.filter(a => a.photo_url);
@@ -3353,7 +3361,7 @@ function renderDashboard() {
   document.getElementById('theater-summary').innerHTML = `
     <div style="font-weight:600;color:var(--text-primary);margin-bottom:4px;">${VENUE.name}</div>
     <div>${VENUE.address}</div>
-    <div style="margin-top:6px;font-size:11px;color:var(--gold-dim);">Recliners &middot; Reserved Seating &middot; Stadium</div>
+    <div style="margin-top:6px;font-size:var(--text-xs);color:var(--gold-dim);">Recliners &middot; Reserved Seating &middot; Stadium</div>
   `;
 
   const timeLabels = {'opening-night':'Opening Night','opening-weekend':'Opening Weekend','matinee':'Matinee','evening':'Evening','any':'Any'};
@@ -3576,8 +3584,8 @@ async function renderCoordination() {
           <span class="coord-stat-value" style="color:var(--red);">${unpaid.length} owe</span>
         </div>
         ${unpaid.length ? `<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border-subtle);">
-          <div style="font-size:11px;color:var(--text-tertiary);font-family:var(--display);font-weight:600;margin-bottom:8px;">AWAITING PAYMENT</div>
-          ${unpaid.map(a => `<div style="font-size:13px;color:var(--text-secondary);padding:4px 0;">${esc(a.name)}${a.party > 1 ? ` (+${a.party-1})` : ''}</div>`).join('')}
+          <div style="font-size:var(--text-xs);color:var(--text-tertiary);font-family:var(--display);font-weight:600;margin-bottom:8px;">AWAITING PAYMENT</div>
+          ${unpaid.map(a => `<div style="font-size:var(--text-base);color:var(--text-secondary);padding:4px 0;">${esc(a.name)}${a.party > 1 ? ` (+${a.party-1})` : ''}</div>`).join('')}
         </div>` : ''}
       </div>
     `;
@@ -3597,12 +3605,12 @@ async function renderCoordination() {
     rideContainer.innerHTML = `
       ${drivers.map(d => `
         <div class="ride-card">
-          <div class="ride-driver"><span class="ride-driver-icon">&#128663;</span> ${esc(d.name)} <span style="color:var(--text-tertiary);font-weight:400;font-size:11px;">offering rides</span></div>
+          <div class="ride-driver"><span class="ride-driver-icon">&#128663;</span> ${esc(d.name)} <span style="color:var(--text-tertiary);font-weight:400;font-size:var(--text-xs);">offering rides</span></div>
         </div>
       `).join('')}
       ${riders.length ? `
         <div class="ride-card">
-          <div style="font-size:12px;font-weight:600;color:var(--amber);margin-bottom:8px;">Riders Needing Assignment</div>
+          <div style="font-size:var(--text-sm);font-weight:600;color:var(--amber);margin-bottom:8px;">Riders Needing Assignment</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;">
             ${riders.map(r => `<span class="ride-passenger">${esc(r.name)}</span>`).join('')}
           </div>
@@ -3768,7 +3776,7 @@ function initVideoCarousel(items, containerId, dotsId, key) {
     const active = i === 0;
     return `
       <div class="vslide vslide-${key}" data-idx="${i}" style="position:${active ? 'relative' : 'absolute'};opacity:${active ? 1 : 0};top:0;left:0;width:100%;transition:opacity 0.4s ease;">
-        <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);margin-bottom:6px;">${t.label || t.title}</div>
+        <div class="display-label">${t.label || t.title}</div>
         <div class="trailer-container" id="vc-${key}-${t.id}" onclick="loadVideo('${key}','${t.id}')" style="cursor:pointer;">
           <img loading="lazy" src="https://img.youtube.com/vi/${t.id}/hqdefault.jpg" alt="${t.title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);">
@@ -3997,18 +4005,18 @@ if (movieSearchInput) {
 async function searchMovies(query) {
   const el = document.getElementById('movie-search-results');
   if (!TMDB_API_KEY) {
-    el.innerHTML = '<div style="padding:12px;font-size:13px;color:var(--text-tertiary);">TMDB API key needed. Get one free at <a href="https://www.themoviedb.org/settings/api" target="_blank" style="color:var(--gold-dim);">themoviedb.org</a></div>';
+    el.innerHTML = '<div style="padding:12px;font-size:var(--text-base);color:var(--text-tertiary);">TMDB API key needed. Get one free at <a href="https://www.themoviedb.org/settings/api" target="_blank" style="color:var(--gold-dim);">themoviedb.org</a></div>';
     return;
   }
   try {
     const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&page=1`);
     const data = await res.json();
     movieSearchResults = (data.results || []).slice(0, 8);
-    if (movieSearchResults.length === 0) { el.innerHTML = '<div style="padding:12px;font-size:13px;color:var(--text-tertiary);">No movies found.</div>'; return; }
+    if (movieSearchResults.length === 0) { el.innerHTML = '<div style="padding:12px;font-size:var(--text-base);color:var(--text-tertiary);">No movies found.</div>'; return; }
     el.innerHTML = movieSearchResults.map((m, i) => {
       const year = m.release_date ? m.release_date.slice(0, 4) : '';
       const poster = m.poster_path ? `${TMDB_IMG}w92${m.poster_path}` : '';
-      const posterImg = poster ? `<img class="movie-result-poster" src="${poster}" alt="">` : `<div class="movie-result-poster" style="display:flex;align-items:center;justify-content:center;font-size:18px;">&#127916;</div>`;
+      const posterImg = poster ? `<img class="movie-result-poster" src="${poster}" alt="">` : `<div class="movie-result-poster" style="display:flex;align-items:center;justify-content:center;font-size:var(--text-lg);">&#127916;</div>`;
       return `<div class="movie-result" onclick="pickOneMovieByIndex(${i})">
         ${posterImg}
         <div class="movie-result-info">
@@ -4019,7 +4027,7 @@ async function searchMovies(query) {
     }).join('');
   } catch (err) {
     console.error('TMDB search error:', err);
-    el.innerHTML = '<div style="padding:12px;font-size:13px;color:var(--text-tertiary);">Search failed. Try again.</div>';
+    el.innerHTML = '<div style="padding:12px;font-size:var(--text-base);color:var(--text-tertiary);">Search failed. Try again.</div>';
   }
 }
 
@@ -4219,7 +4227,7 @@ let headlinesExpanded = false;
 
 function renderHypeTicker() {
   const headlineHtml = (items) => items.map(h =>
-    `<a href="${h.url}" target="_blank" rel="noopener" style="display:block;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-family:var(--display);font-size:11px;font-weight:600;text-decoration:none;transition:border-color 0.2s,color 0.2s;">${h.text}</a>`
+    `<a href="${h.url}" target="_blank" rel="noopener" style="display:block;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-family:var(--display);font-size:var(--text-xs);font-weight:600;text-decoration:none;transition:border-color 0.2s,color 0.2s;">${h.text}</a>`
   ).join('');
 
   const rsvpContainer = document.getElementById('rsvp-hype-headlines');
