@@ -1672,7 +1672,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <form id="rsvp-form" onsubmit="submitRSVP(event)">
         <div class="form-group">
           <label class="form-label">Your Name</label>
-          <input class="form-input" type="text" id="f-name" placeholder="First and last name" required>
+          <input class="form-input" type="text" id="f-name" placeholder="First and last name" required autocapitalize="words">
         </div>
         <div class="form-group">
           <label class="form-label">Are You Coming?</label>
@@ -2208,7 +2208,8 @@ function getRadioValue(name) {
 
 async function submitRSVP(e) {
   e.preventDefault();
-  const name = document.getElementById('f-name').value.trim();
+  const rawName = document.getElementById('f-name').value.trim();
+  const name = rawName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
   if (!name) return;
 
   const btn = document.getElementById('submit-btn');
@@ -2286,10 +2287,10 @@ function showConfirmation(name, status) {
 
   const crewHtml = active.map(a => {
     const isSelf = a.name.toLowerCase() === name.toLowerCase();
-    const tag = a.status === 'confirmed' ? 'confirmed' : a.status === 'probably' ? 'probably' : 'maybe';
+    const firstName = a.name.split(' ')[0];
     return `<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg-card);border:1px solid ${isSelf ? 'var(--gold-dim)' : 'var(--border-subtle)'};border-radius:var(--radius-sm);">
-      <div style="width:28px;height:28px;border-radius:50%;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--gold);flex-shrink:0;">${a.name.charAt(0).toUpperCase()}</div>
-      <span style="flex:1;font-size:13px;font-weight:${isSelf ? '700' : '400'};">${a.name}${isSelf ? ' (you)' : ''}</span>
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--gold);flex-shrink:0;">${firstName.charAt(0).toUpperCase()}</div>
+      <span style="flex:1;font-size:13px;font-weight:${isSelf ? '700' : '400'};">${firstName}${isSelf ? ' (you)' : ''}</span>
       ${statusMark(a.status)}
     </div>`;
   }).join('');
@@ -2321,11 +2322,12 @@ function renderFamilyCrew() {
   const visible = crewExpanded ? active : active.slice(0, CREW_LIST_MAX);
   const remaining = active.length - CREW_LIST_MAX;
   el.innerHTML = visible.map(a => {
+    const firstName = a.name.split(' ')[0];
     const partyText = a.party > 1 ? ` +${a.party - 1}` : '';
     return `<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border-subtle);">
-      <div style="width:32px;height:32px;border-radius:50%;background:var(--bg-elevated);border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">${a.name.charAt(0).toUpperCase()}</div>
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--bg-elevated);border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">${firstName.charAt(0).toUpperCase()}</div>
       <div style="flex:1;min-width:0;">
-        <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.name}${partyText}</div>
+        <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${firstName}${partyText}</div>
       </div>
       ${statusMark(a.status)}
     </div>`;
