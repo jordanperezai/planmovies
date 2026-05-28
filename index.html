@@ -810,6 +810,50 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   .poster-carousel:hover .poster-carousel-nav { display: flex; }
 }
 
+/* CREW AVATAR ROW */
+.crew-avatars {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 16px 0;
+}
+.crew-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 2px solid var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-left: -8px;
+}
+.crew-avatar:first-child { margin-left: 0; }
+.crew-avatar-overflow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  margin-left: -8px;
+}
+.crew-summary {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
 /* OFFICIAL QUOTES */
 .quotes-category {
   margin-bottom: 16px;
@@ -1661,7 +1705,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     </div>
 
     <div class="section-header">THE CREW</div>
-    <div id="crew-list-family" style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;"></div>
+    <div id="crew-list-family" style="margin-bottom:24px;"></div>
 
     <div id="inline-rsvp">
       <div style="padding:12px 0 16px;">
@@ -2306,30 +2350,33 @@ function hideConfirmation() {
   document.getElementById('rsvp-form').style.display = 'block';
 }
 
-const CREW_LIST_MAX = 8;
-let crewExpanded = false;
+const CREW_AVATAR_MAX = 8;
 
 function renderFamilyCrew() {
   const el = document.getElementById('crew-list-family');
   if (!el) return;
   const active = attendees.filter(a => a.status !== 'cant');
   if (active.length === 0) {
-    el.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text-tertiary);font-size:14px;">No one has RSVPed yet. Be the first.</div>';
+    el.innerHTML = '<div style="text-align:center;padding:16px 0;color:var(--text-tertiary);font-size:14px;">No one has RSVPed yet. Be the first.</div>';
     return;
   }
-  const visible = crewExpanded ? active : active.slice(0, CREW_LIST_MAX);
-  const remaining = active.length - CREW_LIST_MAX;
-  el.innerHTML = visible.map(a => {
-    const firstName = a.name.split(' ')[0];
-    const partyText = a.party > 1 ? ` +${a.party - 1}` : '';
-    return `<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border-subtle);">
-      <div style="width:32px;height:32px;border-radius:50%;background:var(--bg-elevated);border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">${firstName.charAt(0).toUpperCase()}</div>
-      <div style="flex:1;min-width:0;">
-        <div style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${firstName}${partyText}</div>
-      </div>
-      ${statusMark(a.status)}
-    </div>`;
-  }).join('') + (remaining > 0 && !crewExpanded ? `<button onclick="crewExpanded=true;renderFamilyCrew();" style="width:100%;padding:12px;background:transparent;border:none;font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--text-tertiary);cursor:pointer;">+${remaining} MORE</button>` : '');
+  const visible = active.slice(0, CREW_AVATAR_MAX);
+  const overflow = active.length - CREW_AVATAR_MAX;
+  const names = active.map(a => a.name.split(' ')[0]);
+  const summary = names.length <= 3
+    ? names.join(', ') + (names.length === 1 ? ' is going' : ' are going')
+    : names.slice(0, 2).join(', ') + ` & ${names.length - 2} more are going`;
+
+  el.innerHTML = `
+    <div class="crew-avatars">
+      ${visible.map(a => {
+        const initial = a.name.charAt(0).toUpperCase();
+        return `<div class="crew-avatar" title="${a.name.split(' ')[0]}">${initial}</div>`;
+      }).join('')}
+      ${overflow > 0 ? `<div class="crew-avatar-overflow">+${overflow}</div>` : ''}
+    </div>
+    <div class="crew-summary">${summary}</div>
+  `;
 }
 
 function renderDashCountdown() {
