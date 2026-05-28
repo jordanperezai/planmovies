@@ -56,3 +56,4 @@ Every journal entry follows the magazine format:
 | 04 | 2026-05-27 | [The Witnesses](2026-05-27-01-the-witnesses.md) |
 | 05 | 2026-05-27 | [The Money Question](2026-05-27-02-the-money-question.md) |
 | 06 | 2026-05-27 | [The Proof](2026-05-27-03-the-proof.md) |
+| 07 | 2026-05-27 | [The Audience](2026-05-27-04-the-audience.md) |
