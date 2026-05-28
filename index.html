@@ -7,7 +7,7 @@
 <meta name="description" content="Jordan is putting together a crew for opening night. Spielberg's new film. Fri Jun 12, 7 PM at Regal Secaucus. RSVP to save your seat.">
 <meta property="og:title" content="You're Invited: Disclosure Day">
 <meta property="og:description" content="Jordan is putting together a crew for opening night. Spielberg's new film. Fri Jun 12, 7 PM. RSVP to save your seat.">
-<meta property="og:image" content="https://image.tmdb.org/t/p/w780/3o5YPjDGDTcTDL5ftDA9NwN9dLd.jpg">
+<meta property="og:image" content="https://image.tmdb.org/t/p/w1280/5p6BsJtnPbglYN15MuiUEppPl0f.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://planmovies.com">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,8 +35,11 @@
   --gold-dim: #8a7234;
   --gold-glow: rgba(201,168,76,0.15);
   --gold-bright: #e8c85a;
-  --blue-atmos: #2a3a5a;
-  --blue-atmos-dim: rgba(42,58,90,0.08);
+  --blue-atmos: #3a5080;
+  --blue-atmos-dim: rgba(58,80,128,0.12);
+  --blue-atmos-glow: rgba(58,80,128,0.25);
+  --warm-surface: rgba(201,168,76,0.04);
+  --warm-border: rgba(201,168,76,0.12);
   --amber: #d4943a;
   --green: #3ecf71;
   --green-dim: rgba(62,207,113,0.15);
@@ -53,6 +56,7 @@
   --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --font: 'Inter', -apple-system, sans-serif;
   --mono: 'JetBrains Mono', 'SF Mono', monospace;
+  --display: 'Barlow Condensed', sans-serif;
 }
 
 html { font-size: 16px; -webkit-font-smoothing: antialiased; }
@@ -122,10 +126,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 3px;
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
   color: var(--gold);
   text-transform: uppercase;
   flex-shrink: 0;
@@ -213,9 +217,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .sticky-cta .cta-btn { pointer-events: auto; width: 100%; max-width: 340px; }
 .sticky-cta .cta-reassure {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.5px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
   color: var(--text-secondary);
   pointer-events: none;
 }
@@ -228,19 +233,21 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   pointer-events: none;
 }
 .landing-eyebrow {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 4px;
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
   color: var(--gold-dim);
   text-transform: uppercase;
   margin-bottom: 24px;
 }
 .landing-title {
-  font-size: clamp(1.4rem, 5vw, 2rem);
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-family: var(--display);
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: 3px;
   text-align: center;
-  line-height: 1.1;
+  line-height: 1;
   margin-bottom: 10px;
   text-transform: uppercase;
   color: var(--gold-warm);
@@ -266,10 +273,11 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .landing-status {
   display: flex; align-items: center; gap: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 600;
   color: var(--gold-dim);
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 .landing-status-dot {
   width: 8px; height: 8px; border-radius: 50%;
@@ -333,29 +341,32 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 .landing-meta {
   margin-top: 48px;
   display: flex; gap: 32px;
-  font-family: var(--mono);
-  font-size: 10px;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 500;
   color: var(--text-tertiary);
-  letter-spacing: 1px;
+  letter-spacing: 0.3px;
 }
-.landing-meta span { text-transform: uppercase; }
 
 /* PAGE SECTIONS */
 .page { display: none; padding: 68px 16px 32px; max-width: 600px; margin: 0 auto; }
 .page.active { display: block; }
 .page-header { padding: 16px 0 24px; }
 .page-eyebrow {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 3px;
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
   color: var(--gold-dim);
   text-transform: uppercase;
   margin-bottom: 8px;
 }
 .page-title {
-  font-size: 1.5rem;
+  font-family: var(--font);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
   font-weight: 800;
   letter-spacing: -0.5px;
+  line-height: 1.1;
 }
 .page-desc {
   font-size: 13px;
@@ -478,19 +489,19 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   text-align: center;
 }
 .stat-value {
-  font-family: var(--mono);
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-family: var(--display);
+  font-size: 2.2rem;
+  font-weight: 800;
   color: var(--gold);
   line-height: 1;
 }
 .stat-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 2px;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
   color: var(--text-tertiary);
-  text-transform: uppercase;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 .stat-sub {
   font-size: 11px;
@@ -512,30 +523,32 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   transition: stroke-dashoffset 1s ease;
 }
 .ring-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 2px;
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
   color: var(--text-tertiary);
   text-transform: uppercase;
   margin-top: 12px;
 }
 .ring-value {
-  font-family: var(--mono);
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  font-weight: 800;
   color: var(--gold);
   margin-top: 4px;
 }
 
 .section-header {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--gold-dim);
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
   text-transform: uppercase;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 14px;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .attendee-card {
@@ -565,13 +578,13 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   margin-top: 4px;
 }
 .attendee-tag {
-  font-family: var(--mono);
+  font-family: var(--font);
   font-size: 10px;
-  letter-spacing: 1px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
   padding: 3px 8px;
   border-radius: 10px;
   text-transform: uppercase;
-  font-weight: 500;
 }
 .tag-confirmed { background: var(--green-dim); color: var(--green); }
 .tag-probably { background: var(--blue-dim); color: var(--blue); }
@@ -698,11 +711,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .share-btn {
   padding: 6px 14px;
-  font-family: var(--mono);
-  font-size: 10px;
+  font-family: var(--font);
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  letter-spacing: 0.3px;
   color: var(--text-inverse);
   background: var(--gold);
   border: none;
@@ -868,15 +880,16 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   margin-bottom: 10px;
 }
 .quotes-category-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 2px;
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
   color: var(--gold-dim);
   text-transform: uppercase;
 }
 .quotes-category-count {
-  font-family: var(--mono);
-  font-size: 10px;
+  font-family: var(--font);
+  font-size: 11px;
   color: var(--text-tertiary);
 }
 .quotes-category-toggle {
@@ -910,10 +923,9 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   color: var(--gold-warm);
 }
 .quote-title {
-  font-family: var(--mono);
-  font-size: 10px;
+  font-family: var(--font);
+  font-size: 11px;
   color: var(--text-tertiary);
-  letter-spacing: 0.5px;
 }
 
 /* GO DEEPER EXPANSION */
@@ -921,9 +933,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   margin-bottom: 20px;
 }
 .deeper-category-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 2px;
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
   color: var(--gold-dim);
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -967,9 +980,9 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   margin-top: 4px;
 }
 .deeper-item-platform {
-  font-family: var(--mono);
+  font-family: var(--font);
   font-size: 9px;
-  letter-spacing: 1px;
+  font-weight: 600;
   padding: 2px 8px;
   border-radius: 10px;
   text-transform: uppercase;
@@ -983,16 +996,15 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   display: block;
   width: 100%;
   padding: 8px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 1px;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 600;
   color: var(--text-tertiary);
   background: none;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   cursor: pointer;
   text-align: center;
-  text-transform: uppercase;
   transition: var(--transition);
 }
 .deeper-show-toggle:hover { color: var(--gold); border-color: var(--gold-dim); }
@@ -1030,9 +1042,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .payment-proof {
   display: inline-block;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.5px;
+  font-family: var(--font);
+  font-size: 11px;
   color: var(--text-tertiary);
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -1044,10 +1055,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   display: block;
   width: 100%;
   padding: 14px;
-  font-family: var(--mono);
-  font-size: 12px;
+  font-family: var(--display);
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
@@ -1098,9 +1109,9 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   margin-bottom: 6px;
 }
 .movie-detail-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 1px;
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 600;
   color: var(--text-tertiary);
   text-transform: uppercase;
   min-width: 70px;
@@ -1108,10 +1119,9 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 .movie-badge {
   display: inline-block;
   padding: 2px 8px;
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 700;
   border-radius: 4px;
   text-transform: uppercase;
 }
@@ -1306,9 +1316,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   max-width: 340px;
 }
 .seat-assign-title {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 2px;
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
   color: var(--gold);
   text-transform: uppercase;
   margin-bottom: 14px;
@@ -1338,9 +1349,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   width: 100%;
   padding: 10px;
   margin-top: 12px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 1px;
+  font-family: var(--font);
+  font-size: 12px;
   color: var(--text-secondary);
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
@@ -1385,13 +1395,12 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   display: flex; gap: 6px; margin-top: 6px;
 }
 .venue-tag {
-  font-family: var(--mono);
-  font-size: 8px;
-  letter-spacing: 1px;
+  font-family: var(--font);
+  font-size: 9px;
+  font-weight: 600;
   padding: 2px 8px;
   border-radius: 10px;
   text-transform: uppercase;
-  font-weight: 600;
   background: var(--bg-elevated);
   color: var(--text-secondary);
   border: 1px solid var(--border-subtle);
@@ -1406,10 +1415,9 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 .payment-link-btn {
   flex: 1;
   padding: 10px;
-  font-family: var(--mono);
-  font-size: 10px;
+  font-family: var(--font);
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 1px;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
@@ -1493,10 +1501,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .news-banner-item.active { opacity: 1; }
 .news-banner-item a {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1px;
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   color: var(--text-secondary);
   text-decoration: none;
   text-transform: uppercase;
@@ -1566,10 +1574,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   display: block;
   width: 100%;
   padding: 16px;
-  font-family: var(--mono);
-  font-size: 13px;
+  font-family: var(--display);
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
@@ -1606,10 +1614,403 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   .page { padding: 80px 24px 40px; }
   .stats-grid { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* COUNTDOWN — FILM FRAME */
+.countdown-frame {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-family: var(--mono);
+  width: 100%;
+  max-width: 340px;
+}
+.countdown-frame .cf-sprocket {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  opacity: 0.3;
+}
+.countdown-frame .cf-sprocket span {
+  width: 4px;
+  height: 6px;
+  background: var(--gold-dim);
+  border-radius: 1px;
+}
+.countdown-frame .cf-digits {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+  justify-content: center;
+}
+.countdown-frame .cf-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 44px;
+}
+.countdown-frame .cf-num {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.countdown-frame .cf-label {
+  font-size: 9px;
+  color: var(--text-tertiary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.countdown-frame .cf-sep {
+  font-size: 18px;
+  color: var(--gold-dim);
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+/* PHONE AUTH */
+.auth-step { display: none; }
+.auth-step.active { display: block; }
+.phone-input-wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.phone-input-wrap .country-code {
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--text-secondary);
+  padding: 12px 0 12px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  border-right: none;
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  width: 48px;
+  text-align: center;
+}
+.phone-input-wrap .phone-number {
+  flex: 1;
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: 1px;
+  padding: 12px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  border-left: none;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-primary);
+}
+.phone-input-wrap .phone-number:focus { outline: none; border-color: var(--gold-dim); }
+.phone-input-wrap .country-code:focus-within + .phone-number,
+.phone-input-wrap:focus-within .country-code { border-color: var(--gold-dim); }
+.otp-input {
+  font-family: var(--mono);
+  font-size: 28px;
+  letter-spacing: 12px;
+  text-align: center;
+  padding: 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  color: var(--gold);
+  width: 100%;
+}
+.otp-input:focus { outline: none; border-color: var(--gold); }
+.auth-subtle {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* ACTIVITY FEED */
+.feed-list { display: flex; flex-direction: column; gap: 1px; }
+.feed-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  align-items: flex-start;
+}
+.feed-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-dim);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+.feed-dot.rsvp { background: var(--green); }
+.feed-dot.payment { background: var(--gold); }
+.feed-dot.organizer_post { background: var(--blue); }
+.feed-dot.milestone { background: var(--amber); }
+.feed-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  flex: 1;
+}
+.feed-text strong { color: var(--text-primary); font-weight: 600; }
+.feed-time {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  margin-top: 4px;
+}
+
+/* SHARE PROMPT */
+.share-prompt {
+  text-align: center;
+  padding: 20px 0 8px;
+}
+.share-prompt-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+.share-prompt-btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.share-prompt-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-medium);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.share-prompt-btn:hover { border-color: var(--gold-dim); color: var(--gold); }
+.share-prompt-btn svg { width: 18px; height: 18px; }
+
+/* STATUS LINE */
+.status-line-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--font);
+  font-size: 13px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  margin-top: 8px;
+}
+.status-line-input:focus { outline: none; border-color: var(--gold-dim); }
+.status-line-input::placeholder { color: var(--text-tertiary); }
+.crew-status-line {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* WHAT TO KNOW PRIMER */
+.primer-card {
+  padding: 18px 20px;
+  background: linear-gradient(135deg, var(--bg-card) 0%, oklch(0.14 0.01 250) 100%);
+  border: 1px solid var(--blue-atmos-dim);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  transition: var(--transition);
+}
+.primer-card:hover { border-color: var(--blue-atmos-glow); }
+.primer-card-q {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.primer-card-a {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ORGANIZER MANUAL ADD */
+.manual-add-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.manual-add-form input {
+  flex: 1;
+  padding: 10px 12px;
+  font-family: var(--font);
+  font-size: 13px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+}
+.manual-add-form input:focus { outline: none; border-color: var(--gold-dim); }
+.manual-add-form button {
+  padding: 10px 16px;
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius-sm);
+  color: var(--gold);
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.manual-add-form button:hover { background: var(--gold-glow); }
+
+/* PHOTO UPLOAD */
+.photo-upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  margin-top: 12px;
+}
+.photo-upload-btn {
+  padding: 10px 20px;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.photo-upload-btn:hover { border-color: var(--gold-dim); color: var(--text-primary); }
+.crew-avatar-photo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold-dim);
+}
+
+/* ATMOSPHERE — poster background on crew page */
+.page-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.page-atmosphere::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://image.tmdb.org/t/p/w780/3o5YPjDGDTcTDL5ftDA9NwN9dLd.jpg') center top / cover no-repeat;
+  opacity: 0.06;
+  filter: blur(40px) saturate(1.4);
+}
+.page-atmosphere::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--bg-deep) 0%, transparent 30%, transparent 70%, var(--bg-deep) 100%);
+}
+
+/* FILM GRAIN OVERLAY */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -3%); }
+  30% { transform: translate(3%, 2%); }
+  50% { transform: translate(-1%, 3%); }
+  70% { transform: translate(2%, -1%); }
+  90% { transform: translate(-3%, 1%); }
+}
+.film-grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 256px;
+  animation: grain 8s steps(10) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .film-grain { animation: none; }
+}
+
+/* STAGGERED ENTRANCE */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page.active .section-header,
+.page.active .primer-card,
+.page.active .feed-item,
+.page.active .crew-avatars,
+.page.active .countdown-frame {
+  animation: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.page.active .section-header:nth-child(1) { animation-delay: 0.05s; }
+.page.active .primer-card:nth-child(2) { animation-delay: 0.1s; }
+.page.active .primer-card:nth-child(3) { animation-delay: 0.15s; }
+.page.active .primer-card:nth-child(4) { animation-delay: 0.2s; }
+.page.active .primer-card:nth-child(5) { animation-delay: 0.25s; }
+.page.active .feed-item:nth-child(1) { animation-delay: 0.05s; }
+.page.active .feed-item:nth-child(2) { animation-delay: 0.1s; }
+.page.no-entrance .section-header,
+.page.no-entrance .primer-card,
+.page.no-entrance .feed-item,
+.page.no-entrance .crew-avatars,
+.page.no-entrance .countdown-frame { animation: none !important; opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .page.active .section-header,
+  .page.active .primer-card,
+  .page.active .feed-item,
+  .page.active .crew-avatars,
+  .page.active .countdown-frame { animation: none; opacity: 1; }
+}
+
+/* RSVP SUCCESS CELEBRATION */
+@keyframes celebrate {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+#rsvp-confirmation .share-prompt {
+  animation: celebrate 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.3s;
+}
+
+/* FULL-BLEED ATMOSPHERIC DIVIDER */
+.atmos-divider {
+  margin: 32px -16px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue-atmos-glow), var(--gold-glow), var(--blue-atmos-glow), transparent);
+}
+
+/* COUNTDOWN WARM BLUE TINT */
+.countdown-frame {
+  background: linear-gradient(135deg, var(--bg-card) 0%, oklch(0.13 0.015 250) 100%);
+  border-color: var(--blue-atmos-dim);
+}
 </style>
 </head>
 <body>
 
+<div class="film-grain" aria-hidden="true"></div>
+<div class="page-atmosphere" aria-hidden="true"></div>
 <div id="app" class="app">
   <!-- NAV -->
   <nav id="nav" class="nav hidden">
@@ -1637,7 +2038,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div class="landing-stars"></div>
 
     <div class="fade-up" style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
-      <span style="font-family:var(--mono);font-size:18px;font-weight:300;letter-spacing:6px;color:var(--gold-cool);text-transform:uppercase;">PLAN</span>
+      <span style="font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:4px;color:var(--gold-cool);text-transform:uppercase;">PLAN</span>
       <svg viewBox="-2 14 104 72" style="width:52px;height:34px;" aria-hidden="true">
         <g transform="rotate(-12 50 50)">
           <path d="M 6 24 L 94 24 L 94 40 A 6 6 0 0 0 94 60 L 94 76 L 6 76 L 6 60 A 6 6 0 0 0 6 40 Z" fill="#b8984a"/>
@@ -1645,7 +2046,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
         <circle cx="50" cy="50" r="30" fill="#07080a" stroke="#b8984a" stroke-width="5"/>
         <polygon points="42,36 42,64 64,50" fill="#b8984a"/>
       </svg>
-      <span style="font-family:var(--mono);font-size:18px;font-weight:300;letter-spacing:6px;color:var(--gold-cool);text-transform:uppercase;">MOVIES</span>
+      <span style="font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:4px;color:var(--gold-cool);text-transform:uppercase;">MOVIES</span>
     </div>
 
     <div class="poster-carousel fade-up fade-up-d1" id="poster-carousel">
@@ -1659,12 +2060,25 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div class="landing-credit fade-up fade-up-d2">A Steven Spielberg Film</div>
 
     <div class="fade-up fade-up-d2" style="margin-bottom:16px;">
-      <span style="font-family:var(--mono);font-size:14px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">FRI JUN 12 · 7:00 PM</span>
+      <span style="font-family:var(--display);font-size:15px;font-weight:600;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;">FRI JUN 12 · 7:00 PM</span>
     </div>
 
     <div class="fade-up fade-up-d3" style="display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;max-width:340px;">
       <div class="landing-headcount" id="landing-headcount"></div>
-      <span id="countdown-inline" style="font-family:var(--mono);font-size:12px;letter-spacing:1px;color:var(--text-tertiary);"></span>
+      <div class="countdown-frame" id="countdown-frame">
+        <div class="cf-sprocket"><span></span><span></span><span></span><span></span></div>
+        <div class="cf-digits">
+          <div class="cf-unit"><span class="cf-num" id="cf-days">--</span><span class="cf-label">DAYS</span></div>
+          <span class="cf-sep">:</span>
+          <div class="cf-unit"><span class="cf-num" id="cf-hours">--</span><span class="cf-label">HRS</span></div>
+          <span class="cf-sep">:</span>
+          <div class="cf-unit"><span class="cf-num" id="cf-mins">--</span><span class="cf-label">MIN</span></div>
+          <span class="cf-sep">:</span>
+          <div class="cf-unit"><span class="cf-num" id="cf-secs">--</span><span class="cf-label">SEC</span></div>
+        </div>
+        <div class="cf-sprocket"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <span id="countdown-inline" style="display:none;"></span>
       <div class="cta-btn-wrap" style="width:100%;">
         <button class="cta-btn" id="cta-btn" style="width:100%;" onclick="initialize()">COUNT ME IN</button>
       </div>
@@ -1701,51 +2115,127 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
     <div style="margin-bottom:20px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-subtle);">
       <img src="assets/regal-secaucus.jpg" alt="Regal Secaucus ShowPlace 14" style="width:100%;display:block;">
-      <div style="padding:10px 14px;background:var(--bg-card);font-family:var(--mono);font-size:13px;letter-spacing:0.5px;color:var(--text-tertiary);">REGAL SECAUCUS · FRI JUN 12 · 7:00 PM</div>
+      <div style="padding:10px 14px;background:var(--bg-card);font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--text-tertiary);">REGAL SECAUCUS · FRI JUN 12 · 7:00 PM</div>
     </div>
 
-    <div class="section-header">THE CREW</div>
-    <div id="crew-list-family" style="margin-bottom:24px;"></div>
+    <div class="countdown-frame" id="countdown-dash" style="margin-bottom:20px;">
+      <div class="cf-sprocket"><span></span><span></span><span></span><span></span></div>
+      <div class="cf-digits">
+        <div class="cf-unit"><span class="cf-num cf-days-sync">--</span><span class="cf-label">DAYS</span></div>
+        <span class="cf-sep">:</span>
+        <div class="cf-unit"><span class="cf-num cf-hours-sync">--</span><span class="cf-label">HRS</span></div>
+        <span class="cf-sep">:</span>
+        <div class="cf-unit"><span class="cf-num cf-mins-sync">--</span><span class="cf-label">MIN</span></div>
+        <span class="cf-sep">:</span>
+        <div class="cf-unit"><span class="cf-num cf-secs-sync">--</span><span class="cf-label">SEC</span></div>
+      </div>
+      <div class="cf-sprocket"><span></span><span></span><span></span><span></span></div>
+    </div>
+
+    <div class="section-header">The Crew</div>
+    <div id="crew-list-family" style="margin-bottom:16px;"></div>
+
+    <div class="atmos-divider"></div>
+
+    <div id="primer-section" style="margin-bottom:24px;">
+      <div class="section-header">Before You Go</div>
+      <div class="primer-card">
+        <div class="primer-card-q">What is Disclosure Day?</div>
+        <div class="primer-card-a">A new Steven Spielberg film about a small-town family who witnesses something in the sky that changes everything. Spielberg's first UFO movie since Close Encounters (1977). Written by David Koepp. Score by John Williams at 93.</div>
+      </div>
+      <div class="primer-card">
+        <div class="primer-card-q">Why opening night?</div>
+        <div class="primer-card-a">Some movies you see whenever. This one is a first-night-together movie. The whole crew, same theater, same row, same reaction. That's the point.</div>
+      </div>
+      <div class="primer-card">
+        <div class="primer-card-q">Do I need to know anything about UFOs?</div>
+        <div class="primer-card-a">No. Spielberg makes movies for everyone. But if you're curious, check the Movie tab. There's a reason this film is coming out now.</div>
+      </div>
+      <div class="primer-card">
+        <div class="primer-card-q">How does payment work?</div>
+        <div class="primer-card-a">Jordan buys all tickets together so the crew sits in the same row. After you RSVP, you'll see a link to pay your share ($18). Zelle works too.</div>
+      </div>
+    </div>
 
     <div id="inline-rsvp">
       <div style="padding:12px 0 16px;">
         <p style="font-family:var(--font);font-size:15px;color:var(--text-secondary);">Your turn.</p>
       </div>
       <form id="rsvp-form" onsubmit="submitRSVP(event)">
-        <div class="form-group">
-          <label class="form-label">Your Name</label>
-          <input class="form-input" type="text" id="f-name" placeholder="First and last name" required autocapitalize="words">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Are You Coming?</label>
-          <div class="radio-group" id="f-status">
-            <label class="radio-pill selected"><input type="radio" name="status" value="confirmed" checked>I'm Going</label>
-            <label class="radio-pill"><input type="radio" name="status" value="cant">Can't Make It</label>
+        <div id="auth-step-phone" class="auth-step active">
+          <div class="form-group">
+            <label class="form-label">Your Phone</label>
+            <div class="phone-input-wrap">
+              <span class="country-code">+1</span>
+              <input class="phone-number" type="tel" id="f-phone" placeholder="(555) 123-4567" inputmode="numeric" autocomplete="tel-national" maxlength="14">
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">How many people total?</label>
-          <div class="radio-group" id="f-party">
-            <label class="radio-pill selected"><input type="radio" name="party" value="1" checked>1</label>
-            <label class="radio-pill"><input type="radio" name="party" value="2">2</label>
-            <label class="radio-pill"><input type="radio" name="party" value="3">3</label>
-            <label class="radio-pill"><input type="radio" name="party" value="4">4</label>
-            <label class="radio-pill"><input type="radio" name="party" value="5">5</label>
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input class="form-input" type="text" id="f-name" placeholder="First and last name" required autocapitalize="words">
           </div>
+          <button class="submit-btn" type="button" id="send-code-btn" onclick="sendVerificationCode()">SEND CODE</button>
+          <p class="auth-subtle">We'll text you a 6-digit code to verify. Standard rates apply.</p>
+          <button type="button" onclick="skipPhoneAuth()" style="display:block;margin:8px auto 0;background:none;border:none;font-size:12px;color:var(--text-tertiary);cursor:pointer;padding:4px 8px;">Skip for now</button>
         </div>
-        <input type="hidden" id="f-theater" value="regal-secaucus">
-        <input type="hidden" name="format" value="standard">
-        <button class="submit-btn" type="submit" id="submit-btn">SUBMIT RSVP</button>
-        <p style="font-size:13px;color:var(--text-tertiary);text-align:center;margin-top:12px;line-height:1.5;">You can update your RSVP anytime.</p>
+        <div id="auth-step-otp" class="auth-step">
+          <div class="form-group">
+            <label class="form-label">Enter the 6-digit code</label>
+            <input class="otp-input" type="text" id="f-otp" maxlength="6" inputmode="numeric" autocomplete="one-time-code" placeholder="000000">
+          </div>
+          <button class="submit-btn" type="button" id="verify-code-btn" onclick="verifyCode()">VERIFY</button>
+          <p class="auth-subtle">Sent to <span id="otp-phone-display"></span>. <button type="button" onclick="showAuthStep('phone')" style="background:none;border:none;color:var(--gold-dim);cursor:pointer;font-size:12px;padding:0;">Change number</button></p>
+        </div>
+        <div id="auth-step-rsvp" class="auth-step">
+          <div class="form-group">
+            <label class="form-label">Are You Coming?</label>
+            <div class="radio-group" id="f-status">
+              <label class="radio-pill selected"><input type="radio" name="status" value="confirmed" checked>I'm Going</label>
+              <label class="radio-pill"><input type="radio" name="status" value="cant">Can't Make It</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">How many people total?</label>
+            <div class="radio-group" id="f-party">
+              <label class="radio-pill selected"><input type="radio" name="party" value="1" checked>1</label>
+              <label class="radio-pill"><input type="radio" name="party" value="2">2</label>
+              <label class="radio-pill"><input type="radio" name="party" value="3">3</label>
+              <label class="radio-pill"><input type="radio" name="party" value="4">4</label>
+              <label class="radio-pill"><input type="radio" name="party" value="5">5</label>
+            </div>
+          </div>
+          <input type="hidden" id="f-theater" value="regal-secaucus">
+          <input type="hidden" name="format" value="standard">
+          <button class="submit-btn" type="submit" id="submit-btn">SUBMIT RSVP</button>
+          <p style="font-size:13px;color:var(--text-tertiary);text-align:center;margin-top:12px;line-height:1.5;">You can update your RSVP anytime.</p>
+        </div>
       </form>
       <div id="rsvp-confirmation" style="display:none;">
         <div style="text-align:center;padding:32px 0 24px;">
           <div style="font-size:32px;margin-bottom:16px;">&#127916;</div>
           <h3 id="confirm-heading" style="font-size:1.3rem;font-weight:700;margin-bottom:8px;"></h3>
-          <p id="confirm-position" style="font-size:14px;color:var(--text-secondary);margin-bottom:24px;"></p>
+          <p id="confirm-position" style="font-size:14px;color:var(--text-secondary);margin-bottom:4px;"></p>
         </div>
-        <div class="section-header">THE CREW SO FAR</div>
-        <div id="confirm-crew" style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;"></div>
+        <div class="share-prompt" id="share-prompt">
+          <p class="share-prompt-text">Bring someone else?</p>
+          <div class="share-prompt-btns">
+            <button class="share-prompt-btn" onclick="shareWhatsApp()"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</button>
+            <button class="share-prompt-btn" onclick="shareIMessage()"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>Text</button>
+          </div>
+        </div>
+        <div class="form-group" id="status-line-group" style="margin-top:12px;">
+          <input class="status-line-input" type="text" id="f-status-line" placeholder="Say something... (e.g. Can't wait, Already watched the trailer 4x)" maxlength="80">
+          <button type="button" onclick="saveStatusLine()" style="display:block;margin:6px auto 0;background:none;border:none;font-size:12px;color:var(--gold-dim);cursor:pointer;">Save</button>
+        </div>
+        <div class="photo-upload-area" id="photo-upload-area">
+          <input type="file" id="photo-file" accept="image/*" style="display:none;" onchange="uploadPhoto(this)">
+          <button class="photo-upload-btn" type="button" onclick="document.getElementById('photo-file').click()">Add your photo</button>
+          <p style="font-size:11px;color:var(--text-tertiary);">Shows next to your name in the crew list</p>
+        </div>
+        <div style="margin-top:16px;">
+          <div class="section-header">The Crew So Far</div>
+          <div id="confirm-crew" style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;"></div>
+        </div>
         <button class="submit-btn" onclick="hideConfirmation()" style="background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-subtle);">RSVP AGAIN FOR SOMEONE ELSE</button>
       </div>
     </div>
@@ -1759,6 +2249,13 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <a class="payment-proof" id="payment-proof-link" href="https://www.fandango.com/regal-secaucus-showplace-aankh/theater-page" target="_blank" rel="noopener">Verify price on Fandango</a>
       <a class="payment-stripe-btn" id="payment-stripe-btn" href="#" target="_blank" rel="noopener" style="display:none;">PAY FOR YOUR TICKET</a>
       <div class="payment-fallback">Prefer Zelle? Text Jordan.</div>
+    </div>
+
+    <div class="atmos-divider"></div>
+
+    <div id="activity-feed-section" style="margin-bottom:24px;">
+      <div class="section-header">What's Happening</div>
+      <div id="activity-feed" class="feed-list"></div>
     </div>
 
     <div style="text-align:center;padding:16px 0 8px;font-family:var(--font);font-size:13px;color:var(--text-tertiary);">
@@ -1785,6 +2282,15 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
           </svg>
           <div class="ring-label">GROUP READINESS</div>
           <div class="ring-value" id="ring-value">0%</div>
+        </div>
+
+        <div class="section-header">ADD SOMEONE MANUALLY</div>
+        <div style="margin-bottom:16px;">
+          <p style="font-size:12px;color:var(--text-tertiary);margin-bottom:8px;">For family who won't RSVP themselves (Carmen, Ray). They can claim their RSVP later.</p>
+          <div class="manual-add-form" id="manual-add-form">
+            <input type="text" id="manual-add-name" placeholder="Name" autocapitalize="words">
+            <button type="button" onclick="manualAddRsvp()">ADD</button>
+          </div>
         </div>
 
         <div class="section-header">ALL ATTENDEES</div>
@@ -1902,7 +2408,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       None of this is from the movie. It started with a New York Times investigation in 2017. It hasn't stopped.
     </p>
     <div id="briefing-headlines" style="display:flex;flex-direction:column;gap:8px;"></div>
-    <button id="headlines-more-btn" onclick="showMoreHeadlines()" style="display:none;width:100%;padding:10px;margin:8px 0 24px;background:transparent;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-tertiary);font-family:var(--mono);font-size:11px;letter-spacing:1px;cursor:pointer;transition:border-color 0.2s,color 0.2s;">SHOW MORE</button>
+    <button id="headlines-more-btn" onclick="showMoreHeadlines()" style="display:none;width:100%;padding:10px;margin:8px 0 24px;background:transparent;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-tertiary);font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:border-color 0.2s,color 0.2s;">SHOW MORE</button>
 
     <div class="section-header">IN THEIR WORDS</div>
     <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:16px;">Presidents. Generals. Intelligence directors. Under oath, on camera, on the record.</p>
@@ -1915,7 +2421,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div class="section-header">THIS IS HAPPENING AROUND THE WORLD</div>
     <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:16px;">Belgium. Brazil. Japan. France. Chile. Peru. The UK. Governments are investigating, declassifying, and going on the record.</p>
     <div id="world-quotes-section"></div>
-    <button id="world-more-btn" onclick="showMoreWorld()" style="display:none;width:100%;padding:10px;margin:8px 0 24px;background:transparent;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-tertiary);font-family:var(--mono);font-size:11px;letter-spacing:1px;cursor:pointer;transition:border-color 0.2s,color 0.2s;">SHOW MORE</button>
+    <button id="world-more-btn" onclick="showMoreWorld()" style="display:none;width:100%;padding:10px;margin:8px 0 24px;background:transparent;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-tertiary);font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:border-color 0.2s,color 0.2s;">SHOW MORE</button>
 
     <div style="margin:40px 0 32px;padding:24px 16px;border:1px solid var(--gold-dim);border-radius:var(--radius);background:linear-gradient(180deg, oklch(0.16 0.01 80) 0%, var(--bg) 100%);">
       <div class="section-header" style="margin-bottom:4px;">THE DECLASSIFIED FILES</div>
@@ -1924,7 +2430,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       </p>
 
       <div style="margin-bottom:16px;">
-        <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">PENTAGON RELEASES 40+ UAP VIDEOS (MAY 2026)</div>
+        <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);letter-spacing:0.5px;margin-bottom:6px;">PENTAGON RELEASES 40+ UAP VIDEOS (MAY 2026)</div>
         <div class="trailer-container" id="rabbit-pentagon" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-pentagon','rhjTZTFjW8k')">
           <img src="https://img.youtube.com/vi/rhjTZTFjW8k/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Pentagon UAP video release">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
@@ -1932,7 +2438,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       </div>
 
       <div style="margin-bottom:16px;">
-        <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">UAP ACCELERATES FROM STANDSTILL TO WARP SPEED</div>
+        <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);letter-spacing:0.5px;margin-bottom:6px;">UAP ACCELERATES FROM STANDSTILL TO WARP SPEED</div>
         <div class="trailer-container" id="rabbit-syrian" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-syrian','sZwh8wlaoXE')">
           <img src="https://img.youtube.com/vi/sZwh8wlaoXE/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="UAP instant acceleration footage">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
@@ -1941,7 +2447,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       </div>
 
       <div style="margin-bottom:16px;">
-        <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">PENTAGON-CONFIRMED UAP FOOTAGE (CORBELL, 2026)</div>
+        <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);letter-spacing:0.5px;margin-bottom:6px;">PENTAGON-CONFIRMED UAP FOOTAGE (CORBELL, 2026)</div>
         <div class="trailer-container" id="rabbit-corbell" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-corbell','ICv6I6bSGkQ')">
           <img src="https://img.youtube.com/vi/ICv6I6bSGkQ/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Pentagon-confirmed UAP footage from Corbell documentary">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
@@ -1949,7 +2455,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
         <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">UAP clips the Pentagon confirmed are authentic military sensor footage. One minute of what the government says is real.</p>
       </div>
 
-      <a href="https://www.war.gov/ufo/" target="_blank" rel="noopener" style="display:block;text-align:center;padding:14px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:2px;color:var(--gold);background:oklch(0.18 0.02 80);border:1px solid var(--gold);border-radius:var(--radius-sm);text-decoration:none;transition:background 0.2s;">WAR.GOV/UFO — READ THE FILES</a>
+      <a href="https://www.war.gov/ufo/" target="_blank" rel="noopener" style="display:block;text-align:center;padding:14px;font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:1.5px;color:var(--gold);background:oklch(0.18 0.02 80);border:1px solid var(--gold);border-radius:var(--radius-sm);text-decoration:none;transition:background 0.2s;">WAR.GOV/UFO — READ THE FILES</a>
     </div>
 
     <div class="section-header" style="margin-top:32px;">DOWN THE RABBIT HOLE</div>
@@ -1957,11 +2463,11 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       They knew. They didn't tell us. Now it's all coming out.
     </p>
 
-    <div style="font-size:11px;font-family:var(--mono);color:var(--gold-dim);letter-spacing:2px;margin-bottom:16px;">THE WITNESSES</div>
+    <div style="font-size:11px;font-family:var(--display);font-weight:700;color:var(--gold-dim);letter-spacing:1.5px;margin-bottom:16px;">THE WITNESSES</div>
     <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">Career military officers. Under oath. Facing federal perjury if lying.</p>
 
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">60 MINUTES: NAVY PILOTS DESCRIBE ENCOUNTERS</div>
+      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);letter-spacing:0.5px;margin-bottom:6px;">60 MINUTES: NAVY PILOTS DESCRIBE ENCOUNTERS</div>
       <div class="trailer-container" id="rabbit-60min" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-60min','TppFEA5dYfM')">
         <img src="https://img.youtube.com/vi/TppFEA5dYfM/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="60 Minutes Navy pilot UFO encounters">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
@@ -1970,7 +2476,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     </div>
 
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">GRUSCH TESTIFIES TO CONGRESS (UNDER OATH)</div>
+      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);letter-spacing:0.5px;margin-bottom:6px;">GRUSCH TESTIFIES TO CONGRESS (UNDER OATH)</div>
       <div class="trailer-container" id="rabbit-grusch" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-grusch','lcrCMLVk614')">
         <img src="https://img.youtube.com/vi/lcrCMLVk614/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Grusch congressional testimony">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
@@ -1979,7 +2485,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     </div>
 
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">NEWSNATION: THE INTERVIEW THAT BROKE THE STORY</div>
+      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);letter-spacing:0.5px;margin-bottom:6px;">NEWSNATION: THE INTERVIEW THAT BROKE THE STORY</div>
       <div class="trailer-container" id="rabbit-newsnation" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-newsnation','RBAISwCZ2v0')">
         <img src="https://img.youtube.com/vi/RBAISwCZ2v0/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Grusch NewsNation interview">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
@@ -1988,7 +2494,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     </div>
 
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">JAKE BARBER: "I RETRIEVED A UFO WITH MY HELICOPTER"</div>
+      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);letter-spacing:0.5px;margin-bottom:6px;">JAKE BARBER: "I RETRIEVED A UFO WITH MY HELICOPTER"</div>
       <div class="trailer-container" id="rabbit-barber" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-barber','t37-SKj4rtY')">
         <img src="https://img.youtube.com/vi/t37-SKj4rtY/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Jake Barber UFO whistleblower NewsNation">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
@@ -1997,7 +2503,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     </div>
 
     <div style="margin-bottom:24px;">
-      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">MATTHEW BROWN: "IMMACULATE CONSTELLATION" WHISTLEBLOWER</div>
+      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);letter-spacing:0.5px;margin-bottom:6px;">MATTHEW BROWN: "IMMACULATE CONSTELLATION" WHISTLEBLOWER</div>
       <div class="trailer-container" id="rabbit-brown" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-brown','fqdxyA46EDU')">
         <img src="https://img.youtube.com/vi/fqdxyA46EDU/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Matthew Brown Immaculate Constellation whistleblower">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
@@ -2005,11 +2511,11 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <p style="font-size:12px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Former Office of the Secretary of Defense. Discovered a classified program called "Immaculate Constellation" that collected UAP imagery from military sensors. Reviewed 400+ defense reports. Submitted an 11-page report to Congress.</p>
     </div>
 
-    <div style="font-size:11px;font-family:var(--mono);color:var(--gold-dim);letter-spacing:2px;margin-bottom:16px;">HOW WE GOT HERE</div>
+    <div style="font-size:11px;font-family:var(--display);font-weight:700;color:var(--gold-dim);letter-spacing:1.5px;margin-bottom:16px;">HOW WE GOT HERE</div>
     <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">A former president said it out loud. Five days later, the current president ordered full declassification.</p>
 
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">OBAMA: "THEY'RE REAL" (FEB 14, 2026)</div>
+      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);letter-spacing:0.5px;margin-bottom:6px;">OBAMA: "THEY'RE REAL" (FEB 14, 2026)</div>
       <div class="trailer-container" id="rabbit-obama" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-obama','8dvpZXv30jY')">
         <img src="https://img.youtube.com/vi/8dvpZXv30jY/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Obama says aliens are real">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
@@ -2017,14 +2523,14 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     </div>
 
     <div style="margin-bottom:24px;">
-      <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;margin-bottom:6px;">TRUMP ORDERS FULL DECLASSIFICATION (FEB 19, 2026)</div>
+      <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);letter-spacing:0.5px;margin-bottom:6px;">TRUMP ORDERS FULL DECLASSIFICATION (FEB 19, 2026)</div>
       <div class="trailer-container" id="rabbit-trump" style="cursor:pointer;" onclick="loadRabbitVideo('rabbit-trump','cluuW49CBQM')">
         <img src="https://img.youtube.com/vi/cluuW49CBQM/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Trump orders UFO declassification">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);"><div style="width:48px;height:48px;background:rgba(255,0,0,0.9);border-radius:8px;display:flex;align-items:center;justify-content:center;"><div style="width:0;height:0;border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;"></div></div></div>
       </div>
     </div>
 
-    <div style="font-size:11px;font-family:var(--mono);color:var(--gold-dim);letter-spacing:2px;margin-bottom:16px;">GO DEEPER</div>
+    <div style="font-size:11px;font-family:var(--display);font-weight:700;color:var(--gold-dim);letter-spacing:1.5px;margin-bottom:16px;">GO DEEPER</div>
     <p style="font-size:12px;line-height:1.5;color:var(--text-tertiary);margin-bottom:14px;">For when you can't stop thinking about it.</p>
     <div id="go-deeper-section"></div>
 
@@ -2164,25 +2670,33 @@ function subscribeToChanges() {
     .subscribe();
 }
 
-// Countdown
+// Countdown — film frame, always visible
 function updateCountdown() {
   const now = new Date();
   const diff = RELEASE_DATE - now;
-  const el = document.getElementById('countdown-inline');
-  if (!el) return;
   if (diff <= 0) {
-    el.textContent = 'NOW PLAYING';
-    el.style.display = '';
+    document.querySelectorAll('.countdown-frame').forEach(el => {
+      el.innerHTML = '<div style="flex:1;text-align:center;font-family:var(--display);font-size:16px;font-weight:800;letter-spacing:2px;color:var(--gold);">NOW PLAYING</div>';
+    });
     return;
   }
   const d = Math.floor(diff / 86400000);
   const h = Math.floor((diff % 86400000) / 3600000);
-  if (d > 3) {
-    el.style.display = 'none';
-    return;
-  }
-  el.style.display = '';
-  el.textContent = d + 'd ' + h + 'h until opening night';
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const pad = n => String(n).padStart(2, '0');
+  const daysEl = document.getElementById('cf-days');
+  const hoursEl = document.getElementById('cf-hours');
+  const minsEl = document.getElementById('cf-mins');
+  const secsEl = document.getElementById('cf-secs');
+  if (daysEl) daysEl.textContent = pad(d);
+  if (hoursEl) hoursEl.textContent = pad(h);
+  if (minsEl) minsEl.textContent = pad(m);
+  if (secsEl) secsEl.textContent = pad(s);
+  document.querySelectorAll('.cf-days-sync').forEach(el => el.textContent = pad(d));
+  document.querySelectorAll('.cf-hours-sync').forEach(el => el.textContent = pad(h));
+  document.querySelectorAll('.cf-mins-sync').forEach(el => el.textContent = pad(m));
+  document.querySelectorAll('.cf-secs-sync').forEach(el => el.textContent = pad(s));
 }
 setInterval(updateCountdown, 1000);
 updateCountdown();
@@ -2201,6 +2715,10 @@ function initialize() {
   document.getElementById('nav').classList.remove('hidden');
   document.getElementById('sticky-cta').style.opacity = '0';
   showPage('dashboard');
+  setTimeout(() => {
+    const rsvp = document.getElementById('inline-rsvp');
+    if (rsvp) rsvp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 200);
 }
 
 const stickyCta = document.getElementById('sticky-cta');
@@ -2216,9 +2734,13 @@ if (stickyCta && landingEl) {
   observer.observe(document.getElementById('cta-btn'));
 }
 
+const pageViewed = {};
 function showPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + page).classList.add('active');
+  const pageEl = document.getElementById('page-' + page);
+  pageEl.classList.add('active');
+  if (pageViewed[page]) pageEl.classList.add('no-entrance');
+  pageViewed[page] = true;
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.page === page));
   if (page === 'dashboard') renderDashboard();
   if (page === 'briefing') { renderTrailers(); renderOfficialQuotes(); renderWorldQuotes(); renderGoDeeper(); }
@@ -2242,6 +2764,186 @@ document.querySelectorAll('.radio-group').forEach(group => {
   });
 });
 
+// Phone Auth
+let currentPhone = '';
+let authUserId = null;
+let lastRsvpName = '';
+
+function formatPhone(raw) {
+  const digits = raw.replace(/\D/g, '').slice(0, 10);
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `(${digits.slice(0,3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
+}
+
+const phoneInput = document.getElementById('f-phone');
+if (phoneInput) {
+  phoneInput.addEventListener('input', function() {
+    const pos = this.selectionStart;
+    const before = this.value;
+    this.value = formatPhone(this.value);
+    if (this.value.length > before.length && pos < this.value.length) {
+      this.setSelectionRange(pos + (this.value.length - before.length), pos + (this.value.length - before.length));
+    }
+  });
+}
+
+function showAuthStep(step) {
+  document.querySelectorAll('.auth-step').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('auth-step-' + step);
+  if (el) el.classList.add('active');
+}
+
+async function sendVerificationCode() {
+  const phoneRaw = document.getElementById('f-phone').value.replace(/\D/g, '');
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { toast('Enter your name first'); return; }
+  if (phoneRaw.length < 10) { toast('Enter a valid phone number'); return; }
+
+  currentPhone = '+1' + phoneRaw;
+  const btn = document.getElementById('send-code-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-spinner"></span>SENDING...';
+
+  try {
+    const { error } = await sb.auth.signInWithOtp({ phone: currentPhone });
+    if (error) throw error;
+    document.getElementById('otp-phone-display').textContent = formatPhone(phoneRaw);
+    showAuthStep('otp');
+    document.getElementById('f-otp').focus();
+  } catch (err) {
+    console.error('OTP send error:', err);
+    toast('Could not send code. Try skipping for now.');
+  }
+  btn.disabled = false;
+  btn.textContent = 'SEND CODE';
+}
+
+async function verifyCode() {
+  const otp = document.getElementById('f-otp').value.trim();
+  if (otp.length !== 6) { toast('Enter the 6-digit code'); return; }
+
+  const btn = document.getElementById('verify-code-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-spinner"></span>VERIFYING...';
+
+  try {
+    const { data, error } = await sb.auth.verifyOtp({ phone: currentPhone, token: otp, type: 'sms' });
+    if (error) throw error;
+    authUserId = data.user?.id || null;
+    toast('Verified.');
+    showAuthStep('rsvp');
+  } catch (err) {
+    console.error('OTP verify error:', err);
+    toast('Invalid code. Try again.');
+  }
+  btn.disabled = false;
+  btn.textContent = 'VERIFY';
+}
+
+function skipPhoneAuth() {
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { toast('Enter your name first'); return; }
+  showAuthStep('rsvp');
+}
+
+// Activity feed
+async function fetchActivityFeed() {
+  const { data, error } = await sb.from('activity_feed').select('*').order('created_at', { ascending: false }).limit(20);
+  if (error) { console.error('feed error:', error); return []; }
+  return data || [];
+}
+
+async function renderActivityFeed() {
+  const el = document.getElementById('activity-feed');
+  if (!el) return;
+  const feed = await fetchActivityFeed();
+  if (feed.length === 0) {
+    const active = attendees.filter(a => a.status !== 'cant');
+    if (active.length > 0) {
+      el.innerHTML = active.map(a => {
+        const ago = timeAgo(new Date(a.created_at));
+        return `<div class="feed-item"><div class="feed-dot rsvp"></div><div style="flex:1;"><div class="feed-text"><strong>${esc(a.name.split(' ')[0])}</strong> RSVPed${a.party > 1 ? ' for ' + a.party : ''}</div><div class="feed-time">${ago}</div></div></div>`;
+      }).join('');
+    } else {
+      el.innerHTML = '<div style="padding:12px 0;color:var(--text-tertiary);font-size:13px;">Nothing yet. Be the first to RSVP.</div>';
+    }
+    return;
+  }
+  el.innerHTML = feed.map(item => {
+    const ago = timeAgo(new Date(item.created_at));
+    return `<div class="feed-item"><div class="feed-dot ${item.type}"></div><div style="flex:1;"><div class="feed-text">${item.message}</div><div class="feed-time">${ago}</div></div></div>`;
+  }).join('');
+}
+
+function timeAgo(date) {
+  const s = Math.floor((Date.now() - date) / 1000);
+  if (s < 60) return 'just now';
+  if (s < 3600) return Math.floor(s / 60) + 'm ago';
+  if (s < 86400) return Math.floor(s / 3600) + 'h ago';
+  return Math.floor(s / 86400) + 'd ago';
+}
+
+async function logActivity(type, actorName, message) {
+  await sb.from('activity_feed').insert({ type, actor_name: actorName, message });
+}
+
+// Photo upload
+async function uploadPhoto(input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (!lastRsvpName) { toast('RSVP first'); return; }
+  const ext = file.name.split('.').pop();
+  const path = `photos/${lastRsvpName.toLowerCase().replace(/\s+/g, '-')}-${Date.now()}.${ext}`;
+
+  toast('Uploading...');
+  const { error: upErr } = await sb.storage.from('crew-photos').upload(path, file, { cacheControl: '3600', upsert: true });
+  if (upErr) {
+    console.error('upload error:', upErr);
+    toast('Upload failed. Try again.');
+    return;
+  }
+  const { data: urlData } = sb.storage.from('crew-photos').getPublicUrl(path);
+  const photoUrl = urlData.publicUrl;
+
+  const existing = attendees.find(a => a.name.toLowerCase() === lastRsvpName.toLowerCase());
+  if (existing) {
+    await sb.from('rsvps').update({ photo_url: photoUrl }).eq('id', existing.id);
+    await fetchAttendees();
+    renderFamilyCrew();
+    toast('Photo saved.');
+  }
+}
+
+// Status line
+async function saveStatusLine() {
+  const line = document.getElementById('f-status-line').value.trim();
+  if (!line || !lastRsvpName) return;
+  const existing = attendees.find(a => a.name.toLowerCase() === lastRsvpName.toLowerCase());
+  if (existing) {
+    await sb.from('rsvps').update({ status_line: line }).eq('id', existing.id);
+    await fetchAttendees();
+    renderFamilyCrew();
+    toast('Status saved.');
+  }
+}
+
+// Manual add (organizer)
+async function manualAddRsvp() {
+  const rawName = document.getElementById('manual-add-name').value.trim();
+  if (!rawName) return;
+  const name = rawName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+  const existing = attendees.find(a => a.name.toLowerCase() === name.toLowerCase());
+  if (existing) { toast(name.split(' ')[0] + ' is already on the list'); return; }
+  const { error } = await sb.from('rsvps').insert({ name, status: 'confirmed', party: 1, theater: 'regal-secaucus', format: 'standard' });
+  if (error) { toast('Error adding. Try again.'); console.error(error); return; }
+  document.getElementById('manual-add-name').value = '';
+  await fetchAttendees();
+  renderDashboard();
+  await logActivity('organizer_post', 'Jordan', `<strong>${esc(name.split(' ')[0])}</strong> was added to the crew`);
+  toast(name.split(' ')[0] + ' added.');
+}
+
 // RSVP Submit
 function getRadioValue(name) {
   const el = document.querySelector(`input[name="${name}"]:checked`);
@@ -2253,17 +2955,21 @@ async function submitRSVP(e) {
   const rawName = document.getElementById('f-name').value.trim();
   const name = rawName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
   if (!name) return;
+  lastRsvpName = name;
 
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
   btn.innerHTML = '<span class="loading-spinner"></span>SAVING...';
 
+  const phoneRaw = document.getElementById('f-phone')?.value.replace(/\D/g, '') || '';
   const entry = {
     name,
     status: getRadioValue('status'),
     party: parseInt(getRadioValue('party')) || 1,
     theater: document.getElementById('f-theater').value || null,
     format: getRadioValue('format'),
+    phone: phoneRaw.length >= 10 ? '+1' + phoneRaw : null,
+    user_id: authUserId,
   };
 
   const existing = attendees.find(a => a.name.toLowerCase() === name.toLowerCase());
@@ -2305,6 +3011,10 @@ async function submitRSVP(e) {
 
   await fetchAttendees();
   showConfirmation(name, entry.status);
+
+  if (entry.status !== 'cant' && !existing) {
+    logActivity('rsvp', name, `<strong>${esc(name.split(' ')[0])}</strong> RSVPed${entry.party > 1 ? ' for ' + entry.party : ''}`);
+  }
 }
 
 const STATUS_LABELS = {confirmed:'Going',probably:'Probably',maybe:'Maybe',cant:"Can't"};
@@ -2327,12 +3037,19 @@ function showConfirmation(name, status) {
   document.getElementById('confirm-heading').textContent = heading;
   document.getElementById('confirm-position').textContent = posText;
 
+  const sharePrompt = document.getElementById('share-prompt');
+  if (sharePrompt) sharePrompt.style.display = status === 'cant' ? 'none' : '';
+
   const crewHtml = active.map(a => {
     const isSelf = a.name.toLowerCase() === name.toLowerCase();
     const firstName = a.name.split(' ')[0];
+    const avatar = a.photo_url
+      ? `<img class="crew-avatar-photo" src="${a.photo_url}" alt="${firstName}" style="width:28px;height:28px;">`
+      : `<div style="width:28px;height:28px;border-radius:50%;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--gold);flex-shrink:0;">${firstName.charAt(0).toUpperCase()}</div>`;
+    const statusLine = a.status_line ? `<div class="crew-status-line">${esc(a.status_line)}</div>` : '';
     return `<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg-card);border:1px solid ${isSelf ? 'var(--gold-dim)' : 'var(--border-subtle)'};border-radius:var(--radius-sm);">
-      <div style="width:28px;height:28px;border-radius:50%;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--gold);flex-shrink:0;">${firstName.charAt(0).toUpperCase()}</div>
-      <span style="flex:1;font-size:13px;font-weight:${isSelf ? '700' : '400'};">${firstName}${isSelf ? ' (you)' : ''}</span>
+      ${avatar}
+      <div style="flex:1;"><span style="font-size:13px;font-weight:${isSelf ? '700' : '400'};">${firstName}${isSelf ? ' (you)' : ''}</span>${statusLine}</div>
       ${statusMark(a.status)}
     </div>`;
   }).join('');
@@ -2348,6 +3065,10 @@ function showConfirmation(name, status) {
 function hideConfirmation() {
   document.getElementById('rsvp-confirmation').style.display = 'none';
   document.getElementById('rsvp-form').style.display = 'block';
+  showAuthStep('phone');
+  lastRsvpName = '';
+  authUserId = null;
+  currentPhone = '';
 }
 
 const CREW_AVATAR_MAX = 8;
@@ -2360,7 +3081,10 @@ function renderFamilyCrew() {
     el.innerHTML = '<div style="text-align:center;padding:16px 0;color:var(--text-tertiary);font-size:14px;">No one has RSVPed yet. Be the first.</div>';
     return;
   }
-  const visible = active.slice(0, CREW_AVATAR_MAX);
+  const withPhotos = active.filter(a => a.photo_url);
+  const withoutPhotos = active.filter(a => !a.photo_url);
+  const sorted = [...withPhotos, ...withoutPhotos];
+  const visible = sorted.slice(0, CREW_AVATAR_MAX);
   const overflow = active.length - CREW_AVATAR_MAX;
   const names = active.map(a => a.name.split(' ')[0]);
   const summary = names.length <= 3
@@ -2370,8 +3094,12 @@ function renderFamilyCrew() {
   el.innerHTML = `
     <div class="crew-avatars">
       ${visible.map(a => {
+        const firstName = a.name.split(' ')[0];
+        if (a.photo_url) {
+          return `<img class="crew-avatar-photo" src="${a.photo_url}" alt="${firstName}" title="${firstName}">`;
+        }
         const initial = a.name.charAt(0).toUpperCase();
-        return `<div class="crew-avatar" title="${a.name.split(' ')[0]}">${initial}</div>`;
+        return `<div class="crew-avatar" title="${firstName}">${initial}</div>`;
       }).join('')}
       ${overflow > 0 ? `<div class="crew-avatar-overflow">+${overflow}</div>` : ''}
     </div>
@@ -2380,13 +3108,7 @@ function renderFamilyCrew() {
 }
 
 function renderDashCountdown() {
-  const el = document.getElementById('dash-countdown');
-  if (!el) return;
-  const diff = RELEASE_DATE - new Date();
-  if (diff <= 0) { el.textContent = 'NOW PLAYING'; return; }
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  el.textContent = d + 'd ' + h + 'h until opening night';
+  updateCountdown();
 }
 
 // Dashboard
@@ -2396,6 +3118,7 @@ function renderDashboard() {
 
   renderFamilyCrew();
   renderDashCountdown();
+  renderActivityFeed();
 
   const list = attendees;
   const active = list.filter(a => a.status !== 'cant');
@@ -2676,7 +3399,7 @@ async function renderCoordination() {
           <span class="coord-stat-value" style="color:var(--red);">${unpaid.length} owe</span>
         </div>
         ${unpaid.length ? `<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border-subtle);">
-          <div style="font-size:11px;color:var(--text-tertiary);font-family:var(--mono);letter-spacing:1px;margin-bottom:8px;">AWAITING PAYMENT</div>
+          <div style="font-size:11px;color:var(--text-tertiary);font-family:var(--display);font-weight:600;letter-spacing:0.5px;margin-bottom:8px;">AWAITING PAYMENT</div>
           ${unpaid.map(a => `<div style="font-size:13px;color:var(--text-secondary);padding:4px 0;">${esc(a.name)}${a.party > 1 ? ` (+${a.party-1})` : ''}</div>`).join('')}
         </div>` : ''}
       </div>
@@ -2868,7 +3591,7 @@ function initVideoCarousel(items, containerId, dotsId, key) {
     const active = i === 0;
     return `
       <div class="vslide vslide-${key}" data-idx="${i}" style="position:${active ? 'relative' : 'absolute'};opacity:${active ? 1 : 0};top:0;left:0;width:100%;transition:opacity 0.4s ease;">
-        <div style="font-size:11px;font-family:var(--mono);color:var(--text-tertiary);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">${t.label || t.title}</div>
+        <div style="font-size:11px;font-family:var(--display);font-weight:600;color:var(--text-tertiary);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:6px;">${t.label || t.title}</div>
         <div class="trailer-container" id="vc-${key}-${t.id}" onclick="loadVideo('${key}','${t.id}')" style="cursor:pointer;">
           <img src="https://img.youtube.com/vi/${t.id}/hqdefault.jpg" alt="${t.title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);">
@@ -3134,7 +3857,7 @@ let headlinesExpanded = false;
 
 function renderHypeTicker() {
   const headlineHtml = (items) => items.map(h =>
-    `<a href="${h.url}" target="_blank" rel="noopener" style="display:block;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-family:var(--mono);font-size:11px;letter-spacing:0.5px;text-decoration:none;transition:border-color 0.2s,color 0.2s;">${h.text}</a>`
+    `<a href="${h.url}" target="_blank" rel="noopener" style="display:block;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:0.3px;text-decoration:none;transition:border-color 0.2s,color 0.2s;">${h.text}</a>`
   ).join('');
 
   const rsvpContainer = document.getElementById('rsvp-hype-headlines');

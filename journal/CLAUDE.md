@@ -58,3 +58,4 @@ Every journal entry follows the magazine format:
 | 06 | 2026-05-27 | [The Proof](2026-05-27-03-the-proof.md) |
 | 07 | 2026-05-27 | [The Audience](2026-05-27-04-the-audience.md) |
 | 08 | 2026-05-27 | [The Crew](2026-05-27-05-the-crew.md) |
+| 09 | 2026-05-27 | [The Critique](2026-05-27-06-the-critique.md) |

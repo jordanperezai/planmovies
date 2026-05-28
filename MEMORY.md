@@ -35,6 +35,14 @@
 - Supabase now has: rsvps, seat_assignments, ticket_status, organizers, events, payments. Jordan is first organizer row. Disclosure Day is first event row.
 - Cloudflare native git integration blocked: jordanperezai personal GitHub account doesn't appear in Cloudflare Pages dropdown. GitHub Actions is the workaround.
 
+- Design critique scores: heuristics 24/40 (was 20/40), AI slop 5.0/10 (was 6.5/10). Main remaining tells: 76 letter-spacing declarations, uppercase overuse.
+- var(--mono) reserved for data only: countdown digits, prices, timestamps, phone/OTP inputs, seat numbers. Everything else uses var(--display) (Barlow Condensed) or var(--font) (Inter). 13 remaining uses, all legitimate.
+- Barlow Condensed (var(--display)) is the display/label font. Replaces mono's incorrectly-held role. Section headers, eyebrows, stat values, button labels, video captions.
+- activity_feed table live. Types: rsvp, payment, organizer_post, milestone, system. Falls back to RSVP timestamps when empty.
+- crew-photos Supabase Storage bucket live. Public read + upload policies. photos/[name]-[timestamp].[ext].
+- Phone auth (Supabase Auth + Twilio Verify) built. Requires Jordan to configure Twilio in Supabase dashboard. "Skip for now" escape valve keeps RSVP working until configured.
+- Session 10: 9 features built + full design overhaul. index.html 3930 lines. NOT pushed yet — push at next session start.
+
 ## Warm (reference)
 
 ## Cold (archived)
@@ -56,3 +64,4 @@
 | 2026-05-27 (s7) | PlanMovies Stripe account activated (live). Live Payment Link wired in ($18). planmovies.com fully live. No more blockers. |
 | 2026-05-27 (s8) | 31 commits. Movie tab restructured (credibility cascade). RSVP+Crew consolidated. Landing single viewport. Partiful avatar row. Rangers 06+07. 6 crew page audit fixes. Jake Barber + Matthew Brown added. World Govts section. Declassified Files featured. |
 | 2026-05-27 (s9) | Product vision session. Partiful audit (22 screenshots). Atom Tickets audit ($178M, acquired). Reddit demand validated. 79 features mapped + 93 proposed. Named Crew + One Movie Identity + auth design. No code changes. |
+| 2026-05-27 (s10) | 9 features built + full design overhaul. Design scores: heuristics 24/40, AI slop 5.0/10. Phone auth, activity feed, crew photos, font role reset. index.html 3930 lines. NOT pushed. |

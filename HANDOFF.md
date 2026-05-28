@@ -1,61 +1,52 @@
 # HANDOFF.md -- PlanMovies Session Handoff
 
 > **Purpose:** Bring a new session up to speed instantly.
-> **Last updated:** 2026-05-27 (Session 9)
+> **Last updated:** 2026-05-27 (Session 10)
 > **Not for:** Permanent knowledge (-> MEMORY.md), mistakes (-> LEARNINGS.md).
 
 ## Where We Left Off
 
-Session 9 complete. Full product vision session. No code changes. Research, brainstorming, and product design only. planmovies.com unchanged (commit 3b47371).
+Session 10 complete. Two major work streams: (1) built 9 features, (2) ran /critique twice and did a full design overhaul.
 
-**What was produced (session 9):**
-- Partiful audit: 22 screenshots + web app, 12 feature categories mapped (`research/2026-05-27-02-partiful-audit.md`)
-- Atom Tickets audit: $178M raised, acquired by Fever, social features stripped (`research/2026-05-27-04-atom-tickets-audit.md`)
-- Reddit demand research: market validated, 8-25 person group underserved (`research/2026-05-27-03-reddit-demand.md`)
-- Complete product feature map: 79 features, 12 categories (`research/2026-05-27-05-product-feature-map.md`)
-- Full ranger vision session: 93 new features proposed, 15 "magic" features (`rangers/product/sessions/product-08-complete-product-vision.md`)
-- Auth + profile system designed by rangers (phone auth before RSVP, Supabase Auth + Twilio Verify, no A2P needed)
-- Core product concepts: Named Crew, One Movie Identity, Three-Beat Cadence Engine, Auto-Theme from Poster
+**Current state:**
+- index.html: 3930 lines, all features + redesign. NOT committed yet.
+- planmovies.com: still on commit 3b47371 (pre-session-10). Needs push.
+- Supabase: activity_feed table, crew-photos bucket, rsvps phone/photo_url/status_line/user_id columns all live.
+- AI slop score: 5.0/10 (was 6.5). Heuristics: 24/40 (was 20/40).
 
-**Current live state:**
-- planmovies.com fully live, last commit 3b47371
-- 2 people RSVPed: Jordan, Sarai Perez
-- Stripe Payment Link active: `https://buy.stripe.com/bJe00jdykaNS4Tj8D23F600`
-- Payment section hidden until RSVP (shows after "I'm Going" submission)
-- Organizer view: planmovies.com?org=1 (no auth, obscurity only)
+**Phone auth blocker:** Twilio Verify needs to be configured in Supabase dashboard before OTP codes actually send. Jordan needs to: Supabase → Auth → Providers → Phone → Enable + add Twilio Account SID, Auth Token, Verify Service SID. Until then, "Skip for now" keeps RSVP working without phone verification.
 
 ## Immediate Next Actions
 
-**Build (no blockers, start immediately):**
-1. **Phone auth RSVP flow** — Supabase Auth + Twilio Verify. Phone + Name → SMS code → RSVP. No A2P registration needed.
-2. **Custom OG image** — 1200x630 landscape. Current portrait poster is center-cropped in iMessage/WhatsApp. Broken.
-3. **Profile photos** — Upload after RSVP confirmation. Photos sort first in avatar row. Jordan's photo goes up first.
-4. **Activity feed** — Automated events ("Sarai RSVPed!") + organizer manual posts. Crew page, chronological.
-5. **Share prompt** — Post-RSVP: "Bring someone else?" with WhatsApp/iMessage buttons.
-6. **Film-frame countdown** — Always visible on landing + crew page. Cinematic style.
-7. **Crew one-line status** — Each crew member sets a one-liner ("Can't wait", "Bringing snacks").
-8. **"What to Know" primer** — Short section for skeptics (Lisa, Carmen). Surface best Movie tab content.
-9. **Organizer manual-add** — Add Carmen/Ray from dashboard. Claim flow for later verification.
-10. **Send planmovies.com to family** — 16 days until June 12.
+1. **Commit and push** — index.html is 3930 lines of undeployed work. One commit, push to main, Cloudflare auto-deploys.
+2. **Configure Twilio Verify** in Supabase dashboard. Jordan does this. Not a code task.
+3. **Send planmovies.com to family** — 15 days until June 12. This is the only thing that matters.
+4. **(Optional) /critique pass 3** — after Twilio config and any cleanup. Should score ~26-28/40.
 
-## Key Decisions (Session 9)
+## Key Decisions (Session 10)
 
-- **Auth model:** Phone auth before RSVP. Supabase Auth + Twilio Verify. No A2P 10DLC needed.
-- **Named Crew:** Persistent social object across events. "The Perez Family Movie Club." Core product concept.
-- **One Movie Identity:** Profile feature where user picks one movie to represent them. Poster = identity.
-- **No public discovery:** Features 9.1-9.6 dropped for now. Security complexity with strangers deferred.
-- **No in-app chat:** WhatsApp owns real-time. PlanMovies generates messages, organizer sends them.
-- **No A2P needed:** Twilio Verify handles OTP on pre-registered channels. All crew communication goes through organizer's WhatsApp/iMessage.
-- **Movie is the theme:** No template selector. Auto-Theme from Poster extracts palette from TMDB poster art.
+- **Phone auth with escape valve:** "Skip for now" (12px, visible) lets family skip phone verification. RSVP works either way. Auth just links the RSVP to a verified phone once Twilio is configured.
+- **Mono = data only:** 13 remaining `var(--mono)` uses are all legitimate (countdown, OTP, phone input, payment amount, seat labels, timestamps). Everything else is Barlow Condensed (display) or Inter (body/buttons).
+- **Barlow Condensed as display font:** Replaces mono's incorrectly-held role for labels, headers, and CTAs. Cinema aesthetic without the terminal feel.
+- **RSVP auto-scroll:** COUNT ME IN now scrolls to the RSVP form. No more 3-screen hunt.
+- **Entrance animations once:** pageViewed{} tracker. First visit animates. Return visits skip it.
+- **Activity feed:** Reads activity_feed table, falls back to RSVP timestamps. New RSVPs auto-log to the feed.
 
 ## Goals
 
 **Now (before sending to family):**
-- Phone auth + profiles (photos in avatar row)
-- Fix OG image (landscape 1200x630)
-- Activity feed + share prompt
-- Film-frame countdown
-- "What to Know" primer for skeptics
+- ✅ Phone auth RSVP flow
+- ✅ OG image fixed (landscape backdrop)
+- ✅ Profile photos in avatar row
+- ✅ Activity feed
+- ✅ Share prompt after RSVP
+- ✅ Film-frame countdown (always visible)
+- ✅ Crew one-line status
+- ✅ "What to Know" primer
+- ✅ Organizer manual-add
+- ☐ Commit + push (first thing next session)
+- ☐ Twilio Verify config (Jordan)
+- ☐ Send to family
 
 **After family send:**
 - Anticipation phase (content unlock calendar, milestone markers)
@@ -80,13 +71,12 @@ Session 9 complete. Full product vision session. No code changes. Research, brai
 8. Don't build in-app chat. PlanMovies generates messages for WhatsApp/iMessage. Don't compete with messaging apps.
 9. Don't add a theme/template selector for events. The movie poster IS the theme. Auto-extract, don't ask.
 10. Don't build public discovery yet. Security complexity with strangers joining crews is unresolved.
+11. Don't apply mono font to non-data text. var(--mono) = countdown digits, prices, timestamps, phone/OTP inputs, seat numbers only.
 
-## Reference Docs (Session 9)
+## Reference Docs
 
 | Doc | What |
 |---|---|
-| `research/2026-05-27-02-partiful-audit.md` | Full Partiful feature audit |
-| `research/2026-05-27-03-reddit-demand.md` | Reddit demand signals + market validation |
-| `research/2026-05-27-04-atom-tickets-audit.md` | Atom Tickets competitive audit |
 | `research/2026-05-27-05-product-feature-map.md` | Complete 79-feature product map |
-| `rangers/product/sessions/product-08-complete-product-vision.md` | Full ranger vision session (487 lines) |
+| `rangers/product/sessions/product-08-complete-product-vision.md` | Full ranger vision (487 lines) |
+| `.impeccable.md` | Design context. Read before any UI work. |

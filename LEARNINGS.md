@@ -31,6 +31,18 @@ Root cause: Each small change "just added" an inline style rather than updating 
 Rule: For any element touched more than once, promote its styles to a CSS class. Inline styles are a one-way door toward unreadability.
 Enforced in: CLAUDE.md § Edit Integrity (re-read before editing).
 
+**#5 CSS class redesigns don't touch inline HTML styles — 2026-05-27**
+Mistake: The typography redesign changed CSS class definitions (`.section-header`, `.stat-label`, etc.) from mono to Barlow/Inter. The automated re-score found ~35 non-data mono instances still present — because the Briefing tab HTML contains ~20 inline `style="font-family:var(--mono)"` attributes that CSS class changes can't reach.
+Root cause: Assumed that updating CSS classes updates all rendered elements. Inline styles override everything and are invisible to CSS-level refactors.
+Rule: Any styling system change that says "switch X to Y everywhere" requires a grep for inline `style=""` attributes in the HTML AND JS template literals. The CSS classes are only half the picture.
+Enforced in: HANDOFF.md § Things NOT to Do #11 (var(--mono) = data only).
+
+**#6 /critique should run BEFORE building, not after — 2026-05-27**
+Mistake: Built 9 features into the page, then ran /critique for the first time and discovered the design scored 6.5/10 AI slop. The features were real but landing in a dashboard aesthetic nobody noticed was broken.
+Root cause: Design quality check happened after implementation. "Ship features, then audit" is backwards for a site that lives or dies on first impressions.
+Rule: For any session that modifies the UI, run /critique at session START to establish baseline. Build with the critique score in mind. Re-run at end to verify improvement. Never discover the aesthetic is broken after shipping features into it.
+Enforced in: CLAUDE.md § Skill-Before-Adhoc (extended to /critique before UI work, not just audit skills).
+
 ---
 
 ### Format
