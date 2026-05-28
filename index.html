@@ -2005,6 +2005,109 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   background: linear-gradient(135deg, var(--bg-card) 0%, oklch(0.13 0.015 250) 100%);
   border-color: var(--blue-atmos-dim);
 }
+
+/* PROFILE PAGE */
+.profile-section { max-width: 400px; margin: 0 auto; }
+.profile-header { text-align: center; padding: 24px 0 20px; }
+.profile-avatar-large {
+  width: 80px; height: 80px; border-radius: 50%;
+  margin: 0 auto 12px; overflow: hidden;
+  border: 2px solid var(--gold-dim);
+}
+.profile-avatar-large img { width: 100%; height: 100%; object-fit: cover; }
+.profile-avatar-large .initials {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-elevated);
+  font-size: 28px; font-weight: 700; color: var(--gold);
+}
+.profile-name {
+  font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: 0.5px;
+}
+.profile-badge {
+  display: inline-block; margin-top: 6px; padding: 3px 10px;
+  font-size: 10px; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid var(--gold-dim); border-radius: 20px;
+  font-family: var(--display);
+}
+.profile-status-line {
+  margin-top: 8px; font-size: 13px; color: var(--text-secondary); font-style: italic;
+}
+
+/* ONE MOVIE IDENTITY */
+.one-movie-section { margin: 20px 0; }
+.one-movie-current {
+  display: flex; align-items: center; gap: 16px; padding: 16px;
+  background: var(--bg-card); border: 1px solid var(--warm-border); border-radius: var(--radius);
+}
+.one-movie-poster { width: 60px; height: 90px; border-radius: 4px; object-fit: cover; flex-shrink: 0; }
+.one-movie-title { font-family: var(--display); font-size: 16px; font-weight: 700; }
+.one-movie-label { font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.5px; margin-bottom: 2px; }
+.one-movie-change {
+  background: none; border: none; font-size: 11px;
+  color: var(--gold-dim); cursor: pointer; padding: 0; margin-top: 4px;
+}
+.movie-search-wrap { position: relative; margin-top: 12px; }
+.movie-search-input {
+  width: 100%; padding: 12px 16px;
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm); color: var(--text-primary);
+  font-family: var(--font); font-size: 14px; outline: none;
+  transition: border-color 0.2s;
+}
+.movie-search-input:focus { border-color: var(--gold-dim); }
+.movie-search-input::placeholder { color: var(--text-tertiary); }
+.movie-search-results {
+  margin-top: 8px; max-height: 320px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.movie-result {
+  display: flex; align-items: center; gap: 12px; padding: 10px 12px;
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm); cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.movie-result:hover { border-color: var(--gold-dim); background: var(--bg-card-hover); }
+.movie-result-poster {
+  width: 36px; height: 54px; border-radius: 3px;
+  object-fit: cover; flex-shrink: 0; background: var(--bg-elevated);
+}
+.movie-result-info { flex: 1; min-width: 0; }
+.movie-result-title {
+  font-size: 14px; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.movie-result-year { font-size: 12px; color: var(--text-tertiary); }
+
+/* CREW AVATAR WITH MOVIE BADGE */
+.crew-avatar-wrap { position: relative; flex-shrink: 0; }
+.crew-avatar-movie-badge {
+  position: absolute; bottom: -4px; right: -4px;
+  width: 20px; height: 28px; border-radius: 2px;
+  object-fit: cover; border: 1.5px solid var(--bg-deep);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+/* DRESS CODE */
+.dress-code-display {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px; background: var(--warm-surface);
+  border: 1px solid var(--warm-border); border-radius: var(--radius-sm);
+  margin-bottom: 20px; font-size: 14px; color: var(--text-primary);
+}
+.dress-code-label {
+  font-family: var(--display); font-size: 11px; font-weight: 600;
+  letter-spacing: 1px; color: var(--gold); text-transform: uppercase; flex-shrink: 0;
+}
+
+/* RECAP GENERATOR */
+.recap-preview {
+  padding: 16px; background: var(--bg-card);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius);
+  font-size: 14px; line-height: 1.6; color: var(--text-secondary);
+  white-space: pre-wrap; margin-bottom: 12px;
+}
 </style>
 </head>
 <body>
@@ -2029,6 +2132,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <button class="nav-tab active" data-page="dashboard" onclick="showPage('dashboard')">The Crew</button>
       <button class="nav-tab" data-page="briefing" onclick="showPage('briefing')">The Movie</button>
       <button class="nav-tab" data-page="coordination" onclick="showPage('coordination')">Seats</button>
+      <button class="nav-tab" data-page="profile" onclick="showPage('profile')" id="nav-tab-you" style="display:none;color:var(--gold-cool);">You</button>
     </div>
   </nav>
 
@@ -2117,6 +2221,8 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <img src="assets/regal-secaucus.jpg" alt="Regal Secaucus ShowPlace 14" style="width:100%;display:block;">
       <div style="padding:10px 14px;background:var(--bg-card);font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--text-tertiary);">REGAL SECAUCUS · FRI JUN 12 · 7:00 PM</div>
     </div>
+
+    <div id="dress-code-area"></div>
 
     <div class="countdown-frame" id="countdown-dash" style="margin-bottom:20px;">
       <div class="cf-sprocket"><span></span><span></span><span></span><span></span></div>
@@ -2304,6 +2410,18 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
         <div style="margin-top:20px;">
           <div class="section-header">SHOWTIME</div>
           <div id="showtime-summary" class="card" style="font-size:13px; color:var(--text-secondary);">Loading...</div>
+        </div>
+
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-subtle);">
+          <div class="section-header">MORNING-AFTER RECAP</div>
+          <p style="font-size:12px;color:var(--text-tertiary);margin-bottom:8px;">Generate a recap message to send the crew the morning after.</p>
+          <button type="button" onclick="generateMorningRecap()" style="display:block;margin-bottom:12px;padding:8px 16px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-family:var(--font);font-size:13px;cursor:pointer;">Generate Recap</button>
+          <div class="recap-preview" id="recap-preview" style="display:none;"></div>
+          <div id="recap-actions" style="display:none;gap:8px;">
+            <button type="button" onclick="copyRecap()" style="padding:6px 14px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:12px;cursor:pointer;font-family:var(--font);">Copy</button>
+            <button type="button" onclick="shareRecapWhatsApp()" style="padding:6px 14px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:12px;cursor:pointer;font-family:var(--font);">WhatsApp</button>
+            <button type="button" onclick="shareRecapText()" style="padding:6px 14px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:12px;cursor:pointer;font-family:var(--font);">Text</button>
+          </div>
         </div>
       </div>
     </div>
@@ -2606,6 +2724,46 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <div id="ride-coordination"></div>
     </div>
   </section>
+
+  <!-- PROFILE -->
+  <section id="page-profile" class="page">
+    <div class="page-header">
+      <div class="page-eyebrow">YOUR PROFILE</div>
+      <h2 class="page-title">You</h2>
+    </div>
+    <div class="profile-section">
+      <div class="profile-header" id="profile-header"></div>
+
+      <div class="one-movie-section">
+        <div class="section-header">Your One Movie</div>
+        <p style="font-size:13px;color:var(--text-tertiary);margin-bottom:12px;">Pick one movie that represents you. The poster becomes your identity.</p>
+        <div id="one-movie-display"></div>
+        <div class="movie-search-wrap" id="movie-search-wrap">
+          <input class="movie-search-input" type="text" id="movie-search" placeholder="Search for a movie..." autocomplete="off">
+          <div class="movie-search-results" id="movie-search-results"></div>
+        </div>
+      </div>
+
+      <div class="atmos-divider"></div>
+
+      <div style="margin:20px 0;">
+        <div class="section-header">Status Line</div>
+        <p style="font-size:13px;color:var(--text-tertiary);margin-bottom:8px;">One line that shows next to your name.</p>
+        <input class="movie-search-input" type="text" id="profile-status-line" placeholder="e.g. Can't wait, Already watched the trailer 4x" maxlength="80">
+        <button type="button" onclick="saveProfileStatusLine()" style="display:block;margin:8px auto 0;background:none;border:none;font-size:12px;color:var(--gold-dim);cursor:pointer;">Save</button>
+      </div>
+
+      <div class="atmos-divider"></div>
+
+      <div style="margin:20px 0;">
+        <div class="section-header">Photo</div>
+        <div id="profile-photo-area">
+          <input type="file" id="profile-photo-file" accept="image/*" style="display:none;" onchange="uploadPhoto(this)">
+          <button class="photo-upload-btn" type="button" onclick="document.getElementById('profile-photo-file').click()" style="display:block;padding:10px 20px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-secondary);font-family:var(--font);font-size:13px;cursor:pointer;">Change photo</button>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -2745,6 +2903,7 @@ function showPage(page) {
   if (page === 'dashboard') renderDashboard();
   if (page === 'briefing') { renderTrailers(); renderOfficialQuotes(); renderWorldQuotes(); renderGoDeeper(); }
   if (page === 'coordination') renderCoordination();
+  if (page === 'profile') renderProfile();
   window.scrollTo(0, 0);
 }
 
@@ -3060,6 +3219,7 @@ function showConfirmation(name, status) {
   const paySection = document.getElementById('payment-section');
   if (paySection && status !== 'cant') paySection.style.display = '';
   document.getElementById('inline-rsvp').scrollIntoView({ behavior: 'smooth' });
+  if (status !== 'cant') showYouTab();
 }
 
 function hideConfirmation() {
@@ -3095,11 +3255,12 @@ function renderFamilyCrew() {
     <div class="crew-avatars">
       ${visible.map(a => {
         const firstName = a.name.split(' ')[0];
+        const movieBadge = a.one_movie_poster ? `<img class="crew-avatar-movie-badge" src="${a.one_movie_poster}" alt="${esc(a.one_movie_title || '')}" title="${esc(a.one_movie_title || '')}">` : '';
         if (a.photo_url) {
-          return `<img class="crew-avatar-photo" src="${a.photo_url}" alt="${firstName}" title="${firstName}">`;
+          return `<div class="crew-avatar-wrap"><img class="crew-avatar-photo" src="${a.photo_url}" alt="${firstName}" title="${firstName}">${movieBadge}</div>`;
         }
         const initial = a.name.charAt(0).toUpperCase();
-        return `<div class="crew-avatar" title="${firstName}">${initial}</div>`;
+        return `<div class="crew-avatar-wrap"><div class="crew-avatar" title="${firstName}">${initial}</div>${movieBadge}</div>`;
       }).join('')}
       ${overflow > 0 ? `<div class="crew-avatar-overflow">+${overflow}</div>` : ''}
     </div>
@@ -3118,6 +3279,7 @@ function renderDashboard() {
 
   renderFamilyCrew();
   renderDashCountdown();
+  renderDressCode();
   renderActivityFeed();
 
   const list = attendees;
@@ -3799,6 +3961,191 @@ function renderGoDeeper() {
 function toggleDeeperCategory(id) {
   deeperExpanded[id] = !deeperExpanded[id];
   renderGoDeeper();
+}
+
+// TMDB API (One Movie Identity)
+const TMDB_API_KEY = '';
+const TMDB_IMG = 'https://image.tmdb.org/t/p/';
+let movieSearchTimeout = null;
+let movieSearchResults = [];
+
+const movieSearchInput = document.getElementById('movie-search');
+if (movieSearchInput) {
+  movieSearchInput.addEventListener('input', function() {
+    clearTimeout(movieSearchTimeout);
+    const q = this.value.trim();
+    if (q.length < 2) { document.getElementById('movie-search-results').innerHTML = ''; movieSearchResults = []; return; }
+    movieSearchTimeout = setTimeout(() => searchMovies(q), 350);
+  });
+}
+
+async function searchMovies(query) {
+  const el = document.getElementById('movie-search-results');
+  if (!TMDB_API_KEY) {
+    el.innerHTML = '<div style="padding:12px;font-size:13px;color:var(--text-tertiary);">TMDB API key needed. Get one free at <a href="https://www.themoviedb.org/settings/api" target="_blank" style="color:var(--gold-dim);">themoviedb.org</a></div>';
+    return;
+  }
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&page=1`);
+    const data = await res.json();
+    movieSearchResults = (data.results || []).slice(0, 8);
+    if (movieSearchResults.length === 0) { el.innerHTML = '<div style="padding:12px;font-size:13px;color:var(--text-tertiary);">No movies found.</div>'; return; }
+    el.innerHTML = movieSearchResults.map((m, i) => {
+      const year = m.release_date ? m.release_date.slice(0, 4) : '';
+      const poster = m.poster_path ? `${TMDB_IMG}w92${m.poster_path}` : '';
+      const posterImg = poster ? `<img class="movie-result-poster" src="${poster}" alt="">` : `<div class="movie-result-poster" style="display:flex;align-items:center;justify-content:center;font-size:18px;">&#127916;</div>`;
+      return `<div class="movie-result" onclick="pickOneMovieByIndex(${i})">
+        ${posterImg}
+        <div class="movie-result-info">
+          <div class="movie-result-title">${esc(m.title)}</div>
+          <div class="movie-result-year">${year}</div>
+        </div>
+      </div>`;
+    }).join('');
+  } catch (err) {
+    console.error('TMDB search error:', err);
+    el.innerHTML = '<div style="padding:12px;font-size:13px;color:var(--text-tertiary);">Search failed. Try again.</div>';
+  }
+}
+
+function pickOneMovieByIndex(i) {
+  const m = movieSearchResults[i];
+  if (!m) return;
+  pickOneMovie(m.id, m.title, m.poster_path || null);
+}
+
+async function pickOneMovie(tmdbId, title, posterPath) {
+  if (!lastRsvpName) { toast('RSVP first to pick your movie'); return; }
+  const me = attendees.find(a => a.name.toLowerCase() === lastRsvpName.toLowerCase());
+  if (!me) { toast('RSVP not found'); return; }
+
+  const posterUrl = posterPath ? `${TMDB_IMG}w185${posterPath}` : null;
+  const { error } = await sb.from('rsvps').update({
+    one_movie_tmdb_id: tmdbId,
+    one_movie_title: title,
+    one_movie_poster: posterUrl,
+  }).eq('id', me.id);
+
+  if (error) { toast('Could not save. Try again.'); console.error(error); return; }
+  me.one_movie_tmdb_id = tmdbId;
+  me.one_movie_title = title;
+  me.one_movie_poster = posterUrl;
+  toast('Your movie: ' + title);
+  renderProfile();
+  renderFamilyCrew();
+  document.getElementById('movie-search').value = '';
+  document.getElementById('movie-search-results').innerHTML = '';
+}
+
+// Profile page
+function renderProfile() {
+  if (!lastRsvpName) return;
+  const me = attendees.find(a => a.name.toLowerCase() === lastRsvpName.toLowerCase());
+  if (!me) return;
+
+  const firstName = me.name.split(' ')[0];
+  const avatar = me.photo_url
+    ? `<img src="${me.photo_url}" alt="${firstName}">`
+    : `<div class="initials">${firstName.charAt(0).toUpperCase()}</div>`;
+  const statusLine = me.status_line ? `<div class="profile-status-line">"${esc(me.status_line)}"</div>` : '';
+
+  document.getElementById('profile-header').innerHTML = `
+    <div class="profile-avatar-large">${avatar}</div>
+    <div class="profile-name">${esc(me.name)}</div>
+    <div class="profile-badge">Founding Crew</div>
+    ${statusLine}
+  `;
+
+  const movieDisplay = document.getElementById('one-movie-display');
+  const searchWrap = document.getElementById('movie-search-wrap');
+  if (me.one_movie_poster && me.one_movie_title) {
+    movieDisplay.innerHTML = `
+      <div class="one-movie-current">
+        <img class="one-movie-poster" src="${me.one_movie_poster}" alt="${esc(me.one_movie_title)}">
+        <div>
+          <div class="one-movie-label">YOUR ONE MOVIE</div>
+          <div class="one-movie-title">${esc(me.one_movie_title)}</div>
+          <button class="one-movie-change" onclick="document.getElementById('movie-search-wrap').style.display='';document.getElementById('movie-search').focus();">Change</button>
+        </div>
+      </div>
+    `;
+    searchWrap.style.display = 'none';
+  } else {
+    movieDisplay.innerHTML = '';
+    searchWrap.style.display = '';
+  }
+
+  const statusInput = document.getElementById('profile-status-line');
+  if (statusInput && me.status_line) statusInput.value = me.status_line;
+}
+
+async function saveProfileStatusLine() {
+  if (!lastRsvpName) return;
+  const me = attendees.find(a => a.name.toLowerCase() === lastRsvpName.toLowerCase());
+  if (!me) return;
+  const val = document.getElementById('profile-status-line').value.trim();
+  const { error } = await sb.from('rsvps').update({ status_line: val }).eq('id', me.id);
+  if (error) { toast('Could not save'); return; }
+  me.status_line = val;
+  toast('Status saved');
+  renderProfile();
+  renderFamilyCrew();
+}
+
+function showYouTab() {
+  const tab = document.getElementById('nav-tab-you');
+  if (tab) tab.style.display = '';
+}
+
+// Dress code
+const DRESS_CODE = 'Come as you are. But if you want to dress like an alien... nobody will stop you.';
+
+function renderDressCode() {
+  const el = document.getElementById('dress-code-area');
+  if (!el || !DRESS_CODE) return;
+  el.innerHTML = `
+    <div class="dress-code-display">
+      <span class="dress-code-label">Dress Code</span>
+      <span>${esc(DRESS_CODE)}</span>
+    </div>
+  `;
+}
+
+// Morning-after recap generator
+function generateMorningRecap() {
+  const active = attendees.filter(a => a.status !== 'cant');
+  const names = active.map(a => a.name.split(' ')[0]);
+  const total = active.reduce((s, a) => s + a.party, 0);
+
+  let nameList;
+  if (names.length <= 4) {
+    nameList = names.join(', ');
+  } else {
+    nameList = names.slice(0, 3).join(', ') + ` and ${names.length - 3} more`;
+  }
+
+  const recap = `Last night was Disclosure Day.\n\n${total} of us. Opening night. Same row. Regal Secaucus.\n\n${nameList} showed up.\n\nThe crew: ${names.join(', ')}.\n\nplanmovies.com`;
+
+  const el = document.getElementById('recap-preview');
+  if (el) { el.textContent = recap; el.style.display = ''; }
+  const actions = document.getElementById('recap-actions');
+  if (actions) actions.style.display = 'flex';
+  return recap;
+}
+
+function copyRecap() {
+  const text = generateMorningRecap();
+  navigator.clipboard.writeText(text).then(() => toast('Recap copied'));
+}
+
+function shareRecapWhatsApp() {
+  const text = generateMorningRecap();
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function shareRecapText() {
+  const text = generateMorningRecap();
+  window.open(`sms:&body=${encodeURIComponent(text)}`, '_blank');
 }
 
 // Payment section

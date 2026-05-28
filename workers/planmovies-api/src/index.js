@@ -30,6 +30,9 @@ export default {
         case route === 'POST /api/webhooks/stripe':
           return await handleStripeWebhook(request, env);
 
+        case route === 'GET /api/og':
+          return generateOGImage(env);
+
         case route === 'GET /api/health':
           return json({ status: 'ok', timestamp: new Date().toISOString() }, corsHeaders);
 
@@ -310,4 +313,71 @@ async function handleStripeWebhook(request, env) {
   }
 
   return new Response('ok', { status: 200 });
+}
+
+// --- OG IMAGE ---
+
+async function generateOGImage(env) {
+  let goingCount = 0;
+  let names = [];
+  try {
+    const url = new URL(`${env.SUPABASE_URL}/rest/v1/rsvps`);
+    url.searchParams.set('select', 'name,status,party');
+    url.searchParams.set('status', 'neq.cant');
+    const res = await fetch(url.toString(), {
+      headers: {
+        'apikey': env.SUPABASE_SERVICE_KEY,
+        'Authorization': `Bearer ${env.SUPABASE_SERVICE_KEY}`,
+      },
+    });
+    const data = await res.json();
+    goingCount = data.reduce((s, r) => s + (r.party || 1), 0);
+    names = data.map(r => r.name.split(' ')[0]).slice(0, 5);
+  } catch (e) {
+    console.error('OG fetch error:', e);
+  }
+
+  const nameText = names.length > 0
+    ? names.slice(0, 3).join(', ') + (names.length > 3 ? ` +${names.length - 3} more` : '') + ' going'
+    : 'Be the first to join';
+  const countText = goingCount > 0 ? `${goingCount} people going` : 'Opening Night';
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0c10"/>
+      <stop offset="100%" stop-color="#12151b"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c9a84c"/>
+      <stop offset="100%" stop-color="#e8c85a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="url(#gold)"/>
+  <rect x="0" y="626" width="1200" height="4" fill="url(#gold)"/>
+
+  <text x="600" y="180" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="600" letter-spacing="8" fill="#c9a84c">PLAN MOVIES PRESENTS</text>
+
+  <text x="600" y="280" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="72" font-weight="800" letter-spacing="2" fill="#e8e6e1">DISCLOSURE DAY</text>
+
+  <text x="600" y="340" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="400" fill="#8a8880">A Steven Spielberg Film</text>
+
+  <line x1="480" y1="380" x2="720" y2="380" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+
+  <text x="600" y="430" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="36" font-weight="700" fill="#c9a84c">${countText}</text>
+
+  <text x="600" y="480" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="400" fill="#8a8880">${nameText}</text>
+
+  <text x="600" y="560" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="500" letter-spacing="3" fill="#7a7870">FRI JUN 12 · 7:00 PM · REGAL SECAUCUS</text>
+
+  <text x="600" y="600" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="400" letter-spacing="2" fill="#c9a84c" opacity="0.6">PLANMOVIES.COM</text>
+</svg>`;
+
+  return new Response(svg, {
+    headers: {
+      'Content-Type': 'image/svg+xml',
+      'Cache-Control': 'public, max-age=300',
+    },
+  });
 }
