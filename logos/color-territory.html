@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — Color Territory</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#07080a; --card:#12151b; --line:#23262d; --txt:#cfd0d2; --txt-dim:#8a8c90; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,Inter,sans-serif;
+       padding:44px 24px 110px;-webkit-font-smoothing:antialiased;line-height:1.5}
+  .wrap{max-width:1080px;margin:0 auto}
+  h1{font-size:25px;color:#fff;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+  .sub{color:var(--txt-dim);font-size:14px;max-width:760px;margin-bottom:6px}
+  .sub b{color:#fff}
+  h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-dim);margin:42px 0 16px;font-weight:700}
+  /* swatch map */
+  .families{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .fam{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .fam .famname{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt-dim);margin-bottom:10px}
+  .sw{display:flex;align-items:center;gap:8px;margin-bottom:7px;font-size:12px}
+  .sw i{width:18px;height:18px;border-radius:4px;flex-shrink:0;border:1px solid rgba(255,255,255,.12)}
+  .crowded{outline:2px solid #e08a8a55;position:relative}
+  .crowded::after{content:"crowded";position:absolute;top:8px;right:10px;font-size:9px;color:#e08a8a;letter-spacing:.08em}
+  .open{outline:2px solid #7ec88a99;position:relative}
+  .open::after{content:"OPEN";position:absolute;top:8px;right:10px;font-size:9px;color:#7ec88a;letter-spacing:.1em;font-weight:700}
+  /* lanes */
+  .lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+  .lane{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .lane .stage{height:130px;display:flex;align-items:center;justify-content:center;
+               background:radial-gradient(120% 120% at 50% 32%,#161a21,#0a0c10);border-bottom:1px solid var(--line)}
+  .lane .b{padding:15px 18px 18px}
+  .lane .ln{color:#fff;font-weight:700;font-size:15px}
+  .lane .hex{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--txt-dim);margin:2px 0 9px}
+  .lane .verdict{font-size:12.5px}
+  .lane .small{display:flex;gap:10px;align-items:center;margin-top:12px}
+  .chip-white{background:#fff;border-radius:7px;padding:7px 9px;display:inline-flex}
+  .tile{width:42px;height:42px;border-radius:11px;background:var(--bg);display:inline-flex;align-items:center;justify-content:center}
+  .tag{font-size:9px;color:var(--txt-dim)}
+  .good{color:#7ec88a}.bad{color:#e08a8a}.mid{color:#d6b56b}
+  footer{margin-top:54px;border-top:1px solid var(--line);padding-top:24px;color:var(--txt-dim);font-size:13px}
+  footer b{color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Color Territory — who owns what</h1>
+  <p class="sub">If PlanMovies commits to one color, the question isn't just "do I like it" — it's "can I own it,
+  or do I disappear into the category?" Here's where every competitor sits, and the one lane nobody's taken.</p>
+
+  <h2>The category map</h2>
+  <div class="families">
+    <div class="fam crowded"><div class="famname">Red</div>
+      <div class="sw"><i style="background:#E50914"></i>Netflix</div>
+      <div class="sw"><i style="background:#DD0000"></i>Cinemark</div>
+      <div class="sw"><i style="background:#FB0102"></i>AMC</div>
+    </div>
+    <div class="fam"><div class="famname">Blue / navy</div>
+      <div class="sw"><i style="background:#00A8E1"></i>Prime Video</div>
+      <div class="sw"><i style="background:#01153E"></i>Disney+</div>
+      <div class="sw"><i style="background:#0E3FA9"></i>Blockbuster</div>
+    </div>
+    <div class="fam"><div class="famname">Orange</div>
+      <div class="sw"><i style="background:#FF6600"></i>Fandango</div>
+      <div class="sw"><i style="background:#FF7300"></i>Regal</div>
+      <div class="sw"><i style="background:#FFA903"></i>Blockbuster 2nd</div>
+    </div>
+    <div class="fam"><div class="famname">Green</div>
+      <div class="sw"><i style="background:#1CE783"></i>Hulu</div>
+      <div class="sw"><i style="background:#006C5D"></i>AMC (old)</div>
+    </div>
+    <div class="fam"><div class="famname">Black / white</div>
+      <div class="sw"><i style="background:#000;border-color:#444"></i>Max</div>
+      <div class="sw"><i style="background:#fff"></i>(minimalist)</div>
+    </div>
+    <div class="fam"><div class="famname">Yellow</div>
+      <div class="sw"><i style="background:#F3CE13"></i>IMDb</div>
+    </div>
+    <div class="fam open"><div class="famname">Gold / amber</div>
+      <div class="sw"><i style="background:#c9a84c"></i>— nobody —</div>
+      <div class="tag" style="margin-top:6px">Cannes &amp; Venice (prestige film) only</div>
+    </div>
+  </div>
+  <p class="sub" style="margin-top:14px"><b>Red is the most crowded color in screen entertainment.</b> Netflix +
+  Cinemark + AMC. <b>Gold is the only open lane</b> — and it's the prestige-film signal.</p>
+
+  <h2>Three lanes for PlanMovies — same row mark, different bet</h2>
+  <div class="lanes">
+
+    <!-- GOLD -->
+    <div class="lane">
+      <div class="stage">
+        <svg width="116" height="76" viewBox="0 0 152 100" aria-label="gold row">
+          <g fill="none" stroke="#c9a84c" stroke-width="6"><rect x="7" y="24" width="38" height="42" rx="12"/><rect x="4" y="59" width="44" height="22" rx="9"/><rect x="107" y="24" width="38" height="42" rx="12"/><rect x="104" y="59" width="44" height="22" rx="9"/></g>
+          <g fill="#c9a84c"><rect x="57" y="22" width="38" height="44" rx="12"/><rect x="53" y="58" width="46" height="24" rx="10"/></g>
+        </svg>
+      </div>
+      <div class="b">
+        <div class="ln">A · Gold</div><div class="hex">#c9a84c · the open lane</div>
+        <div class="verdict"><span class="good">Most ownable.</span> Premium/event signal, prestige-film heritage,
+        already our live brand. Risk: reads "luxury," slightly cooler than "Friday night with the crew."</div>
+        <div class="small"><span class="chip-white"><svg width="28" height="19" viewBox="0 0 152 100"><g fill="#c9a84c"><rect x="7" y="22" width="40" height="44" rx="12"/><rect x="3" y="58" width="48" height="24" rx="10"/><rect x="56" y="22" width="40" height="44" rx="12"/><rect x="52" y="58" width="48" height="24" rx="10"/><rect x="105" y="22" width="40" height="44" rx="12"/><rect x="101" y="58" width="48" height="24" rx="10"/></g></svg></span>
+          <span class="tile"><svg width="24" height="24" viewBox="0 0 100 100"><g fill="#c9a84c"><rect x="28" y="20" width="44" height="48" rx="14"/><rect x="23" y="60" width="54" height="26" rx="11"/></g></svg></span>
+          <span class="tag mid">white = a touch weak</span></div>
+      </div>
+    </div>
+
+    <!-- BRIGHT RED -->
+    <div class="lane">
+      <div class="stage">
+        <svg width="116" height="76" viewBox="0 0 152 100" aria-label="bright red row">
+          <g fill="none" stroke="#e02b2b" stroke-width="6"><rect x="7" y="24" width="38" height="42" rx="12"/><rect x="4" y="59" width="44" height="22" rx="9"/><rect x="107" y="24" width="38" height="42" rx="12"/><rect x="104" y="59" width="44" height="22" rx="9"/></g>
+          <g fill="#e02b2b"><rect x="57" y="22" width="38" height="44" rx="12"/><rect x="53" y="58" width="46" height="24" rx="10"/></g>
+        </svg>
+      </div>
+      <div class="b">
+        <div class="ln">B · Bright red</div><div class="hex">#e02b2b · = Netflix / AMC</div>
+        <div class="verdict"><span class="bad">Camouflage.</span> Feels like "the movies" but lands looking like
+        Netflix or a theater chain. Strong warmth, weakest ownability. Survives white fine.</div>
+        <div class="small"><span class="chip-white"><svg width="28" height="19" viewBox="0 0 152 100"><g fill="#e02b2b"><rect x="7" y="22" width="40" height="44" rx="12"/><rect x="3" y="58" width="48" height="24" rx="10"/><rect x="56" y="22" width="40" height="44" rx="12"/><rect x="52" y="58" width="48" height="24" rx="10"/><rect x="105" y="22" width="40" height="44" rx="12"/><rect x="101" y="58" width="48" height="24" rx="10"/></g></svg></span>
+          <span class="tile"><svg width="24" height="24" viewBox="0 0 100 100"><g fill="#e02b2b"><rect x="28" y="20" width="44" height="48" rx="14"/><rect x="23" y="60" width="54" height="26" rx="11"/></g></svg></span>
+          <span class="tag good">white = strong</span></div>
+      </div>
+    </div>
+
+    <!-- VELVET RED -->
+    <div class="lane">
+      <div class="stage">
+        <svg width="116" height="76" viewBox="0 0 152 100" aria-label="velvet red row">
+          <g fill="none" stroke="#9e2b32" stroke-width="6"><rect x="7" y="24" width="38" height="42" rx="12"/><rect x="4" y="59" width="44" height="22" rx="9"/><rect x="107" y="24" width="38" height="42" rx="12"/><rect x="104" y="59" width="44" height="22" rx="9"/></g>
+          <g fill="#9e2b32"><rect x="57" y="22" width="38" height="44" rx="12"/><rect x="53" y="58" width="46" height="24" rx="10"/></g>
+        </svg>
+      </div>
+      <div class="b">
+        <div class="ln">C · Velvet red</div><div class="hex">#9e2b32 · curtain / seat red</div>
+        <div class="verdict"><span class="good">The compromise.</span> The actual color of theater seats &amp;
+        curtains — "the movies" warmth WITHOUT the Netflix look. Deeper, richer, more "event." Holds on white.</div>
+        <div class="small"><span class="chip-white"><svg width="28" height="19" viewBox="0 0 152 100"><g fill="#9e2b32"><rect x="7" y="22" width="40" height="44" rx="12"/><rect x="3" y="58" width="48" height="24" rx="10"/><rect x="56" y="22" width="40" height="44" rx="12"/><rect x="52" y="58" width="48" height="24" rx="10"/><rect x="105" y="22" width="40" height="44" rx="12"/><rect x="101" y="58" width="48" height="24" rx="10"/></g></svg></span>
+          <span class="tile"><svg width="24" height="24" viewBox="0 0 100 100"><g fill="#9e2b32"><rect x="28" y="20" width="44" height="48" rx="14"/><rect x="23" y="60" width="54" height="26" rx="11"/></g></svg></span>
+          <span class="tag good">white = strong</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <b>My read.</b> The honest tension: <b>red feels right, gold is ownable.</b> Bright red (B) is out — it's
+    Netflix camouflage. The real choice is <b>gold (A)</b> — the only lane nobody owns, premium, already live —
+    versus <b>velvet red (C)</b> — the warmth of the theater without looking like a streamer.<br><br>
+    If the goal is "stand out in the category," gold. If the goal is "feel like the movies," velvet red.
+    Either one is defensible; bright red isn't. Pick the bet — I build the row in that color as the full system.<br><br>
+    Sources: usbrandcolors, brandpalettes, encycolorpedia, 1000logos, logos-world (hex codes verified across multiple).
+  </footer>
+</div>
+</body>
+</html>

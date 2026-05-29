@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — Color Lab (the row)</title>
+<style>
+  :root{
+    --bg:#08070a; --cream:#f3f1ec; --txt-dim:#9a979c; --line:#23222a;
+    /* live brand vars — default Ember Orange (the favorite) */
+    --b:#f1551f;       /* the 4 side arches + "movies" + CTA */
+    --l:#ff7a48;       /* center arch = "you" */
+    --g:241,85,31;     /* glow rgb (follows sides) */
+    --ct:#ffffff;      /* CTA text */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--cream);font-family:-apple-system,BlinkMacSystemFont,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+
+  .bar{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;align-items:center;gap:7px;padding:10px 16px;
+       background:rgba(8,7,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .brk{flex-basis:100%;height:0}
+  .lab{font-size:11px;color:var(--txt-dim);letter-spacing:.1em;text-transform:uppercase;margin-right:6px;min-width:90px}
+  .sw{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:#11101a;border-radius:9px;
+      padding:6px 10px;cursor:pointer;font-size:12px;color:#cfcdd2;transition:border-color .15s}
+  .sw:hover{border-color:#4a4752}
+  .sw.active{border-color:#fff;color:#fff}
+  .sw i{width:13px;height:13px;border-radius:3px;display:inline-block;border:1px solid rgba(255,255,255,.18)}
+  .fav{font-size:9px;color:#ffb068;margin-left:2px}
+
+  .room{position:relative;min-height:calc(100vh - 100px);overflow:hidden;display:flex;flex-direction:column;
+        align-items:center;justify-content:center;padding:44px 24px 60px;text-align:center;
+        background:
+          radial-gradient(120% 70% at 50% 116%, rgba(var(--g),.30) 0%, rgba(var(--g),.07) 40%, transparent 66%),
+          radial-gradient(70% 50% at 50% -4%, rgba(var(--g),.10) 0%, transparent 56%),
+          var(--bg);}
+  .mark{position:relative;margin-bottom:18px}
+  .mark::before{content:"";position:absolute;inset:-26% -10% -30% -10%;
+    background:radial-gradient(closest-side, rgba(var(--g),.40), rgba(var(--g),.10) 56%, transparent 80%);filter:blur(8px);z-index:-1}
+  svg{display:block}
+  .wm{font-weight:800;font-size:clamp(34px,9vw,56px);letter-spacing:-.03em;line-height:1}
+  .wm .p{color:var(--cream)} .wm .m{color:var(--b)}
+  .tag{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--txt-dim);margin-top:14px}
+  .crew{display:flex;align-items:center;justify-content:center;margin:30px 0 8px}
+  .av{width:42px;height:42px;border-radius:50%;border:2px solid var(--bg);margin-left:-10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--cream)}
+  .av:first-child{margin-left:0}
+  .av.you{border-color:var(--l);box-shadow:0 0 13px rgba(var(--g),.7)}
+  .going{font-size:14px;color:var(--txt-dim);margin-bottom:24px}
+  .going b{color:var(--cream)}
+  .cta{display:inline-flex;align-items:center;gap:8px;background:var(--b);color:var(--ct);font-weight:800;font-size:16px;
+       border:none;border-radius:13px;padding:15px 30px;box-shadow:0 8px 30px rgba(var(--g),.5);cursor:pointer}
+  .when{margin-top:15px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--txt-dim)}
+  .when b{color:var(--cream)}
+  .name{position:absolute;top:12px;left:0;right:0;font-size:12px;color:var(--txt-dim)}
+  .name b{color:var(--cream)}
+  /* small favicon proof row */
+  .sizes{position:absolute;bottom:14px;left:0;right:0;display:flex;gap:18px;align-items:flex-end;justify-content:center}
+  .sizes .tile{border-radius:24%;background:#0d0c10;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 1px #1f1e26}
+</style>
+</head>
+<body>
+
+  <!-- TWO PICKERS -->
+  <div class="bar">
+    <span class="lab">Side arches</span>
+    <button class="sw" data-role="side" data-n="Cinema Red" data-b="#e01e1e" data-g="224,30,30" data-ct="#ffffff"><i style="background:#e01e1e"></i>Cinema</button>
+    <button class="sw active" data-role="side" data-n="Ember Orange" data-b="#f1551f" data-g="241,85,31" data-ct="#ffffff"><i style="background:#f1551f"></i>Ember<span class="fav">★fav</span></button>
+    <button class="sw" data-role="side" data-n="Burnt Orange" data-b="#e26812" data-g="226,104,18" data-ct="#ffffff"><i style="background:#e26812"></i>Burnt</button>
+    <button class="sw" data-role="side" data-n="Coral" data-b="#fb7468" data-g="251,116,104" data-ct="#1c1405"><i style="background:#fb7468"></i>Coral</button>
+    <button class="sw" data-role="side" data-n="Metallic Gold" data-b="#d4af37" data-g="212,175,55" data-ct="#1c1405"><i style="background:#d4af37"></i>Gold</button>
+    <button class="sw" data-role="side" data-n="Amber" data-b="#e8902a" data-g="232,144,42" data-ct="#1c1405"><i style="background:#e8902a"></i>Amber</button>
+    <button class="sw" data-role="side" data-n="Deep Emerald" data-b="#0e7d5b" data-g="14,125,91" data-ct="#ffffff"><i style="background:#0e7d5b"></i>Emerald</button>
+    <button class="sw" data-role="side" data-n="Teal" data-b="#149e9e" data-g="20,158,158" data-ct="#ffffff"><i style="background:#149e9e"></i>Teal</button>
+    <button class="sw" data-role="side" data-n="Deep Indigo" data-b="#3d34b8" data-g="61,52,184" data-ct="#ffffff"><i style="background:#3d34b8"></i>Indigo</button>
+
+    <div class="brk"></div>
+
+    <span class="lab">Center (you)</span>
+    <button class="sw" data-role="center" data-n="Cinema Red" data-l="#ff5a52"><i style="background:#ff5a52"></i>Cinema</button>
+    <button class="sw active" data-role="center" data-n="Ember Orange" data-l="#ff7a48"><i style="background:#ff7a48"></i>Ember</button>
+    <button class="sw" data-role="center" data-n="Burnt Orange" data-l="#ff8a3a"><i style="background:#ff8a3a"></i>Burnt</button>
+    <button class="sw" data-role="center" data-n="Coral" data-l="#ffa094"><i style="background:#ffa094"></i>Coral</button>
+    <button class="sw" data-role="center" data-n="Metallic Gold" data-l="#f4cf63"><i style="background:#f4cf63"></i>Gold</button>
+    <button class="sw" data-role="center" data-n="Amber" data-l="#ffba52"><i style="background:#ffba52"></i>Amber</button>
+    <button class="sw" data-role="center" data-n="Deep Emerald" data-l="#2fc78c"><i style="background:#2fc78c"></i>Emerald</button>
+    <button class="sw" data-role="center" data-n="Teal" data-l="#45cccc"><i style="background:#45cccc"></i>Teal</button>
+    <button class="sw" data-role="center" data-n="Cream" data-l="#ffffff"><i style="background:#ffffff"></i>Cream</button>
+  </div>
+
+  <!-- LANDING -->
+  <div class="room">
+    <div class="name" id="cname">Sides: <b>Ember Orange</b> · Center: <b>Ember Orange</b></div>
+
+    <div class="mark">
+      <!-- THE ROW: 5 rounded arches (seats / people from behind), middle = you -->
+      <svg width="220" height="124" viewBox="0 0 154 88" aria-label="planmovies — the row">
+        <g fill="var(--b)">
+          <path d="M0,80 L0,21 Q0,8 13,8 Q26,8 26,21 L26,80 Z"/>
+          <path d="M32,80 L32,21 Q32,8 45,8 Q58,8 58,21 L58,80 Z"/>
+          <path d="M96,80 L96,21 Q96,8 109,8 Q122,8 122,21 L122,80 Z"/>
+          <path d="M128,80 L128,21 Q128,8 141,8 Q154,8 154,21 L154,80 Z"/>
+        </g>
+        <g fill="var(--l)">
+          <path d="M64,80 L64,21 Q64,8 77,8 Q90,8 90,21 L90,80 Z"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="wm"><span class="p">plan</span><span class="m">movies</span></div>
+    <div class="tag">Get the row together</div>
+
+    <div class="crew">
+      <div class="av" style="background:#3a4252">S</div>
+      <div class="av" style="background:#4a3a44">M</div>
+      <div class="av you" style="background:#5a4838">You</div>
+      <div class="av" style="background:#384a44">R</div>
+      <div class="av" style="background:#2f3340;font-size:12px">+4</div>
+    </div>
+    <div class="going"><b>Sarai, Marco</b> &amp; 5 others are going</div>
+
+    <button class="cta">Count me in →</button>
+    <div class="when"><b>Disclosure Day</b> · Fri June 12 · 7:00 PM · Regal Secaucus</div>
+
+    <!-- favicon survival proof -->
+    <div class="sizes">
+      <span class="tile" style="width:16px;height:16px;border-radius:4px"><svg width="13" height="8" viewBox="0 0 154 88"><g fill="var(--b)"><path d="M0,80 L0,21 Q0,8 13,8 Q26,8 26,21 L26,80 Z"/><path d="M32,80 L32,21 Q32,8 45,8 Q58,8 58,21 L58,80 Z"/><path d="M96,80 L96,21 Q96,8 109,8 Q122,8 122,21 L122,80 Z"/><path d="M128,80 L128,21 Q128,8 141,8 Q154,8 154,21 L154,80 Z"/></g><g fill="var(--l)"><path d="M64,80 L64,21 Q64,8 77,8 Q90,8 90,21 L90,80 Z"/></g></svg></span>
+      <span class="tile" style="width:28px;height:28px;border-radius:6px"><svg width="22" height="13" viewBox="0 0 154 88"><g fill="var(--b)"><path d="M0,80 L0,21 Q0,8 13,8 Q26,8 26,21 L26,80 Z"/><path d="M32,80 L32,21 Q32,8 45,8 Q58,8 58,21 L58,80 Z"/><path d="M96,80 L96,21 Q96,8 109,8 Q122,8 122,21 L122,80 Z"/><path d="M128,80 L128,21 Q128,8 141,8 Q154,8 154,21 L154,80 Z"/></g><g fill="var(--l)"><path d="M64,80 L64,21 Q64,8 77,8 Q90,8 90,21 L90,80 Z"/></g></svg></span>
+      <span class="tile" style="width:44px;height:44px;border-radius:10px"><svg width="34" height="19" viewBox="0 0 154 88"><g fill="var(--b)"><path d="M0,80 L0,21 Q0,8 13,8 Q26,8 26,21 L26,80 Z"/><path d="M32,80 L32,21 Q32,8 45,8 Q58,8 58,21 L58,80 Z"/><path d="M96,80 L96,21 Q96,8 109,8 Q122,8 122,21 L122,80 Z"/><path d="M128,80 L128,21 Q128,8 141,8 Q154,8 154,21 L154,80 Z"/></g><g fill="var(--l)"><path d="M64,80 L64,21 Q64,8 77,8 Q90,8 90,21 L90,80 Z"/></g></svg></span>
+    </div>
+  </div>
+
+<script>
+  const root = document.documentElement;
+  const cname = document.getElementById('cname');
+  let sideName = 'Ember Orange', centerName = 'Ember Orange';
+  function upd(){ cname.innerHTML = 'Sides: <b>' + sideName + '</b> · Center: <b>' + centerName + '</b>'; }
+  document.querySelectorAll('.sw').forEach(b => b.addEventListener('click', () => {
+    const role = b.dataset.role;
+    document.querySelectorAll('.sw[data-role="' + role + '"]').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    if (role === 'side') {
+      root.style.setProperty('--b', b.dataset.b);
+      root.style.setProperty('--g', b.dataset.g);
+      root.style.setProperty('--ct', b.dataset.ct);
+      sideName = b.dataset.n;
+    } else {
+      root.style.setProperty('--l', b.dataset.l);
+      centerName = b.dataset.n;
+    }
+    upd();
+  }));
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — Board 9: One color. The Row.</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<style>
+  :root{ --red:#d8453f; --gold:#c9a84c; --bg:#07080a; --card:#12151b; --line:#23262d;
+         --txt:#cfd0d2; --txt-dim:#8a8c90; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,Inter,sans-serif;
+       padding:44px 24px 110px;-webkit-font-smoothing:antialiased;line-height:1.5}
+  .wrap{max-width:1080px;margin:0 auto}
+  h1{font-size:25px;color:#fff;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+  .sub{color:var(--txt-dim);font-size:14px;max-width:760px;margin-bottom:6px}
+  .sub b{color:#fff}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px}
+  .col{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .col.redhead{border-top:3px solid var(--red)} .col.goldhead{border-top:3px solid var(--gold)}
+  .col h2{font-size:15px;padding:16px 20px 4px;color:#fff;font-weight:700}
+  .col .palette{padding:0 20px 14px;font-size:12px;color:var(--txt-dim)}
+  .col .palette span{display:inline-block;width:13px;height:13px;border-radius:3px;vertical-align:-2px;margin-right:5px;border:1px solid #333}
+  .testrow{display:flex;align-items:center;gap:16px;padding:16px 20px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .testrow .lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-dim);width:96px;flex-shrink:0}
+  .chip-white{background:#fff;border-radius:8px;padding:9px 11px;display:inline-flex;align-items:center;gap:8px}
+  .tile{width:54px;height:54px;border-radius:13px;background:var(--bg);display:inline-flex;align-items:center;
+        justify-content:center;box-shadow:0 5px 16px rgba(0,0,0,.55)}
+  .tile.lighttile{background:#fff}
+  .lockup{display:inline-flex;align-items:center;gap:9px}
+  .wm{font-family:"Clash Display",Inter,sans-serif;font-weight:700;font-size:20px;letter-spacing:-.01em;color:#fff}
+  .note{font-size:11px;color:var(--txt-dim)} .win{color:#7ec88a} .meh{color:#d6b56b}
+  svg{display:block}
+  section.sys{margin-top:54px;border-top:1px solid var(--line);padding-top:30px}
+  .glyphline{display:flex;gap:46px;align-items:flex-end;flex-wrap:wrap;margin-top:20px}
+  .glyphline figure{text-align:center} .glyphline figcaption{font-size:11px;color:var(--txt-dim);margin-top:10px}
+  .stage{background:radial-gradient(120% 120% at 50% 35%,#161a21,#0a0c10);border:1px solid var(--line);
+         border-radius:14px;padding:26px 30px;display:inline-flex;align-items:center;justify-content:center}
+  .pin{opacity:.5;margin-top:40px;border-top:1px dashed var(--line);padding-top:24px}
+  footer{margin-top:54px;border-top:1px solid var(--line);padding-top:24px;color:var(--txt-dim);font-size:13px}
+  footer b{color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Board 9 — One color. The Row.</h1>
+  <p class="sub">Palette cut to <b>one accent + white + black</b>. The concept is the row of three: two seats
+  outlined, the center seat solid = <b>you</b>. One color does the "you" highlight, no second accent needed.</p>
+  <p class="sub">The only real question on this board: <b>red or gold?</b> Feel it at every size, then pick the color.</p>
+
+  <!-- ===== SYMBOLS (hardcoded; favicons have no :root) ===== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <!-- RED: outline sides + solid center -->
+    <symbol id="redRow" viewBox="0 0 152 100">
+      <g fill="none" stroke="#d8453f" stroke-width="6">
+        <rect x="7" y="24" width="38" height="42" rx="12"/><rect x="4" y="59" width="44" height="22" rx="9"/>
+        <rect x="107" y="24" width="38" height="42" rx="12"/><rect x="104" y="59" width="44" height="22" rx="9"/>
+      </g>
+      <g fill="#d8453f">
+        <rect x="57" y="22" width="38" height="44" rx="12"/><rect x="53" y="58" width="46" height="24" rx="10"/>
+      </g>
+    </symbol>
+    <!-- RED all solid (small-size fallback) -->
+    <symbol id="redSolid" viewBox="0 0 152 100">
+      <g fill="#d8453f">
+        <rect x="7" y="22" width="40" height="44" rx="12"/><rect x="3" y="58" width="48" height="24" rx="10"/>
+        <rect x="56" y="22" width="40" height="44" rx="12"/><rect x="52" y="58" width="48" height="24" rx="10"/>
+        <rect x="105" y="22" width="40" height="44" rx="12"/><rect x="101" y="58" width="48" height="24" rx="10"/>
+      </g>
+    </symbol>
+    <!-- RED single seat (favicon glyph) -->
+    <symbol id="redOne" viewBox="0 0 100 100">
+      <g fill="#d8453f"><rect x="28" y="20" width="44" height="48" rx="14"/><rect x="23" y="60" width="54" height="26" rx="11"/></g>
+    </symbol>
+    <!-- GOLD variants -->
+    <symbol id="goldRow" viewBox="0 0 152 100">
+      <g fill="none" stroke="#c9a84c" stroke-width="6">
+        <rect x="7" y="24" width="38" height="42" rx="12"/><rect x="4" y="59" width="44" height="22" rx="9"/>
+        <rect x="107" y="24" width="38" height="42" rx="12"/><rect x="104" y="59" width="44" height="22" rx="9"/>
+      </g>
+      <g fill="#c9a84c">
+        <rect x="57" y="22" width="38" height="44" rx="12"/><rect x="53" y="58" width="46" height="24" rx="10"/>
+      </g>
+    </symbol>
+    <symbol id="goldSolid" viewBox="0 0 152 100">
+      <g fill="#c9a84c">
+        <rect x="7" y="22" width="40" height="44" rx="12"/><rect x="3" y="58" width="48" height="24" rx="10"/>
+        <rect x="56" y="22" width="40" height="44" rx="12"/><rect x="52" y="58" width="48" height="24" rx="10"/>
+        <rect x="105" y="22" width="40" height="44" rx="12"/><rect x="101" y="58" width="48" height="24" rx="10"/>
+      </g>
+    </symbol>
+    <symbol id="goldOne" viewBox="0 0 100 100">
+      <g fill="#c9a84c"><rect x="28" y="20" width="44" height="48" rx="14"/><rect x="23" y="60" width="54" height="26" rx="11"/></g>
+    </symbol>
+  </svg>
+
+  <div class="cols">
+
+    <!-- ============ RED ============ -->
+    <div class="col redhead">
+      <h2>RED — the cinema seat</h2>
+      <div class="palette"><span style="background:#d8453f"></span>#d8453f &nbsp; <span style="background:#fff"></span>white &nbsp; <span style="background:#07080a"></span>black</div>
+
+      <div class="testrow"><div class="lbl">84px hero</div><svg width="122" height="80"><use href="#redRow"/></svg></div>
+      <div class="testrow"><div class="lbl">24px nav</div><svg width="37" height="24"><use href="#redSolid"/></svg>
+        <span class="note">(solid at small — outlines die under ~32px)</span></div>
+      <div class="testrow"><div class="lbl">22px white</div><span class="chip-white"><svg width="33" height="22"><use href="#redSolid"/></svg></span>
+        <span class="note win">holds on white</span></div>
+      <div class="testrow"><div class="lbl">nav lockup</div>
+        <span class="lockup"><svg width="30" height="20"><use href="#redRow"/></svg><span class="wm">Plan<span style="color:#d8453f">Movies</span></span></span></div>
+      <div class="testrow"><div class="lbl">favicon (dark/light)</div>
+        <span class="tile"><svg width="30" height="30"><use href="#redOne"/></svg></span>
+        <span class="tile lighttile"><svg width="30" height="30"><use href="#redOne"/></svg></span>
+        <span class="note">small glyph = your seat</span></div>
+    </div>
+
+    <!-- ============ GOLD ============ -->
+    <div class="col goldhead">
+      <h2>GOLD — the locked brand</h2>
+      <div class="palette"><span style="background:#c9a84c"></span>#c9a84c &nbsp; <span style="background:#fff"></span>white &nbsp; <span style="background:#07080a"></span>black</div>
+
+      <div class="testrow"><div class="lbl">84px hero</div><svg width="122" height="80"><use href="#goldRow"/></svg></div>
+      <div class="testrow"><div class="lbl">24px nav</div><svg width="37" height="24"><use href="#goldSolid"/></svg>
+        <span class="note">(solid at small)</span></div>
+      <div class="testrow"><div class="lbl">22px white</div><span class="chip-white"><svg width="33" height="22"><use href="#goldSolid"/></svg></span>
+        <span class="note meh">gold on white = a little weak</span></div>
+      <div class="testrow"><div class="lbl">nav lockup</div>
+        <span class="lockup"><svg width="30" height="20"><use href="#goldRow"/></svg><span class="wm">Plan<span style="color:#c9a84c">Movies</span></span></span></div>
+      <div class="testrow"><div class="lbl">favicon (dark/light)</div>
+        <span class="tile"><svg width="30" height="30"><use href="#goldOne"/></svg></span>
+        <span class="tile lighttile"><svg width="30" height="30"><use href="#goldOne"/></svg></span>
+        <span class="note">your seat</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== GLYPH + LOGO SYSTEM ===== -->
+  <section class="sys">
+    <div style="color:#fff;font-weight:700;font-size:15px">The system: small = your seat, big = the row</div>
+    <p class="sub" style="margin-top:6px">One mark can't span 16-64px. So: favicon/app-tile is the single solid seat
+    (you). Everywhere bigger, it's the full row (you + your people). Shown in red — swap to gold if that's the pick.</p>
+    <div class="glyphline">
+      <figure><span class="stage"><svg width="34" height="34"><use href="#redOne"/></svg></span><figcaption>16-24px · your seat</figcaption></figure>
+      <figure><span class="stage"><svg width="120" height="79"><use href="#redRow"/></svg></span><figcaption>40px+ · the row</figcaption></figure>
+      <figure><span class="stage">
+        <svg width="150" height="100" viewBox="0 0 152 100" aria-label="row fills in">
+          <g fill="none" stroke="#d8453f" stroke-width="6"><g opacity="0">
+            <rect x="7" y="24" width="38" height="42" rx="12"/><rect x="4" y="59" width="44" height="22" rx="9"/>
+            <animate attributeName="opacity" values="0;0;1;1;1;0" keyTimes="0;0.1;0.25;0.9;0.95;1" dur="3s" repeatCount="indefinite"/></g></g>
+          <g fill="#d8453f"><g opacity="0">
+            <rect x="57" y="22" width="38" height="44" rx="12"/><rect x="53" y="58" width="46" height="24" rx="10"/>
+            <animate attributeName="opacity" values="0;0;0;1;1;1;0" keyTimes="0;0.1;0.3;0.45;0.9;0.95;1" dur="3s" repeatCount="indefinite"/></g></g>
+          <g fill="none" stroke="#d8453f" stroke-width="6"><g opacity="0">
+            <rect x="107" y="24" width="38" height="42" rx="12"/><rect x="104" y="59" width="44" height="22" rx="9"/>
+            <animate attributeName="opacity" values="0;0;0;0;1;1;0" keyTimes="0;0.1;0.3;0.5;0.65;0.9;1" dur="3s" repeatCount="indefinite"/></g></g>
+        </svg></span><figcaption>hero · the row fills in (your crew arriving)</figcaption></figure>
+    </div>
+  </section>
+
+  <div class="pin">
+    <div style="color:var(--txt-dim);font-size:13px">Concept 2 (the pin) — parked. A location pin is the most generic
+    mark in tech (Maps owns it); it says "where," not "who," and a seat inside it mushes at favicon size. The row wins.</div>
+  </div>
+
+  <footer>
+    <b>My read.</b> Concept: the row, decided. Color: <b>red</b> — it's the cinema seat, it's the only thing that's
+    made you feel something across 20 boards, and it's the one that holds on a white chat bubble. Gold is prettier as
+    "luxury" but it's been quietly losing this whole time.<br><br>
+    Going red means <b>pivoting the brand from gold to red</b> — it repaints the nav, buttons, and accents across the
+    whole site. Real change, worth it if the mark finally feels right. Say the word and I'll wire the red row as the
+    full system and start the repaint. Or if gold still feels more "us," we keep the brand and ship the gold row.<br><br>
+    Pick a color. That's the whole decision now.
+  </footer>
+</div>
+</body>
+</html>

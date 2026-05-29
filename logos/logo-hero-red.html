@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — Red, in the dark</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#06070a; --card:#101319; --line:#23262d;
+    --red:#cc2b2b;        /* base cinematic red — deep, warm, NOT Netflix-bright */
+    --red-deep:#9e2025;   /* the side seats / shadowed red */
+    --red-lit:#f0584c;    /* the lit center seat — same hue, hotter (the spotlight on you) */
+    --cream:#f3f1ec; --txt-dim:#9a9ca1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--cream);font-family:-apple-system,BlinkMacSystemFont,Inter,sans-serif;
+       -webkit-font-smoothing:antialiased;min-height:100vh}
+  /* the dark room with a low red glow, like the screen-light bleeding into the seats */
+  .room{position:relative;min-height:100vh;overflow:hidden;
+        background:
+          radial-gradient(120% 80% at 50% 118%, rgba(204,43,43,.30) 0%, rgba(204,43,43,.06) 38%, transparent 64%),
+          radial-gradient(90% 60% at 50% -10%, rgba(240,88,76,.10) 0%, transparent 60%),
+          var(--bg);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 26px;position:relative;z-index:3}
+  .brandlock{display:flex;align-items:center;gap:9px}
+  .brandlock .wm{font-family:"Clash Display",Inter,sans-serif;font-weight:700;font-size:19px;letter-spacing:-.01em}
+  .brandlock .wm .m{color:var(--red);}
+  .navtile{width:30px;height:30px;border-radius:8px;background:#0c0e13;display:flex;align-items:center;justify-content:center;
+           box-shadow:0 0 0 1px #1c1f26, 0 4px 14px rgba(204,43,43,.25)}
+  .icon-btn{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);color:var(--txt-dim);
+            display:flex;align-items:center;justify-content:center;font-size:14px}
+
+  .hero{position:relative;z-index:2;max-width:720px;margin:0 auto;padding:30px 26px 60px;text-align:center}
+  .mark{margin:18px auto 26px;filter:drop-shadow(0 10px 40px rgba(204,43,43,.45));}
+  .title{font-family:"Clash Display",Inter,sans-serif;font-weight:700;font-size:clamp(40px,11vw,70px);
+         line-height:.96;letter-spacing:-.02em;margin-bottom:16px}
+  .title .m{color:var(--red);}
+  .tag{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.34em;text-transform:uppercase;
+       color:var(--txt-dim);margin-bottom:34px}
+  .crewline{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:10px}
+  .av{width:42px;height:42px;border-radius:50%;border:2px solid var(--bg);margin-left:-10px;background:#222;
+      display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:var(--cream)}
+  .av:first-child{margin-left:0}
+  .av.you{border-color:var(--red-lit);box-shadow:0 0 14px rgba(240,88,76,.6)}
+  .going{font-size:14px;color:var(--txt-dim);margin-bottom:30px}
+  .going b{color:var(--cream);font-weight:600}
+  .cta{display:inline-flex;align-items:center;gap:9px;background:var(--red);color:#fff;font-weight:700;font-size:16px;
+       border:none;border-radius:13px;padding:15px 30px;box-shadow:0 8px 30px rgba(204,43,43,.5);cursor:pointer}
+  .when{margin-top:18px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--txt-dim);letter-spacing:.05em}
+  .when b{color:var(--cream)}
+
+  /* system strip at the bottom */
+  .strip{position:relative;z-index:2;border-top:1px solid var(--line);max-width:720px;margin:0 auto;
+         padding:22px 26px 40px;display:flex;gap:30px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .strip figure{text-align:center} .strip figcaption{font-size:10px;color:var(--txt-dim);margin-top:8px;letter-spacing:.05em}
+  .tile{border-radius:24%;background:#0a0c11;display:inline-flex;align-items:center;justify-content:center;
+        box-shadow:0 0 0 1px #1c1f26, 0 6px 18px rgba(204,43,43,.3)}
+  .chip-white{background:#fff;border-radius:9px;padding:9px;display:inline-flex}
+  svg{display:block}
+</style>
+</head>
+<body>
+<div class="room">
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="brandlock">
+      <span class="navtile">
+        <svg width="22" height="15" viewBox="0 0 152 100">
+          <g fill="#cc2b2b"><rect x="7" y="22" width="40" height="44" rx="12"/><rect x="3" y="58" width="48" height="24" rx="10"/>
+          <rect x="105" y="22" width="40" height="44" rx="12"/><rect x="101" y="58" width="48" height="24" rx="10"/></g>
+          <g fill="#f0584c"><rect x="56" y="22" width="40" height="44" rx="12"/><rect x="52" y="58" width="48" height="24" rx="10"/></g>
+        </svg>
+      </span>
+      <span class="wm">Plan<span class="m">Movies</span></span>
+    </div>
+    <div class="icon-btn">☰</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <!-- the row, lit: side seats deep red, center seat the hot "spotlight on you" -->
+    <div class="mark">
+      <svg width="220" height="142" viewBox="0 0 152 100" aria-label="PlanMovies — the row">
+        <defs>
+          <radialGradient id="glow" cx="50%" cy="46%" r="60%">
+            <stop offset="0%" stop-color="#ff7a6e"/><stop offset="55%" stop-color="#f0584c"/><stop offset="100%" stop-color="#d8392f"/>
+          </radialGradient>
+        </defs>
+        <!-- side seats: deep, shadowed -->
+        <g fill="#b3242a"><rect x="7" y="22" width="40" height="44" rx="12"/><rect x="3" y="58" width="48" height="24" rx="10"/>
+        <rect x="105" y="22" width="40" height="44" rx="12"/><rect x="101" y="58" width="48" height="24" rx="10"/></g>
+        <!-- center seat: lit, the spotlight is on you -->
+        <g fill="url(#glow)"><rect x="56" y="22" width="40" height="44" rx="12"/><rect x="52" y="58" width="48" height="24" rx="10"/></g>
+      </svg>
+    </div>
+
+    <h1 class="title">Plan<span class="m">Movies</span></h1>
+    <div class="tag">Get the row together</div>
+
+    <div class="crewline">
+      <div class="av" style="background:#3a4252">S</div>
+      <div class="av" style="background:#4a3a44">M</div>
+      <div class="av you" style="background:#5a3838">You</div>
+      <div class="av" style="background:#384a44">R</div>
+      <div class="av" style="background:#2f3340;font-size:12px">+4</div>
+    </div>
+    <div class="going"><b>Sarai, Marco</b> &amp; 5 others are going</div>
+
+    <button class="cta">Count me in →</button>
+    <div class="when"><b>Disclosure Day</b> · Fri June 12 · 7:00 PM · Regal Secaucus</div>
+  </div>
+
+  <!-- SYSTEM STRIP -->
+  <div class="strip">
+    <figure><span class="tile" style="width:50px;height:50px">
+      <svg width="32" height="32" viewBox="0 0 100 100"><g fill="#cc2b2b"><rect x="28" y="20" width="44" height="48" rx="14"/><rect x="23" y="60" width="54" height="26" rx="11"/></g></svg>
+    </span><figcaption>FAVICON</figcaption></figure>
+    <figure><span class="tile" style="width:64px;height:64px">
+      <svg width="46" height="30" viewBox="0 0 152 100"><g fill="#cc2b2b"><rect x="7" y="22" width="40" height="44" rx="12"/><rect x="3" y="58" width="48" height="24" rx="10"/><rect x="56" y="22" width="40" height="44" rx="12"/><rect x="52" y="58" width="48" height="24" rx="10"/><rect x="105" y="22" width="40" height="44" rx="12"/><rect x="101" y="58" width="48" height="24" rx="10"/></g></svg>
+    </span><figcaption>APP TILE</figcaption></figure>
+    <figure><span class="chip-white">
+      <svg width="40" height="26" viewBox="0 0 152 100"><g fill="#cc2b2b"><rect x="7" y="22" width="40" height="44" rx="12"/><rect x="3" y="58" width="48" height="24" rx="10"/><rect x="56" y="22" width="40" height="44" rx="12"/><rect x="52" y="58" width="48" height="24" rx="10"/><rect x="105" y="22" width="40" height="44" rx="12"/><rect x="101" y="58" width="48" height="24" rx="10"/></g></svg>
+    </span><figcaption>WHITE UNFURL</figcaption></figure>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — Board 8: The Row (three seats together)</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#c9a84c; --cream:#e8e6e1; --red:#d8453f;
+    --bg:#07080a; --card:#12151b; --line:#23262d; --txt:#cfd0d2; --txt-dim:#8a8c90;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,Inter,sans-serif;
+       padding:44px 24px 110px;-webkit-font-smoothing:antialiased;line-height:1.5}
+  .wrap{max-width:1100px;margin:0 auto}
+  h1{font-size:25px;color:var(--cream);font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+  .sub{color:var(--txt-dim);font-size:14px;max-width:740px;margin-bottom:8px}
+  .sub b{color:var(--gold)}
+  table{width:100%;border-collapse:collapse;margin-top:30px}
+  th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-dim);font-weight:600;
+     padding:10px 8px;border-bottom:1px solid var(--line);text-align:center}
+  th.rowname{text-align:left;width:150px}
+  td{padding:18px 8px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}
+  td.rowname{text-align:left;vertical-align:top}
+  .tname{color:var(--cream);font-weight:700;font-size:14px}
+  .tdesc{color:var(--txt-dim);font-size:12px;margin-top:3px}
+  .chip-white{background:#fff;border-radius:8px;padding:10px 12px;display:inline-flex;align-items:center;gap:8px}
+  .tile{width:56px;height:56px;border-radius:14px;background:var(--bg);display:inline-flex;
+        align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+  .lockup{display:inline-flex;align-items:center;gap:9px}
+  .wm{font-family:"Clash Display",Inter,sans-serif;font-weight:700;font-size:21px;letter-spacing:-.01em}
+  .wm .p{color:var(--cream)} .wm .m{color:var(--gold)}
+  .note{font-size:11px;color:var(--txt-dim);margin-top:6px}
+  .fail{color:#e08a8a}
+  .win{color:#7ec88a}
+  section.motion{margin-top:54px;border-top:1px solid var(--line);padding-top:30px}
+  .motion-row{display:flex;gap:40px;align-items:center;flex-wrap:wrap;margin-top:18px}
+  .motion-stage{background:radial-gradient(120% 120% at 50% 35%,#161a21,#0a0c10);border:1px solid var(--line);
+                border-radius:16px;padding:34px 50px;display:inline-flex;align-items:center;justify-content:center}
+  footer{margin-top:56px;border-top:1px solid var(--line);padding-top:24px;color:var(--txt-dim);font-size:13px}
+  footer b{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Board 8 — The Row</h1>
+  <p class="sub">Three seats together. The mark you pasted, traced into clean SVG. Three seats flips the
+  "lonely single seat" problem the rangers killed — it's literally <b>get the row together</b>. The center
+  seat is "you." Every treatment is tested at the sizes where marks actually die.</p>
+  <p class="sub">Question this board answers: <b>does it survive 16-24px and a white chat bubble — and gold or red?</b></p>
+
+  <!-- ============ SYMBOL DEFINITIONS (hardcoded colors — favicons have no :root) ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <!-- A plush legless seat row, 3 across, tiling cushions. Center = seat 2. -->
+    <!-- Treatment A: all gold -->
+    <symbol id="rowGold" viewBox="0 0 150 100">
+      <g fill="#c9a84c">
+        <rect x="6" y="22" width="40" height="44" rx="13"/><rect x="2" y="58" width="48" height="24" rx="10"/>
+        <rect x="55" y="22" width="40" height="44" rx="13"/><rect x="51" y="58" width="48" height="24" rx="10"/>
+        <rect x="104" y="22" width="40" height="44" rx="13"/><rect x="100" y="58" width="48" height="24" rx="10"/>
+      </g>
+    </symbol>
+    <!-- Treatment B: gold sides, cream center ("you") -->
+    <symbol id="rowCream" viewBox="0 0 150 100">
+      <g fill="#c9a84c">
+        <rect x="6" y="22" width="40" height="44" rx="13"/><rect x="2" y="58" width="48" height="24" rx="10"/>
+        <rect x="104" y="22" width="40" height="44" rx="13"/><rect x="100" y="58" width="48" height="24" rx="10"/>
+      </g>
+      <g fill="#e8e6e1">
+        <rect x="55" y="22" width="40" height="44" rx="13"/><rect x="51" y="58" width="48" height="24" rx="10"/>
+      </g>
+    </symbol>
+    <!-- Treatment C: gold sides, red center ("you" pop) -->
+    <symbol id="rowRed" viewBox="0 0 150 100">
+      <g fill="#c9a84c">
+        <rect x="6" y="22" width="40" height="44" rx="13"/><rect x="2" y="58" width="48" height="24" rx="10"/>
+        <rect x="104" y="22" width="40" height="44" rx="13"/><rect x="100" y="58" width="48" height="24" rx="10"/>
+      </g>
+      <g fill="#d8453f">
+        <rect x="55" y="22" width="40" height="44" rx="13"/><rect x="51" y="58" width="48" height="24" rx="10"/>
+      </g>
+    </symbol>
+    <!-- Treatment D: faithful trace of the render — cream / red / cream -->
+    <symbol id="rowRender" viewBox="0 0 150 100">
+      <g fill="#e8e6e1">
+        <rect x="6" y="22" width="40" height="44" rx="13"/><rect x="2" y="58" width="48" height="24" rx="10"/>
+        <rect x="104" y="22" width="40" height="44" rx="13"/><rect x="100" y="58" width="48" height="24" rx="10"/>
+      </g>
+      <g fill="#d8453f">
+        <rect x="55" y="22" width="40" height="44" rx="13"/><rect x="51" y="58" width="48" height="24" rx="10"/>
+      </g>
+    </symbol>
+  </svg>
+
+  <!-- ============ COMPARISON GRID ============ -->
+  <table>
+    <thead>
+      <tr>
+        <th class="rowname">Treatment</th>
+        <th>84px hero (dark)</th>
+        <th>24px (nav reality)</th>
+        <th>22px on WHITE chip</th>
+        <th>nav lockup</th>
+        <th>favicon tile</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td class="rowname"><div class="tname">A · Pure gold</div><div class="tdesc">brand-locked, no departure</div></td>
+        <td><svg width="118" height="79"><use href="#rowGold"/></svg></td>
+        <td><svg width="36" height="24"><use href="#rowGold"/></svg></td>
+        <td><span class="chip-white"><svg width="33" height="22"><use href="#rowGold"/></svg></span><div class="note fail">gold on white = weak</div></td>
+        <td><span class="lockup"><svg width="30" height="20"><use href="#rowGold"/></svg><span class="wm"><span class="p">Plan</span><span class="m">Movies</span></span></span></td>
+        <td><span class="tile"><svg width="38" height="25"><use href="#rowGold"/></svg></span></td>
+      </tr>
+
+      <tr>
+        <td class="rowname"><div class="tname">B · Gold + cream "you"</div><div class="tdesc">center seat = you, brand-pure</div></td>
+        <td><svg width="118" height="79"><use href="#rowCream"/></svg></td>
+        <td><svg width="36" height="24"><use href="#rowCream"/></svg></td>
+        <td><span class="chip-white"><svg width="33" height="22"><use href="#rowCream"/></svg></span><div class="note fail">cream center vanishes on white</div></td>
+        <td><span class="lockup"><svg width="30" height="20"><use href="#rowCream"/></svg><span class="wm"><span class="p">Plan</span><span class="m">Movies</span></span></span></td>
+        <td><span class="tile"><svg width="38" height="25"><use href="#rowCream"/></svg></span></td>
+      </tr>
+
+      <tr>
+        <td class="rowname"><div class="tname">C · Gold + red "you"</div><div class="tdesc">brand gold, one red pop</div></td>
+        <td><svg width="118" height="79"><use href="#rowRed"/></svg></td>
+        <td><svg width="36" height="24"><use href="#rowRed"/></svg></td>
+        <td><span class="chip-white"><svg width="33" height="22"><use href="#rowRed"/></svg></span><div class="note win">red center holds on white</div></td>
+        <td><span class="lockup"><svg width="30" height="20"><use href="#rowRed"/></svg><span class="wm"><span class="p">Plan</span><span class="m">Movies</span></span></span></td>
+        <td><span class="tile"><svg width="38" height="25"><use href="#rowRed"/></svg></span></td>
+      </tr>
+
+      <tr>
+        <td class="rowname"><div class="tname">D · The render (cream/red/cream)</div><div class="tdesc">faithful trace of what you pasted</div></td>
+        <td><svg width="118" height="79"><use href="#rowRender"/></svg></td>
+        <td><svg width="36" height="24"><use href="#rowRender"/></svg></td>
+        <td><span class="chip-white"><svg width="33" height="22"><use href="#rowRender"/></svg></span><div class="note fail">cream sides vanish on white</div></td>
+        <td><span class="lockup"><svg width="30" height="20"><use href="#rowRender"/></svg><span class="wm" style="color:#e8e6e1">Plan<span style="color:#d8453f">Movies</span></span></span></td>
+        <td><span class="tile"><svg width="38" height="25"><use href="#rowRender"/></svg></span></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <!-- ============ MOTION ============ -->
+  <section class="motion">
+    <div class="tname" style="font-size:15px">The unlock: the row fills in</div>
+    <p class="sub" style="margin-top:6px">Memory's conclusion was "no static mark delivers the hit — the feeling lives in motion."
+    Here's the cheapest test of that: on load, the seats light up one by one. Your crew arriving. Watch it loop.</p>
+    <div class="motion-row">
+      <div class="motion-stage">
+        <svg width="150" height="100" viewBox="0 0 150 100" aria-label="row fills in">
+          <g fill="#c9a84c">
+            <g opacity="0"><rect x="6" y="22" width="40" height="44" rx="13"/><rect x="2" y="58" width="48" height="24" rx="10"/>
+              <animate attributeName="opacity" values="0;0;1;1;1;0" keyTimes="0;0.1;0.25;0.9;0.95;1" dur="3s" repeatCount="indefinite"/></g>
+          </g>
+          <g fill="#d8453f">
+            <g opacity="0"><rect x="55" y="22" width="40" height="44" rx="13"/><rect x="51" y="58" width="48" height="24" rx="10"/>
+              <animate attributeName="opacity" values="0;0;0;1;1;1;0" keyTimes="0;0.1;0.3;0.45;0.9;0.95;1" dur="3s" repeatCount="indefinite"/></g>
+          </g>
+          <g fill="#c9a84c">
+            <g opacity="0"><rect x="104" y="22" width="40" height="44" rx="13"/><rect x="100" y="58" width="48" height="24" rx="10"/>
+              <animate attributeName="opacity" values="0;0;0;0;1;1;0" keyTimes="0;0.1;0.3;0.5;0.65;0.9;1" dur="3s" repeatCount="indefinite"/></g>
+          </g>
+        </svg>
+      </div>
+      <div style="max-width:300px">
+        <div class="note" style="font-size:13px;color:var(--txt)">Sides gold, "you" seat red. The row assembling
+        = the product's whole promise in 1.5 seconds. Lives on the landing hero and the loading state, not the favicon
+        (which stays the full static row).</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <b>My read (a read, not a verdict).</b> The concept is the strongest we've had — it's the first seat mark that
+    means "together" instead of "alone," and it's the territory you kept returning to.<br><br>
+    On palette: <b>C (gold + red "you")</b> is the one that survives every test — it keeps our locked brand gold,
+    gets the red pop you liked, and the red center is the only version that holds on a white chat bubble. Pure red
+    (D) drifts off-brand and its cream seats vanish on white. Pure gold (A) is safe but loses the "you" highlight.<br><br>
+    Still your call by feel. Tell me which row makes you feel it — then I wire that one as the full system
+    (nav, favicon, landing lockup, the fill-in motion on the hero).<br><br>
+    Source mark: your render, 2026-05-28. Traced per skill rule (raster never ships).
+  </footer>
+</div>
+</body>
+</html>
