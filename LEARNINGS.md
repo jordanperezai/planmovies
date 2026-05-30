@@ -73,6 +73,12 @@ Root cause: The search was defined entirely by "no"s with zero "yes" anchors. Jo
 Rule: After 3 consecutive rejected logo directions, STOP generating. Do one of: (1) ask for 2–3 real-world logos the user loves and what specifically hits; (2) run `/logo-rangers` to diagnose; (3) name the meta-problem ("this is a world problem, not a mark problem") and recommend a human designer. More boards won't fix a missing positive reference.
 Enforced in: `.claude/skills/logo-maker/SKILL.md` § Step 3.5 Anti-thrash.
 
+**#11 A security advisory with "always true" write policies is a launch blocker, not a polish item — 2026-05-30**
+Mistake: Shipped a public page (planmovies.com) for weeks with `Anyone can delete rsvps` (USING true) and `full access for testing` on events/organizers/payments. Discovered only when preparing for a public Reddit launch. The anon key is public by design; the wide-open policies meant anyone with devtools could wipe every RSVP or read every payment.
+Root cause: "It's just family" framing masked the risk. The policies were named for testing and never cleaned up.
+Rule: Before any public-facing launch, run `get_advisors(security)` and treat every `rls_policy_always_true` WARN on a write operation as a launch blocker. "We trust our users" is not a mitigation when the anon key is embedded in the page.
+Enforced in: HANDOFF.md § Things NOT to Do #3; pre-launch go/no-go checklist.
+
 **#10 Overriding panel consensus requires stronger evidence than "it looks fine" — 2026-05-30**
 Mistake: Logo Rangers unanimously recommended OUTLINE for open seats (a chair waiting). I shipped a dim ember FILL instead (#6e3a26), reasoning it "reads waiting." /critique measured it at 2.19:1 vs background and 2.14:1 vs filled — both below the 3:1 graphic minimum. It also read as a battery, not seats. The outline the Rangers called for was correct all along.
 Root cause: Trusted aesthetic reasoning ("dim ember reads warm") over a measurable constraint (contrast ratio). The panel had data I ignored.

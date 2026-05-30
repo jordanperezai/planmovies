@@ -65,3 +65,4 @@ Every journal entry follows the magazine format:
 | 13 | 2026-05-28 | [The Hunt](2026-05-28-04-the-hunt.md) |
 | 14 | 2026-05-29 | [The Find](2026-05-29-01-the-find.md) |
 | 15 | 2026-05-30 | [The Correction](2026-05-30-01-the-correction.md) |
+| 16 | 2026-05-30 | [The Launch](2026-05-30-02-the-launch.md) |
