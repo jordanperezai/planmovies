@@ -1,29 +1,31 @@
 # HANDOFF.md -- PlanMovies Session Handoff
 
 > **Purpose:** Bring a new session up to speed instantly.
-> **Last updated:** 2026-05-29 (Session 17)
+> **Last updated:** 2026-05-30 (Session 18)
 > **Not for:** Permanent knowledge (-> MEMORY.md), mistakes (-> LEARNINGS.md).
 
 ## Where We Left Off
 
-Session 17 complete. **The brand is real, redesigned, and committed.** Caught that the Session-16 commit (d2c0e51) was mislabeled — its `index.html` still had old gold `#c9a84c`. This session actually delivered the brand AND rebuilt the landing around it.
+Session 18 complete. Four commits pushed and live on planmovies.com. Brand is correct and the landing is redesigned end-to-end.
 
-**Current brand (committed this session, NOT pushed):**
-- **Mark:** Five chunky rounded-top TABS in a wide low band (`<symbol id="seatRow">`, viewBox `0 0 216 36`, W=40/gap=4/r=12). Cinema seats + people from behind. Re-traced from the brand-sheet pixels — the Session-16 `154×88` skinny-finger version was wrong ("does not look like it should").
-- **Color:** Ember **`#E53908`** (corrected from #d9480f — the sheet's printed label ≠ its actual pixels; Jordan's eye caught it). Ramp re-derived; stored under `--gold*` names.
-- **Wordmark:** lowercase `planmovies`, Poppins 800, plan=cream + movies=ember. Slogan **"Get the row together."** under it. NEVER uppercase.
-- **Landing:** LEFT-aligned hero on one spine (lockup, poster, crew avatars, title, date, countdown, CTA). Date prominent in cream + venue line (Regal Secaucus · Secaucus, NJ). 100dvh-safe via `.landing-inner{flex:1;min-height:0}` + `justify-content:safe center` (lockup never clips).
-- **THE FILL SYSTEM:** the hero mark's 5 seats fill ember with live RSVPs (`renderHeroRow()` hooked to `updateLandingHeadcount`). Open seats = `--seat-open #6e3a26` dim-ember (reads "waiting", not broken-gray), starts at seat 1 (never all-dead), capped at 5 as a milestone, true count stays in the text. Logo stays SOLID 5 ember everywhere it's identity — favicon + nav unified to the 5-tab mark; `seatRow3` removed.
-- **Validated by the Logo+Family panel** (`rangers/logo/sessions/logo-04`): left 9/11, "fill = meter not logo" unanimous among designers, family 5/5 understood the fill and felt the join-FOMO.
+**Current state (all live):**
+- **Color:** Ember `#e53908` (corrected this session — the Session-16/17 `#d9480f` came from the sheet's text label, not its pixels).
+- **Mark:** 5 chunky rounded-top tabs (viewBox 216×36, W=40/gap=4/r=12). `<symbol id="seatRow">` in index.html.
+- **Nav:** **Wordmark only** — `planmovies` (no mark in nav). Jordan's call; cleaner.
+- **Landing:** Left-aligned spine; slogan "Get the row together."; cream title; ember reserved for mark + "movies" + CTA only; venue line (Regal Secaucus · Secaucus, NJ).
+- **Fill system:** Open seats = ember **OUTLINE** (not dim fill — dim fill failed contrast at 2.19:1); filled = solid ember. `renderHeroRow()` hooked to `updateLandingHeadcount`. Honest at all edges: 0 = all-outline + "Be the first to save a seat"; >5 = "The row is set · N going."
+- **Seat-fill takeover (NEW `a0534d6`):** After RSVP, full-screen overlay — row fills to live count, your seat pulses brighter, "You're in, / [Name]" lands in ember, then hands off to inline confirmation. ~1.5s, tap-to-skip, reduced-motion safe.
+- **Critique baseline:** 30/40. Snapshot at `.impeccable/critique/`. Open issues: "DIRECTOR" → "HOST", pre-hydration fallback, desktop balance, world+sheet direction.
+- **Idea 2 mockup:** `logos/_review/world-sheet-mock.html` — world of Disclosure Day full-screen + peeking bottom sheet. Not shipped. Worth building on crew page first.
 
 ## Immediate Next Actions
 
-1. **Push** — brand + redesign are committed to `main` (local only). Push deploys to planmovies.com (Cloudflare Pages auto-deploys on push). Jordan's call — verify the live site after.
-2. **Family-flagged polish** (from panel logo-04, before family send): louder post-RSVP "you're in, <name>" confirmation (Carmen/Ray); decide on crew faces in the seats (Sofia) — note it conflicts with the fill mark.
-3. **Final lit logo art (raster)** — Imagen Round 5 prompts (`image-prompts.md`) → `scripts/cutout.py` (needs `pip install "rembg[cli]" onnxruntime pillow`) → app-icon / og:image.
+1. **World+sheet — build real draggable version** on the crew/dashboard page (post-RSVP "fall into the world" surface). The landing-invite version is secondary; start with the crew page.
+2. **Final lit logo art (raster)** — Imagen Round 5 prompts (`image-prompts.md`) → `scripts/cutout.py` (needs `pip install "rembg[cli]" onnxruntime pillow`) → app-icon / og:image → og:image share card.
+3. **"DIRECTOR" → "HOST"** badge rename (critique P2; one line in `renderLandingCrewDots` + `renderFamilyCrew`).
 4. **TMDB API key** — Jordan: themoviedb.org → `TMDB_API_KEY` (~line 4090).
 5. **Twilio Verify** — Jordan: Supabase → Auth → Providers → Phone.
-6. **Send to family** — June 12 is **14 days out**.
+6. **Send to family — 13 days out (Jun 12).**
 
 ## Goals
 
@@ -32,23 +34,26 @@ Session 17 complete. **The brand is real, redesigned, and committed.** Caught th
 - ✅ Design quality pass (typography, a11y, contrast, type scale)
 - ✅ Crew page redesign (poster hero)
 - ✅ Merged page built (session 12)
-- ✅ Full impeccable pipeline (updated to v3.5.0 session 16)
+- ✅ Full impeccable pipeline
 - ✅ Codex adversarial review
 - ✅ Desktop responsive
 - ✅ Audit pass (session 13)
-- ✅ Logo: 5-arch row mark + Ember Orange — locked, wired (local)
-- ✅ .impeccable.md refreshed (ember brand, 5-arch mark, Poppins lowercase)
-- ☐ Commit + push the ember brand pivot
-- ☐ Install rembg + generate final logo art
+- ✅ Logo locked + wired (ember #e53908, 5-arch row, chunky tabs, outlined open seats)
+- ✅ Landing redesigned: left spine, fill system, slogan, date+venue, ember reserved
+- ✅ Seat-fill takeover on RSVP (the peak-end moment)
+- ✅ /critique run: 30/40 baseline saved
+- ☐ World+sheet concept (mockup done; real build pending)
+- ☐ Final lit raster logo art (og:image / app-icon)
 - ☐ TMDB API key (Jordan)
 - ☐ Twilio Verify (Jordan)
-- ☐ **Send to family — 14 days**
+- ☐ **Send to family — 13 days**
 
 **After family send:**
 - Named Crew page + Founding Crew badge
-- Dynamic crew-forward og:image share card (once final raster logo art is cut)
+- Dynamic crew-forward og:image share card (needs raster logo)
+- World+sheet built for crew page (if session 18 mock proves the concept)
 - Platform: Stripe Connect Express, multi-organizer
-- Human brand designer for polished deliverable (brief documented in logo-maker skill + rangers)
+- Human brand designer for polished deliverable
 
 ## Things NOT to Do
 
@@ -64,18 +69,21 @@ Session 17 complete. **The brand is real, redesigned, and committed.** Caught th
 10. Don't push the RSVP form below screen 3.
 11. Don't re-open the tabs vs. single-scroll debate. Three-act merge is validated and shipped.
 12. Don't re-open the logo debate. 5-arch row + ember orange, locked.
-13. Don't make the center arch taller than the side arches. It looks like a middle finger. Color-only "you" distinction.
-14. Don't use uppercase "PLANMOVIES" anywhere. The wordmark is lowercase `planmovies`, Poppins 800.
-15. Don't use Clash Display. Removed — 0 remaining uses after session 16.
+13. Don't make the center arch taller than the side arches. Looks like a middle finger.
+14. Don't use uppercase "PLANMOVIES" anywhere. Lowercase `planmovies`, Poppins 800.
+15. Don't use Clash Display. Removed; 0 uses.
+16. Don't put open seats as a dim ember FILL. It fails contrast (2.19:1 vs bg, 2.14:1 vs filled). Open seats are OUTLINES. This was the Logo Rangers' call all along.
+17. Don't put `flex:1` children (like the crew-avatar row) inside the poster carousel — they overflow at tall viewports and collide with elements below. Keep crew-dots in normal flow outside the carousel.
 
 ## Reference Docs
 
 | Doc | What |
 |---|---|
 | `DESIGN.md` | Platform design system. Read before ANY UI work. |
-| `.impeccable.md` | Design context — ember brand, 5-arch mark, Poppins lowercase. CURRENT as of session 16. |
-| `.claude/skills/logo-maker/memory.md` | Full logo hunt memory: concept + color locked, all dead directions. |
-| `.claude/skills/logo-maker/references/image-prompts.md` | Round 5 prompts for final logo art generation. |
-| `.claude/skills/logo-maker/references/competitor-colors.md` | Color landscape: who owns what, the ember differentiation case. |
-| `scripts/cutout.py` | rembg batch background removal. Run after `pip install "rembg[cli]"`. |
-| `rangers/logo/sessions/logo-03-the-one-color.md` | Logo Rangers color decision: gold vs red, full 6-voice deliberation. |
+| `.impeccable.md` | Design context. NOTE: still says #d9480f and "centered" — the live state is #e53908 + left-aligned. Update if running /impeccable init. |
+| `.impeccable/critique/` | /critique snapshot: 30/40 baseline from Session 18. |
+| `.claude/skills/logo-maker/memory.md` | Full logo hunt: concept + color + fill system + all dead directions. |
+| `.claude/skills/logo-maker/references/image-prompts.md` | Round 5 prompts for final logo art (Imagen). |
+| `scripts/cutout.py` | rembg background removal. Needs `pip install "rembg[cli]"`. |
+| `logos/_review/world-sheet-mock.html` | Idea 2 concept: world-first + draggable bottom sheet. Not shipped. |
+| `rangers/logo/sessions/logo-04-alignment-and-fill.md` | Logo+Family panel: left vs centered, fill system. The critique vindicated this panel's outline recommendation. |
