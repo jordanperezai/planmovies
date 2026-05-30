@@ -41,7 +41,6 @@
   --warm-surface: rgba(229,57,8,0.05);
   --warm-border: rgba(229,57,8,0.13);
   --cream: #f3f1ec;
-  --seat-open: #6e3a26;  /* unlit seat — dim ember, reads "waiting" not "broken/disabled" */
   --amber: #d4943a;
   --green: #3ecf71;
   --green-dim: rgba(62,207,113,0.15);
@@ -154,14 +153,16 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .nav-brand svg {
   height: 13px;
-  width: auto;
+  width: 78px;
   flex-shrink: 0;
 }
 .nav-brand span { display: inline; }
 @media (max-width: 480px) {
-  .nav-brand span { display: none; }
-  .nav-brand { gap: 0; }
-  .nav-tab { padding: 10px 12px; }
+  .nav { padding-left: 14px; padding-right: 14px; }
+  .nav-brand { gap: 6px; }
+  .nav-brand svg { height: 11px; width: 66px; }
+  .nav-brand .nav-word { font-size: 16px; }
+  .nav-tab { padding: 9px 7px; }
 }
 .nav-tabs {
   display: flex; gap: 2px;
@@ -215,11 +216,15 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
   margin-bottom: 14px;
 }
-.hero-mark { width: 168px; height: auto; filter: drop-shadow(0 6px 20px rgba(229,57,8,0.42)); }
-.hero-mark .seat { fill: var(--seat-open); transition: fill 0.55s cubic-bezier(0.22,1,0.36,1); }
-.hero-mark .seat.filled { fill: var(--gold); }
+.hero-mark { width: 168px; height: auto; overflow: visible; }
+/* Open seat = ember outline (a chair waiting); filled = solid ember (taken). Outline reads as a seat,
+   not a battery, and an ember-cool stroke clears 3:1 on near-black where a dim fill did not. */
+.hero-mark .seat { fill: rgba(229,57,8,0.06); stroke: var(--gold-cool); stroke-width: 2.5; transition: fill 0.55s cubic-bezier(0.22,1,0.36,1), stroke 0.4s ease; }
+.hero-mark .seat.filled { fill: var(--gold); stroke: var(--gold); }
 .lockup-word { font-family: 'Poppins', sans-serif; font-weight: 800; letter-spacing: -1.1px; font-size: 34px; line-height: 1; }
 .lockup-slogan { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; color: var(--text-secondary); }
+.lockup-status { font-family: var(--font); font-size: var(--text-sm); font-weight: 500; color: var(--text-secondary); margin-top: 2px; min-height: 1em; }
+.lockup-status:empty { display: none; }
 @media (prefers-reduced-motion: reduce) { .hero-mark .seat { transition: none; } }
 .sticky-cta {
   position: fixed;
@@ -244,7 +249,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 .landing-bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 100% 60% at 50% 120%, rgba(229,57,8,0.14) 0%, rgba(229,57,8,0.04) 42%, transparent 66%),
+    radial-gradient(ellipse 100% 60% at 50% 120%, rgba(229,57,8,0.10) 0%, rgba(229,57,8,0.03) 42%, transparent 64%),
     radial-gradient(ellipse 70% 50% at 50% 16%, rgba(42,58,90,0.10) 0%, transparent 58%),
     radial-gradient(ellipse 50% 40% at 50% 80%, rgba(42,58,90,0.05) 0%, transparent 50%);
   pointer-events: none;
@@ -266,7 +271,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   text-align: left;
   line-height: 1;
   margin-bottom: 10px;
-  color: var(--gold-warm);
+  color: var(--cream);
 
 }
 .landing-credit {
@@ -274,7 +279,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   font-size: var(--text-base);
   font-weight: 600;
   letter-spacing: 3px;
-  color: var(--gold-warm);
+  color: var(--text-secondary);
   margin-bottom: 14px;
 }
 .landing-when { margin-bottom: 16px; }
@@ -333,10 +338,10 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .landing-headcount {
   font-size: var(--text-base);
-  color: var(--gold-cool);
+  color: var(--text-secondary);
 }
 .landing-headcount strong {
-  color: var(--gold);
+  color: var(--gold-warm);
   font-weight: 700;
   font-size: 16px;
 }
@@ -1690,7 +1695,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 .countdown-frame .cf-num {
   font-size: var(--text-xl);
   font-weight: 700;
-  color: var(--gold);
+  color: var(--cream);
   letter-spacing: 1px;
   line-height: 1;
 }
@@ -2385,7 +2390,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
   <nav id="nav" class="nav hidden">
     <div class="nav-brand" onclick="showLanding()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showLanding()}" style="cursor:pointer;" role="button" tabindex="0" aria-label="Back to landing page">
-      <svg viewBox="0 0 216 36" aria-hidden="true"><use href="#seatRow"/></svg><span style="font-family:'Poppins',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:21px;line-height:1;"><span style="color:var(--cream);">plan</span><span style="color:var(--gold);">movies</span></span>
+      <svg viewBox="0 0 216 36" aria-hidden="true"><use href="#seatRow"/></svg><span class="nav-word" style="font-family:'Poppins',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:21px;line-height:1;"><span style="color:var(--cream);">plan</span><span style="color:var(--gold);">movies</span></span>
     </div>
     <div class="nav-tabs">
       <button class="nav-tab active" data-page="dashboard" onclick="showPage('dashboard')" aria-current="page">The Crew</button>
@@ -2410,6 +2415,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       </svg>
       <div class="lockup-word"><span style="color:var(--cream);">plan</span><span style="color:var(--gold);">movies</span></div>
       <div class="lockup-slogan">Get the row together.</div>
+      <div class="lockup-status" id="row-status"></div>
     </div>
 
     <div class="poster-carousel fade-up fade-up-d1" id="poster-carousel">
@@ -2446,7 +2452,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <div class="cta-btn-wrap" style="width:100%;">
         <button class="cta-btn" id="cta-btn" style="width:100%;">COUNT ME IN</button>
       </div>
-      <button onclick="initialize();setTimeout(()=>{document.getElementById('reality-break').scrollIntoView({behavior:'smooth'})},300);" style="background:none;border:none;font-family:var(--font);font-size:var(--text-base);color:var(--text-secondary);cursor:pointer;padding:8px 16px;transition:color 0.2s;">What is Disclosure Day?</button>
+      <button onclick="initialize();setTimeout(()=>{document.getElementById('reality-break').scrollIntoView({behavior:'smooth'})},300);" style="background:none;border:none;font-family:var(--font);font-size:var(--text-base);color:var(--text-secondary);cursor:pointer;padding:13px 16px;min-height:44px;margin-top:6px;transition:color 0.2s;">What is Disclosure Day?</button>
     </div>
 
     </div><!-- /.landing-inner -->
@@ -2981,19 +2987,27 @@ function renderLandingCrewDots(container) {
   (overflow > 0 ? `<div class="lc-avatar" style="font-size:var(--text-xs);color:var(--text-tertiary);">+${overflow}</div>` : '');
 }
 
-// The hero mark IS the live crew: tabs fill ember as RSVPs come in (organizer is always seat 1,
-// so it's never all-dead). Capped at 5 as a MILESTONE — the true uncapped count lives in the text below.
-function renderHeroRow(filled) {
+// The hero mark IS the live crew: open seats are ember OUTLINES (waiting), filled tabs are solid ember.
+// 5 tabs = "the row" (a milestone); the true uncapped headcount lives in the caption + the text below.
+// Honest at the edges: 0 RSVPs = all-outline (no fake filled seat), >5 = "the row is set · N going".
+function renderHeroRow(total) {
+  const filled = Math.min(total, 5);
   document.querySelectorAll('#landing .hero-mark .seat').forEach((s, i) => {
     s.classList.toggle('filled', i < filled);
   });
+  const cap = document.getElementById('row-status');
+  if (cap) {
+    cap.textContent = total <= 0 ? 'Be the first to save a seat'
+      : filled >= 5 ? (total > 5 ? `The row is set · ${total} going` : 'The row is set')
+      : `${total} of 5 seats saved`;
+  }
 }
 
 function updateLandingHeadcount() {
   const active = attendees.filter(a => a.status !== 'cant');
   const totalHeads = active.reduce((s, a) => s + a.party, 0);
   const names = active.map(a => a.name.split(' ')[0]);
-  renderHeroRow(Math.max(1, Math.min(totalHeads, 5)));
+  renderHeroRow(totalHeads);
   const el = document.getElementById('landing-headcount');
   if (totalHeads >= 3) {
     el.innerHTML = `<strong>${totalHeads}</strong> people going. Join them.`;
