@@ -829,9 +829,11 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   display: flex;
   gap: 6px;
   justify-content: flex-start;
-  margin-top: 16px;
+  margin-top: 14px;
+  margin-bottom: 18px;
   min-height: 42px;
   align-items: center;
+  flex-shrink: 0;
 }
 .poster-carousel-dot { min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center;
   width: 6px; height: 6px;
@@ -2390,7 +2392,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
   <nav id="nav" class="nav hidden">
     <div class="nav-brand" onclick="showLanding()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showLanding()}" style="cursor:pointer;" role="button" tabindex="0" aria-label="Back to landing page">
-      <svg viewBox="0 0 216 36" aria-hidden="true"><use href="#seatRow"/></svg><span class="nav-word" style="font-family:'Poppins',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:21px;line-height:1;"><span style="color:var(--cream);">plan</span><span style="color:var(--gold);">movies</span></span>
+      <span class="nav-word" style="font-family:'Poppins',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:20px;line-height:1;"><span style="color:var(--cream);">plan</span><span style="color:var(--gold);">movies</span></span>
     </div>
     <div class="nav-tabs">
       <button class="nav-tab active" data-page="dashboard" onclick="showPage('dashboard')" aria-current="page">The Crew</button>
@@ -2422,9 +2424,9 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
       <button class="poster-carousel-nav prev" onclick="carouselPrev()" aria-label="Previous poster">&lsaquo;</button>
       <button class="poster-carousel-nav next" onclick="carouselNext()" aria-label="Next poster">&rsaquo;</button>
       <div class="poster-carousel-track" id="poster-carousel-track"></div>
-      <div class="poster-carousel-dots" id="poster-carousel-dots"></div>
     </div>
 
+    <div class="poster-carousel-dots" id="poster-carousel-dots"></div>
     <h1 class="landing-title fade-up fade-up-d2">DISCLOSURE DAY</h1>
     <div class="landing-credit fade-up fade-up-d2">A Steven Spielberg Film</div>
 
