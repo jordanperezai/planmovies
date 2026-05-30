@@ -225,6 +225,37 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 .lockup-slogan { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; color: var(--text-secondary); }
 .lockup-status { font-family: var(--font); font-size: var(--text-sm); font-weight: 500; color: var(--text-secondary); margin-top: 2px; min-height: 1em; }
 .lockup-status:empty { display: none; }
+
+/* Idea 1: full-screen "your seat fills" takeover on RSVP — the peak-end moment + the loud confirmation. */
+.seat-fill {
+  position: fixed; inset: 0; z-index: 500;
+  display: none; flex-direction: column; align-items: center; justify-content: center;
+  gap: 26px; padding: 32px; text-align: center; cursor: pointer;
+  background: radial-gradient(ellipse 95% 60% at 50% 48%, rgba(229,57,8,0.18), transparent 70%), var(--bg-deep);
+}
+.seat-fill.show { display: flex; animation: sf-in 0.3s ease; }
+.seat-fill.out { animation: sf-out 0.45s ease forwards; }
+@keyframes sf-in { from { opacity: 0 } to { opacity: 1 } }
+@keyframes sf-out { from { opacity: 1 } to { opacity: 0 } }
+.sf-mark { width: 300px; max-width: 80vw; height: auto; overflow: visible; }
+.sf-mark .sf-seat { fill: rgba(229,57,8,0.07); stroke: var(--gold-cool); stroke-width: 2.5;
+  transition: fill 0.35s cubic-bezier(0.22,1,0.36,1), stroke 0.35s; transform-box: fill-box; transform-origin: 50% 100%; }
+.sf-mark .sf-seat.filled { fill: var(--gold); stroke: var(--gold); animation: sf-pop 0.4s cubic-bezier(0.22,1,0.36,1); }
+.sf-mark .sf-seat.you { fill: var(--gold-bright); stroke: var(--gold-bright); filter: drop-shadow(0 0 9px rgba(255,99,38,0.65)); }
+@keyframes sf-pop { 0% { transform: scaleY(0.55); } 60% { transform: scaleY(1.08); } 100% { transform: scaleY(1); } }
+.seat-fill > div { max-width: 90vw; }
+.sf-heading { font-family: 'Poppins',sans-serif; font-weight: 800; font-size: clamp(26px, 7.2vw, 36px); color: var(--cream);
+  letter-spacing: -1px; line-height: 1.08; text-wrap: balance; overflow-wrap: break-word; opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.sf-heading .em { color: var(--gold); }
+.sf-greet { display: block; }
+.sf-name { display: block; color: var(--gold); margin-top: 1px; overflow-wrap: break-word; }
+.sf-sub { margin-top: 10px; font-family: var(--font); font-size: var(--text-base); color: var(--text-secondary); max-width: 92vw; opacity: 0; transition: opacity 0.5s ease 0.12s; }
+.seat-fill.reveal .sf-heading { opacity: 1; transform: none; }
+.seat-fill.reveal .sf-sub { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .seat-fill.show, .seat-fill.out, .sf-mark .sf-seat.filled { animation: none; }
+  .sf-mark .sf-seat, .sf-heading, .sf-sub { transition: opacity 0.2s ease; }
+}
 @media (prefers-reduced-motion: reduce) { .hero-mark .seat { transition: none; } }
 .sticky-cta {
   position: fixed;
@@ -2464,6 +2495,21 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <button class="cta-btn" onclick="initialize()">COUNT ME IN</button>
   </div>
 
+  <!-- Idea 1: full-screen seat-fill confirmation (plays on RSVP, then reveals the inline confirm) -->
+  <div id="seat-fill" class="seat-fill" aria-hidden="true" role="status" onclick="skipSeatFill()">
+    <svg class="sf-mark" viewBox="0 0 216 36" aria-hidden="true">
+      <path class="sf-seat" d="M0,36 L0,12 A12,12 0 0 1 12,0 L28,0 A12,12 0 0 1 40,12 L40,36 Z"/>
+      <path class="sf-seat" d="M44,36 L44,12 A12,12 0 0 1 56,0 L72,0 A12,12 0 0 1 84,12 L84,36 Z"/>
+      <path class="sf-seat" d="M88,36 L88,12 A12,12 0 0 1 100,0 L116,0 A12,12 0 0 1 128,12 L128,36 Z"/>
+      <path class="sf-seat" d="M132,36 L132,12 A12,12 0 0 1 144,0 L160,0 A12,12 0 0 1 172,12 L172,36 Z"/>
+      <path class="sf-seat" d="M176,36 L176,12 A12,12 0 0 1 188,0 L204,0 A12,12 0 0 1 216,12 L216,36 Z"/>
+    </svg>
+    <div>
+      <div class="sf-heading"><span class="sf-greet">You're in,</span><span class="sf-name" id="sf-name">there</span></div>
+      <div class="sf-sub" id="sf-sub">Your seat is saved.</div>
+    </div>
+  </div>
+
   <!-- DASHBOARD -->
   <section id="page-dashboard" class="page" style="padding-top:52px;">
 
@@ -3462,7 +3508,13 @@ async function submitRSVP(e) {
   });
 
   await fetchAttendees();
-  showConfirmation(name, entry.status);
+  if (entry.status !== 'cant') {
+    const activeNow = attendees.filter(a => a.status !== 'cant');
+    const pos = activeNow.findIndex(a => a.name.toLowerCase() === name.toLowerCase()) + 1;
+    playSeatFill(name, activeNow.length, pos, () => showConfirmation(name, entry.status));
+  } else {
+    showConfirmation(name, entry.status);
+  }
 
   if (entry.status !== 'cant' && !existing) {
     logActivity('rsvp', name, `<strong>${esc(name.split(' ')[0])}</strong> joined the crew${entry.party > 1 ? ' (+' + (entry.party - 1) + ')' : ''}`);
@@ -3477,6 +3529,51 @@ function statusMark(s) {
   if (s === 'maybe') return '<span style="font-family:var(--font);font-size:var(--text-xs);color:var(--text-tertiary);font-weight:400;font-style:italic;">maybe</span>';
   return '';
 }
+
+// Idea 1: full-screen seat-fill takeover. Fills the row to the live count, pulses YOUR seat,
+// then hands off to the inline confirmation. Fast (~1.5s), tap-to-skip, reduced-motion aware.
+let _sfTimer = null, _sfDone = null;
+function playSeatFill(name, total, position, done) {
+  const ov = document.getElementById('seat-fill');
+  if (!ov) { if (done) done(); return; }
+  const seats = ov.querySelectorAll('.sf-seat');
+  const filled = Math.max(1, Math.min(total, 5));
+  const you = Math.min(Math.max(position, 1), 5);
+  seats.forEach(s => s.classList.remove('filled', 'you'));
+  document.getElementById('sf-name').textContent = name.split(' ')[0];
+  document.getElementById('sf-sub').textContent = total > 5
+    ? 'The row is set. See you Fri, Jun 12.'
+    : `Seat ${you} of 5 saved. See you Fri, Jun 12.`;
+  ov.classList.remove('out', 'reveal');
+  ov.classList.add('show');
+  ov.setAttribute('aria-hidden', 'false');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const step = reduce ? 0 : 150;
+  for (let i = 0; i < filled; i++) {
+    setTimeout(() => {
+      seats[i].classList.add('filled');
+      if (i === you - 1) seats[i].classList.add('you');
+    }, step * i);
+  }
+  const fillDone = step * filled;
+  setTimeout(() => ov.classList.add('reveal'), Math.min(fillDone, 320));
+  _sfDone = done;
+  clearTimeout(_sfTimer);
+  _sfTimer = setTimeout(endSeatFill, fillDone + (reduce ? 500 : 1300));
+}
+function endSeatFill() {
+  clearTimeout(_sfTimer);
+  const ov = document.getElementById('seat-fill');
+  if (!ov || !ov.classList.contains('show')) return;
+  ov.classList.add('out');
+  setTimeout(() => {
+    ov.classList.remove('show', 'out', 'reveal');
+    ov.setAttribute('aria-hidden', 'true');
+    const cb = _sfDone; _sfDone = null;
+    if (cb) cb();
+  }, 450);
+}
+function skipSeatFill() { endSeatFill(); }
 
 function showConfirmation(name, status) {
   const active = attendees.filter(a => a.status !== 'cant');
