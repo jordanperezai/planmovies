@@ -23,7 +23,7 @@ triggers:
 
 ### Phase 2: Record (write it down, informed by proof)
 
-2. **Write session log** — create `memory/YYYY-MM-DD.md` with: what was done, key decisions, what's deployed, what's next, what's blocked. Only record verified actions from Step 1.
+2. **Write session log** — ONE FILE PER DAY. First `ls memory/YYYY-MM-DD.md`. If today's file already exists, APPEND a new `## Session N` section to it. Never create `YYYY-MM-DD-02.md` / `-NN.md` — that violates the locked invariant in `memory/CLAUDE.md`. The file records: what was done, key decisions, what's deployed, what's next, what's blocked. Only record verified actions from Step 1.
 3. **Update HANDOFF.md** — rewrite "Where We Left Off" and "Immediate Next Actions." Migrate any "don't" items older than 3 sessions to their owner file.
 
 ### Phase 3: Learn (extract lessons)

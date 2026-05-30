@@ -2,54 +2,65 @@
 
 > **Cap:** 20 active entries per section. Oldest `last-confirmed` evicted at #21.
 > **Cadence tags:** hot (7d) | tactical (30d) | stable (60d) | frozen (historical fact)
-> Built from Session 14–15 logo hunt: ~20 directions tried across pictograms, image-gen, wordmarks, letterform tricks, people-marks. All rejected.
+> Built from Sessions 13–16. ~25 directions tried. Concept locked 2026-05-29.
 
-## The Spec (check every board against this)
+## The Spec (current, as of 2026-05-29)
 
-- **Dark + gold + cinematic.** Gold `#c9a84c`, cream `#e8e6e1`, near-black `#07080a`. Not nostalgic, precious, or startup-bubbly.
-- **Tone anchor:** `logos/logo-board.html`. When Jordan says "go back to the feel," this file is the spec.
-- **Position:** "get the row together / we're all seeing it together." The mark lives in a group chat; it's the moment BEFORE the movie.
-- **Wordmark:** Clash Display, cream PLAN + gold MOVIES. Live on planmovies.com as the screen-O placeholder.
-
-## STATUS: screen-O is a PLACEHOLDER (not final)
-
-The screen-O wordmark (`PLANM[screen-O]VIES`, Clash Display) is LIVE on planmovies.com as of 2026-05-28. Jordan called it "dead" on feeling but said "keep it for now." Chosen by Logo Rangers 5–1 on rigor (not emotion); Bierut warned it reads "app, not event." The live execution is a rough geometric ellipse, not the tuned spec (heavy ring / cinemascope slot / floated high). REVISIT post-launch with a human designer.
+- **Brand:** Ember `#E53908` (NOT #d9480f — see COLOR principle) + cream `#f3f1ec` + near-black `#07080a`. Cinematic, dark, warm. NOT nostalgic, precious, or startup-bubbly.
+- **The mark:** Five chunky rounded-top TABS in a wide low band (~6:1) — reads as seats AND people-from-behind. `<symbol id="seatRow">` viewBox `0 0 216 36`; per-tab W=40, gap=4, corner-radius r=12, total height 36 (rounded-RECT top, NOT a tall semicircle). 5 tabs EVERYWHERE (hero, nav, favicon) — one mark scaled. All `fill="var(--gold)"` (token name kept, value is ember).
+- **Wordmark:** lowercase `planmovies`, Poppins 800. "plan" cream (near-black on white), "movies" ember. NEVER uppercase. NEVER Clash Display.
+- **Slogan:** "Get the row together." — sits under the wordmark in the lockup.
+- **Position:** the mark lives in a group chat; the moment BEFORE the movie. The row FILLS as the crew joins.
 
 ## Validated Principles
 
-- **META (conclusive after ~20 rejected directions): no static SVG mark delivers the emotional "hit" Jordan tests for.** The feeling lives in the brand WORLD (poster, dark room, countdown, motion, copy), not a 32px glyph. After 3 misses STOP generating boards — get a positive reference or run `/logo-rangers`. Right move post-launch: hand the documented brief to a human designer. cadence: hot. last-confirmed: 2026-05-28
-- **Jordan decides by feeling and pastes the proof.** When stuck he screenshots the 1-2 that "make me feel something more" — develop what he pastes; don't argue against ranger logic. cadence: stable. last-confirmed: 2026-05-28
-- **"Does it make me feel something?" is the real acceptance test — above recognition and cleverness.** A technically correct but flat mark fails. cadence: stable. last-confirmed: 2026-05-28
-- **Liked marks map the territory; they are NOT a "combine these" instruction.** He wants DIFFERENT directions in the same feel, not fusions. cadence: stable. last-confirmed: 2026-05-28
-- **A board is a MAP of distinct concepts, not N restyles of one silhouette.** cadence: stable. last-confirmed: 2026-05-28
-- **Build the size + white-chip tests into every board.** 84px hero / 24 dark / 22 on white / nav lockup, side by side. cadence: frozen. last-confirmed: 2026-05-28
-- **Negative-space cuts = TRUE transparency (mask / fill-rule:evenodd), never a bg-color fill.** On a white chat bubble a filled "hole" inverts to a dark gash. (LEARNINGS #10.) cadence: frozen. last-confirmed: 2026-05-28
-- **Marks/favicons hardcode colors — no CSS vars.** `var(--gold)` → `#c9a84c`. cadence: frozen. last-confirmed: 2026-05-28
-- **Ship a glyph + logo SYSTEM, not one mark.** Simplified small glyph (≤24px) + fuller logo (≥40px). cadence: stable. last-confirmed: 2026-05-28
-- **A single bold figure-ground shape beats additive icons at small size.** cadence: stable. last-confirmed: 2026-05-28
-- **The production mark is SVG, full stop.** Image-gen explores feeling only; never ships as raster. cadence: frozen. last-confirmed: 2026-05-28
-- **A seat mark: NO legs/feet.** Tiny legs look broken small; legless plush silhouette only if reused. cadence: stable. last-confirmed: 2026-05-28
+- **CONCEPT LOCKED 2026-05-29 ("OMG this is it!"): five rounded arches in a row.** Reads as seats AND people-from-behind simultaneously. Monochrome ember, all same height, lowercase `planmovies` wordmark. Holds 16px→storefront. Source: ChatGPT image-gen → traced to SVG after ~25 total directions tried. cadence: hot. last-confirmed: 2026-05-29
+- **COLOR (corrected Session 17): Ember `#E53908`, NOT `#d9480f`.** The brand sheet's printed LABEL said "#D9480F" but ChatGPT never rendered that hex — the actual sheet PIXELS sample to #e53908 (brighter, redder). Jordan's eye caught it ("I still see the wrong color"). LESSON: trace the reference PIXELS, not its color label. Ramp: base #e53908, warm #fb5316, cool #c9582f, dim #b32c06, bright #ff6326, glow rgba(229,57,8,*). cadence: hot. last-confirmed: 2026-05-29
+- **THE FILL SYSTEM (Session 17, panel-validated): the hero mark fills with live RSVPs; the LOGO stays constant.** On the landing the 5 tabs fill ember as people RSVP (open seats = `--seat-open` #6e3a26 dim-ember, reads "waiting" not broken-gray; gray reads "dead/disabled" — family confirmed). Starts at seat 1 (organizer always lit → never all-dead), capped at 5 as a MILESTONE; true uncapped count lives in the text ("N going"). EVERYWHERE the mark is identity (favicon, nav, app icon, share) it stays SOLID 5 ember — a logo must be constant to become iconic (Haviv). `renderHeroRow(filled)` toggles `.filled` on the 5 `.seat` paths; hooked into `updateLandingHeadcount`. cadence: hot. last-confirmed: 2026-05-29
+- **LEFT-ALIGNED lockup wins (panel 9/11: 5/6 designers + 4/5 family).** A row reads left-to-right; left-aligning the whole hero (lockup + poster + text + countdown on one spine) creates a "theater rows / seating" depth illusion (asymmetry = depth) — a feature, on-brand, matches the nav + group-chat context. Jordan spotted the illusion himself. Centered reads "poster/flyer"; left reads "product." cadence: hot. last-confirmed: 2026-05-29
+- **100dvh landing gotcha:** the poster carousel is `flex:1` to absorb slack and fit the frame. Wrapping landing content in a sub-container BREAKS that unless the wrapper also gets `flex:1; min-height:0`. Use `justify-content: safe center` so the top lockup is never clipped on short viewports (it top-aligns instead of clipping both ends). cadence: tactical. last-confirmed: 2026-05-29
+- **All arches SAME HEIGHT. Distinguish "you" by COLOR ONLY — not by making the center taller.** A taller center = middle finger. Tested and confirmed. cadence: hot. last-confirmed: 2026-05-29
+- **GEOMETRY CORRECTED 2026-05-29: the mark is a WIDE LOW BAND (~6:1) of chunky rounded-top tabs, not a tall row of skinny fingers.** The first wire-in (viewBox 154×88, narrow Q-curve fingers) read wrong vs the ChatGPT brand sheet ("does not look like it should"). Re-traced from the sheet PIXELS: per-tab total/width ≈ 0.9, corner-radius/width ≈ 0.28–0.30, gap/width ≈ 0.1; top is a rounded-RECT (flat-ish crown + r≈12 corners) — a pure ellipse domes too much, a tight r reads boxy. cadence: hot. last-confirmed: 2026-05-29
+- **Surface system (Session 17): 5 tabs EVERYWHERE — one mark, scaled.** Hero/landing = 5-tab band LEFT-aligned above wordmark + slogan (left spine). Nav = 5-tab `#seatRow` left of the wordmark (CSS height 13px → ~78px wide). Favicon = 5 solid-ember tabs on a dark tile (data-URI w/ transform; verified 5 tabs HOLD at 16px, don't smear). The Session-16 3-tab glyph (`seatRow3`) was REMOVED — Bierut: "one mark scaled, not two pretending to be one." cadence: hot. last-confirmed: 2026-05-29
+- **No browser extension → ground-truth a mark with headless Chrome.** `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --screenshot=out.png file://…`, then PIL/ImageMagick to crop + pixel-profile MINE vs the reference (arch width, gap, dome rise, straight height). This is how the geometry was locked, not by eyeballing the SVG source. cadence: tactical. last-confirmed: 2026-05-29
+- **Jordan decides by feeling and pastes the proof.** Screenshots the 1-2 that "make me feel something" — develop what he pastes; don't argue against ranger/data logic. cadence: stable. last-confirmed: 2026-05-29
+- **Image-gen (ChatGPT/Imagen) is how to unlock the feeling; SVG is how you ship it.** After ~25 SVG boards, a ChatGPT render cracked the concept in one shot. The pipeline: image-gen to find/feel → trace to SVG to ship. Never the reverse. cadence: hot. last-confirmed: 2026-05-29
+- **Two prompt types per concept: ① lit/dimensional (app-icon/hero feeling) + ② flat on white (for clean rembg cutout + SVG trace).** Generate both. ① guides the mood; ② is what becomes the favicon/nav/lockup. cadence: hot. last-confirmed: 2026-05-29
+- **After 3 misses, STOP generating boards.** Get a positive reference first. The hunt that found the 5-arch mark: build a reference board of real logos that make you feel something — that's the "yes" anchor. cadence: stable. last-confirmed: 2026-05-29
+- **The color-lab pattern works.** Build a live HTML swatch-switcher (2-pickers: side + center) and let Jordan flip through it rather than guessing on his behalf. Self-service > agent-guessing. cadence: hot. last-confirmed: 2026-05-29
+- **Build the size + white-chip tests into every board.** Hero (84-220px) / 24px nav dark / 22px on WHITE chip / nav lockup / favicon tile. cadence: frozen. last-confirmed: 2026-05-29
+- **Marks/favicons hardcode colors — no CSS vars.** `var(--gold)` in production SVG → `#e53908` in favicon data-URI (favicons have no :root). cadence: frozen. last-confirmed: 2026-05-29
+- **After wiring a brand change, Codex must verify two things: (1) CSS rules that force-override the new case/style, (2) undefined tokens that the new lockup references.** Both bit us: `text-transform:uppercase` in `.nav-brand` silently uppercased the lowercase wordmark; `--cream` was referenced but never defined → invisible text. cadence: hot. last-confirmed: 2026-05-29
+- **The production mark is SVG + raster, not one or the other.** SVG = favicon/nav (crisp, scales, 1KB). Raster = app icon / og:image (required by spec, carries the lit/dimensional feeling). cadence: stable. last-confirmed: 2026-05-29
+- **Negative-space cuts = TRUE transparency (mask / fill-rule:evenodd), never a bg-color fill.** On a white chat bubble a bg-colored "hole" inverts to a dark gash. (LEARNINGS #10.) cadence: frozen. last-confirmed: 2026-05-28
+- **A single bold figure-ground shape beats additive icons at small size.** Five arches over three seats over one armchair — simpler wins small. cadence: stable. last-confirmed: 2026-05-28
 
 ## Dead Directions
 
-- **ALL SVG pictogram marks tried (~20 total).** Seats, tickets, chat-bubbles, abstract gestures, people/feeling marks (The Count, The Gap, The Holler, The Roll Call, The Handoff, Showtime), image-gen renders. None delivered the feeling. The meta-conclusion above covers all of them. last-confirmed: 2026-05-28
-- **The TICKET as primary mark (any form).** Reads transactional/cold; 3 boards left Jordan flat. last-confirmed: 2026-05-28
-- **The watch-party bubble (chat bubble + screen + crowd).** "Hated it" in the nav lockup; a clip-art genre, reads "chat app in a movie costume." last-confirmed: 2026-05-28
-- **Fully-abstract marks (crescent, bloom, halo, aperture ring, sweep, letterform glyphs).** "All of these suck." last-confirmed: 2026-05-28
-- **Play-button-in-the-O.** Letterboxd/Spotify own it; a cliché. The screen-in-O is the alternative (though also currently parked). last-confirmed: 2026-05-28
-- **PM monogram.** Spells the brand twice; generic; name is already short. last-confirmed: 2026-05-28
-- **Type tropes (lowercase wordmark, three dots).** "Played out, done before." last-confirmed: 2026-05-28
+- **ALL SVG pictogram marks tried (~20+ total) without a positive reference.** Seats, tickets, chat-bubbles, abstract gestures, people/feeling marks, letterform tricks, image-gen rounds 1–4. None delivered until the reference board + ChatGPT brand sheet (round 5). last-confirmed: 2026-05-29
+- **The three-seat armchair row (boards 8–9, with arms + cushions).** Superseded by the 5-arch row. Armchair arms caused the taller-center-seat "middle finger" problem. The simpler arch is cleaner, iconic, and more readable small. last-confirmed: 2026-05-29
+- **Taller center arch to indicate "you."** Looks like a middle finger at full size. Killed same session it was tried. Distinguish "you" by color only. last-confirmed: 2026-05-29
+- **The TICKET as primary mark.** Reads transactional/cold; 3 boards left Jordan flat. last-confirmed: 2026-05-28
+- **The watch-party bubble (chat bubble + screen + crowd).** "Hated it" in the nav lockup; a clip-art genre. last-confirmed: 2026-05-28
+- **Fully-abstract marks (crescent, bloom, halo, aperture ring, sweep).** "All of these suck." last-confirmed: 2026-05-28
+- **Play-button-in-the-O / screen-O wordmark.** Letterboxd owns the O-as-play; screen-O was our live placeholder, rejected on feeling. last-confirmed: 2026-05-28
+- **PM monogram.** Spells the brand twice; generic. last-confirmed: 2026-05-28
 - **Cold behavior-device diagrams (filling row, lock-in bracket).** "Clever but cold." last-confirmed: 2026-05-28
+- **`#d9480f` as the ember (Session 16's value).** Wrong — read off the brand sheet's text LABEL, not its pixels; the real rendered color is #e53908. Superseded Session 17. last-confirmed: 2026-05-29
+- **3-tab favicon/nav glyph (`seatRow3`) + stacked-CENTERED hero lockup.** Superseded Session 17: unified to 5 tabs everywhere, hero lockup is LEFT-aligned. The 3-tab created a verified favicon-≠-mark inconsistency (Bierut caught it). last-confirmed: 2026-05-29
+- **Pure gold (#c9a84c or even #d4af37) as the sole brand color.** Gold is the open lane in the category (nobody owns it), but it reads "luxury/awards," not "movie night with your people." Jordan consistently reached for red/ember when asked to feel something. Ember was unanimous on feeling (even if the design team voted gold on differentiation). last-confirmed: 2026-05-29
 
 ## Voice Calibration
 
 - Energized by breadth (wants many at once). Rejects fast and bluntly — take it at face value.
-- **Returns to a tone anchor and a territory** — treat those as fixed; explore WITHIN them.
-- Past 3 misses, generating IS the stall. Stop; get a positive reference or run `/logo-rangers`.
-- ~20 directions rejected. The remaining unlock is the brand world (poster, motion, copy), not a new mark.
+- Build a live switcher/lab; let him drive color/variant selection instead of guessing.
+- Past 3 misses, generating IS the stall. Stop; build a reference board of real logos he loves.
+- The image-gen render is what moved him every time, not the flat SVG board. Lead with the feeling; follow with the technical trace.
 
 ## Distillation Log
 
 | Date | What changed | Source |
 |---|---|---|
-| 2026-05-28 | Created, seeded, and consolidated. ~20 directions tried + all rejected. Meta-conclusion locked. | Session 14–15 |
+| 2026-05-28 | Created, seeded, and consolidated. ~20 directions tried + all rejected. Meta-conclusion locked. | Sessions 14–15 |
+| 2026-05-29 | Rewritten. Concept locked (5-arch row). Color finalized (ember #D9480F). Superseded 3-seat/gold entries evicted. Over-cap consolidated from 31→14 validated + 10 dead. | Session 16 |
+| 2026-05-29 | Session 17: geometry re-traced to chunky tabs; color corrected #d9480f→#e53908 (label≠pixels); fill system + left-align locked via Logo+Family panel; 5 tabs unified everywhere (seatRow3 removed). | Session 17 |

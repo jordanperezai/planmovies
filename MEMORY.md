@@ -40,9 +40,12 @@
 - var(--mono) = data only. 8 type scale tokens: --text-xs(11px) through --text-3xl(clamp). Tokenized throughout.
 - Single-scroll three-act page SHIPPED (session 12). No Movie tab. Timeline + category toggle. Commit 3e1e9af.
 - Audit score 15.5/20 (session 13). All P0-P3 fixes applied to index.html (uncommitted). Key: amber-dim token, toast live region, heading semantics, non-blocking Supabase, scaleX progress bar, 44px tap targets, safe-area nav.
-- Logo: screen-O wordmark LIVE as placeholder (PLANM[screen-O]VIES, Clash Display, planmovies.com). ~20 directions tried across sessions 13-15; all rejected on feeling. Meta-conclusion: no static SVG mark delivers the hit; feeling lives in the brand world. Park post-launch; brief documented in logo-maker skill + Logo Rangers sessions.
-- Logo Rangers team: `rangers/logo/` (Haviv/Scher/Hische/Draplin/Leader + Bierut verifier). 2 sessions logged. Run via `/logo-rangers`.
-- logo-maker skill: `.claude/skills/logo-maker/`. Full memory + references. Anti-thrash rule: stop after 3 misses, get positive reference or run `/logo-rangers`.
+- Logo LOCKED: 5 chunky rounded-tab row mark (seats + people-from-behind), Ember **#E53908** (corrected from #d9480f — the sheet's label≠its pixels), lowercase `planmovies` (Poppins 800, plan=cream + movies=ember), slogan "Get the row together." Wired into index.html — LOCAL, not pushed.
+- Logo Session 17 (2026-05-29): hero lockup LEFT-aligned (whole hero on one spine = "movie rows" depth illusion); FILL SYSTEM live — the hero mark's seats fill ember with real RSVPs (open=#6e3a26 dim-ember, starts at seat 1, capped at 5 milestone, true count in text); favicon + nav unified to 5 solid-ember tabs (seatRow3 removed). `renderHeroRow()` hooked into `updateLandingHeadcount`.
+- Logo Rangers: `rangers/logo/` — 4 sessions (03 = color gold-vs-red; 04 = alignment + fill system, Logo Rangers + Family personas panel). Run via `/logo-rangers`.
+- logo-maker skill: `.claude/skills/logo-maker/`. Memory rewritten session 16 (31→14 validated + 10 dead). Concept + color locked. Pipeline: Imagen → rembg → transparent PNG.
+- Image-gen pipeline established: Imagen on FLAT bg → `scripts/cutout.py` (rembg, needs `pip install`) → `assets/cut/`. Reusable for all app artwork.
+- impeccable skill: v3.5.0 (updated session 16 from v2.1.1). Global `~/.claude`. `.impeccable.md` refreshed (ember brand, 5-arch mark, Poppins lowercase).
 - og:image share card (not favicon) is the branding surface that drives group-chat tap-through. See product-09.
 - Crew hero is playable: tap opens official trailer inline. No modal, no new page.
 - Landing page: carousel dots replaced by crew avatars. Director badge on organizer. "Jordan & Sarai are going" stays below.
