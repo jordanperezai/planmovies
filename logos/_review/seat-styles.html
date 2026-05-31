@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — seat style explorations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ember:#e53908; --bright:#ff6326; --dim:#b32c06; --cool:#c9582f;
+    --cream:#f3f1ec; --bg:#07080a; --card:#111418; --line:rgba(255,255,255,.08);
+    --muted:#8a8880; --txt:#e9e7e2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:Inter,sans-serif;padding:32px 20px 80px;line-height:1.5}
+  h1{font-family:Poppins,sans-serif;font-weight:800;font-size:22px;color:var(--cream);margin-bottom:4px}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:36px}
+  h2{font-family:Inter;font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--bright);margin:40px 0 4px}
+  .note{color:var(--muted);font-size:12.5px;margin-bottom:18px;max-width:640px}
+  .wrap{max-width:960px;margin:0 auto}
+
+  /* size-test grid */
+  .grid{display:grid;grid-template-columns:140px 1fr 90px 110px 120px;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+  .grid .hd{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+  .cell{padding:18px 12px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+  .cell.lbl{justify-content:flex-start;font-size:13px;font-weight:500;color:var(--cream)}
+  .cell.lbl small{display:block;color:var(--muted);font-size:11px;font-weight:400;margin-top:2px}
+  .row-last .cell{border-bottom:none}
+  .tile{background:var(--bg);border-radius:4px;padding:0;display:flex;align-items:center;justify-content:center}
+  .white{background:#fff;border-radius:6px;padding:8px 12px;display:flex;align-items:center;justify-content:center}
+
+  /* lockup compare */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .panel{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:0;overflow:hidden}
+  .panel .ph{display:flex;align-items:center;justify-content:center;height:200px;background:radial-gradient(ellipse 90% 70% at 50% 40%,rgba(229,57,8,.10),transparent 70%),var(--bg)}
+  .panel .pf{padding:12px 14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+  .panel .pf b{color:var(--cream);font-weight:600}
+  .lock{display:flex;flex-direction:column;gap:7px}
+  .lock.left{align-items:flex-start;text-align:left}
+  .lock.center{align-items:center;text-align:center}
+  .wm{font-family:Poppins;font-weight:800;font-size:26px;letter-spacing:-.5px;line-height:1}
+  .wm .p{color:var(--cream)} .wm .m{color:var(--ember)}
+  .slogan{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+  .cap{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cool);letter-spacing:1px;margin-top:2px}
+  @media(max-width:680px){.grid{grid-template-columns:108px 1fr 70px 84px;}.grid .c-white{display:none}.compare{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>seat styles — pick board</h1>
+  <div class="sub">Three things to decide. Everything tested at the size it actually ships at. The favicon column is where detail lives or dies.</div>
+
+  <!-- ============ SECTION 1: SEAT DETAIL ============ -->
+  <h2>1 · Seat detail</h2>
+  <div class="note">Does a line inside each seat read more like a theater seat? Watch the small columns. At 16px the mark must still say "a row of seats" before it says anything else.</div>
+  <div class="grid" id="grid-detail">
+    <div class="hd">Style</div>
+    <div class="hd">Hero · 64px (gradient)</div>
+    <div class="hd">Nav · 18px</div>
+    <div class="hd">Favicon · 16px</div>
+    <div class="hd c-white">On white · 22px</div>
+  </div>
+
+  <!-- ============ SECTION 2: ALIGNMENT ============ -->
+  <h2>2 · Row alignment</h2>
+  <div class="note">Left was the panel's pick (a row reads left-to-right, asymmetry makes the theater feel like it has depth). Your read: centered puts you mid-row, in the middle of the screen, not off to the side. Both below.</div>
+  <div class="compare" id="compare-align"></div>
+
+  <!-- ============ SECTION 3: FILL STATE ============ -->
+  <h2>3 · What the logo says</h2>
+  <div class="note">Left: the mark is always the full 5 solid seats (constant identity — favicon, nav, app icon). Right: the mark is a live counter that fills as the crew RSVPs (open = outline, filled = solid). The landing currently uses the live version.</div>
+  <div class="compare" id="compare-fill"></div>
+</div>
+
+<script>
+let UID = 0;
+// Locked geometry: viewBox 216x36, 5 tabs, W=40, gap=4, r=12.
+function seatPath(i){
+  const x = i*44;
+  return `M${x},36 L${x},12 A12,12 0 0 1 ${x+12},0 L${x+28},0 A12,12 0 0 1 ${x+40},12 L${x+40},36 Z`;
+}
+function detailSVG(i, style){
+  if(style==='clean') return '';
+  const cx = i*44 + 20, x = i*44;
+  let s = `<line x1="${cx}" y1="6" x2="${cx}" y2="33" stroke="#b32c06" stroke-width="2.4" stroke-linecap="round"/>`;
+  if(style==='recliner'){
+    s += `<line x1="${x+8}" y1="22" x2="${x+32}" y2="22" stroke="#b32c06" stroke-width="2.4" stroke-linecap="round"/>`;
+  }
+  return s;
+}
+// mode: 'solid' | 'outline' | 'mix3'   style: 'clean'|'seam'|'recliner'
+function seatRow({style='clean', mode='solid', grad=false, h=36, onWhite=false}){
+  const id = 'eg' + (UID++);
+  const ember = '#e53908';
+  const strokeCol = onWhite ? '#e53908' : '#c9582f';
+  let defs = '';
+  let fillAttr = ember;
+  if(grad){
+    defs = `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6326"/><stop offset="1" stop-color="#e53908"/></linearGradient></defs>`;
+    fillAttr = `url(#${id})`;
+  }
+  let seats = '';
+  for(let i=0;i<5;i++){
+    const filled = (mode==='solid') || (mode==='mix3' && i<3);
+    if(filled){
+      seats += `<path d="${seatPath(i)}" fill="${fillAttr}"/>`;
+      seats += detailSVG(i, style);
+    } else {
+      seats += `<path d="${seatPath(i)}" fill="none" stroke="${strokeCol}" stroke-width="3"/>`;
+    }
+  }
+  const w = Math.round(h*6);
+  return `<svg viewBox="-2 -2 220 40" width="${w}" height="${Math.round(h*40/36)}" xmlns="http://www.w3.org/2000/svg">${defs}${seats}</svg>`;
+}
+
+// ---- Section 1 ----
+const styles = [
+  {key:'clean', name:'Clean (current)', desc:'rounded tab, no detail'},
+  {key:'seam', name:'Center seam', desc:'one vertical line = seat-back split'},
+  {key:'recliner', name:'Recliner', desc:'seam + cushion base line'},
+];
+const grid = document.getElementById('grid-detail');
+styles.forEach((st, idx) => {
+  const last = idx===styles.length-1 ? 'row-last' : '';
+  const lbl = document.createElement('div');
+  lbl.className = `cell lbl ${last}`;
+  lbl.innerHTML = `${st.name}<small>${st.desc}</small>`;
+  grid.appendChild(lbl);
+
+  const hero = document.createElement('div'); hero.className=`cell ${last}`;
+  hero.innerHTML = seatRow({style:st.key, mode:'solid', grad:true, h:64}); grid.appendChild(hero);
+
+  const nav = document.createElement('div'); nav.className=`cell ${last}`;
+  nav.innerHTML = seatRow({style:st.key, mode:'solid', h:18}); grid.appendChild(nav);
+
+  const fav = document.createElement('div'); fav.className=`cell ${last}`;
+  fav.innerHTML = `<span class="tile" style="width:34px;height:34px">${seatRow({style:st.key, mode:'solid', h:16})}</span>`;
+  grid.appendChild(fav);
+
+  const wht = document.createElement('div'); wht.className=`cell c-white ${last}`;
+  wht.innerHTML = `<span class="white">${seatRow({style:st.key, mode:'solid', h:22, onWhite:true})}</span>`;
+  grid.appendChild(wht);
+});
+
+// ---- Section 2: alignment ----
+function lockup(align){
+  return `<div class="lock ${align}">
+    ${seatRow({style:'clean', mode:'mix3', grad:true, h:30})}
+    <div class="wm"><span class="p">plan</span><span class="m">movies</span></div>
+    <div class="slogan">Get the row together.</div>
+  </div>`;
+}
+document.getElementById('compare-align').innerHTML = `
+  <div class="panel"><div class="ph">${lockup('left')}</div><div class="pf"><b>Left-aligned</b> — current. Row reads L→R, theater-depth illusion.</div></div>
+  <div class="panel"><div class="ph">${lockup('center')}</div><div class="pf"><b>Centered</b> — your idea. You're seated mid-theater, dead center of the screen.</div></div>
+`;
+
+// ---- Section 3: fill state ----
+document.getElementById('compare-fill').innerHTML = `
+  <div class="panel"><div class="ph"><div class="lock center">${seatRow({style:'clean', mode:'solid', grad:true, h:34})}<div class="wm" style="font-size:20px;margin-top:6px"><span class="p">plan</span><span class="m">movies</span></div></div></div><div class="pf"><b>Constant — all 5 solid.</b> The identity. Same everywhere, every time.</div></div>
+  <div class="panel"><div class="ph"><div class="lock center">${seatRow({style:'clean', mode:'mix3', grad:true, h:34})}<div class="cap">3 OF 5 SEATS SAVED</div></div></div><div class="pf"><b>Live fill — 3 of 5.</b> The mark counts the crew. Fills as people RSVP.</div></div>
+`;
+</script>
+</body>
+</html>

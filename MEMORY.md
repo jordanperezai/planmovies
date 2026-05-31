@@ -40,12 +40,12 @@
 - var(--mono) = data only. 8 type scale tokens: --text-xs(11px) through --text-3xl(clamp). Tokenized throughout.
 - Single-scroll three-act page SHIPPED (session 12). No Movie tab. Timeline + category toggle. Commit 3e1e9af.
 - Audit score 15.5/20 (session 13). All P0-P3 fixes applied to index.html (uncommitted). Key: amber-dim token, toast live region, heading semantics, non-blocking Supabase, scaleX progress bar, 44px tap targets, safe-area nav.
-- Logo LOCKED (LIVE): 5-tab row mark, Ember `#e53908`, lowercase `planmovies` Poppins 800, "Get the row together." Nav=wordmark-only. Fill: outlines open, solid ember filled. Lit-deep gradient (#ff6326→#e53908) on filled seats + "movies" + CTA (contrast 4.69-6.74:1, both AA). Landing redesigned: poster=full-bleed backdrop, content=lower third, 23/40→pending redeploy.
+- Logo LOCKED: 5-tab row mark, Ember `#e53908`, lowercase `planmovies` Poppins 800, "Get the row together." Nav=wordmark-only, left-aligned. Open seat = GREY outline (#6b7078, 4.02:1); filled = solid ember; stroke transitions grey→ember as the row fills (ember = a person, S20). Lit-deep gradient #1 LOCKED (#ff6326→#e53908) on filled seats + "movies" + CTA (4.69-6.74:1 AA). Landing: poster full-bleed backdrop, CENTERED hero, lower-third content. Favicon flat solid. Local, pending deploy.
 - Seat-fill takeover live (2026-05-30, `a0534d6`): full-screen on RSVP — row fills to live count, your seat glows, "You're in, / [Name]" in ember. ~1.5s, tap-to-skip, reduced-motion safe. The peak-end moment + Carmen/Ray's loud confirmation.
 - World+sheet concept (`logos/_review/world-sheet-mock.html`): Disclosure Day world full-screen + peeking bottom sheet for crew/logistics. Mockup only. Build on crew page first.
 - PUBLIC LAUNCH June 1 2026 (decided session 19): PlanMovies = the business/platform. Disclosure Day = flagship event (scope C: anyone creates their own crew in their city). Stack stays single-HTML. See `memory/project_launch-pivot-public-platform.md`.
 - Security hardened (session 19): Phase 1 DB lockdown live — payments/organizers locked (no public access), events=SELECT-only. 6 XSS src sinks escaped (photo_url + one_movie_poster). rsvps ownership migration pending (before Reddit post).
-- Twilio Verify: PlanMovies service created, Fraud Guard on, US+Canada SMS geo-locked. Pending: trial upgrade + Supabase Auth config (Jordan's task). Credentials go in Supabase dashboard ONLY, never in .env or index.html.
+- Twilio Verify: DONE (S20) — upgraded out of trial, Fraud Guard on, US+Canada SMS geo-locked, Supabase Phone provider = Twilio Verify (enabled). Credentials live in Supabase dashboard ONLY, never in .env or index.html.
 - Logo Rangers: `rangers/logo/` — 4 sessions (03 = color; 04 = alignment + fill). Critique vindicated panel: open-seat outline was the Rangers' call all along; dim-fill override failed contrast.
 - logo-maker skill: `.claude/skills/logo-maker/`. Memory rewritten session 16 (31→14 validated + 10 dead). Concept + color locked. Pipeline: Imagen → rembg → transparent PNG.
 - Image-gen pipeline established: Imagen on FLAT bg → `scripts/cutout.py` (rembg, needs `pip install`) → `assets/cut/`. Reusable for all app artwork.
@@ -58,11 +58,16 @@
 - Codex adversarial review standard: run every session. Found 11 issues in session 12 (2 XSS P0s). Fixed all.
 - --gold-dim bumped #8a7234→#9a8240 (WCAG AA). --amber-dim token added.
 - Zone backgrounds: .zone-social (gold tint), .zone-form (warm), .zone-movie (blue), .zone-evidence (blue→gold).
-- RSVP form: name + going + party size + submit. Party size hidden when "Can't Make It". Phone post-RSVP optional.
+- RSVP form: name + going + party size + submit, then phone-OTP gate at commit (S20). Phone verification now REQUIRED to RSVP (was post-RSVP optional). Party size hidden when "Can't Make It".
 - One Movie Identity: profile tab, TMDB search, poster badge on crew avatars. Needs TMDB API key (Jordan's task).
 - activity_feed table live. crew-photos bucket live. one_movie columns in rsvps.
 - planmovies-api Worker: /api/og live with RSVP count SVG. Static backdrop still og:image (iMessage/WhatsApp don't support SVG).
 - scripts/ directory: 4 node scripts for batch HTML/CSS restructuring. Reference before similar large-scale edits.
+- Phone-OTP RSVP gate (S20, local): #auth-gate modal fires at commit (submitRSVP→requireAuth→resumeRSVP), stamps user_id; returning verified users skip via boot getSession. Supabase Auth → Twilio Verify.
+- Organizer auth (S20): "phone login = admin." organizer_admins table + is_organizer() SECURITY DEFINER. Dashboard mutations gated via requireAuth(...,'organizer'); DB enforces auth.uid()=user_id OR is_organizer().
+- phase-2 RLS lockdown WRITTEN, not applied: migrations/2026-05-30_phase2_rsvp_lockdown.sql (+rollback). Locks rsvps/seat_assignments/activity_feed; ticket_status DEFERRED (worker key unconfirmed). Apply LAST, client-first.
+- Codex two-brain caught a LIVE P0 the Claude-only pass missed: activity_feed stored XSS (<strong>-allowlist let event-handler attrs through, rendered as innerHTML). Patched. Run agents FOREGROUND when you need output (LEARNINGS #12).
+- Bug-logging fixed at source: log-on-discovery rule + pre-compact nudge, ported UP to Zordon; Codex-foreground rule → global platform-gotchas. bugs/ was empty since day 1 (logging was wrap-up-only). 4 bugs logged S20.
 
 ## Warm (reference)
 

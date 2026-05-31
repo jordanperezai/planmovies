@@ -85,6 +85,12 @@ Root cause: Trusted aesthetic reasoning ("dim ember reads warm") over a measurab
 Rule: When overriding a ranger or critic panel's concrete recommendation, verify with a number, not a vibe. For color, run the contrast ratio. If it doesn't clear the bar, you don't override.
 Enforced in: HANDOFF.md § Things NOT to Do #16; logo-maker/memory.md Validated Principles.
 
+**#12 Agents you need OUTPUT from run FOREGROUND — background mode is dispatch-and-poll — 2026-05-30**
+Mistake: Launched the Codex adversarial review via the codex-rescue agent with `run_in_background: true`. It dispatched an async Codex task and returned only a task ID + "check /codex:status." I then couldn't read the result: `/codex:status` is user-gated (disable-model-invocation) and `TaskOutput` doesn't track Codex-internal task IDs. I wrongly concluded Codex was "broken" and told the user to run a command — which they'd never had to do before.
+Root cause: `run_in_background: true` makes an agent fire-and-forget. For Codex the result then lives behind a user-only status command, unreachable by the model. Re-running the SAME agent in the FOREGROUND blocked until Codex finished and returned the full findings inline.
+Rule: If you need an agent's OUTPUT in this conversation (a review, a diagnosis, a result you'll act on), run it FOREGROUND (omit `run_in_background`). Reserve background for true fire-and-forget work the harness will notify you about. If you're about to tell the user to fetch a result via a command, that's the signal you used the wrong mode.
+Enforced in: agent-usage default; CLAUDE.md § Two-Brain Workflow.
+
 ---
 
 ### Format

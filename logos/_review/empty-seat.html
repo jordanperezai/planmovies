@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanMovies — empty seat treatments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@800&display=swap" rel="stylesheet">
+<style>
+  :root{--ember:#e53908;--bright:#ff6326;--cream:#f3f1ec;--bg:#07080a;--card:#111418;--line:rgba(255,255,255,.08);--muted:#8a8880;--txt:#e9e7e2}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:Inter,sans-serif;padding:32px 20px 80px;line-height:1.5}
+  h1{font-family:Poppins,sans-serif;font-weight:800;font-size:22px;color:var(--cream);margin-bottom:4px}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:28px;max-width:660px}
+  .wrap{max-width:900px;margin:0 auto}
+  .grid{display:grid;grid-template-columns:200px 1fr 92px 100px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+  .hd{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:11px 14px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+  .cell{padding:20px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+  .cell.lbl{flex-direction:column;align-items:flex-start;justify-content:center;gap:3px}
+  .cell.lbl .nm{font-size:14px;font-weight:600;color:var(--cream)}
+  .cell.lbl .ds{font-size:11.5px;color:var(--muted)}
+  .cell.lbl .tag{font-size:10px;font-weight:600;letter-spacing:.5px;padding:2px 7px;border-radius:20px;margin-top:3px}
+  .tag.good{background:rgba(80,200,120,.14);color:#6cdc92}
+  .tag.warn{background:rgba(229,160,8,.14);color:#e5a838}
+  .tag.bad{background:rgba(229,57,8,.16);color:#ff7a52}
+  .row-last .cell{border-bottom:none}
+  .tile{background:var(--bg);border-radius:4px;display:flex;align-items:center;justify-content:center}
+  .ratio{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cream);text-align:center;line-height:1.7}
+  .ratio small{color:var(--muted);font-size:10px}
+  @media(max-width:640px){.grid{grid-template-columns:150px 1fr 70px}.grid .c-fav{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>empty seat — how should it look?</h1>
+  <div class="sub">Each row shows the real landing state: 3 filled (lit ember), 2 empty. The empty treatment must (a) be visible on the dark background and (b) stay clearly different from a filled seat. "Contrast" = empty seat vs the background. The note says how empty reads against filled.</div>
+  <div class="grid" id="grid">
+    <div class="hd">Treatment</div>
+    <div class="hd">In context · 3 of 5 (hero)</div>
+    <div class="hd c-fav">Favicon 16px</div>
+    <div class="hd">Empty vs bg</div>
+  </div>
+</div>
+
+<script>
+let UID=0;
+function seatPath(i){const x=i*44;return `M${x},36 L${x},12 A12,12 0 0 1 ${x+12},0 L${x+28},0 A12,12 0 0 1 ${x+40},12 L${x+40},36 Z`;}
+// empty: 'ember-outline'|'grey-outline'|'grey-solid'|'grey-rim'
+function seatRow({empty='ember-outline', grad=false, h=36}){
+  const id='eg'+(UID++); let defs=''; let fill='#e53908';
+  if(grad){defs=`<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6326"/><stop offset="1" stop-color="#e53908"/></linearGradient></defs>`;fill=`url(#${id})`;}
+  let s='';
+  for(let i=0;i<5;i++){
+    const d=seatPath(i);
+    if(i<3){ s+=`<path d="${d}" fill="${fill}"/>`; continue; }
+    if(empty==='ember-outline') s+=`<path d="${d}" fill="none" stroke="#c9582f" stroke-width="3"/>`;
+    else if(empty==='grey-outline') s+=`<path d="${d}" fill="none" stroke="#6b7078" stroke-width="3"/>`;
+    else if(empty==='grey-solid') s+=`<path d="${d}" fill="#5c616a"/>`;
+    else if(empty==='grey-rim') s+=`<path d="${d}" fill="#43474e" stroke="#c9582f" stroke-width="2.4"/>`;
+  }
+  const w=Math.round(h*6);
+  return `<svg viewBox="-2 -2 220 40" width="${w}" height="${Math.round(h*40/36)}">${defs}${s}</svg>`;
+}
+const rows=[
+  {empty:'ember-outline', nm:'Ember outline', ds:'current — hollow ember ring', ratio:'4.69:1', tag:'good', tagtxt:'distinct by SHAPE', note:'Empty reads as a warm, reserved seat. Hollow vs solid = instant read, even at 16px.'},
+  {empty:'grey-outline', nm:'Grey outline', ds:'hollow neutral ring', ratio:'4.02:1', tag:'good', tagtxt:'distinct by SHAPE', note:'Keeps the shape cue. Cooler, reads "unlit / not active yet" then lights ember. Strongest "lights up" feel.'},
+  {empty:'grey-solid', nm:'Grey solid', ds:'filled dim grey seat', ratio:'3.22:1', tag:'warn', tagtxt:'distinct by COLOR only', note:'Looks like a real dark seat. But filled vs empty is now ~1.5:1 + hue only — softer read small.'},
+  {empty:'grey-rim', nm:'Grey + ember rim', ds:'dim grey fill, ember edge', ratio:'4.69:1', tag:'good', tagtxt:'shape + warmth', note:'Hybrid: body of a seat, ember edge keeps it warm and visible. Busiest of the four.'},
+];
+const g=document.getElementById('grid');
+rows.forEach((r,idx)=>{
+  const last=idx===rows.length-1?'row-last':'';
+  const lbl=document.createElement('div');lbl.className=`cell lbl ${last}`;
+  lbl.innerHTML=`<div class="nm">${r.nm}</div><div class="ds">${r.ds}</div><div class="ds" style="margin-top:6px">${r.note}</div>`;
+  g.appendChild(lbl);
+  const ctx=document.createElement('div');ctx.className=`cell ${last}`;
+  ctx.innerHTML=seatRow({empty:r.empty,grad:true,h:46});g.appendChild(ctx);
+  const fav=document.createElement('div');fav.className=`cell c-fav ${last}`;
+  fav.innerHTML=`<span class="tile" style="width:34px;height:34px">${seatRow({empty:r.empty,h:16})}</span>`;g.appendChild(fav);
+  const rt=document.createElement('div');rt.className=`cell ${last}`;
+  rt.innerHTML=`<div class="ratio">${r.ratio}<br><small>vs bg</small><br><span class="tag ${r.tag}">${r.tagtxt}</span></div>`;g.appendChild(rt);
+});
+</script>
+</body>
+</html>

@@ -66,3 +66,4 @@ Every journal entry follows the magazine format:
 | 14 | 2026-05-29 | [The Find](2026-05-29-01-the-find.md) |
 | 15 | 2026-05-30 | [The Correction](2026-05-30-01-the-correction.md) |
 | 16 | 2026-05-30 | [The Launch](2026-05-30-02-the-launch.md) |
+| 17 | 2026-05-30 | [The Second Engine](2026-05-30-03-the-second-engine.md) |

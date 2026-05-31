@@ -1,0 +1,77 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gradient temperatures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#e53908;--gold-warm:#fb5316;--gold-cool:#c9582f;--gold-bright:#ff6326;--cream:#f3f1ec;--bg:#07080a;--text-inverse:#07080a;--text-2:#a8a29a}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);font-family:'Inter',sans-serif;color:var(--cream);padding:22px 18px 30px}
+.card{border:1px solid #1c1f24;border-radius:14px;padding:20px 18px;margin-bottom:16px;background:#0c0e12}
+.label{font-family:'Inter';font-weight:700;font-size:13px;letter-spacing:1px;color:var(--cream);text-transform:uppercase;margin-bottom:3px}
+.sub{font-family:'Inter';font-weight:500;font-size:12px;color:var(--text-2);margin-bottom:16px}
+.mark{width:128px;height:auto;overflow:visible;display:block;margin-bottom:12px}
+.mark .seat{fill:rgba(229,57,8,0.06);stroke:var(--gold-cool);stroke-width:2.5}
+.word{font-family:'Poppins';font-weight:800;letter-spacing:-1.1px;font-size:26px;line-height:1;margin-bottom:16px}
+.cta{width:100%;max-width:320px;padding:15px;font-family:'Inter';font-weight:700;font-size:15px;color:var(--text-inverse);border:none;border-radius:12px;box-shadow:0 8px 24px rgba(229,57,8,0.22)}
+/* PRIMARY — lit-deep */
+.g1 .seat.filled{fill:url(#e1);stroke:var(--gold)}
+.g1 .mv{background:linear-gradient(180deg,#ff6326,#e53908);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.g1 .cta{background:linear-gradient(180deg,#ff6326 0%,#e53908 55%,#e53908 100%)}
+/* WARM — burnt-orange */
+.g2 .seat.filled{fill:url(#e2);stroke:var(--gold)}
+.g2 .mv{background:linear-gradient(180deg,#fb5316,#e53908);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.g2 .cta{background:linear-gradient(180deg,#fb5316 0%,#e53908 60%,#e53908 100%)}
+/* LIT-COOL — cooler shadow */
+.g3 .seat.filled{fill:url(#e3);stroke:var(--gold)}
+.g3 .mv{background:linear-gradient(180deg,#ff6326,#c9582f);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.g3 .cta{background:linear-gradient(180deg,#ff6326 0%,#e53908 70%,#c9582f 100%)}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<linearGradient id="e1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6326"/><stop offset="1" stop-color="#e53908"/></linearGradient>
+<linearGradient id="e2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fb5316"/><stop offset="1" stop-color="#e53908"/></linearGradient>
+<linearGradient id="e3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6326"/><stop offset="0.7" stop-color="#e53908"/><stop offset="1" stop-color="#c9582f"/></linearGradient>
+</defs></svg>
+
+<div class="card g1">
+  <div class="label">1 &middot; Primary &mdash; lit-deep</div>
+  <div class="sub">#ff6326 &rarr; #e53908 &nbsp;(the one that's live now)</div>
+  <svg class="mark" viewBox="0 0 216 36" aria-hidden="true">
+    <path class="seat filled" d="M0,36 L0,12 A12,12 0 0 1 12,0 L28,0 A12,12 0 0 1 40,12 L40,36 Z"/>
+    <path class="seat filled" d="M44,36 L44,12 A12,12 0 0 1 56,0 L72,0 A12,12 0 0 1 84,12 L84,36 Z"/>
+    <path class="seat" d="M88,36 L88,12 A12,12 0 0 1 100,0 L116,0 A12,12 0 0 1 128,12 L128,36 Z"/>
+    <path class="seat" d="M132,36 L132,12 A12,12 0 0 1 144,0 L160,0 A12,12 0 0 1 172,12 L172,36 Z"/>
+    <path class="seat" d="M176,36 L176,12 A12,12 0 0 1 188,0 L204,0 A12,12 0 0 1 216,12 L216,36 Z"/>
+  </svg>
+  <div class="word"><span style="color:var(--cream)">plan</span><span class="mv">movies</span></div>
+  <button class="cta">COUNT ME IN</button>
+</div>
+
+<div class="card g2">
+  <div class="label">2 &middot; Warm &mdash; burnt-orange</div>
+  <div class="sub">#fb5316 &rarr; #e53908 &nbsp;(less neon, more burnt)</div>
+  <svg class="mark" viewBox="0 0 216 36" aria-hidden="true">
+    <path class="seat filled" d="M0,36 L0,12 A12,12 0 0 1 12,0 L28,0 A12,12 0 0 1 40,12 L40,36 Z"/>
+    <path class="seat filled" d="M44,36 L44,12 A12,12 0 0 1 56,0 L72,0 A12,12 0 0 1 84,12 L84,36 Z"/>
+    <path class="seat" d="M88,36 L88,12 A12,12 0 0 1 100,0 L116,0 A12,12 0 0 1 128,12 L128,36 Z"/>
+    <path class="seat" d="M132,36 L132,12 A12,12 0 0 1 144,0 L160,0 A12,12 0 0 1 172,12 L172,36 Z"/>
+    <path class="seat" d="M176,36 L176,12 A12,12 0 0 1 188,0 L204,0 A12,12 0 0 1 216,12 L216,36 Z"/>
+  </svg>
+  <div class="word"><span style="color:var(--cream)">plan</span><span class="mv">movies</span></div>
+  <button class="cta">COUNT ME IN</button>
+</div>
+
+<div class="card g3">
+  <div class="label">3 &middot; Lit-cool &mdash; cooler shadow</div>
+  <div class="sub">#ff6326 &rarr; #e53908 &rarr; #c9582f &nbsp;(most 3D depth)</div>
+  <svg class="mark" viewBox="0 0 216 36" aria-hidden="true">
+    <path class="seat filled" d="M0,36 L0,12 A12,12 0 0 1 12,0 L28,0 A12,12 0 0 1 40,12 L40,36 Z"/>
+    <path class="seat filled" d="M44,36 L44,12 A12,12 0 0 1 56,0 L72,0 A12,12 0 0 1 84,12 L84,36 Z"/>
+    <path class="seat" d="M88,36 L88,12 A12,12 0 0 1 100,0 L116,0 A12,12 0 0 1 128,12 L128,36 Z"/>
+    <path class="seat" d="M132,36 L132,12 A12,12 0 0 1 144,0 L160,0 A12,12 0 0 1 172,12 L172,36 Z"/>
+    <path class="seat" d="M176,36 L176,12 A12,12 0 0 1 188,0 L204,0 A12,12 0 0 1 216,12 L216,36 Z"/>
+  </svg>
+  <div class="word"><span style="color:var(--cream)">plan</span><span class="mv">movies</span></div>
+  <button class="cta">COUNT ME IN</button>
+</div>
+</body></html>

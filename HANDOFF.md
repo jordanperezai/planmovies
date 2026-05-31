@@ -1,48 +1,46 @@
 # HANDOFF.md -- PlanMovies Session Handoff
 
 > **Purpose:** Bring a new session up to speed instantly.
-> **Last updated:** 2026-05-30 (Session 19)
+> **Last updated:** 2026-05-30 (Session 20)
 > **Not for:** Permanent knowledge (-> MEMORY.md), mistakes (-> LEARNINGS.md).
 
 ## Where We Left Off
 
-Session 19 complete. Two things are local and waiting to ship: the rebuilt landing (poster as full-bleed backdrop, lit-deep gradient, lower-third content) and six XSS fixes. Both sit in index.html, uncommitted. The DB lockdown Phase 1 is already live in Supabase (payments/organizers/events locked). The landing redesign was verified at 390/430/1280px.
+Session 20 complete. The phone-OTP RSVP gate is BUILT and verified (local, uncommitted): a `#auth-gate` modal fires at "Count Me In", stamps `user_id`, and Jordan's organizer actions reuse the same gate (phone login = admin via `is_organizer()`). Twilio is fully set up on Jordan's side (upgraded out of trial; Supabase Phone provider = Twilio Verify; enabled). Gradient #1 (lit-deep) is locked. The hero is now CENTERED (nav stays left) and empty seats are GREY outline (#6b7078), filling to ember as the crew RSVPs.
 
-**Jordan is in the middle of Twilio setup:** Verify service created, Fraud Guard on, Geo permissions (US + Canada SMS) saved. Blocked on two things he has to do himself:
-1. Upgrade out of Twilio trial (top bar says "Upgrade").
-2. Paste Account SID + Auth Token + Verify Service SID into Supabase → Authentication → Providers → Phone → Twilio Verify.
+A Codex foreground review found and we PATCHED a live P0 (activity_feed stored XSS). The phase-2 RLS lockdown migration is written and ready (`migrations/2026-05-30_phase2_rsvp_lockdown.sql`) but NOT applied — it goes LAST in the deploy sequence. Three real issues are deferred and logged in `bugs/` (self-set paid, unbounded rows, ticket_status worker key).
 
-**Gradient temperature not yet picked.** Jordan needs to open `logos/_review/gradient-temps.html` and pick 1, 2, or 3 before the landing ships.
+Nothing is deployed. The live DB has only been READ (policy names verified, not changed). Everything is in the working tree, uncommitted.
 
-**June 1 is the public launch target.** That's tomorrow. The clock is real.
+**The whole thing is one deploy sequence away from launch.** It MUST run in order (client first, DB last), or the live family flow breaks in the gap between.
 
-## Immediate Next Actions
+## Immediate Next Actions (the deploy sequence — run in order)
 
-1. **Jordan: pick gradient temperature** (open `logos/_review/gradient-temps.html`, pick 1/2/3) → I apply it and commit.
-2. **Jordan: finish Twilio** (upgrade trial + paste 3 values into Supabase Auth). I wire the RSVP flow and we test a real code together.
-3. **Commit + deploy landing rebuild** (index.html is uncommitted — 88 insertions, 62 deletions). One commit, auto-deploys to planmovies.com.
-4. **rsvps ownership lockdown migration** — drop public DELETE/UPDATE on rsvps, scope to `auth.uid()`. Gate before Reddit post. Adversarial test: anon DELETE must be rejected.
-5. **Multi-tenant wiring** — wire event_id into fetchAttendees/submitRSVP/realtime; minimal create-crew form; seed 5-10 city events. Can start in parallel with Twilio setup.
-6. **Reddit post draft** — copy and subreddit strategy. Ready to draft anytime.
-7. **Jordan: Supabase Pro upgrade** (~$25/mo) — removes the 200-connection realtime hard wall, no auto-pause. Do before posting.
+1. **Commit + push** the working tree (index.html gate + brand, migration, bugs, docs). Cloudflare auto-deploys. Confirm planmovies.com is live. *(Nothing is committed yet — Jordan says when.)*
+2. **Real OTP test:** Jordan RSVPs on the LIVE site with his phone. Confirms the Twilio round-trip WHILE the old permissive policies are still live, so a failure is loud, not masked.
+3. **Apply the phase-2 migration** → insert Jordan's verified uid into `organizer_admins` → re-run `get_advisors(security)` → confirm an anonymous DELETE on an rsvp row is rejected.
+4. **Delete the 3 legacy seed rows** (Jordan / Sarai Perez / Taylor) so re-RSVPs don't duplicate.
+5. **Deferred (logged in `bugs/`):** paid/ticket_secured column guard (before payments), per-user RSVP cap, ticket_status lockdown (after confirming the ticket-monitor worker key is service_role).
+6. **Still pending from S19:** multi-tenant event_id wiring + create-crew form + seed city events; Reddit post draft; Supabase Pro upgrade (Jordan).
 
 ## Goals
 
 **June 1 public launch:**
 - ✅ Single HTML file stays (no framework migration)
-- ✅ Phase 1 DB lockdown (payments/organizers/events locked — live)
-- ✅ XSS fixes (6 sinks — local, committed with landing)
-- ✅ Landing redesigned: poster backdrop, lit-deep gradient, lower third content (local, pending deploy)
-- ✅ Brand correct: #e53908, 5-arch mark, nav=wordmark-only
+- ✅ Phase 1 DB lockdown (payments/organizers/events — live)
+- ✅ XSS fixes (6 src sinks S19 + activity_feed stored XSS S20)
+- ✅ Landing: poster backdrop, lit-deep gradient (#1 LOCKED), centered hero, grey-outline empty seats (local)
+- ✅ Brand: #e53908, 5-arch mark, nav=wordmark-only, favicon flat solid
 - ✅ Seat-fill takeover on RSVP (live)
-- ✅ Twilio: Verify service created, Fraud Guard on, Geo (US+Canada SMS)
-- ☐ Gradient temperature picked + committed
-- ☐ Twilio: upgrade trial + Supabase Auth config (Jordan)
-- ☐ rsvps ownership lockdown (public DELETE/UPDATE dropped)
+- ✅ Twilio: upgraded, Supabase Phone provider = Twilio Verify, enabled
+- ✅ Phone-OTP RSVP gate built + organizer auth model (local)
+- ✅ Codex review done; P0 patched; P2s fixed; P1s deferred + logged
+- ✅ phase-2 RLS lockdown migration written (NOT applied)
+- ☐ Deploy sequence run (commit/push → OTP test → migration → seed cleanup)
 - ☐ Multi-tenant: event_id wired, create-crew form, city event rows seeded
 - ☐ Reddit post drafted + staged
 - ☐ Supabase Pro upgrade (Jordan)
-- ☐ Go/no-go gate: anon DELETE on live rsvp row rejected (verified)
+- ☐ Go/no-go gate: anon DELETE on live rsvp row rejected (verified post-migration)
 
 **After launch:**
 - Named Crew page + Founding Crew badge
@@ -69,7 +67,7 @@ Session 19 complete. Two things are local and waiting to ship: the rebuilt landi
 13. Don't make the center arch taller than the side arches. Looks like a middle finger.
 14. Don't use uppercase "PLANMOVIES" anywhere. Lowercase `planmovies`, Poppins 800.
 15. Don't use Clash Display. Removed; 0 uses.
-16. Don't put open seats as a dim ember FILL. It fails contrast (2.19:1 vs bg, 2.14:1 vs filled). Open seats are OUTLINES. This was the Logo Rangers' call all along.
+16. Open seats are OUTLINES, never a fill (a dim ember fill failed at 2.19:1). As of S20 the outline is GREY (#6b7078, 4.02:1), not ember — so ember exclusively means a filled seat = a person. Filled = solid ember; the stroke transitions grey→ember as the row fills. (Landing mark + seat-fill takeover both.)
 17. Don't put `flex:1` children inside the poster carousel — overflow at tall viewports. Crew-dots live in normal flow outside the carousel (fixed Session 18).
 18. Don't push the CTA gradient deep end to --gold-dim (#b32c06). That drops to 3.13:1 — fails AA. Clamp at base #e53908.
 19. Don't put Twilio credentials in .env or index.html. They live in Supabase Auth dashboard only.
