@@ -198,29 +198,63 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   padding: 28px 24px 28px;
   overflow: hidden;
 }
-.landing-poster {
-  max-height: 44vh;
-  width: auto;
-  max-width: 100%;
-  border-radius: 4px;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.6);
-  display: block;
+/* Path A: poster as full-bleed backdrop, content bottom-anchored in a lower third over a scrim. */
+.poster-carousel.landing-backdrop {
+  position: absolute; inset: 0; z-index: 0;
+  margin: 0; flex: none; min-height: 0; overflow: hidden;
 }
+.landing-backdrop .poster-carousel-track {
+  position: absolute; inset: 0; min-height: 0; display: block; overflow: hidden;
+}
+.landing-backdrop .poster-carousel-track img,
+.landing-backdrop .poster-carousel-track img.carousel-active {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 14%;
+  max-width: none; max-height: none; border-radius: 0; box-shadow: none;
+}
+.landing-backdrop::before {
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: linear-gradient(to top, var(--bg-deep) 0%, rgba(7,8,10,0.92) 30%, rgba(7,8,10,0.5) 60%, rgba(7,8,10,0.12) 100%);
+}
+.landing-backdrop::after {
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(7,8,10,0.6) 0%, rgba(7,8,10,0.15) 20%, transparent 40%);
+}
+.landing-lower { display: flex; flex-direction: column; align-items: center; width: 100%; text-align: center; }
+.landing-eyebrow-hero {
+  font-family: var(--display); font-weight: 600; letter-spacing: 3px; font-size: var(--text-sm);
+  color: var(--gold-warm); text-transform: uppercase; margin-bottom: 7px;
+}
+.lockup-mv {
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+  -webkit-background-clip: text; background-clip: text;
+  color: var(--gold); -webkit-text-fill-color: transparent;
+}
+.landing-crew-row { display: flex; align-items: center; gap: 6px; margin-top: 16px; padding-bottom: 10px; }
+.landing-crew-row .lc-avatar { width: 40px; height: 40px; position: relative; }
+.landing-crew-row:empty { display: none; }
+.lc-director-badge {
+  position: absolute; bottom: -7px; left: 50%; transform: translateX(-50%);
+  background: var(--gold); color: var(--text-inverse); font-family: var(--display);
+  font-weight: 700; font-size: 9px; letter-spacing: 1px; padding: 1px 6px; border-radius: 3px; white-space: nowrap;
+}
+.lc-avatar.lc-more { font-size: var(--text-xs); color: var(--text-tertiary); border-color: var(--border-subtle); }
 .landing-inner {
+  position: relative; z-index: 1;
   flex: 1 1 auto; min-height: 0;
-  width: 100%; max-width: 440px;
-  display: flex; flex-direction: column; align-items: flex-start;
-  text-align: left;
+  width: 100%; max-width: 460px; margin: 0 auto;
+  display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+  text-align: center;
 }
 .landing-lockup {
-  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
   margin-bottom: 14px;
 }
 .hero-mark { width: 168px; height: auto; overflow: visible; }
-/* Open seat = ember outline (a chair waiting); filled = solid ember (taken). Outline reads as a seat,
-   not a battery, and an ember-cool stroke clears 3:1 on near-black where a dim fill did not. */
-.hero-mark .seat { fill: rgba(229,57,8,0.06); stroke: var(--gold-cool); stroke-width: 2.5; transition: fill 0.55s cubic-bezier(0.22,1,0.36,1), stroke 0.4s ease; }
-.hero-mark .seat.filled { fill: var(--gold); stroke: var(--gold); }
+/* Open seat = GREY outline (unlit, not here yet); filled = solid ember (lit, someone arrived). Grey makes
+   ember mean "a person," and the grey->ember stroke transition is the row "lighting up." #6b7078 = 4.02:1 on near-black. */
+.hero-mark .seat { fill: none; stroke: #6b7078; stroke-width: 2.5; transition: fill 0.55s cubic-bezier(0.22,1,0.36,1), stroke 0.4s ease; }
+.hero-mark .seat.filled { fill: url(#ember-vert); stroke: var(--gold); }
 .lockup-word { font-family: 'Poppins', sans-serif; font-weight: 800; letter-spacing: -1.1px; font-size: 34px; line-height: 1; }
 .lockup-slogan { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; color: var(--text-secondary); }
 .lockup-status { font-family: var(--font); font-size: var(--text-sm); font-weight: 500; color: var(--text-secondary); margin-top: 2px; min-height: 1em; }
@@ -238,7 +272,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 @keyframes sf-in { from { opacity: 0 } to { opacity: 1 } }
 @keyframes sf-out { from { opacity: 1 } to { opacity: 0 } }
 .sf-mark { width: 300px; max-width: 80vw; height: auto; overflow: visible; }
-.sf-mark .sf-seat { fill: rgba(229,57,8,0.07); stroke: var(--gold-cool); stroke-width: 2.5;
+.sf-mark .sf-seat { fill: none; stroke: #6b7078; stroke-width: 2.5;
   transition: fill 0.35s cubic-bezier(0.22,1,0.36,1), stroke 0.35s; transform-box: fill-box; transform-origin: 50% 100%; }
 .sf-mark .sf-seat.filled { fill: var(--gold); stroke: var(--gold); animation: sf-pop 0.4s cubic-bezier(0.22,1,0.36,1); }
 .sf-mark .sf-seat.you { fill: var(--gold-bright); stroke: var(--gold-bright); filter: drop-shadow(0 0 9px rgba(255,99,38,0.65)); }
@@ -296,14 +330,13 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 .landing-title {
   font-family: var(--display);
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: 800;
-  letter-spacing: 3px;
+  letter-spacing: 1.5px;
   text-align: left;
-  line-height: 1;
-  margin-bottom: 10px;
+  line-height: 0.98;
+  margin-bottom: 8px;
   color: var(--cream);
-
 }
 .landing-credit {
   font-family: var(--display);
@@ -398,7 +431,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   font-size: var(--text-base);
   font-weight: 700;
   color: var(--text-inverse);
-  background: var(--gold);
+  background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 55%, var(--gold) 100%);
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
@@ -414,7 +447,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   transition: 0.5s;
 }
 .cta-btn:hover::before { transform: translateX(100%); }
-.cta-btn:hover { background: var(--gold-bright); transform: translateY(-1px); box-shadow: 0 8px 30px rgba(229,57,8,0.25); }
+.cta-btn:hover { background: linear-gradient(180deg, #ff7a42 0%, var(--gold-bright) 60%, var(--gold) 100%); transform: translateY(-1px); box-shadow: 0 8px 30px rgba(229,57,8,0.25); }
 .cta-btn:active { transform: translateY(0); }
 
 .landing-meta {
@@ -1802,6 +1835,38 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   line-height: 1.5;
 }
 
+/* PHONE-OTP GATE MODAL */
+.auth-gate {
+  position: fixed; inset: 0; z-index: 600;
+  display: none; align-items: center; justify-content: center; padding: 24px;
+  background: radial-gradient(ellipse 95% 60% at 50% 45%, rgba(229,57,8,0.16), transparent 70%), rgba(7,8,10,0.92);
+}
+.auth-gate.show { display: flex; animation: ag-in 0.25s ease; }
+@keyframes ag-in { from { opacity: 0 } to { opacity: 1 } }
+.auth-gate-card {
+  position: relative; width: 100%; max-width: 360px;
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius); padding: 28px 24px 22px; text-align: center;
+}
+.ag-close {
+  position: absolute; top: 6px; right: 6px;
+  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  background: none; border: none; color: var(--text-secondary);
+  font-size: 24px; line-height: 1; cursor: pointer;
+}
+.ag-close:hover { color: var(--text-primary); }
+.ag-step { display: none; }
+.ag-step.active { display: block; }
+.ag-heading { font-family: var(--font); font-size: var(--text-lg); font-weight: 700; color: var(--text-primary); }
+.ag-sub { font-family: var(--font); font-size: var(--text-base); color: var(--text-secondary); margin-top: 6px; line-height: 1.5; }
+.ag-ghost {
+  display: block; margin: 12px auto 0; min-height: 44px;
+  background: none; border: none; color: var(--gold-dim);
+  font-family: var(--font); font-size: var(--text-sm); cursor: pointer;
+}
+.ag-ghost:disabled { color: var(--text-tertiary); cursor: not-allowed; }
+@media (prefers-reduced-motion: reduce) { .auth-gate.show { animation: none; } }
+
 /* ACTIVITY FEED */
 .feed-list { display: flex; flex-direction: column; gap: 1px; }
 .feed-item {
@@ -2436,38 +2501,39 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
   <section id="landing" class="landing">
     <div class="landing-bg"></div>
 
+    <div class="poster-carousel landing-backdrop" id="poster-carousel">
+      <div class="poster-carousel-track" id="poster-carousel-track"></div>
+    </div>
+
     <div class="landing-inner">
 
     <div class="fade-up landing-lockup">
       <svg class="hero-mark" viewBox="0 0 216 36" aria-hidden="true">
+        <defs><linearGradient id="ember-vert" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6326"/><stop offset="1" stop-color="#e53908"/></linearGradient></defs>
         <path class="seat filled" d="M0,36 L0,12 A12,12 0 0 1 12,0 L28,0 A12,12 0 0 1 40,12 L40,36 Z"/>
         <path class="seat" d="M44,36 L44,12 A12,12 0 0 1 56,0 L72,0 A12,12 0 0 1 84,12 L84,36 Z"/>
         <path class="seat" d="M88,36 L88,12 A12,12 0 0 1 100,0 L116,0 A12,12 0 0 1 128,12 L128,36 Z"/>
         <path class="seat" d="M132,36 L132,12 A12,12 0 0 1 144,0 L160,0 A12,12 0 0 1 172,12 L172,36 Z"/>
         <path class="seat" d="M176,36 L176,12 A12,12 0 0 1 188,0 L204,0 A12,12 0 0 1 216,12 L216,36 Z"/>
       </svg>
-      <div class="lockup-word"><span style="color:var(--cream);">plan</span><span style="color:var(--gold);">movies</span></div>
+      <div class="lockup-word"><span style="color:var(--cream);">plan</span><span class="lockup-mv">movies</span></div>
       <div class="lockup-slogan">Get the row together.</div>
       <div class="lockup-status" id="row-status"></div>
     </div>
 
-    <div class="poster-carousel fade-up fade-up-d1" id="poster-carousel">
-      <button class="poster-carousel-nav prev" onclick="carouselPrev()" aria-label="Previous poster">&lsaquo;</button>
-      <button class="poster-carousel-nav next" onclick="carouselNext()" aria-label="Next poster">&rsaquo;</button>
-      <div class="poster-carousel-track" id="poster-carousel-track"></div>
-    </div>
+    <div class="landing-lower fade-up fade-up-d2">
+      <div class="landing-eyebrow-hero">Now Planning</div>
+      <h1 class="landing-title">DISCLOSURE DAY</h1>
+      <div class="landing-credit">A Steven Spielberg Film</div>
 
-    <div class="poster-carousel-dots" id="poster-carousel-dots"></div>
-    <h1 class="landing-title fade-up fade-up-d2">DISCLOSURE DAY</h1>
-    <div class="landing-credit fade-up fade-up-d2">A Steven Spielberg Film</div>
+      <div class="landing-when">
+        <div class="lw-date">FRI JUN 12 · 7:00 PM</div>
+        <div class="lw-venue">Regal Secaucus · Secaucus, NJ</div>
+      </div>
 
-    <div class="fade-up fade-up-d2 landing-when">
-      <div class="lw-date">FRI JUN 12 · 7:00 PM</div>
-      <div class="lw-venue">Regal Secaucus · Secaucus, NJ</div>
-    </div>
-
-    <div class="fade-up fade-up-d3" style="display:flex;flex-direction:column;align-items:flex-start;gap:10px;width:100%;max-width:340px;">
+      <div class="landing-crew-row" id="landing-crew-row"></div>
       <div class="landing-headcount" id="landing-headcount"></div>
+
       <div class="countdown-frame" id="countdown-frame">
         <div class="cf-sprocket"><span></span><span></span><span></span><span></span></div>
         <div class="cf-digits">
@@ -2482,7 +2548,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
         <div class="cf-sprocket"><span></span><span></span><span></span><span></span></div>
       </div>
       <span id="countdown-inline" style="display:none;"></span>
-      <div class="cta-btn-wrap" style="width:100%;">
+      <div class="cta-btn-wrap" style="width:100%;max-width:340px;">
         <button class="cta-btn" id="cta-btn" style="width:100%;">COUNT ME IN</button>
       </div>
       <button onclick="initialize();setTimeout(()=>{document.getElementById('reality-break').scrollIntoView({behavior:'smooth'})},300);" style="background:none;border:none;font-family:var(--font);font-size:var(--text-base);color:var(--text-secondary);cursor:pointer;padding:13px 16px;min-height:44px;margin-top:6px;transition:color 0.2s;">What is Disclosure Day?</button>
@@ -2507,6 +2573,30 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     <div>
       <div class="sf-heading"><span class="sf-greet">You're in,</span><span class="sf-name" id="sf-name">there</span></div>
       <div class="sf-sub" id="sf-sub">Your seat is saved.</div>
+    </div>
+  </div>
+
+  <!-- Phone-OTP verification gate (fires at commit, not on load) -->
+  <div id="auth-gate" class="auth-gate" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ag-title">
+    <div class="auth-gate-card" role="document">
+      <button type="button" id="ag-close" class="ag-close" aria-label="Close" onclick="closeAuthGate(false)">&times;</button>
+      <div class="ag-step active" id="ag-step-phone">
+        <h2 id="ag-title" class="ag-heading">Verify to save your seat</h2>
+        <p id="ag-sub" class="ag-sub">We text a 6-digit code. One time. No spam.</p>
+        <div class="phone-input-wrap" style="margin-top:18px;">
+          <span class="country-code">+1</span>
+          <input class="phone-number" type="tel" id="ag-phone" placeholder="(555) 123-4567" aria-label="Phone number" inputmode="numeric" autocomplete="tel-national" maxlength="14">
+        </div>
+        <button class="submit-btn" type="button" id="ag-send-btn" style="margin-top:18px;" onclick="sendVerificationCode()">Text me the code</button>
+        <p class="auth-subtle">Standard message rates may apply.</p>
+      </div>
+      <div class="ag-step" id="ag-step-otp">
+        <h2 class="ag-heading">Enter the code</h2>
+        <p class="ag-sub">Sent to <span id="ag-phone-display" style="font-family:var(--mono);color:var(--text-primary);"></span></p>
+        <input class="otp-input" type="text" id="ag-otp" placeholder="------" aria-label="6-digit code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" style="margin-top:18px;">
+        <button class="submit-btn" type="button" id="ag-verify-btn" style="margin-top:18px;" onclick="verifyCode()">Verify</button>
+        <button type="button" id="ag-resend-btn" class="ag-ghost" onclick="resendCode()">Resend code</button>
+      </div>
     </div>
   </div>
 
@@ -2990,7 +3080,9 @@ window.scrollTo(0, 0);
 const SUPABASE_URL = 'https://aahaurqqkrgwqdqkohuu.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFhaGF1cnFxa3Jnd3FkcWtvaHV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NzQ5MjEsImV4cCI6MjA5NTI1MDkyMX0.S4mtSrQuuNfeRNABALwe0pzjXkXDrxwhQTUI_7DTzs4';
 
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false }
+});
 
 const RELEASE_DATE = new Date('2026-06-12T19:00:00');
 const VENUE = {
@@ -3012,27 +3104,22 @@ async function fetchAttendees() {
   updateLandingHeadcount();
 }
 
-function renderLandingCrewDots(container) {
+function renderLandingCrew(container) {
+  if (!container) return;
   const active = attendees.filter(a => a.status !== 'cant');
-  if (active.length === 0) {
-    container.innerHTML = POSTERS.map((_, i) =>
-      `<button class="poster-carousel-dot${i === 0 ? ' active' : ''}" onclick="carouselGoTo(${i})" aria-label="Poster ${i + 1}"></button>`
-    ).join('');
-    return;
-  }
-  const visible = active.slice(0, 8);
-  const overflow = active.length - 8;
+  if (active.length === 0) { container.innerHTML = ''; return; }
+  const visible = active.slice(0, 6);
+  const overflow = active.length - visible.length;
   container.innerHTML = visible.map(a => {
-    const initial = esc(a.name.charAt(0).toUpperCase());
     const firstName = a.name.split(' ')[0];
-    const isDirector = a.name.split(' ')[0].toLowerCase() === 'jordan';
-    const badge = isDirector ? '<span class="crew-host-badge">Director</span>' : '';
-    if (a.photo_url) {
-      return `<div style="position:relative;">${badge}<div class="lc-avatar${isDirector ? ' lc-director' : ''}"><img src="${a.photo_url}" alt="${escAttr(firstName)}"></div></div>`;
-    }
-    return `<div style="position:relative;">${badge}<div class="lc-avatar${isDirector ? ' lc-director' : ''}">${initial}</div></div>`;
+    const isDirector = firstName.toLowerCase() === 'jordan';
+    const badge = isDirector ? '<span class="lc-director-badge">DIRECTOR</span>' : '';
+    const inner = a.photo_url
+      ? `<img src="${escAttr(a.photo_url)}" alt="${escAttr(firstName)}">`
+      : esc(firstName.charAt(0).toUpperCase());
+    return `<div class="lc-avatar${isDirector ? ' lc-director' : ''}">${inner}${badge}</div>`;
   }).join('') +
-  (overflow > 0 ? `<div class="lc-avatar" style="font-size:var(--text-xs);color:var(--text-tertiary);">+${overflow}</div>` : '');
+  (overflow > 0 ? `<div class="lc-avatar lc-more">+${overflow}</div>` : '');
 }
 
 // The hero mark IS the live crew: open seats are ember OUTLINES (waiting), filled tabs are solid ember.
@@ -3064,8 +3151,7 @@ function updateLandingHeadcount() {
   } else {
     el.textContent = 'Be the first to join';
   }
-  const dots = document.getElementById('poster-carousel-dots');
-  if (dots) renderLandingCrewDots(dots);
+  renderLandingCrew(document.getElementById('landing-crew-row'));
 }
 
 // Real-time subscription
@@ -3275,72 +3361,136 @@ if (phoneInput) {
   });
 }
 
-function showAuthStep(step) {
-  document.querySelectorAll('.auth-step').forEach(s => s.classList.remove('active'));
-  const el = document.getElementById('auth-step-' + step);
+// Phone-OTP gate: fires at commit (RSVP submit or organizer action), never on load.
+let pendingAction = null;
+let _resendTimer = null;
+
+function showAgStep(step) {
+  document.querySelectorAll('#auth-gate .ag-step').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('ag-step-' + step);
   if (el) el.classList.add('active');
 }
 
+function openAuthGate(context) {
+  const g = document.getElementById('auth-gate');
+  if (!g) return;
+  const title = document.getElementById('ag-title');
+  const sub = document.getElementById('ag-sub');
+  if (context === 'organizer') {
+    if (title) title.textContent = 'Verify to manage your crew';
+    if (sub) sub.textContent = "Confirm it's you. We text a 6-digit code.";
+  } else {
+    if (title) title.textContent = 'Verify to save your seat';
+    if (sub) sub.textContent = 'We text a 6-digit code. One time. No spam.';
+  }
+  showAgStep('phone');
+  g.classList.add('show');
+  g.setAttribute('aria-hidden', 'false');
+  const p = document.getElementById('ag-phone');
+  if (p) { p.value = ''; setTimeout(() => p.focus(), 50); }
+}
+
+function closeAuthGate(success) {
+  const g = document.getElementById('auth-gate');
+  if (!g) return;
+  g.classList.remove('show');
+  g.setAttribute('aria-hidden', 'true');
+  clearTimeout(_resendTimer);
+  if (!success) {
+    pendingAction = null;
+    const b = document.getElementById('submit-btn');
+    if (b) { b.disabled = false; b.textContent = 'Count Me In'; }
+  }
+}
+
+// Run action() if already verified, else open the gate and run it after verify.
+function requireAuth(action, context) {
+  if (authUserId) { action(); return; }
+  pendingAction = action;
+  openAuthGate(context);
+}
+
 async function sendVerificationCode() {
-  const phoneEl = document.getElementById('f-phone');
-  const nameEl = document.getElementById('f-name');
-  const btn = document.getElementById('send-code-btn');
-  const otpPhoneDisplay = document.getElementById('otp-phone-display');
-  const otpEl = document.getElementById('f-otp');
-  if (!phoneEl || !nameEl || !btn || !otpPhoneDisplay || !otpEl) return;
+  const phoneEl = document.getElementById('ag-phone');
+  const btn = document.getElementById('ag-send-btn');
+  const disp = document.getElementById('ag-phone-display');
+  if (!phoneEl || !btn || !disp) return;
   const phoneRaw = phoneEl.value.replace(/\D/g, '');
-  const name = nameEl.value.trim();
-  if (!name) { toast('Enter your name first'); return; }
   if (phoneRaw.length < 10) { toast('Enter a valid phone number'); return; }
 
   currentPhone = '+1' + phoneRaw;
   btn.disabled = true;
-  btn.innerHTML = '<span class="loading-spinner"></span>SENDING...';
+  btn.innerHTML = '<span class="loading-spinner"></span>Sending...';
 
   try {
     const { error } = await sb.auth.signInWithOtp({ phone: currentPhone });
     if (error) throw error;
-    otpPhoneDisplay.textContent = formatPhone(phoneRaw);
-    showAuthStep('otp');
-    otpEl.focus();
+    disp.textContent = formatPhone(phoneRaw);
+    showAgStep('otp');
+    const otpEl = document.getElementById('ag-otp');
+    if (otpEl) { otpEl.value = ''; setTimeout(() => otpEl.focus(), 50); }
+    startResendCooldown();
   } catch (err) {
     console.error('OTP send error:', err);
-    toast('Could not send code. Try skipping for now.');
+    toast(err && /rate|limit|too many/i.test(err.message || '') ? 'Too many attempts. Wait a minute.' : 'Could not send code. Check the number and try again.');
   }
   btn.disabled = false;
-  btn.textContent = 'SEND CODE';
+  btn.textContent = 'Text me the code';
 }
 
 async function verifyCode() {
-  const otpEl = document.getElementById('f-otp');
-  const btn = document.getElementById('verify-code-btn');
+  const otpEl = document.getElementById('ag-otp');
+  const btn = document.getElementById('ag-verify-btn');
   if (!otpEl || !btn) return;
-  const otp = otpEl.value.trim();
+  const otp = otpEl.value.replace(/\D/g, '');
   if (otp.length !== 6) { toast('Enter the 6-digit code'); return; }
 
   btn.disabled = true;
-  btn.innerHTML = '<span class="loading-spinner"></span>VERIFYING...';
+  btn.innerHTML = '<span class="loading-spinner"></span>Verifying...';
 
   try {
     const { data, error } = await sb.auth.verifyOtp({ phone: currentPhone, token: otp, type: 'sms' });
     if (error) throw error;
     authUserId = data.user?.id || null;
-    toast('Verified.');
-    showAuthStep('rsvp');
+    closeAuthGate(true);
+    const act = pendingAction; pendingAction = null;
+    if (act) await act();
   } catch (err) {
     console.error('OTP verify error:', err);
-    toast('Invalid code. Try again.');
+    otpEl.value = '';
+    toast('Invalid or expired code. Try again.');
   }
   btn.disabled = false;
-  btn.textContent = 'VERIFY';
+  btn.textContent = 'Verify';
 }
 
-function skipPhoneAuth() {
-  const nameEl = document.getElementById('f-name');
-  if (!nameEl) return;
-  const name = nameEl.value.trim();
-  if (!name) { toast('Enter your name first'); return; }
-  showAuthStep('rsvp');
+function resendCode() { sendVerificationCode(); }
+
+function startResendCooldown() {
+  const btn = document.getElementById('ag-resend-btn');
+  if (!btn) return;
+  let n = 30;
+  btn.disabled = true;
+  btn.textContent = `Resend in ${n}s`;
+  clearTimeout(_resendTimer);
+  const tick = () => {
+    n--;
+    if (n <= 0) { btn.disabled = false; btn.textContent = 'Resend code'; }
+    else { btn.textContent = `Resend in ${n}s`; _resendTimer = setTimeout(tick, 1000); }
+  };
+  _resendTimer = setTimeout(tick, 1000);
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const g = document.getElementById('auth-gate');
+    if (g && g.classList.contains('show')) closeAuthGate(false);
+  }
+});
+
+const agPhoneEl = document.getElementById('ag-phone');
+if (agPhoneEl) {
+  agPhoneEl.addEventListener('input', function() { this.value = formatPhone(this.value); });
 }
 
 // Activity feed
@@ -3372,7 +3522,8 @@ async function renderActivityFeed() {
   }
   el.innerHTML = feed.map(item => {
     const ago = timeAgo(new Date(item.created_at));
-    const message = (item.message || '').replace(/<(?!\/?strong\b)[^>]*>/gi, '');
+    // Escape everything, then restore ONLY bare <strong>/</strong> (no attributes survive). Kills onX-handler injection.
+    const message = esc(item.message || '').replace(/&lt;(\/?)strong&gt;/g, '<$1strong>');
     return `<div class="feed-item"><div class="feed-dot ${esc(item.type || '')}"></div><div style="flex:1;"><div class="feed-text">${message}</div><div class="feed-time">${ago}</div></div></div>`;
   }).join('');
 }
@@ -3409,7 +3560,8 @@ async function uploadPhoto(input) {
 
   const existing = attendees.find(a => a.name.toLowerCase() === lastRsvpName.toLowerCase());
   if (existing) {
-    await sb.from('rsvps').update({ photo_url: photoUrl }).eq('id', existing.id);
+    const { error: updErr } = await sb.from('rsvps').update({ photo_url: photoUrl }).eq('id', existing.id);
+    if (updErr) { console.error('photo save error:', updErr); toast('Could not save photo.'); return; }
     await fetchAttendees();
     renderFamilyCrew();
     toast('Photo saved.');
@@ -3422,7 +3574,8 @@ async function saveStatusLine() {
   if (!line || !lastRsvpName) return;
   const existing = attendees.find(a => a.name.toLowerCase() === lastRsvpName.toLowerCase());
   if (existing) {
-    await sb.from('rsvps').update({ status_line: line }).eq('id', existing.id);
+    const { error: slErr } = await sb.from('rsvps').update({ status_line: line }).eq('id', existing.id);
+    if (slErr) { console.error('status save error:', slErr); toast('Could not save.'); return; }
     await fetchAttendees();
     renderFamilyCrew();
     toast('Status saved.');
@@ -3431,12 +3584,13 @@ async function saveStatusLine() {
 
 // Manual add (organizer)
 async function manualAddRsvp() {
+  if (!authUserId) { requireAuth(() => manualAddRsvp(), 'organizer'); return; }
   const rawName = document.getElementById('manual-add-name').value.trim();
   if (!rawName) return;
   const name = rawName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
   const existing = attendees.find(a => a.name.toLowerCase() === name.toLowerCase());
   if (existing) { toast(name.split(' ')[0] + ' is already on the list'); return; }
-  const { error } = await sb.from('rsvps').insert({ name, status: 'confirmed', party: 1, theater: 'regal-secaucus', format: 'standard' });
+  const { error } = await sb.from('rsvps').insert({ name, status: 'confirmed', party: 1, theater: 'regal-secaucus', format: 'standard', user_id: authUserId });
   if (error) { toast('Error adding. Try again.'); console.error(error); return; }
   document.getElementById('manual-add-name').value = '';
   await fetchAttendees();
@@ -3451,16 +3605,12 @@ function getRadioValue(name) {
   return el ? el.value : '';
 }
 
-async function submitRSVP(e) {
+function submitRSVP(e) {
   e.preventDefault();
   const rawName = document.getElementById('f-name').value.trim();
   const name = rawName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
   if (!name) return;
   lastRsvpName = name;
-
-  const btn = document.getElementById('submit-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="loading-spinner"></span>Saving...';
 
   const entry = {
     name,
@@ -3470,14 +3620,27 @@ async function submitRSVP(e) {
     format: getRadioValue('format'),
   };
 
-  const existing = attendees.find(a => a.name.toLowerCase() === name.toLowerCase());
+  // Gate the write behind phone verification. They've already seen the crew + filled the form.
+  // Disable submit while the gate is open so a double-tap can't overwrite the pending action.
+  const sbtn = document.getElementById('submit-btn');
+  if (sbtn) sbtn.disabled = true;
+  requireAuth(() => resumeRSVP(entry, name));
+}
+
+async function resumeRSVP(entry, name) {
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-spinner"></span>Saving...';
+
+  // Only matches a row this verified user owns; legacy/other rows are never overwritten.
+  const existing = attendees.find(a => a.name.toLowerCase() === name.toLowerCase() && a.user_id === authUserId);
 
   let error;
   if (existing) {
     const res = await sb.from('rsvps').update(entry).eq('id', existing.id);
     error = res.error;
   } else {
-    const res = await sb.from('rsvps').insert(entry);
+    const res = await sb.from('rsvps').insert({ ...entry, user_id: authUserId });
     error = res.error;
   }
 
@@ -3485,13 +3648,9 @@ async function submitRSVP(e) {
   btn.textContent = 'Count Me In';
 
   if (error) {
-    if (error.code === '23505') {
-      const res = await sb.from('rsvps').update(entry).eq('name', name);
-      if (res.error) { toast('Something went wrong. Try again.'); return; }
-    } else {
-      toast('Something went wrong. Try again.');
-      return;
-    }
+    console.error('rsvp error:', error);
+    toast('Something went wrong. Try again.');
+    return;
   }
 
   document.getElementById('rsvp-form').reset();
@@ -3594,7 +3753,7 @@ function showConfirmation(name, status) {
     const firstName = a.name.split(' ')[0];
     const safeFirstName = esc(firstName);
     const avatar = a.photo_url
-      ? `<img class="crew-avatar-photo" src="${a.photo_url}" alt="${escAttr(firstName)}" style="width:28px;height:28px;">`
+      ? `<img class="crew-avatar-photo" src="${escAttr(a.photo_url)}" alt="${escAttr(firstName)}" style="width:28px;height:28px;">`
       : `<div style="width:28px;height:28px;border-radius:50%;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;font-size:var(--text-sm);font-weight:700;color:var(--gold);flex-shrink:0;">${esc(firstName.charAt(0).toUpperCase())}</div>`;
     const statusLine = a.status_line ? `<div class="crew-status-line">${esc(a.status_line)}</div>` : '';
     return `<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg-card);border:1px solid ${isSelf ? 'var(--gold-dim)' : 'var(--border-subtle)'};border-radius:var(--radius-sm);">
@@ -3667,9 +3826,9 @@ function renderFamilyCrew() {
         const firstName = a.name.split(' ')[0];
         const isHost = a.name.split(' ')[0].toLowerCase() === 'jordan';
         const hostBadge = isHost ? '<span class="crew-host-badge">Director</span>' : '';
-        const movieBadge = a.one_movie_poster ? `<img class="crew-avatar-movie-badge" src="${a.one_movie_poster}" alt="${escAttr(a.one_movie_title || '')}" title="${escAttr(a.one_movie_title || '')}">` : '';
+        const movieBadge = a.one_movie_poster ? `<img class="crew-avatar-movie-badge" src="${escAttr(a.one_movie_poster)}" alt="${escAttr(a.one_movie_title || '')}" title="${escAttr(a.one_movie_title || '')}">` : '';
         if (a.photo_url) {
-          return `<div class="crew-avatar-wrap"><div style="position:relative;"><img class="crew-avatar-photo" src="${a.photo_url}" alt="${escAttr(firstName)}" title="${escAttr(firstName)}">${hostBadge}</div>${movieBadge}</div>`;
+          return `<div class="crew-avatar-wrap"><div style="position:relative;"><img class="crew-avatar-photo" src="${escAttr(a.photo_url)}" alt="${escAttr(firstName)}" title="${escAttr(firstName)}">${hostBadge}</div>${movieBadge}</div>`;
         }
         const initial = esc(a.name.charAt(0).toUpperCase());
         return `<div class="crew-avatar-wrap"><div class="crew-avatar${isHost ? ' crew-avatar-host' : ''}" title="${escAttr(firstName)}">${initial}${hostBadge}</div>${movieBadge}</div>`;
@@ -3801,6 +3960,7 @@ if (attendeeListEl) {
 }
 
 async function togglePaid(id) {
+  if (!authUserId) { requireAuth(() => togglePaid(id), 'organizer'); return; }
   const a = attendees.find(x => x.id === id);
   if (!a) return;
   const { error } = await sb.from('rsvps').update({ paid: !a.paid }).eq('id', id);
@@ -3811,6 +3971,7 @@ async function togglePaid(id) {
 }
 
 async function toggleTicket(id) {
+  if (!authUserId) { requireAuth(() => toggleTicket(id), 'organizer'); return; }
   const a = attendees.find(x => x.id === id);
   if (!a) return;
   const { error } = await sb.from('rsvps').update({ ticket_secured: !a.ticket_secured }).eq('id', id);
@@ -3821,6 +3982,7 @@ async function toggleTicket(id) {
 }
 
 async function removeAttendee(id, name) {
+  if (!authUserId) { requireAuth(() => removeAttendee(id, name), 'organizer'); return; }
   if (!confirm('Remove ' + name + '?')) return;
   const { error } = await sb.from('rsvps').delete().eq('id', id);
   if (error) { toast('Error: ' + error.message); return; }
@@ -3943,6 +4105,7 @@ function closeAssignModal() {
 }
 
 async function assignSeat(seatId, name) {
+  if (!authUserId) { requireAuth(() => assignSeat(seatId, name), 'organizer'); return; }
   closeAssignModal();
   const { error } = await sb.from('seat_assignments').upsert({ seat_id: seatId, assigned_to: name }, { onConflict: 'seat_id' });
   if (error) { toast('Error: ' + error.message); return; }
@@ -3952,6 +4115,7 @@ async function assignSeat(seatId, name) {
 }
 
 async function unassignSeat(seatId, name) {
+  if (!authUserId) { requireAuth(() => unassignSeat(seatId, name), 'organizer'); return; }
   if (!confirm(`Remove ${name} from seat ${seatId}?`)) return;
   const { error } = await sb.from('seat_assignments').delete().eq('seat_id', seatId);
   if (error) { toast('Error: ' + error.message); return; }
@@ -4254,12 +4418,10 @@ let carouselTimer = null;
 
 function renderCarousel() {
   const track = document.getElementById('poster-carousel-track');
-  const dots = document.getElementById('poster-carousel-dots');
-  if (!track || !dots) return;
+  if (!track) return;
   track.innerHTML = POSTERS.map((p, i) =>
-    `<img class="landing-poster${i === 0 ? ' carousel-active' : ''}" src="https://image.tmdb.org/t/p/w500${p.path}" alt="${p.alt}" onerror="this.remove()">`
+    `<img class="landing-poster${i === 0 ? ' carousel-active' : ''}" src="https://image.tmdb.org/t/p/w780${p.path}" alt="${p.alt}" onerror="this.remove()">`
   ).join('');
-  renderLandingCrewDots(dots);
 
   const carousel = document.getElementById('poster-carousel');
   if (!carousel) return;
@@ -4473,7 +4635,7 @@ function renderProfile() {
 
   const firstName = me.name.split(' ')[0];
   const avatar = me.photo_url
-    ? `<img src="${me.photo_url}" alt="${escAttr(firstName)}">`
+    ? `<img src="${escAttr(me.photo_url)}" alt="${escAttr(firstName)}">`
     : `<div class="initials">${esc(firstName.charAt(0).toUpperCase())}</div>`;
   const statusLine = me.status_line ? `<div class="profile-status-line">"${esc(me.status_line)}"</div>` : '';
 
@@ -4489,7 +4651,7 @@ function renderProfile() {
   if (me.one_movie_poster && me.one_movie_title) {
     movieDisplay.innerHTML = `
       <div class="one-movie-current">
-        <img class="one-movie-poster" src="${me.one_movie_poster}" alt="${esc(me.one_movie_title)}">
+        <img class="one-movie-poster" src="${escAttr(me.one_movie_poster)}" alt="${esc(me.one_movie_title)}">
         <div>
           <div class="one-movie-label">YOUR ONE MOVIE</div>
           <div class="one-movie-title">${esc(me.one_movie_title)}</div>
@@ -4910,6 +5072,13 @@ const isOrg = new URLSearchParams(window.location.search).has('org');
 if (isOrg) document.body.classList.add('org-mode');
 
 (async function boot() {
+  try {
+    const { data: { session } } = await sb.auth.getSession();
+    authUserId = session?.user?.id || null;
+  } catch (e) { authUserId = null; }
+  sb.auth.onAuthStateChange((_event, session) => {
+    authUserId = session?.user?.id || null;
+  });
   await fetchAttendees();
   subscribeToChanges();
   renderHypeTicker();
